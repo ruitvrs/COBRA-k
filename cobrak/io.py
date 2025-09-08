@@ -16,6 +16,7 @@ import cobra
 from numpy import exp, log
 from pydantic import BaseModel, ConfigDict, TypeAdapter, validate_call
 
+from .cobrapy_model_functionality import get_fullsplit_cobra_model
 from .constants import (
     REAC_ENZ_SEPARATOR,
     REAC_FWD_SUFFIX,
@@ -961,6 +962,7 @@ def load_annotated_cobrapy_model_as_cobrak_model(
 @validate_call
 def load_annotated_sbml_model_as_cobrak_model(
     filepath: str,
+    do_model_fullsplit: bool = True,
 ) -> Model:
     """
     Load an annotated (and also plain un-annotated :-) SBML model from a file and convert it into a COBRAk Model.
@@ -972,11 +974,17 @@ def load_annotated_sbml_model_as_cobrak_model(
 
     Parameters:
     - filepath (str): The path to the SBML file containing the annotated metabolic model.
+    - do_model_fullsplit (bool, optional): Whether or not the model shall be "fullsplit" (i.e., any
+      reversible reaction and enzyme reaction variant becomes its own )
 
     Returns:
     - Model: A COBRAk Model constructed from the annotated SBML model, ready for further
       kinetic and thermodynamic analyses.
     """
+    if do_model_fullsplit:
+        return load_annotated_cobrapy_model_as_cobrak_model(
+            get_fullsplit_cobra_model(cobra.io.read_sbml_model(filepath))
+        )
     return load_annotated_cobrapy_model_as_cobrak_model(
         cobra.io.read_sbml_model(filepath)
     )

@@ -126,9 +126,9 @@ class EnzymeReactionData:
     """[Optional] The reaction's k_as (Activation constants) in M=mol⋅l⁻¹. Metabolite IDs are keys, k_as the values. Default is {}"""
     k_a_references: dict[str, list[ParameterReference]] = Field(default_factory=dict)
     """[Optional] References showing the source(s) of the k_a values. Metabolite IDs are keys, the source lists values. Default is {}"""
-    hill_coefficients: HillCoefficients = HillCoefficients()
+    hill_coefficients: HillCoefficients = Field(default_factory=HillCoefficients)
     """[Optional] If given, the reaction's Hill coefficients. Metabolite IDs are keys, coefficients the  in form of HillCoefficients instances. Default is empty HillCoefficients()."""
-    hill_coefficient_references: HillParameterReferences = HillParameterReferences()
+    hill_coefficient_references: HillParameterReferences = Field(default_factory=HillParameterReferences)
     """[Optional] References showing the source(s) of the Hill coefficients. Metabolite IDs are keys, the source lists values. Default is {}"""
     special_stoichiometries: dict[str, PositiveFloat] = Field(default_factory=dict)
     """[Optional] Special (non-1) stoichiometries of polypeptides/enzymes in the reaction's enzyme. Default is {}"""

@@ -152,7 +152,7 @@ $ln$ is the natural logarithm, $c_j$ the concentration of metabolite $j$ and $N_
 
     $ A → 2 B $
 
-    Lets say that this reaction's standard Gibbs energy $Δ_r G^{´°}_{X}$ is -1 kJ⋅mol⁻¹ A's concentration ($c_A$) is 0.2 M, and $c_B§ is 0.1 M.
+    Lets say that this reaction's standard Gibbs energy $Δ_r G^{´°}_{X}$ is -1 kJ⋅mol⁻¹ A's concentration ($c_A$) is 0.2 M, and $c_B$ is 0.1 M.
 
     Then, the driving force $f$ of reaction X is:
 

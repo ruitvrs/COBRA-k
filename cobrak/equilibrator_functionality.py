@@ -151,9 +151,9 @@ def equilibrator_get_model_dG0_and_uncertainty_values_for_sbml(
                 continue
 
             standard_dg_prime = cc.standard_dg_prime(cc_reaction)
-            uncertainty = standard_dg_prime.error.m_as("kJ⋅mol⁻¹")
+            uncertainty = standard_dg_prime.error.m_as("kJ/mol")
             if uncertainty < max_uncertainty:
-                dG0 = standard_dg_prime.value.m_as("kJ⋅mol⁻¹")
+                dG0 = standard_dg_prime.value.m_as("kJ/mol")
                 reaction_dG0s[reaction.id] = dG0
                 if ignore_uncertainty:
                     reaction_dG0_uncertainties[reaction.id] = 0.0
@@ -238,9 +238,9 @@ def equilibrator_get_model_dG0_and_uncertainty_values_for_sbml(
                     p_mg_outer=pmg_outer,
                     ionic_strength_outer=ionic_strength_outer,
                 )
-                uncertainty = standard_dg_prime.error.m_as("kJ⋅mol⁻¹")
+                uncertainty = standard_dg_prime.error.m_as("kJ/mol")
                 if uncertainty < max_uncertainty:
-                    dG0 = standard_dg_prime.value.m_as("kJ⋅mol⁻¹")
+                    dG0 = standard_dg_prime.value.m_as("kJ/mol")
                     reaction_dG0s[reaction.id] = dG0
                     if ignore_uncertainty:
                         reaction_dG0_uncertainties[reaction.id] = 0.0

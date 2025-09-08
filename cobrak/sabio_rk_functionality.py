@@ -8,7 +8,7 @@ from math import sqrt
 from os.path import exists
 from shutil import rmtree
 from statistics import median
-from time import sleep
+from time import sleep, time
 from zipfile import ZIP_LZMA, ZipFile
 
 import cobra
@@ -111,6 +111,10 @@ class SabioThread(threading.Thread):
         Constructs a query string, sends a POST request to the SABIO-RK web service,
         and writes the response to a file in the temporary folder.
         """
+        txt_path = f"{self.temp_folder}zzz{self.start_number}.txt"
+        if exists(txt_path):
+            return
+
         query_numbers = " OR ".join(
             [str(i + 1) for i in range(self.start_number, self.end_number + 1)]
         )
@@ -134,14 +138,21 @@ class SabioThread(threading.Thread):
             ],
             "q": query_string,
         }
-        request = requests.post(
-            "http://sabiork.h-its.org/sabioRestWebServices/kineticlawsExportTsv",
-            params=query,
-            timeout=1e6,
-        )
+        try:
+            t0 = time()
+            request = requests.post(
+                "http://sabiork.h-its.org/sabioRestWebServices/kineticlawsExportTsv",
+                params=query,
+                timeout=120,
+            )
+            t1 = time()
+            print(f"SABIO-ID REQUEST FROM {self.start_number} TO {self.end_number} FINISHED IN {t1-t0}")
+        except requests.exceptions.ReadTimeout:
+            print(f"TIMEOUT :O IN REQUEST FROM {self.start_number} TO {self.end_number} IN 120 SEC. YOU MAY TRY THIS AGAIN BY RESTARTING YOUR SCRIPT...")
+            return
         request.raise_for_status()
         with open(  # noqa: FURB103
-            f"{self.temp_folder}zzz{self.start_number}.txt", "w", encoding="utf-8"
+            txt_path, "w", encoding="utf-8"
         ) as f:
             f.write(request.text)
 
@@ -436,7 +447,7 @@ def sabio_select_enzyme_kinetic_data_for_sbml(
     accept_nan_temperature: bool = True,
     kcat_overwrite: dict[str, float] = {},
     transfered_ec_number_json: str = "",
-    max_taxonomy_level: int = float("inf"),
+    max_taxonomy_level: int | float = float("inf"),
     add_hill_coefficients: bool = True,
 ) -> dict[str, EnzymeReactionData | None]:
     """Selects enzyme kinetic data for a given SBML model using SABIO-RK data.
@@ -647,6 +658,7 @@ def sabio_select_enzyme_kinetic_data_for_sbml(
                             species=entry.organism,
                             substrate=entry.parameter_associated_species,
                             value=entry.parameter_value * multiplier,
+                            tax_distance=taxonomy_score,
                         )
                     )
             else:  # Metabolite-wide search

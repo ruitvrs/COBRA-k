@@ -402,7 +402,6 @@ def combine_enzyme_reaction_datasets(
         dict[str, EnzymeReactionData | None]: The combined enzyme reaction data
     """
     combined_data: dict[str, EnzymeReactionData] = {}
-
     for dataset in datasets:
         for reac_id, enzyme_reaction_data in dataset.items():
             if enzyme_reaction_data is None:
@@ -458,7 +457,7 @@ def combine_enzyme_reaction_datasets(
                         0
                     ].tax_distance
                 ):
-                    combined_data[reac_id].hill_coefficients.kappa[met_id] = hills.kappa
+                    combined_data[reac_id].hill_coefficients.kappa[met_id] = hills.kappa[met_id]
                     combined_data[reac_id].hill_coefficient_references.kappa[met_id] = (
                         enzyme_reaction_data.hill_coefficient_references.kappa[met_id]
                     )
@@ -471,7 +470,7 @@ def combine_enzyme_reaction_datasets(
                         0
                     ].tax_distance
                 ):
-                    combined_data[reac_id].hill_coefficients.iota[met_id] = hills.iota
+                    combined_data[reac_id].hill_coefficients.iota[met_id] = hills.iota[met_id]
                     combined_data[reac_id].hill_coefficient_references.iota[met_id] = (
                         enzyme_reaction_data.hill_coefficient_references.iota[met_id]
                     )
@@ -484,11 +483,12 @@ def combine_enzyme_reaction_datasets(
                         0
                     ].tax_distance
                 ):
-                    combined_data[reac_id].hill_coefficients.alpha[met_id] = hills.alpha
+                    combined_data[reac_id].hill_coefficients.alpha[met_id] = hills.alpha[met_id]
                     combined_data[reac_id].hill_coefficient_references.alpha[met_id] = (
                         enzyme_reaction_data.hill_coefficient_references.alpha[met_id]
                     )
 
+    json_write("3.json", combined_data)
     return combined_data
 
 

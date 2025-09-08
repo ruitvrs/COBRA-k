@@ -143,6 +143,47 @@ def _add_conc_sum_constraints(
     cobrak_model: Model,
     model: ConcreteModel,
 ) -> ConcreteModel:
+    """Add a concentration‑sum constraint to a Pyomo model.
+
+    For every metabolite concentration variable whose name matches the
+    ``LNCONC_VAR_PREFIX`` and satisfies the inclusion/exclusion rules defined in
+    ``cobrak_model``, a linearised exponential approximation is introduced.
+    The sum of these exponentiated variables is then bounded above by a new
+    auxiliary variable ``met_sum_var`` (with a user‑defined upper bound).
+
+    The function performs three logical steps:
+
+    1. **Identify relevant concentration variables** – iterate over all model
+       variables, keep those that start with ``LNCONC_VAR_PREFIX`` and whose
+       suffix is listed in ``cobrak_model.conc_sum_include_suffixes`` while
+       ignoring any that start with a prefix from
+       ``cobrak_model.conc_sum_ignore_prefixes``.
+    2. **Linearise the exponential** – for each selected variable a linear
+       approximation of ``exp(x)`` is added to the model via
+       ``add_linear_approximation_to_pyomo_model``.  The resulting auxiliary
+       variable is named ``exp_<original_var_name>``.
+    3. **Create the sum constraint** – the sum of all auxiliary exponential
+       variables is constrained to be less than or equal to a new variable
+       ``met_sum_var`` whose bounds are ``(1e‑12, cobrak_model.max_conc_sum)``.
+
+    Parameters
+    ----------
+    cobrak_model : Model
+        The COBRAk model that provides configuration values such as the
+        inclusion/exclusion suffixes, the maximum allowed relative error for
+        the linearisation, and the absolute upper bound for the concentration
+        sum.
+    model : ConcreteModel
+        The Pyomo model that will be extended with the new variables and
+        constraint.
+
+    Returns
+    -------
+    ConcreteModel
+        The same Pyomo model instance, now containing the auxiliary exponential
+        variables, the ``met_sum_var`` variable, and the ``met_sum_constraint``
+        constraint.
+    """
     met_sum_ids: list[str] = []
     for var_id in get_model_var_names(model):
         if not var_id.startswith(LNCONC_VAR_PREFIX):
@@ -221,14 +262,17 @@ def _add_df_and_dG0_var_for_reaction(
     )
 
     dG0_var_name = f"{DG0_VAR_PREFIX}{reac_id}"
-    setattr(
-        model,
-        dG0_var_name,
-        Var(
-            within=Reals,
-            bounds=(dG0_value - dG0_uncertainty, dG0_value + dG0_uncertainty),
-        ),
-    )
+    if dG0_value is not None and dG0_uncertainty is not None:
+        setattr(
+            model,
+            dG0_var_name,
+            Var(
+                within=Reals,
+                bounds=(dG0_value - dG0_uncertainty, dG0_value + dG0_uncertainty),
+            ),
+        )
+    else:
+        raise ValueError
 
     f_var_name = f"{DF_VAR_PREFIX}{reac_id}"
     setattr(model, f_var_name, Var(within=Reals, bounds=(-QUASI_INF, QUASI_INF)))
@@ -279,8 +323,8 @@ def _add_error_sum_to_model(
     model: ConcreteModel,
     cobrak_model: Model,
     correction_config: CorrectionConfig,
-) -> Model:
-    """Adds an error sum to the model, which can be either a quadratic or linear sum of error variables,
+) -> ConcreteModel:
+    """Adds an error sum to the pyomo model, which can be either a quadratic or linear sum of error variables,
        optionally weighted based on certain parameters from the COBRA model.
 
     Args:
@@ -298,20 +342,20 @@ def _add_error_sum_to_model(
     ]
 
     if correction_config.use_weights:
-        kcat_times_e_weight: float = percentile(
+        kcat_times_e_weight: float = float(percentile(
             sorted(get_model_max_kcat_times_e_values(cobrak_model)),
             correction_config.weight_percentile,
-        ) / len(cobrak_model.enzymes)
-        dG0_weight: float = percentile(
+        ) / len(cobrak_model.enzymes))
+        dG0_weight: float = float(percentile(
             sorted(get_model_dG0s(cobrak_model, abs_values=True)),
             correction_config.weight_percentile,
-        )
-        km_weight: float = percentile(
+        ))
+        km_weight: float = float(percentile(
             sorted([abs(log(k_m)) for k_m in get_model_kms(cobrak_model)]),
             correction_config.weight_percentile,
-        )
+        ))
 
-    error_expr: Expression = 0.0
+    error_expr: Any = 0.0
     for error_model_var_id in error_model_var_ids:
         if not correction_config.use_weights:
             weight = 1.0
@@ -1764,6 +1808,9 @@ def perform_lp_thermodynamic_bottleneck_analysis(
     This methology was first described in [1]. Keep in mind that results from this function are optimal, but not
     neccessarily unique!
 
+    For an alternative approach in identifying bottlenecks, look at
+    ```perform_lp_dG0_varying_thermodynamic_bottleneck_analysis```.
+
     [1] Bekiaris et al. (2023). Nature Communications, 14(1), 4660.  https://doi.org/10.1038/s41467-023-40297-8
 
     Args:
@@ -1836,6 +1883,64 @@ def _batch_dG0_varying_bottleneck_calculation(
     verbose: bool,
     ignore_nonlinear_terms: bool,
 ) -> str:
+    """Batch function for thermodynamic bottleneck by perturbing its
+    standard Gibbs free‑energy change (ΔG°′) and re‑optimising the model.
+
+    The routine creates a *temporary* copy of ``cobrak_model`` (using the
+    context‑manager protocol of :class:`Model`) and adds a user‑specified
+    variation ``dG0_variation`` to the ΔG°′ of ``target_reac_id``.  An additional
+    linear constraint forces the MDF (maximum thermodynamic driving force) to
+    be at least ``old_mdf + min_mdf_advantage``.  The model is then solved as a
+    linear program with the supplied ``solver``.  If the optimisation succeeds
+    and the new MDF meets the required advantage, the reaction is reported as a
+    bottleneck; otherwise an empty string is returned.
+
+    Parameters
+    ----------
+    solver : Solver
+        Pyomo/COBRApy solver instance that will be used for the LP
+        optimisation (e.g., ``SolverFactory('gurobi')``).
+    old_mdf : float
+        The MDF value of the *unperturbed* model.  Used as a baseline to compute
+        the required improvement.
+    min_mdf_advantage : float
+        Minimum increase in MDF that must be achieved for the reaction to be
+        considered a bottleneck (in kJ·mol⁻¹).
+    dG0_variation : float
+        Amount by which the reaction’s ΔG°′ is shifted (positive values make the
+        reaction less favourable, negative values make it more favourable).
+    cobrak_model : Model
+        The original COBRAk model.  The function works on a *copy* of this
+        model, leaving the original untouched.
+    with_enzyme_constraints : bool
+        If ``True``, enzyme capacity constraints are included in the LP
+        formulation; otherwise they are omitted.
+    target_reac_id : str
+        Identifier of the reaction whose ΔG°′ will be varied.
+    verbose : bool
+        When ``True`` a short message is printed to ``stdout`` indicating that
+        the reaction was identified as a bottleneck and reporting the new MDF.
+    ignore_nonlinear_terms : bool
+        If ``True`` the optimisation ignores any nonlinear thermodynamic terms
+        (e.g., logarithmic concentration approximations).  This can speed up
+        the LP at the cost of reduced fidelity.
+
+    Returns
+    -------
+    str
+        ``target_reac_id`` if the perturbed model satisfies the MDF advantage
+        constraint; otherwise an empty string ``""``.  The return type is
+        validated by the ``@validate_call(validate_return=True)`` decorator.
+
+    Raises
+    ------
+    ValueError
+        Propagated from :func:`perform_lp_optimization` when the optimisation
+        problem is infeasible or the solver encounters an unexpected error.
+        In this function the exception is caught and translated into a result
+        dictionary with ``ALL_OK_KEY`` set to ``False``; therefore the caller
+        will simply receive an empty string.
+    """
     with cobrak_model as dG0_varied_cobrak_model:
         dG0_varied_cobrak_model.reactions[target_reac_id].dG0 += dG0_variation
         dG0_varied_cobrak_model.extra_linear_constraints.append(
@@ -1876,10 +1981,13 @@ def perform_lp_dG0_varying_thermodynamic_bottleneck_analysis(
 ) -> list[str]:
     """Perform thermodynamic bottleneck analysis on a COBRA-k model using mixed-integer linear programming *with ΔG'° variations*.
 
+    This is an alternative to ```perform_lp_thermodynamic_bottleneck_analysis```.
+
     This function identifies the *current* set of thermodynamic bottlenecks in a COBRAk model by lowering the ΔG'° of each
     one reaction by the given factor (in kJ/mol). Typically, the minimal MDF to be reached would be a previously calculated
     optimal network-wide MDF (also called OptMDF). The basic methology was first described in [1].
     To prevent thermodynamic cycles, the ΔG'° of potential reverse reactions is raised by the amount the one ΔG'° was lowered.
+    To speed up calculations, this bottleneck analysis is performed in a parallelized fashion.
 
     [1] Bekiaris et al. (2021). PLOS Computational Biology, 14(1), https://doi.org/10.1371/journal.pcbi.1009093
 

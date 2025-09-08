@@ -197,7 +197,6 @@ def _brenda_parse_full_json(
     name_to_bigg_id_dict: dict[str, str] = json_load(
         bigg_metabolites_json_path, dict[str, str]
     )
-
     with tarfile.open(brenda_json_targz_file_path, "r:gz") as tar:
         json_filename = f"brenda_{brenda_version}.json"
         json_file = tar.extractfile(json_filename)
@@ -785,8 +784,9 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
             k_cat_references = [
                 ParameterReference(database="OVERWRITE", tax_distance=-1)
             ]
-        else:
+        elif len(list(kcat_overwrite.keys())) > 0:
             taxonomically_best_kcats = []
+            k_cat_references = []
 
         reaction_kms = {}
         for met_id, values in taxonomically_best_kms.items():
@@ -818,8 +818,6 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
                 k_is=reaction_kis,
                 k_i_references=k_i_references,
             )
-        else:
-            enzyme_reaction_data[reaction.id] = None
 
     enzyme_reaction_data = {**enzyme_reaction_data, **custom_enzyme_kinetic_data}
 
