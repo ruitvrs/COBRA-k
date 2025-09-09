@@ -12,6 +12,7 @@ from typing import Any
 import cobra
 from pydantic import ConfigDict, NonNegativeInt, validate_call
 
+from .constants import BIGG_COMPARTMENTS
 from .dataclasses import EnzymeReactionData, ParameterReference
 from .io import json_load, json_zip_load
 from .ncbi_taxonomy_functionality import (
@@ -576,13 +577,19 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
     # Get reaction<->enzyme reaction data mapping
     enzyme_reaction_data: dict[str, EnzymeReactionData | None] = {}
     for reaction in cobra_model.reactions:
+        if reaction.id.startswith("EX_"):
+            continue
         if "ec-code" not in reaction.annotation:
             continue
-
         substrate_names_and_ids = []
         for metabolite, stoichiometry in reaction.metabolites.items():
             if stoichiometry < 0:
                 substrate_names_and_ids.extend((metabolite.id, metabolite.name.lower()))
+                for suffix in [f"_{compartment}" for compartment in BIGG_COMPARTMENTS]:
+                    if metabolite.id.endswith(suffix):
+                        substrate_names_and_ids.append(
+                            (metabolite.id + "\b").replace(suffix + "\b", "")
+                        )
                 for checked_string in (metabolite.id, metabolite.name.lower()):
                     bigg_id = _search_metname_in_bigg_ids(
                         checked_string,
@@ -825,13 +832,14 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
         if reac_id not in enzyme_reaction_data:
             reaction = cobra_model.reactions.get_by_id(reac_id)
             enzyme_identifiers = reaction.gene_reaction_rule.split(" and ")
-            enzyme_reaction_data[reac_id] = EnzymeReactionData(
-                identifiers=enzyme_identifiers,
-                k_cat=kcat_overwrite[reac_id],
-                k_cat_references=[
-                    ParameterReference(database="OVERWRITE", tax_distance=-1)
-                ],
-                k_ms={},
-                k_is={},
-            )
+            if enzyme_identifiers != [""]:
+                enzyme_reaction_data[reac_id] = EnzymeReactionData(
+                    identifiers=enzyme_identifiers,
+                    k_cat=kcat_overwrite[reac_id],
+                    k_cat_references=[
+                        ParameterReference(database="OVERWRITE", tax_distance=-1)
+                    ],
+                    k_ms={},
+                    k_is={},
+                )
     return enzyme_reaction_data

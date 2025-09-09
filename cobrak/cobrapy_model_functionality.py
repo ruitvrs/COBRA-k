@@ -181,8 +181,10 @@ def get_fullsplit_cobra_model(
                 for met, stoichiometry in new_reaction_1.metabolites.items():
                     new_reaction_2_met_addition[met] = -stoichiometry
                 new_reaction_2.add_metabolites(new_reaction_2_met_addition)
+                new_reaction_2.name = reaction.name
 
                 fullsplit_cobra_model.add_reactions([new_reaction_2])
+            new_reaction_1.name = reaction.name
             fullsplit_cobra_model.add_reactions([new_reaction_1])
             current_reac_version += 1
             if cobrak_no_extra_versions and (

@@ -457,7 +457,9 @@ def combine_enzyme_reaction_datasets(
                         0
                     ].tax_distance
                 ):
-                    combined_data[reac_id].hill_coefficients.kappa[met_id] = hills.kappa[met_id]
+                    combined_data[reac_id].hill_coefficients.kappa[met_id] = (
+                        hills.kappa[met_id]
+                    )
                     combined_data[reac_id].hill_coefficient_references.kappa[met_id] = (
                         enzyme_reaction_data.hill_coefficient_references.kappa[met_id]
                     )
@@ -470,7 +472,9 @@ def combine_enzyme_reaction_datasets(
                         0
                     ].tax_distance
                 ):
-                    combined_data[reac_id].hill_coefficients.iota[met_id] = hills.iota[met_id]
+                    combined_data[reac_id].hill_coefficients.iota[met_id] = hills.iota[
+                        met_id
+                    ]
                     combined_data[reac_id].hill_coefficient_references.iota[met_id] = (
                         enzyme_reaction_data.hill_coefficient_references.iota[met_id]
                     )
@@ -483,7 +487,9 @@ def combine_enzyme_reaction_datasets(
                         0
                     ].tax_distance
                 ):
-                    combined_data[reac_id].hill_coefficients.alpha[met_id] = hills.alpha[met_id]
+                    combined_data[reac_id].hill_coefficients.alpha[met_id] = (
+                        hills.alpha[met_id]
+                    )
                     combined_data[reac_id].hill_coefficient_references.alpha[met_id] = (
                         enzyme_reaction_data.hill_coefficient_references.alpha[met_id]
                     )

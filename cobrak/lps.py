@@ -32,6 +32,7 @@ from pyomo.environ import (
     minimize,
     value,
 )
+
 from cobrak.pyomo_functionality import add_linear_approximation_to_pyomo_model
 
 from .constants import (
@@ -51,14 +52,20 @@ from .constants import (
     KAPPA_SUBSTRATES_VAR_PREFIX,
     LNCONC_VAR_PREFIX,
     MDF_VAR_ID,
+    OBJECTIVE_VAR_NAME,
     PROT_POOL_MET_NAME,
     PROT_POOL_REAC_NAME,
     QUASI_INF,
     STANDARD_MIN_MDF,
     Z_VAR_PREFIX,
-    OBJECTIVE_VAR_NAME,
 )
-from .dataclasses import CorrectionConfig, ExtraLinearConstraint, Model, Reaction, Solver
+from .dataclasses import (
+    CorrectionConfig,
+    ExtraLinearConstraint,
+    Model,
+    Reaction,
+    Solver,
+)
 from .pyomo_functionality import get_model_var_names, get_objective, get_solver
 from .standard_solvers import SCIP
 from .utilities import (
@@ -342,18 +349,25 @@ def _add_error_sum_to_model(
     ]
 
     if correction_config.use_weights:
-        kcat_times_e_weight: float = float(percentile(
-            sorted(get_model_max_kcat_times_e_values(cobrak_model)),
-            correction_config.weight_percentile,
-        ) / len(cobrak_model.enzymes))
-        dG0_weight: float = float(percentile(
-            sorted(get_model_dG0s(cobrak_model, abs_values=True)),
-            correction_config.weight_percentile,
-        ))
-        km_weight: float = float(percentile(
-            sorted([abs(log(k_m)) for k_m in get_model_kms(cobrak_model)]),
-            correction_config.weight_percentile,
-        ))
+        kcat_times_e_weight: float = float(
+            percentile(
+                sorted(get_model_max_kcat_times_e_values(cobrak_model)),
+                correction_config.weight_percentile,
+            )
+            / len(cobrak_model.enzymes)
+        )
+        dG0_weight: float = float(
+            percentile(
+                sorted(get_model_dG0s(cobrak_model, abs_values=True)),
+                correction_config.weight_percentile,
+            )
+        )
+        km_weight: float = float(
+            percentile(
+                sorted([abs(log(k_m)) for k_m in get_model_kms(cobrak_model)]),
+                correction_config.weight_percentile,
+            )
+        )
 
     error_expr: Any = 0.0
     for error_model_var_id in error_model_var_ids:
@@ -661,6 +675,7 @@ def _add_enzyme_constraints_to_lp(
             (enzyme_reaction_data is None)
             or (len(enzyme_reaction_data.identifiers) == 0)
             or ("" in enzyme_reaction_data.identifiers)
+            or ("" in enzyme_reaction_data.k_cat > 1e19)
         ):
             continue
 
@@ -1808,9 +1823,6 @@ def perform_lp_thermodynamic_bottleneck_analysis(
     This methology was first described in [1]. Keep in mind that results from this function are optimal, but not
     neccessarily unique!
 
-    For an alternative approach in identifying bottlenecks, look at
-    ```perform_lp_dG0_varying_thermodynamic_bottleneck_analysis```.
-
     [1] Bekiaris et al. (2023). Nature Communications, 14(1), 4660.  https://doi.org/10.1038/s41467-023-40297-8
 
     Args:
@@ -1946,7 +1958,7 @@ def _batch_dG0_varying_bottleneck_calculation(
         dG0_varied_cobrak_model.extra_linear_constraints.append(
             ExtraLinearConstraint(
                 stoichiometries={MDF_VAR_ID: 1.0},
-                lower_value=old_mdf + min_mdf_advantage
+                lower_value=old_mdf + min_mdf_advantage,
             )
         )
         try:
@@ -1963,7 +1975,9 @@ def _batch_dG0_varying_bottleneck_calculation(
             variation_result = {ALL_OK_KEY: False}
     if variation_result[ALL_OK_KEY]:
         if verbose:
-            print(f"{target_reac_id} identified as bottleneck (new OptMDF: {variation_result[MDF_VAR_ID]} kJ⋅mol⁻¹)!")
+            print(
+                f"{target_reac_id} identified as bottleneck (new OptMDF: {variation_result[MDF_VAR_ID]} kJ⋅mol⁻¹)!"
+            )
         return target_reac_id
     return ""
 
@@ -2023,7 +2037,8 @@ def perform_lp_dG0_varying_thermodynamic_bottleneck_analysis(
     )[OBJECTIVE_VAR_NAME]
 
     target_reac_ids = [
-        reac_id for reac_id, reac in cobrak_model.reactions.items()
+        reac_id
+        for reac_id, reac in cobrak_model.reactions.items()
         if reac.dG0 is not None
     ]
     results: list[str] = Parallel(n_jobs=-1, verbose=parallel_verbosity_level)(

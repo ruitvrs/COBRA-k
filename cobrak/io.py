@@ -8,6 +8,7 @@ import pickle
 import tempfile
 import zipfile
 from ast import literal_eval
+from copy import deepcopy
 from dataclasses import asdict, is_dataclass
 from typing import Any, TypeVar
 from zipfile import ZipFile
@@ -21,6 +22,7 @@ from .constants import (
     REAC_ENZ_SEPARATOR,
     REAC_FWD_SUFFIX,
     REAC_REV_SUFFIX,
+    STANDARD_MAX_PROT_POOL,
     STANDARD_R,
     STANDARD_T,
 )
@@ -247,6 +249,7 @@ def convert_cobrak_model_to_annotated_cobrapy_model(
     ValueError
         If combine_base_reactions and add_enzyme_constraints are both True.
     """
+    cobrak_model = deepcopy(cobrak_model)
     if combine_base_reactions and add_enzyme_constraints:
         print(
             "ERROR: Stoichiometric enzyme constraints do not work with combined base reactions\n"
@@ -700,6 +703,8 @@ def json_zip_write(
 def load_annotated_cobrapy_model_as_cobrak_model(
     cobra_model: cobra.Model,
     exclude_enzyme_constraints: bool = True,
+    mw_for_enzymes_without_cobrak_mw_annotation: float = 1e6,
+    deactivate_mw_warning: bool = False,
 ) -> Model:
     """Converts a COBRApy model with (and also without :-) annotations into a COBRAk Model.
 
@@ -747,7 +752,7 @@ def load_annotated_cobrapy_model_as_cobrak_model(
             "cobrak_reac_enz_separator"
         ]
     else:
-        max_prot_pool = 1_000.0
+        max_prot_pool = STANDARD_MAX_PROT_POOL
         extra_linear_constraints = []
         kinetic_ignored_metabolites = []
         R = STANDARD_R
@@ -780,8 +785,9 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                 for key, value in metabolite.annotation.items()
                 if not key.startswith("cobrak_")
             },
-            formula=str(metabolite.formula),
+            formula="" if not metabolite.formula else metabolite.formula,
             charge=metabolite.charge,
+            name=metabolite.name,
         )
 
     cobrak_reactions: dict[str, Reaction] = {}
@@ -886,7 +892,17 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                     special_stoichiometries=special_stoichiometries,
                 )
             else:
-                enzyme_reaction_data = None
+                if reaction.gene_reaction_rule:
+                    identifiers = reaction.gene_reaction_rule.split(" and ")
+                    enzyme_reaction_data = (
+                        EnzymeReactionData(
+                            identifiers=identifiers,
+                        )
+                        if identifiers != [""]
+                        else None
+                    )
+                else:
+                    enzyme_reaction_data = None
 
             if len(version_data) > 1:
                 if version_reac_id.endswith(reac_rev_suffix):
@@ -924,25 +940,43 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                     for key, value in reaction.annotation.items()
                     if not key.startswith("cobrak_")
                 },
+                name=reaction.name,
             )
 
     cobrak_enzymes: dict[str, Enzyme] = {}
     for gene in cobra_model.genes:
         if "cobrak_mw" in gene.annotation:
-            if "cobrak_min_conc" in gene.annotation:
-                min_conc = float(gene.annotation["cobrak_min_conc"])
-            else:
-                min_conc = None
-            if "cobrak_max_conc" in gene.annotation:
-                max_conc = float(gene.annotation["cobrak_max_conc"])
-            else:
-                max_conc = None
-            cobrak_enzymes[gene.id] = Enzyme(
-                molecular_weight=float(gene.annotation["cobrak_mw"]),
-                min_conc=min_conc,
-                max_conc=max_conc,
-                name=gene.name,
-            )
+            mw = float(gene.annotation["cobrak_mw"])
+        else:
+            if not deactivate_mw_warning:
+                print(
+                    f"INFO: No molecular weight given as cobrak_mw annotation for {gene.id}. Setting to standard value {mw_for_enzymes_without_cobrak_mw_annotation}."
+                )
+                print(
+                    " Please change this value later to a reasonable value if you use enzyme constraints, e.g. through COBRA-k's Uniprot functionality."
+                )
+            mw: float = mw_for_enzymes_without_cobrak_mw_annotation
+        if "cobrak_min_conc" in gene.annotation:
+            min_conc = float(gene.annotation["cobrak_min_conc"])
+        else:
+            min_conc = None
+        if "cobrak_max_conc" in gene.annotation:
+            max_conc = float(gene.annotation["cobrak_max_conc"])
+        else:
+            max_conc = None
+        cobrak_enzymes[gene.id] = Enzyme(
+            molecular_weight=mw,
+            min_conc=min_conc,
+            max_conc=max_conc,
+            name=gene.name
+            if not gene.name.startswith("G_")
+            else gene.name[len("G_") :],
+            annotation={
+                key: value
+                for key, value in gene.annotation.items()
+                if not key.startswith("cobrak_")
+            },
+        )
 
     return Model(
         reactions=cobrak_reactions,
@@ -963,6 +997,9 @@ def load_annotated_cobrapy_model_as_cobrak_model(
 def load_annotated_sbml_model_as_cobrak_model(
     filepath: str,
     do_model_fullsplit: bool = True,
+    exclude_enzyme_constraints: bool = True,
+    mw_for_enzymes_without_cobrak_mw_annotation: float = 1e6,
+    deactivate_mw_warning: bool = False,
 ) -> Model:
     """
     Load an annotated (and also plain un-annotated :-) SBML model from a file and convert it into a COBRAk Model.
@@ -983,10 +1020,16 @@ def load_annotated_sbml_model_as_cobrak_model(
     """
     if do_model_fullsplit:
         return load_annotated_cobrapy_model_as_cobrak_model(
-            get_fullsplit_cobra_model(cobra.io.read_sbml_model(filepath))
+            get_fullsplit_cobra_model(cobra.io.read_sbml_model(filepath)),
+            exclude_enzyme_constraints=exclude_enzyme_constraints,
+            mw_for_enzymes_without_cobrak_mw_annotation=mw_for_enzymes_without_cobrak_mw_annotation,
+            deactivate_mw_warning=deactivate_mw_warning,
         )
     return load_annotated_cobrapy_model_as_cobrak_model(
-        cobra.io.read_sbml_model(filepath)
+        cobra.io.read_sbml_model(filepath),
+        exclude_enzyme_constraints=exclude_enzyme_constraints,
+        mw_for_enzymes_without_cobrak_mw_annotation=mw_for_enzymes_without_cobrak_mw_annotation,
+        deactivate_mw_warning=deactivate_mw_warning,
     )
 
 

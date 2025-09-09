@@ -284,7 +284,9 @@ def get_nlp_from_cobrak_model(
                     Constraint(rule=mdf_constraint),
                 )
 
-        if reaction.enzyme_reaction_data is None:
+        if (reaction.enzyme_reaction_data is None) or (
+            reaction.enzyme_reaction_data.k_cat > 1e19
+        ):
             continue
 
         # Determine whether or not κ, γ, ι and α are possible to add to the reaction

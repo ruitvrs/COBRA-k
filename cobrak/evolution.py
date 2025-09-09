@@ -30,8 +30,8 @@ from .pyomo_functionality import (
 )
 from .standard_solvers import IPOPT, SCIP
 from .utilities import (
-    add_statuses_to_optimziation_dict,
     add_objective_value_as_extra_linear_constraint,
+    add_statuses_to_optimziation_dict,
     apply_variability_dict,
     delete_orphaned_metabolites_and_enzymes,
     get_active_reacs_from_optimization_dict,

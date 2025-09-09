@@ -11,6 +11,32 @@ ALL_OK_KEY = "ALL_OK"
 BIG_M = 10_000
 """Big M value for MILPs"""
 
+BIGG_COMPARTMENTS = [
+    "c",
+    "e",
+    "p",
+    "m",
+    "x",
+    "r",
+    "v",
+    "n",
+    "g",
+    "u",
+    "l",
+    "h",
+    "f",
+    "s",
+    "im",
+    "cx",
+    "um",
+    "cm",
+    "i",
+    "mm",
+    "w",
+    "y",
+]
+"""List of BiGG compartment suffixes (without _) as defined in http://bigg.ucsd.edu/compartments/"""
+
 DF_VAR_PREFIX = "f_var_"
 """Prefix for driving force problem variables"""
 

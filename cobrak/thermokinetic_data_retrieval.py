@@ -23,6 +23,9 @@ from .io import (
     save_cobrak_model_as_annotated_sbml_model,
     standardize_folder,
 )
+from .model_instantiation import (
+    delete_enzymatically_suboptimal_reactions_in_cobrak_model,
+)
 from .sabio_rk_functionality import sabio_select_enzyme_kinetic_data_for_sbml
 from .uniprot_functionality import uniprot_get_enzyme_molecular_weights_for_sbml
 from .utilities import combine_enzyme_reaction_datasets, parse_external_resources
@@ -37,6 +40,7 @@ def add_thermokinetic_data_to_cobrak_model(
     kis: dict[str, dict[str, float]] = {},
     kas: dict[str, dict[str, float]] = {},
     dG0s: dict[str, float] = {},
+    dG0_uncertainties: dict[str, float] = {},
     conc_ranges: dict[str, tuple[float, float]] = {},
     delete_old_dG0s: bool = False,
     overwrite_existing_dG0s: bool = True,
@@ -86,6 +90,8 @@ def add_thermokinetic_data_to_cobrak_model(
             reaction.dG0 = None
         elif (overwrite_existing_dG0s or reaction.dG0 is None) and (reac_id in dG0s):
             reaction.dG0 = dG0s[reac_id]
+            if reac_id in dG0_uncertainties:
+                reaction.dG0_uncertainty = dG0_uncertainties[reac_id]
 
         # enzyme_reaction_data
         if delete_old_dG0s:
@@ -156,15 +162,30 @@ def add_enzyme_reaction_data_to_cobrak_model(
 
 
 @validate_call(validate_return=True)
-def automatically_add_database_thermokinetic_data_too_cobrak_model(
+def automatically_add_database_thermokinetic_data_to_cobrak_model(
     cobrak_model: Model,
     database_data_path: str,
+    brenda_version: str,
+    base_species: str,
+    do_delete_enzymatically_suboptimal_reactions: bool = True,
     use_brenda: bool = True,
     use_sabio_rk: bool = True,
-    prefer_brenda: bool = True,
+    prefer_brenda: bool = False,
     use_ec_number_transfers: bool = True,
     max_taxonomy_level: int = 1_000,
     kinetic_ignored_enzyme_ids: list[str] = ["s0001"],
+    inner_to_outer_compartments: list[str] = EC_INNER_TO_OUTER_COMPARTMENTS,
+    phs: dict[str, float] = EC_PHS,
+    pmgs: dict[str, float] = EC_PMGS,
+    ionic_strenghts: dict[str, float] = EC_IONIC_STRENGTHS,
+    potential_differences: dict[tuple[str, str], float] = EC_POTENTIAL_DIFFERENCES,
+    calculate_multicompartmental_dG0s: bool = True,
+    dG0_exclusion_prefixes: list[str] = [],
+    dG0_exclusion_inner_parts: list[str] = [],
+    ignore_dG0_uncertainty: bool = False,
+    max_dG0_uncertainty: float = 1_000.0,
+    add_dG0_uncertainties: bool = True,
+    add_hill_coefficients: bool = True,
 ) -> Model:
     """Retrieve kinetic and thermodynamic data from external databases and add them to a model.
 
@@ -177,11 +198,11 @@ def automatically_add_database_thermokinetic_data_too_cobrak_model(
     use_brenda : bool, default True
         Include BRENDA data if True.
     use_sabio_rk : bool, default True
-        Include SABIO‑RK data if True.
+        Include SABIO-RK data if True.
     prefer_brenda : bool, default True
         When both databases provide data, give precedence to BRENDA.
     use_ec_number_transfers : bool, default True
-        Use EC‑number transfer mappings when searching for data.
+        Use EC-number transfer mappings when searching for data.
     max_taxonomy_level : int, default 1000
         Maximum taxonomic distance allowed for data transfer.
     kinetic_ignored_enzyme_ids : list[str], default ["s0001"]
@@ -190,7 +211,7 @@ def automatically_add_database_thermokinetic_data_too_cobrak_model(
     Returns
     -------
     Model
-        The model populated with database‑derived thermokinetic data.
+        The model populated with database-derived thermokinetic data.
     """
     database_data_path = standardize_folder(database_data_path)
 
@@ -199,10 +220,13 @@ def automatically_add_database_thermokinetic_data_too_cobrak_model(
         database_data_path=database_data_path,
         use_brenda=use_brenda,
         use_sabio_rk=use_sabio_rk,
+        base_species=base_species,
+        brenda_version=brenda_version,
         prefer_brenda=prefer_brenda,
         use_ec_number_transfers=use_ec_number_transfers,
         max_taxonomy_level=max_taxonomy_level,
         kinetic_ignored_enzyme_ids=kinetic_ignored_enzyme_ids,
+        add_hill_coefficients=add_hill_coefficients,
     )
     cobrak_model = add_enzyme_reaction_data_to_cobrak_model(
         cobrak_model=cobrak_model,
@@ -210,24 +234,46 @@ def automatically_add_database_thermokinetic_data_too_cobrak_model(
     )
     mws = get_database_mws_for_cobrak_model(
         cobrak_model=cobrak_model,
+        base_species=base_species,
         database_data_path=database_data_path,
     )
-    return add_thermokinetic_data_to_cobrak_model(
+    dG0s, dG0_uncertainties = get_database_dG0s_for_cobrak_model(
+        cobrak_model=cobrak_model,
+        inner_to_outer_compartments=inner_to_outer_compartments,
+        phs=phs,
+        pmgs=pmgs,
+        ionic_strenghts=ionic_strenghts,
+        potential_differences=potential_differences,
+        calculate_multicompartmental=calculate_multicompartmental_dG0s,
+        exclusion_prefixes=dG0_exclusion_prefixes,
+        exclusion_inner_parts=dG0_exclusion_inner_parts,
+        ignore_uncertainty=ignore_dG0_uncertainty,
+        max_uncertainty=max_dG0_uncertainty,
+    )
+    cobrak_model = add_thermokinetic_data_to_cobrak_model(
         cobrak_model=cobrak_model,
         mws=mws,
+        dG0s=dG0s,
+        dG0_uncertainties=dG0_uncertainties if add_dG0_uncertainties else {},
     )
+    if do_delete_enzymatically_suboptimal_reactions:
+        return delete_enzymatically_suboptimal_reactions_in_cobrak_model(cobrak_model)
+    return cobrak_model
 
 
 @validate_call(validate_return=True)
 def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
     cobrak_model: Model,
     database_data_path: str,
+    brenda_version: str,
+    base_species: str,
     use_brenda: bool = True,
     use_sabio_rk: bool = True,
     prefer_brenda: bool = False,
     use_ec_number_transfers: bool = True,
     max_taxonomy_level: NonNegativeInt = 1_000,
     kinetic_ignored_enzyme_ids: list[str] = ["s0001"],
+    add_hill_coefficients: bool = True,
 ) -> dict[str, EnzymeReactionData]:
     """Query BRENDA and/or SABIO‑RK for kinetic parameters and return (if given) a unified dataset.
 
@@ -282,7 +328,7 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
 
     parse_external_resources(
         path=database_data_path,
-        brenda_version="2024_1",
+        brenda_version=brenda_version,
         parse_brenda=use_brenda,
     )
 
@@ -295,10 +341,10 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
 
         brenda_enzyme_reaction_data = brenda_select_enzyme_kinetic_data_for_sbml(
             sbml_path=sbml_path,
-            brenda_json_targz_file_path=f"{database_data_path}brenda_2024_1.json.tar.gz",
+            brenda_json_targz_file_path=f"{database_data_path}brenda_{brenda_version}.json.tar.gz",
             bigg_metabolites_json_path=f"{database_data_path}bigg_models_metabolites.json",
-            brenda_version="2024_1",
-            base_species="Escherichia coli",
+            brenda_version=brenda_version,
+            base_species=base_species,
             ncbi_parsed_json_path=f"{database_data_path}parsed_taxdmp.json",
             kinetic_ignored_metabolites=cobrak_model.kinetic_ignored_metabolites,
             kinetic_ignored_enzyme_ids=kinetic_ignored_enzyme_ids,
@@ -308,7 +354,7 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
 
         sabio_enzyme_reaction_data = sabio_select_enzyme_kinetic_data_for_sbml(
             sbml_path=sbml_path,
-            sabio_target_folder="examples/common_needed_external_resources",
+            sabio_target_folder=database_data_path,
             bigg_metabolites_json_path=f"{database_data_path}bigg_models_metabolites.json",
             base_species="Escherichia coli",
             ncbi_parsed_json_path=f"{database_data_path}parsed_taxdmp.json",
@@ -316,7 +362,7 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
             kinetic_ignored_enzyme_ids=kinetic_ignored_enzyme_ids,
             transfered_ec_number_json=transfer_json_path,
             max_taxonomy_level=max_taxonomy_level,
-            add_hill_coefficients=False,
+            add_hill_coefficients=add_hill_coefficients,
         )
 
     if use_brenda and use_sabio_rk:
@@ -333,6 +379,7 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
 @validate_call(validate_return=True)
 def get_database_mws_for_cobrak_model(
     cobrak_model: Model,
+    base_species: str,
     database_data_path: str = "",
 ) -> dict[str, float]:
     """Retrieve enzyme molecular weights from UniProt for a given model.
@@ -359,6 +406,7 @@ def get_database_mws_for_cobrak_model(
         return uniprot_get_enzyme_molecular_weights_for_sbml(
             sbml_path=sbml_path,
             cache_basepath=database_data_path,
+            base_species=base_species,
         )
 
 
@@ -369,7 +417,7 @@ def get_database_dG0s_for_cobrak_model(
     phs: dict[str, float] = EC_PHS,
     pmgs: dict[str, float] = EC_PMGS,
     ionic_strenghts: dict[str, float] = EC_IONIC_STRENGTHS,
-    potential_differences: dict[str, float] = EC_POTENTIAL_DIFFERENCES,
+    potential_differences: dict[tuple[str, str], float] = EC_POTENTIAL_DIFFERENCES,
     calculate_multicompartmental: bool = True,
     exclusion_prefixes: list[str] = [],
     exclusion_inner_parts: list[str] = [],

@@ -146,9 +146,13 @@ class SabioThread(threading.Thread):
                 timeout=120,
             )
             t1 = time()
-            print(f"SABIO-ID REQUEST FROM {self.start_number} TO {self.end_number} FINISHED IN {t1-t0}")
+            print(
+                f"SABIO-ID REQUEST FROM {self.start_number} TO {self.end_number} FINISHED IN {t1 - t0}"
+            )
         except requests.exceptions.ReadTimeout:
-            print(f"TIMEOUT :O IN REQUEST FROM {self.start_number} TO {self.end_number} IN 120 SEC. YOU MAY TRY THIS AGAIN BY RESTARTING YOUR SCRIPT...")
+            print(
+                f"TIMEOUT :O IN REQUEST FROM {self.start_number} TO {self.end_number} IN 120 SEC. YOU MAY TRY THIS AGAIN BY RESTARTING YOUR SCRIPT..."
+            )
             return
         request.raise_for_status()
         with open(  # noqa: FURB103
