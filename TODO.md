@@ -5,12 +5,13 @@
 * X Compartmentalize kinetic value collection, making them work with COBRA-k models alone or also annotated SBMLs
 * X Add references to annotated SBMLs
 * X Add "old" bottleneck function
-* X Add in/out function in utilities, also as plot
+* X Add in/out function in utilities
 * X Add IPOPT executable option
-* Create COBRA-k template repository and reference in documentation/README; Rewrite data collection chapter
 
 ## Mid-term
 
+* Create COBRA-k template repository and reference in documentation/README; Rewrite data collection chapter
+* Integrate postprocessing routine into evolutionary algorithm routine
 * Add gallery in documentation for plot functions
 * Consistent argument names
 * Consistent argument orders

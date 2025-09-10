@@ -50,8 +50,8 @@ class Enzyme:
             [Optional] Colloquial name of enzyme
     """
 
-    molecular_weight: FiniteFloat
-    """The enzyme's molecular weight in kDa"""
+    molecular_weight: float = 1e20
+    """The enzyme's molecular weight in kDa. Defaults to 1e20 (a very high value that shall be replaced with a real molecular weight)."""
     min_conc: PositiveFloat | None = None
     """[Optional] The enzyme's minimal concentration in mmol⋅gDW⁻¹"""
     max_conc: PositiveFloat | None = None
@@ -300,10 +300,10 @@ class Reaction:
 
     stoichiometries: dict[str, float]
     """Metabolite stoichiometries"""
-    min_flux: float
-    """Minimal flux (for COBRAk, this must be ≥ 0)"""
-    max_flux: float
-    """Maximal flux (must be >= min_flux)"""
+    min_flux: float = 0.0
+    """Minimal flux (for COBRA-k, this must be ≥ 0). Defaults to 0.0."""
+    max_flux: float = 1_000.0
+    """Maximal flux (must be >= min_flux). Defaults to 1_000.0."""
     dG0: FiniteFloat | None = None
     """If given, the Gibb's free energy of the reaction (only relevant for thermodynamic constraints); Default is None"""
     dG0_uncertainty: FiniteFloat | None = None

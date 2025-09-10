@@ -494,7 +494,6 @@ def combine_enzyme_reaction_datasets(
                         enzyme_reaction_data.hill_coefficient_references.alpha[met_id]
                     )
 
-    json_write("3.json", combined_data)
     return combined_data
 
 

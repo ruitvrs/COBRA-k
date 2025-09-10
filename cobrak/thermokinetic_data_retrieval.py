@@ -19,6 +19,7 @@ from .equilibrator_functionality import (
 )
 from .expasy_functionality import get_ec_number_transfers
 from .io import (
+    json_load,
     json_write,
     save_cobrak_model_as_annotated_sbml_model,
     standardize_folder,
@@ -215,41 +216,57 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
     """
     database_data_path = standardize_folder(database_data_path)
 
-    enzyme_reaction_data = get_database_kcats_kms_kis_and_kas_for_cobrak_model(
-        cobrak_model=cobrak_model,
-        database_data_path=database_data_path,
-        use_brenda=use_brenda,
-        use_sabio_rk=use_sabio_rk,
-        base_species=base_species,
-        brenda_version=brenda_version,
-        prefer_brenda=prefer_brenda,
-        use_ec_number_transfers=use_ec_number_transfers,
-        max_taxonomy_level=max_taxonomy_level,
-        kinetic_ignored_enzyme_ids=kinetic_ignored_enzyme_ids,
-        add_hill_coefficients=add_hill_coefficients,
-    )
+    if not exists(f"{database_data_path}_cache_enzyme_reaction_data.json"):
+        enzyme_reaction_data = get_database_kcats_kms_kis_and_kas_for_cobrak_model(
+            cobrak_model=cobrak_model,
+            database_data_path=database_data_path,
+            use_brenda=use_brenda,
+            use_sabio_rk=use_sabio_rk,
+            base_species=base_species,
+            brenda_version=brenda_version,
+            prefer_brenda=prefer_brenda,
+            use_ec_number_transfers=use_ec_number_transfers,
+            max_taxonomy_level=max_taxonomy_level,
+            kinetic_ignored_enzyme_ids=kinetic_ignored_enzyme_ids,
+            add_hill_coefficients=add_hill_coefficients,
+        )
+        json_write(f"{database_data_path}_cache_enzyme_reaction_data.json", enzyme_reaction_data)
+    else:
+        enzyme_reaction_data = json_load(f"{database_data_path}_cache_enzyme_reaction_data.json", dict[str, EnzymeReactionData])
     cobrak_model = add_enzyme_reaction_data_to_cobrak_model(
         cobrak_model=cobrak_model,
         enzyme_reaction_data=enzyme_reaction_data,
     )
-    mws = get_database_mws_for_cobrak_model(
-        cobrak_model=cobrak_model,
-        base_species=base_species,
-        database_data_path=database_data_path,
-    )
-    dG0s, dG0_uncertainties = get_database_dG0s_for_cobrak_model(
-        cobrak_model=cobrak_model,
-        inner_to_outer_compartments=inner_to_outer_compartments,
-        phs=phs,
-        pmgs=pmgs,
-        ionic_strenghts=ionic_strenghts,
-        potential_differences=potential_differences,
-        calculate_multicompartmental=calculate_multicompartmental_dG0s,
-        exclusion_prefixes=dG0_exclusion_prefixes,
-        exclusion_inner_parts=dG0_exclusion_inner_parts,
-        ignore_uncertainty=ignore_dG0_uncertainty,
-        max_uncertainty=max_dG0_uncertainty,
-    )
+
+    if not exists(f"{database_data_path}_cache_uniprot_mws.json"):
+        mws = get_database_mws_for_cobrak_model(
+            cobrak_model=cobrak_model,
+            base_species=base_species,
+            database_data_path=database_data_path,
+        )
+        json_write(f"{database_data_path}_cache_uniprot_mws.json", mws)
+    else:
+        mws = json_load(f"{database_data_path}_cache_uniprot_mws.json", dict[str, float])
+
+    if not exists(f"{database_data_path}_cache_dG0.json") or not exists(f"{database_data_path}_cache_dG0_uncertainties.json"):
+        dG0s, dG0_uncertainties = get_database_dG0s_for_cobrak_model(
+            cobrak_model=cobrak_model,
+            inner_to_outer_compartments=inner_to_outer_compartments,
+            phs=phs,
+            pmgs=pmgs,
+            ionic_strenghts=ionic_strenghts,
+            potential_differences=potential_differences,
+            calculate_multicompartmental=calculate_multicompartmental_dG0s,
+            exclusion_prefixes=dG0_exclusion_prefixes,
+            exclusion_inner_parts=dG0_exclusion_inner_parts,
+            ignore_uncertainty=ignore_dG0_uncertainty,
+            max_uncertainty=max_dG0_uncertainty,
+        )
+        json_write(f"{database_data_path}_cache_dG0.json", dG0s)
+        json_write(f"{database_data_path}_cache_dG0_uncertainties.json", dG0_uncertainties)
+    else:
+        dG0s = json_load(f"{database_data_path}_cache_dG0.json", dict[str, float])
+        dG0_uncertainties = json_load(f"{database_data_path}_cache_dG0_uncertainties.json", dict[str, float])
     cobrak_model = add_thermokinetic_data_to_cobrak_model(
         cobrak_model=cobrak_model,
         mws=mws,
