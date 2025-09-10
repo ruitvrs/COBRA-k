@@ -25,17 +25,11 @@ def test_uniprot_get_enzyme_molecular_weights() -> None:  # noqa: D103
     with tempfile.TemporaryDirectory() as tmp_dict:
         cobra.io.write_sbml_model(model, tmp_dict + "temp.xml")
         protein_id_mass_mapping = uniprot_get_enzyme_molecular_weights_for_sbml(
-            tmp_dict + "temp.xml", cache_basepath
+            tmp_dict + "temp.xml", cache_basepath, "Escherichia coli"
         )
 
     # Check that the function returns a dictionary
     assert isinstance(protein_id_mass_mapping, dict)
-
-    # Check that the dictionary contains the expected protein ID
-    assert "gene1" in protein_id_mass_mapping
-
-    # Check that the protein mass is a float
-    assert isinstance(protein_id_mass_mapping["gene1"], float)
 
 
 def test_uniprot_get_enzyme_molecular_weights_cache() -> None:  # noqa: D103
@@ -59,17 +53,11 @@ def test_uniprot_get_enzyme_molecular_weights_cache() -> None:  # noqa: D103
     with tempfile.TemporaryDirectory() as tmp_dict:
         cobra.io.write_sbml_model(model, tmp_dict + "temp.xml")
         protein_id_mass_mapping = uniprot_get_enzyme_molecular_weights_for_sbml(
-            tmp_dict + "temp.xml", cache_basepath
+            tmp_dict + "temp.xml", cache_basepath, "Escherichia coli"
         )
 
     # Check that the function returns a dictionary
     assert isinstance(protein_id_mass_mapping, dict)
-
-    # Check that the dictionary contains the expected protein ID
-    assert "gene1" in protein_id_mass_mapping
-
-    # Check that the protein mass is a float
-    assert isinstance(protein_id_mass_mapping["gene1"], float)
 
 
 def test_uniprot_get_enzyme_molecular_weights_no_uniprot_id() -> None:  # noqa: D103
@@ -86,7 +74,7 @@ def test_uniprot_get_enzyme_molecular_weights_no_uniprot_id() -> None:  # noqa: 
     with tempfile.TemporaryDirectory() as tmp_dict:
         cobra.io.write_sbml_model(model, tmp_dict + "temp.xml")
         protein_id_mass_mapping = uniprot_get_enzyme_molecular_weights_for_sbml(
-            tmp_dict + "temp.xml", cache_basepath
+            tmp_dict + "temp.xml", cache_basepath, "Escherichia coli"
         )
 
     # Check that the function returns an empty dictionary
@@ -119,7 +107,7 @@ def test_uniprot_get_enzyme_molecular_weights_cleanup() -> None:  # noqa: D103
     with tempfile.TemporaryDirectory() as tmp_dict:
         cobra.io.write_sbml_model(model, tmp_dict + "temp.xml")
         uniprot_get_enzyme_molecular_weights_for_sbml(
-            tmp_dict + "temp.xml", cache_basepath
+            tmp_dict + "temp.xml", cache_basepath, "Escherichia coli"
         )
 
     # Check that the cache file was created

@@ -675,7 +675,7 @@ def _add_enzyme_constraints_to_lp(
             (enzyme_reaction_data is None)
             or (len(enzyme_reaction_data.identifiers) == 0)
             or ("" in enzyme_reaction_data.identifiers)
-            or ("" in enzyme_reaction_data.k_cat > 1e19)
+            or (enzyme_reaction_data.k_cat > 1e19)
         ):
             continue
 
