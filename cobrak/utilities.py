@@ -1843,10 +1843,12 @@ def get_model_max_kcat_times_e_values(cobrak_model: Model) -> list[NonNegativeFl
 def get_model_with_filled_missing_parameters(
     cobrak_model: Model,
     add_dG0_extra_constraints: bool = False,
-    param_percentile: conint(ge=0, le=100) = 90,
+    param_percentile: conint(ge=0, le=100) = 90, # pyright: ignore[reportInvalidTypeForm]
     ignore_prefixes: list[str] = ["EX_"],
     use_median_for_kms: bool = True,
     use_median_for_kcats: bool = True,
+    ignored_enzyme_ids: list[str] = ["s0001"],
+    exclude_bw_reac_ids_for_dG0s: bool = False,
 ) -> Model:
     """Fills missing parameters in a COBRA-k model, including dG0, k_cat, and k_ms values.
 
@@ -1875,7 +1877,7 @@ def get_model_with_filled_missing_parameters(
     all_mws = get_model_mws(cobrak_model)
     all_kcats = get_model_kcats(cobrak_model)
     substrate_kms, product_kms = get_model_kms_by_usage(cobrak_model)
-    all_abs_dG0s = [abs(dG0) for dG0 in get_model_dG0s(cobrak_model)]
+    all_abs_dG0s = [abs(dG0) for dG0 in get_model_dG0s(cobrak_model, exclude_bw_reacs=exclude_bw_reac_ids_for_dG0s)]
     dG0_reverse_couples: set[tuple[str]] = set()
     for reac_id in cobrak_model.reactions:
         if sum(reac_id.startswith(ignore_prefix) for ignore_prefix in ignore_prefixes):
@@ -1895,6 +1897,16 @@ def get_model_with_filled_missing_parameters(
                 cobrak_model.reactions[reac_id].dG0 = -percentile(
                     all_abs_dG0s, param_percentile
                 )
+        if (cobrak_model.reactions[reac_id].enzyme_reaction_data is not None):
+            stop = False
+            for ignored_enzyme_id in ignored_enzyme_ids:
+                for identifier in cobrak_model.reactions[reac_id].enzyme_reaction_data.identifiers:
+                    if ignored_enzyme_id in identifier:
+                        cobrak_model.reactions[reac_id].enzyme_reaction_data = None
+                        stop = True
+                        break
+                if stop:
+                    break
         if (cobrak_model.reactions[reac_id].enzyme_reaction_data is None) or (
             "" in cobrak_model.reactions[reac_id].enzyme_reaction_data.identifiers
         ):

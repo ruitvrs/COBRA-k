@@ -2229,7 +2229,7 @@ def perform_lp_variability_analysis(
             objective_targets.extend(
                 ((-1, kappa_products_var_name), (+1, kappa_products_var_name))
             )
-        if reaction.enzyme_reaction_data is not None and with_enzyme_constraints:
+        if reaction.enzyme_reaction_data is not None and with_enzyme_constraints and reaction.enzyme_reaction_data.k_cat < 1e20:
             full_enzyme_id = get_full_enzyme_id(
                 reaction.enzyme_reaction_data.identifiers
             )

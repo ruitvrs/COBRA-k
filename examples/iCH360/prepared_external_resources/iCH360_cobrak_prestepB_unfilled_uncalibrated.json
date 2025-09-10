@@ -9911,6 +9911,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -10202,6 +10212,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -10262,6 +10282,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -10318,6 +10348,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -10373,6 +10413,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -10478,6 +10528,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -10558,6 +10618,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -10960,6 +11030,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -11753,6 +11833,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -12005,6 +12095,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -12188,6 +12288,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -12406,6 +12516,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -12486,6 +12606,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -12601,6 +12731,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -12724,6 +12864,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -12799,6 +12949,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -12887,6 +13047,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -13108,6 +13278,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -13366,6 +13546,16 @@
                         }
                     ]
                 },
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -13616,6 +13806,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -13802,6 +14002,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -13972,6 +14182,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -14029,6 +14249,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -14182,6 +14412,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -14240,6 +14480,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -14388,6 +14638,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -14631,6 +14891,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -14686,6 +14956,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -14869,6 +15149,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -15229,6 +15519,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -15369,6 +15669,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -15535,6 +15845,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -15645,6 +15965,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -15701,6 +16031,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -15782,6 +16122,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -15933,6 +16283,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -16069,6 +16429,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -16125,6 +16495,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -16232,6 +16612,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -16495,6 +16885,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -16592,6 +16992,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -17043,6 +17453,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -17358,6 +17778,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -17415,6 +17845,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -17632,6 +18072,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -17753,6 +18203,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -17924,6 +18384,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18057,6 +18527,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18167,6 +18647,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18264,6 +18754,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18351,6 +18851,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18597,6 +19107,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18655,6 +19175,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18740,6 +19270,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18794,6 +19334,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18896,6 +19446,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -18944,6 +19504,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -19229,6 +19799,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -19322,6 +19902,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -19373,6 +19963,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -19565,6 +20165,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -19644,6 +20254,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -19697,6 +20317,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -19777,6 +20407,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -19981,6 +20621,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -20174,6 +20824,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -20318,6 +20978,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -20405,6 +21075,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -20540,6 +21220,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -20600,6 +21290,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -20748,6 +21448,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -20903,6 +21613,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -21002,6 +21722,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -21265,6 +21995,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -21360,6 +22100,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -21416,6 +22166,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -21589,6 +22349,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -21722,6 +22492,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -21777,6 +22557,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -21871,6 +22661,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -22228,6 +23028,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -22516,6 +23326,16 @@
                         }
                     ]
                 },
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -22611,6 +23431,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -22666,6 +23496,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -22795,6 +23635,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -22889,6 +23739,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -22946,6 +23806,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -23144,6 +24014,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -23298,6 +24178,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -23380,6 +24270,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -24667,6 +25567,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -24745,6 +25655,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -24831,6 +25751,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -24962,6 +25892,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -25087,6 +26027,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -25143,6 +26093,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -25212,6 +26172,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -25293,6 +26263,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -25431,6 +26411,16 @@
                         }
                     ]
                 },
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -25517,6 +26507,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -25576,6 +26576,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -25678,6 +26688,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -26006,6 +27026,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -26277,6 +27307,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -26333,6 +27373,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -26393,6 +27443,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -26613,6 +27673,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -26773,6 +27843,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -26979,6 +28059,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -27062,6 +28152,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -27143,6 +28243,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -27200,6 +28310,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -27254,6 +28374,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -27413,6 +28543,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -27462,6 +28602,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -27860,6 +29010,16 @@
                         }
                     ]
                 },
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -27939,6 +29099,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -28117,6 +29287,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -28630,6 +29810,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -28897,6 +30087,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -28979,6 +30179,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -29059,6 +30269,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -29254,6 +30474,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -29340,6 +30570,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -29410,6 +30650,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -29775,6 +31025,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -29872,6 +31132,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -29992,6 +31262,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -30124,6 +31404,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -30180,6 +31470,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -30251,6 +31551,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -30395,6 +31705,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -30491,6 +31811,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -30579,6 +31909,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -30860,6 +32200,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -30977,6 +32327,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -31070,6 +32430,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -31322,6 +32692,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -31613,6 +32993,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -31897,6 +33287,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -31961,6 +33361,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -32016,6 +33426,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -32227,6 +33647,16 @@
                         }
                     ]
                 },
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -32341,6 +33771,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -32623,6 +34063,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -32702,6 +34152,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -32849,6 +34309,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -32929,6 +34399,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -33004,6 +34484,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -33061,6 +34551,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -33132,6 +34632,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -33330,6 +34840,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -33388,6 +34908,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -33490,6 +35020,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -33547,6 +35087,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -33936,6 +35486,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -33995,6 +35555,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -34073,6 +35643,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -34209,6 +35789,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -34345,6 +35935,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -34548,6 +36148,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -34642,6 +36252,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -34696,6 +36316,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -34771,6 +36401,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -34822,6 +36462,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -34968,6 +36618,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -35068,6 +36728,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -35219,6 +36889,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -35434,6 +37114,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -35484,6 +37174,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -35533,6 +37233,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -35581,6 +37291,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -35739,6 +37459,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -35798,6 +37528,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -36104,6 +37844,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -36251,6 +38001,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -36396,6 +38156,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -36453,6 +38223,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -36526,6 +38306,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -36586,6 +38376,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -36642,6 +38442,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -36833,6 +38643,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -36916,6 +38736,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -37105,6 +38935,16 @@
                         }
                     ]
                 },
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -37194,6 +39034,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -37320,6 +39170,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -37414,6 +39274,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -37576,6 +39446,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -37735,6 +39615,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -38168,6 +40058,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -38255,6 +40155,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -38955,6 +40865,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -39123,6 +41043,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -39239,6 +41169,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -39318,6 +41258,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -39377,6 +41327,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -39551,6 +41511,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -39702,6 +41672,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -39819,6 +41799,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -39971,6 +41961,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40025,6 +42025,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40176,6 +42186,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40261,6 +42281,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40309,6 +42339,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40380,6 +42420,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40458,6 +42508,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40577,6 +42637,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40702,6 +42772,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40750,6 +42830,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40856,6 +42946,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -40977,6 +43077,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -41052,6 +43162,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -41125,6 +43245,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -41740,6 +43870,16 @@
                         }
                     ]
                 },
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -41792,6 +43932,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -41892,6 +44042,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -41979,6 +44139,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42202,6 +44372,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42251,6 +44431,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42305,6 +44495,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42361,6 +44561,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42446,6 +44656,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42503,6 +44723,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42576,6 +44806,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42631,6 +44871,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42679,6 +44929,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42738,6 +44998,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42816,6 +45086,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42864,6 +45144,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42913,6 +45203,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -42960,6 +45260,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43033,6 +45343,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43082,6 +45402,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43130,6 +45460,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43186,6 +45526,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43235,6 +45585,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43289,6 +45649,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43338,6 +45708,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43386,6 +45766,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43435,6 +45825,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43482,6 +45882,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43573,6 +45983,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43629,6 +46049,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43680,6 +46110,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43729,6 +46169,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43777,6 +46227,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43833,6 +46293,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43889,6 +46359,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -43961,6 +46441,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44010,6 +46500,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44059,6 +46559,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44108,6 +46618,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44156,6 +46676,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44206,6 +46736,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44260,6 +46800,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44315,6 +46865,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44372,6 +46932,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44427,6 +46997,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44484,6 +47064,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44532,6 +47122,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44580,6 +47180,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44654,6 +47264,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44700,6 +47320,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44756,6 +47386,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44807,6 +47447,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44912,6 +47562,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -44967,6 +47627,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -45141,6 +47811,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -45278,6 +47958,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -45338,6 +48028,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -45394,6 +48094,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -45490,6 +48200,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -45730,6 +48450,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -45833,6 +48563,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -45913,6 +48653,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -46051,6 +48801,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -46306,6 +49066,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -46398,6 +49168,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -46602,6 +49382,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -46660,6 +49450,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -46738,6 +49538,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -46839,6 +49649,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -46998,6 +49818,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -47186,6 +50016,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -47651,6 +50491,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -47746,6 +50596,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -47803,6 +50663,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -48020,6 +50890,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -48137,6 +51017,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -48185,6 +51075,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -48280,6 +51180,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -48404,6 +51314,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -48472,6 +51392,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -48574,6 +51504,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -48738,6 +51678,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -48840,6 +51790,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -49081,6 +52041,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -49266,6 +52236,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -49516,6 +52496,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -49601,6 +52591,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -49687,6 +52687,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -49933,6 +52943,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50055,6 +53075,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50128,6 +53158,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50189,6 +53229,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50276,6 +53326,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50370,6 +53430,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50427,6 +53497,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50483,6 +53563,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50551,6 +53641,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50606,6 +53706,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50661,6 +53771,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50720,6 +53840,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50778,6 +53908,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50896,6 +54036,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -50942,6 +54092,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51115,6 +54275,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51173,6 +54343,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51231,6 +54411,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51334,6 +54524,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51408,6 +54608,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51491,6 +54701,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51552,6 +54772,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51611,6 +54841,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51677,6 +54917,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51778,6 +55028,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51840,6 +55100,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -51933,6 +55203,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -52099,6 +55379,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -52489,6 +55779,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -52572,6 +55872,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -52697,6 +56007,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -52833,6 +56153,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -53064,6 +56394,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -53217,6 +56557,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -53294,6 +56644,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -53573,6 +56933,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -53963,6 +57333,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -54596,6 +57976,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -54656,6 +58046,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -54899,6 +58299,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -55046,6 +58456,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -55260,6 +58680,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -55561,6 +58991,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -55615,6 +59055,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -55700,6 +59150,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -55777,6 +59237,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -55852,6 +59322,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -55981,6 +59461,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56077,6 +59567,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56170,6 +59670,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56219,6 +59729,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56341,6 +59861,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56421,6 +59951,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56477,6 +60017,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56558,6 +60108,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56616,6 +60176,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56672,6 +60242,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56728,6 +60308,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56778,6 +60368,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -56834,6 +60434,16 @@
                 "k_i_references": {},
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -57006,6 +60616,16 @@
                 },
                 "k_as": {},
                 "k_a_references": {},
+                "hill_coefficients": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
+                "hill_coefficient_references": {
+                    "kappa": {},
+                    "iota": {},
+                    "alpha": {}
+                },
                 "special_stoichiometries": {}
             },
             "annotation": {
@@ -58390,7 +62010,10 @@
         }
     },
     "max_prot_pool": 0.39,
+    "extra_linear_watches": {},
+    "extra_nonlinear_watches": {},
     "extra_linear_constraints": [],
+    "extra_nonlinear_constraints": [],
     "kinetic_ignored_metabolites": [
         "h2o_c",
         "h2o_p",

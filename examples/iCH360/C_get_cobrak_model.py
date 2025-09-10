@@ -33,6 +33,9 @@ cobrak_model = get_cobrak_model_from_sbml_and_thermokinetic_data(
     kinetic_ignored_metabolites=kinetic_ignored_metabolites,
     fwd_suffix="_fw",
     rev_suffix="_bw",
+    do_model_fullsplit=False,
+    do_delete_enzymatically_suboptimal_reactions=False,
+    remove_enzyme_reaction_data_if_no_kcat_set=True,
 )
 
 # Delete NAD-dependent fatty acid EAR reactions (if not essential)

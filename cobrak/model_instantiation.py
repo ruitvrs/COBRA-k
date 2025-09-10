@@ -173,6 +173,7 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
 
 def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
     cobrak_model: Model,
+    ignored_ids: list[str] = ["s0001"],
 ) -> Model:
     """Delete enzymatically suboptimal reactions in a COBRA-k model, similar to the idea in sMOMENT/AutoPACMEN [1].
 
@@ -202,6 +203,8 @@ def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
         if reac_data.enzyme_reaction_data is None:
             continue
         if reac_data.enzyme_reaction_data.identifiers in ([], [""]):
+            continue
+        if any(ignored_id in reac_data.enzyme_reaction_data.identifiers for ignored_id in ignored_ids):
             continue
 
         mw_by_kcat = (
@@ -257,6 +260,8 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
     rev_suffix: str = REAC_REV_SUFFIX,
     reac_enz_separator: str = REAC_ENZ_SEPARATOR,
     omitted_metabolites: list[str] = [],
+    ignored_enzyme_ids: str = ["s0001"],
+    remove_enzyme_reaction_data_if_no_kcat_set: bool = False,
 ) -> Model:
     """Creates a COBRAk model from an SBML and given further thermokinetic (thermodynamic and enzymatic) data.
 
@@ -393,8 +398,16 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
 
     if do_delete_enzymatically_suboptimal_reactions:
         cobrak_model = delete_enzymatically_suboptimal_reactions_in_cobrak_model(
-            cobrak_model
+            cobrak_model,
+            ignored_ids=ignored_enzyme_ids,
         )
+
+    if remove_enzyme_reaction_data_if_no_kcat_set:
+        for reaction in cobrak_model.reactions.values():
+            if reaction.enzyme_reaction_data is None:
+                continue
+            if reaction.enzyme_reaction_data.k_cat > 1e19:
+                reaction.enzyme_reaction_data = None
 
     return cobrak_model
 

@@ -834,9 +834,7 @@ def postprocess(
         variability_data = deepcopy(variability_data)
 
     pyomo_lp_solver = get_solver(
-        lp_solver.name,
-        lp_solver.solver_options,
-        lp_solver.solver_attrs,
+        lp_solver,
     )
 
     cobrak_model = deepcopy(cobrak_model)
