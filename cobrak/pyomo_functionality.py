@@ -300,7 +300,7 @@ def get_model_var_names(model: ConcreteModel) -> list[str]:
     return [v.name for v in model.component_objects(Var)]
 
 
-def get_solver(solver: Solver) -> SolverFactory:
+def get_solver(solver: Solver) -> SolverFactory:  # pyright: ignore[reportInvalidTypeForm]
     """Create and configure a solver for the given solver name and options.
 
     This function returns a Pyomo solver using the specified solver name and applies the provided options to it.

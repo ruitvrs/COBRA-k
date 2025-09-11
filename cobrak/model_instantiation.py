@@ -204,7 +204,10 @@ def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
             continue
         if reac_data.enzyme_reaction_data.identifiers in ([], [""]):
             continue
-        if any(ignored_id in reac_data.enzyme_reaction_data.identifiers for ignored_id in ignored_ids):
+        if any(
+            ignored_id in reac_data.enzyme_reaction_data.identifiers
+            for ignored_id in ignored_ids
+        ):
             continue
 
         mw_by_kcat = (
@@ -284,6 +287,12 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
         do_delete_enzymatically_suboptimal_reactions (bool, optional): Whether to delete enzymatically suboptimal reactions. Defaults to True.
         R (float, optional): Universal gas constant. Defaults to STANDARD_R.
         T (float, optional): Temperature in Kelvin. Defaults to STANDARD_T.
+        omitted_metabolites (list[str], optional): Metabolites that shall not be included in the model. Their stoichiometries
+         will be jsut deleted. Useful to e.g. delete enzyme-constraint pseudo-metabolites. Defauls to [].
+        ignored_enzyme_ids (list[str], optional): Enzymes that shall not be included if their ID occurs in any identifiers part. Defaults to ["s0001"],
+         i.e. spontaneously occurring reactions.
+        remove_enzyme_reaction_data_if_no_kcat_set (bool, optional): If no $k_{cat}$ is set for a reaction, shall its EnzymeReactionData
+        be set to None? If False, the default EnzymeReactionData with a very high (effectively non-existing) $k_{cat}$ is used. Defaults to False.
 
     Raises:
         ValueError: If a concentration range for a metabolite is not provided and no default is set.
@@ -443,6 +452,151 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
     max_taxonomy_level: float = 1_000.0,
     add_hill_coefficients: bool = True,
 ) -> Model:
+    """Build a fully-featured :class:`~cobrak.Model` from an SBML file **and** automatically
+    retrieve all required kinetic and thermodynamic data from the local
+    ``database_data_folder`` (or download it on-the-fly if missing).
+
+    The function orchestrates a multi-step pipeline:
+
+    1. **Load the SBML** as an un-annotated COBRApy model and optionally delete
+       user-specified enzymes (genes) from the model.
+    2. **Prepare the external data cache** – ensure that the folder structure
+       exists, locate cached JSON files, and (re)generate missing caches.
+    3. **Parse EC-number transfers** (optional) to allow cross-species mapping of
+       enzyme identifiers.
+    4. **Create a “full-split” model** where each enzyme-specific reaction variant
+       is represented as a separate COBRApy reaction (controlled by
+       ``do_model_fullsplit``).
+    5. **Collect enzyme kinetic parameters** from BRENDA and SABIO-RK, optionally
+       preferring one source over the other, and combine the two datasets.
+    6. **Fetch enzyme molecular weights** from UniProt (cached for future runs).
+    7. **Optionally prune sub-optimal enzyme reactions** based on the
+       8. **Compute standard Gibbs free energies** (ΔG⁰) and their uncertainties
+       using eQuilibrator, applying user-defined compartment, pH, ionic-strength,
+       and membrane-potential settings, as well as any exclusion rules.
+    9. **Apply user-provided ΔG⁰ corrections** (e.g. literature adjustments).
+    10. **Assemble the final COBRA-k model** by calling
+        :func:`get_cobrak_model_from_sbml_and_thermokinetic_data` with all
+        gathered data, then clean up orphaned metabolites/enzymes.
+
+    Parameters
+    ----------
+    sbml_path : str
+        Path to the SBML file that will be converted into a COBRA-k model.
+    database_data_folder : str
+        Root folder containing cached kinetic, thermodynamic and annotation data.
+        The function will create the folder if it does not exist.
+    brenda_version : str
+        Version identifier of the BRENDA JSON archive (e.g. ``"2023.1"``).
+    base_species : str
+        NCBI taxonomy identifier (or scientific name) of the organism for which
+        kinetic data should be retrieved.
+    prefer_brenda : bool, optional
+        If ``True`` BRENDA data are used preferentially when both BRENDA and
+        SABIO-RK contain information for the same reaction; otherwise SABIO-RK
+        is preferred. Default: ``False``.
+    use_ec_number_transfers : bool, optional
+        Enable mapping of EC numbers between organisms using the
+        ``enzyme.rdf`` file from Expasy. Default: ``True``.
+    max_prot_pool : float, optional
+        Upper bound on the total protein mass (g·gDW⁻¹) that can be allocated to
+        enzymes. Default: :data:`STANDARD_MAX_PROT_POOL`.
+    conc_ranges : dict[str, tuple[float, float]], optional
+        Log-linear concentration bounds for metabolites (in M). Keys are metabolite
+        IDs; the special key ``"DEFAULT"`` provides a fallback range. Default:
+        :data:`STANDARD_CONC_RANGES`.
+    inner_to_outer_compartments : list[str], optional
+        Mapping of inner to outer compartments required by eQuilibrator for
+        ΔG⁰ calculations. Default: :data:`EC_INNER_TO_OUTER_COMPARTMENTS`.
+    phs : dict[str, float], optional
+        pH values for each compartment. Default: :data:`EC_PHS`.
+    pmgs : dict[str, float], optional
+        Magnesium concentrations (M) for each compartment. Default: :data:`EC_PMGS`.
+    ionic_strenghts : dict[str, float], optional
+        Ionic strength (M) for each compartment. Default: :data:`EC_IONIC_STRENGTHS`.
+    potential_differences : dict[tuple[str, str], float], optional
+        Membrane potential differences (V) between compartment pairs. Default:
+        :data:`EC_POTENTIAL_DIFFERENCES`.
+    kinetic_ignored_enzymes : list[str], optional
+        Enzyme identifiers that should be ignored when extracting kinetic data.
+        Default: ``[]``.
+    custom_kms_and_kcats : dict[str, EnzymeReactionData | None], optional
+        User-provided kinetic parameters that override any database values.
+        Default: ``{}``.
+    kinetic_ignored_metabolites : list[str], optional
+        Metabolite IDs that shall be excluded from kinetic calculations
+        (e.g., pseudo-metabolites). Default: ``[]``.
+    do_model_fullsplit : bool, optional
+        Whether to split reactions per enzyme before further processing.
+        Default: ``True``.
+    do_delete_enzymatically_suboptimal_reactions : bool, optional
+        If ``True`` remove reactions that are not optimal with respect to the
+        ``MW/k_cat`` criterion. Default: ``True``.
+    ignore_dG0_uncertainty : bool, optional
+        When ``True`` discard ΔG⁰ uncertainty values after they have been computed.
+        Default: ``True``.
+    enzyme_conc_ranges : dict[str, tuple[float, float] | None], optional
+        Optional concentration bounds for enzymes (in M). ``None`` means no bound.
+        Default: ``{}``.
+    dG0_exclusion_prefixes : list[str], optional
+        Reaction IDs starting with any of these prefixes are removed from the
+        ΔG⁰ dataset. Default: ``[]``.
+    dG0_exclusion_inner_parts : list[str], optional
+        Sub-strings that, if present anywhere in a reaction ID, cause its ΔG⁰
+        entry to be removed. Default: ``[]``.
+    dG0_corrections : dict[str, float], optional
+        Additive corrections (in kJ·mol⁻¹) to specific ΔG⁰ values after they have
+        been computed. Default: ``{}``.
+    extra_linear_constraints : list[ExtraLinearConstraint], optional
+        Additional linear constraints (e.g., flux bounds) to be added to the model.
+        Default: ``[]``.
+    R : float, optional
+        Universal gas constant (kJ·mol⁻¹·K⁻¹). Default: :data:`STANDARD_R`.
+    T : float, optional
+        Temperature in Kelvin for thermodynamic calculations. Default:
+        :data:`STANDARD_T`.
+    enzymes_to_delete : list[str], optional
+        Gene identifiers that should be removed from the initial COBRApy model
+        before any further processing. Default: ``[]``.
+    max_taxonomy_level : float, optional
+        Upper bound on the NCBI taxonomy distance used when selecting kinetic
+        data from related organisms. Default: ``1_000.0``.
+    add_hill_coefficients : bool, optional
+        If ``True`` include Hill coefficients from SABIO-RK where available.
+        Default: ``True``.
+
+    Returns
+    -------
+    Model
+        A fully populated :class:`~cobrak.Model` instance containing:
+        * Metabolite objects with concentration bounds,
+        * Reaction objects with flux bounds, ΔG⁰ values, and enzyme reaction data,
+        * Enzyme objects with molecular weights and concentration bounds,
+        * Any extra linear constraints supplied by the user,
+        * The global protein pool constraint.
+
+    Raises
+    ------
+    FileNotFoundError
+        If ``sbml_path`` does not exist or required external files (e.g.
+        ``enzyme.rdf`` when ``use_ec_number_transfers`` is ``True``) are missing.
+    ValueError
+        When a required concentration range for a metabolite is not provided and
+        no ``"DEFAULT"`` range exists.
+    RuntimeError
+        If any of the external data retrieval steps (BRENDA, SABIO-RK,
+        UniProt, eQuilibrator) fail unexpectedly.
+
+    Notes
+    -----
+    * The function heavily relies on caching to avoid repeated expensive web
+      queries. Cache files are stored alongside ``database_data_folder`` with
+      ``_cache_`` prefixes.
+    * The returned model is already cleaned of orphaned metabolites and enzymes
+      via :func:`delete_orphaned_metabolites_and_enzymes`.
+    * Users can bypass the full pipeline by providing pre-computed cache files;
+      in that case the function will simply load the cached data.
+    """
     cobra_model = load_unannotated_sbml_as_cobrapy_model(sbml_path)
     remove_genes(
         model=cobra_model,

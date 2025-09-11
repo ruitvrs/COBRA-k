@@ -174,7 +174,11 @@ might be *too high* making a scenario either thermodynamically infeasible (in MI
 
 * In MILPs and NLPs with thermodynamic constraints (see MILP and NLP chapter):
 
-$ f_i = -(Δ_r G^{´°}_i + R ⋅ T ⋅ \mathbf{N_{⋅,i}} ⋅ \mathbf{x̃}) $ becomes $ f_i = -(Δ_r G^{´°}_i + R ⋅ T ⋅ \mathbf{N_{⋅,i}} ⋅ \mathbf{x̃} - corr^{Δ_r G^{´°}}_i) $
+$ f_i = -(Δ_r G^{´°}_i + R ⋅ T ⋅ stoichs_i ⋅ \mathbf{x̃}) $
+
+(with stoichs_i = $\mathbf{N_{⋅,i}}$, i.e. the reaction's metabolite stoichiometries) becomes 
+
+$ f_i = -(Δ_r G^{´°}_i + R ⋅ T ⋅ stoichs_i ⋅ \mathbf{x̃} - corr^{Δ_r G^{´°}}_i) $
 
 Hence, the full sum of $Δ_r G^{´°}$ corrections is:
 

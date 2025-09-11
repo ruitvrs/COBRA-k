@@ -47,7 +47,7 @@ def add_thermokinetic_data_to_cobrak_model(
     overwrite_existing_dG0s: bool = True,
     overwrite_existing_enzyme_reaction_data: bool = True,
 ) -> Model:
-    """Populate a COBRA‑K model with thermodynamic and kinetic parameters.
+    """Populate a COBRA-k model with thermodynamic and kinetic parameters.
 
     Parameters
     ----------
@@ -230,9 +230,15 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
             kinetic_ignored_enzyme_ids=kinetic_ignored_enzyme_ids,
             add_hill_coefficients=add_hill_coefficients,
         )
-        json_write(f"{database_data_path}_cache_enzyme_reaction_data.json", enzyme_reaction_data)
+        json_write(
+            f"{database_data_path}_cache_enzyme_reaction_data.json",
+            enzyme_reaction_data,
+        )
     else:
-        enzyme_reaction_data = json_load(f"{database_data_path}_cache_enzyme_reaction_data.json", dict[str, EnzymeReactionData])
+        enzyme_reaction_data = json_load(
+            f"{database_data_path}_cache_enzyme_reaction_data.json",
+            dict[str, EnzymeReactionData],
+        )
     cobrak_model = add_enzyme_reaction_data_to_cobrak_model(
         cobrak_model=cobrak_model,
         enzyme_reaction_data=enzyme_reaction_data,
@@ -246,9 +252,13 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
         )
         json_write(f"{database_data_path}_cache_uniprot_mws.json", mws)
     else:
-        mws = json_load(f"{database_data_path}_cache_uniprot_mws.json", dict[str, float])
+        mws = json_load(
+            f"{database_data_path}_cache_uniprot_mws.json", dict[str, float]
+        )
 
-    if not exists(f"{database_data_path}_cache_dG0.json") or not exists(f"{database_data_path}_cache_dG0_uncertainties.json"):
+    if not exists(f"{database_data_path}_cache_dG0.json") or not exists(
+        f"{database_data_path}_cache_dG0_uncertainties.json"
+    ):
         dG0s, dG0_uncertainties = get_database_dG0s_for_cobrak_model(
             cobrak_model=cobrak_model,
             inner_to_outer_compartments=inner_to_outer_compartments,
@@ -263,10 +273,14 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
             max_uncertainty=max_dG0_uncertainty,
         )
         json_write(f"{database_data_path}_cache_dG0.json", dG0s)
-        json_write(f"{database_data_path}_cache_dG0_uncertainties.json", dG0_uncertainties)
+        json_write(
+            f"{database_data_path}_cache_dG0_uncertainties.json", dG0_uncertainties
+        )
     else:
         dG0s = json_load(f"{database_data_path}_cache_dG0.json", dict[str, float])
-        dG0_uncertainties = json_load(f"{database_data_path}_cache_dG0_uncertainties.json", dict[str, float])
+        dG0_uncertainties = json_load(
+            f"{database_data_path}_cache_dG0_uncertainties.json", dict[str, float]
+        )
     cobrak_model = add_thermokinetic_data_to_cobrak_model(
         cobrak_model=cobrak_model,
         mws=mws,

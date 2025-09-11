@@ -1295,8 +1295,8 @@ def get_df_and_efficiency_factors_sorted_lists(
         4. A dictionary of sorted ι values above the minimum flux.
         5. A dictionary of sorted α values above the minimum flux.
         6. A dictionary of sorted κ⋅γ⋅ι⋅α values, along with a status indicator. If, for a reaction,
-           one or more of these efficiency factors is missing, the respective factor is assumed to be 1.0
-           thus having no effect on the multiplied value.
+        one or more of these efficiency factors is missing, the respective factor is assumed to be 1.0
+        thus having no effect on the multiplied value.
     """
     dfs: dict[str, float] = {}
     kappas: dict[str, float] = {}
@@ -1843,7 +1843,7 @@ def get_model_max_kcat_times_e_values(cobrak_model: Model) -> list[NonNegativeFl
 def get_model_with_filled_missing_parameters(
     cobrak_model: Model,
     add_dG0_extra_constraints: bool = False,
-    param_percentile: conint(ge=0, le=100) = 90, # pyright: ignore[reportInvalidTypeForm]
+    param_percentile: conint(ge=0, le=100) = 90,  # pyright: ignore[reportInvalidTypeForm]
     ignore_prefixes: list[str] = ["EX_"],
     use_median_for_kms: bool = True,
     use_median_for_kcats: bool = True,
@@ -1877,7 +1877,12 @@ def get_model_with_filled_missing_parameters(
     all_mws = get_model_mws(cobrak_model)
     all_kcats = get_model_kcats(cobrak_model)
     substrate_kms, product_kms = get_model_kms_by_usage(cobrak_model)
-    all_abs_dG0s = [abs(dG0) for dG0 in get_model_dG0s(cobrak_model, exclude_bw_reacs=exclude_bw_reac_ids_for_dG0s)]
+    all_abs_dG0s = [
+        abs(dG0)
+        for dG0 in get_model_dG0s(
+            cobrak_model, exclude_bw_reacs=exclude_bw_reac_ids_for_dG0s
+        )
+    ]
     dG0_reverse_couples: set[tuple[str]] = set()
     for reac_id in cobrak_model.reactions:
         if sum(reac_id.startswith(ignore_prefix) for ignore_prefix in ignore_prefixes):
@@ -1897,10 +1902,12 @@ def get_model_with_filled_missing_parameters(
                 cobrak_model.reactions[reac_id].dG0 = -percentile(
                     all_abs_dG0s, param_percentile
                 )
-        if (cobrak_model.reactions[reac_id].enzyme_reaction_data is not None):
+        if cobrak_model.reactions[reac_id].enzyme_reaction_data is not None:
             stop = False
             for ignored_enzyme_id in ignored_enzyme_ids:
-                for identifier in cobrak_model.reactions[reac_id].enzyme_reaction_data.identifiers:
+                for identifier in cobrak_model.reactions[
+                    reac_id
+                ].enzyme_reaction_data.identifiers:
                     if ignored_enzyme_id in identifier:
                         cobrak_model.reactions[reac_id].enzyme_reaction_data = None
                         stop = True

@@ -1830,9 +1830,7 @@ def perform_lp_thermodynamic_bottleneck_analysis(
         with_enzyme_constraints (bool): Whether to include enzyme constraints in the analysis.
         min_mdf (float, optional): Minimum max-min driving force (MDF) to be enforced. Defaults to STANDARD_MIN_MDF.
         verbose (bool, optional): If True, print detailed information about identified bottlenecks. Defaults to False.
-        solver_name (str, optional): Name of the solver to use for optimization. Defaults to "scip".
-        solver_options (dict[str, float | int | str], optional): Options for the solver, such as number of threads
-                                                                 and LP method. Defaults to an empty dictionary.
+        solver (Solver, optional): The COBRA-k Solver instance of the MILP solver. Defaults to "SCIP".
         ignore_nonlinear_terms: bool, optional
             Whether or not non-linear extra watches and constraints shall *not* be included. Defaults to False.
             Note: If such non-linear values exist and are included, the whole problem becomes *non-linear*, making it
@@ -2007,13 +2005,11 @@ def perform_lp_dG0_varying_thermodynamic_bottleneck_analysis(
 
     Args:
         cobrak_model (Model): The COBRAk model to analyze for thermodynamic bottlenecks.
-        dG0_lowering (float, optional): The amount in kJ/mol by which a reaction's ΔG'° is lowered. Defaults to -100.
+        dG0_variation (float, optional): The amount in kJ/mol by which a reaction's ΔG'° is lowered. Defaults to -100.
         min_mdf_advantage (float, optional): The minimal OptMDF advantage through weakening tbhis bottleneck. Defaults to 1e-6.
         with_enzyme_constraints (bool, optional): Whether to include enzyme constraints in the analysis.
         verbose (bool, optional): If True, print immediate information about identified bottlenecks. Defaults to False.
-        solver_name (str, optional): Name of the solver to use for optimization. Defaults to "scip".
-        solver_options (dict[str, float | int | str], optional): Options for the solver, such as number of threads
-                                                                 and LP method. Defaults to an empty dictionary.
+        solver (Solver, optional): The COBRA-k Solver instance describing the used MILP solver. Defaults to SCIP.
         parallel_verbosity_level (int, optional): Sets the verbosity level for the analysis parallelization. The higher,
                                             the value, the more is printed. Default: 0.
         ignore_nonlinear_terms: bool, optional
@@ -2229,7 +2225,11 @@ def perform_lp_variability_analysis(
             objective_targets.extend(
                 ((-1, kappa_products_var_name), (+1, kappa_products_var_name))
             )
-        if reaction.enzyme_reaction_data is not None and with_enzyme_constraints and reaction.enzyme_reaction_data.k_cat < 1e20:
+        if (
+            reaction.enzyme_reaction_data is not None
+            and with_enzyme_constraints
+            and reaction.enzyme_reaction_data.k_cat < 1e20
+        ):
             full_enzyme_id = get_full_enzyme_id(
                 reaction.enzyme_reaction_data.identifiers
             )

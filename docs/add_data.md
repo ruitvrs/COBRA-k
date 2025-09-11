@@ -12,9 +12,15 @@ If you want to perform COBRA-k's thermodynamic and/or enzyme kinetic (in short, 
 
 If you already have such data, follow with the subchapter ["manually adding data"](#manually-adding-data) at the bottom of this page. If you only have some of this data and want to use COBRA-k's automatic collection functions for the rest, read the [second-to-last chapter](#automatically-collecting-some-of-the-data). But if you don't have any such data, COBRA-k provides automatic data retrieval functions that are explained in the [second-to-next subchapter](#full-automatic-data-collection).
 
-Before you can automatically retrieve some or all of the thermokinetc data for your model, make sure that your model has the right usage of identifiers and annotations, as explained in the following subchapter :-)
+Before you can automatically retrieve some or all of the thermokinetc data for your model, make sure that your model must be correctly split and have the right usage of identifiers and annotations, as explained in the following subchapters :-)
 
-## Model requirements for automatic data collection
+## Model requirements for any COBRA-k model
+
+As always when using the COBRA-k package (see e.g. the chapter about Linear Programming), models must be "fullsplit" which you can automatically do for SBML models using ```load_annotated_sbml_model_as_cobrak_model``` in ```cobrak.io```.
+
+"Fullsplit" means that each original reaction is split i) for forward & reverse directions and ii) for each enzyme (complex) catalyzing it. E.g., a reversible reaction ```R1: A → B``` catalyzed by the enzyme $E_1$ and the enzyme complex $E_{2,sub1} \space and \space E_{2,sub2}$ is going to be split into the four reactions ```R1_ENZ_E1_FWD: A → B,  R1_ENZ_E2SUB1_AND_E2SUB2_FWD: A → B``` and ```R1_ENZ_E1_REV: B → A```,  ```R1_ENZ_E2SUB1_AND_E2SUB2_REV: B → A```. This fullsplit is neccessary in order to perform thermodynamic and enzymatic calculations later on.
+
+## Additional model requirements for automatic data collection
 
 !!! note
     This model preparation is not neccessary if you just want to add *already existing* thermokinetic data manually, as explained in the ["manually adding data"](#manually-adding-data) subchapter.
@@ -120,9 +126,8 @@ data_toy_model = Model(
 !!! note "Requirements for SBML models"
     While the annotation and ID requirements were explained for a COBRA-k Model instance, the same requirements exist for SBML models. I.e., metabolites should use BiGG IDs, reactions should have an ```ec-code``` annotation and so on...
 
-To summarize the key points:
+To summarize the key points for automatic data collection (in addition to the "fullsplit" requirement explained above):
 
-* As always in COBRA-k, models must be "fullsplit" which you can automatically do for SBML models using ```load_annotated_sbml_model_as_cobrak_model``` in ```cobrak.io```. "Fullsplit" means that each original reaction is split i) for forward & reverse directions and ii) for each enzyme (complex) catalyzing it. E.g., a reversible reaction ```R1: A → B``` catalyzed by the enzyme $E_1$ and the enzyme complex $E_{2,sub1} \space and \space E_{2,sub2}$ is going to be split into the four reactions ```R1_ENZ_E1_FWD: A → B,  R1_ENZ_E2SUB1_AND_E2SUB2_FWD: A → B``` and ```R1_ENZ_E1_REV: B → A```,  ```R1_ENZ_E2SUB1_AND_E2SUB2_REV: B → A```. This fullsplit is neccessary in order to perform thermodynamic and enzymatic calculations later on.
 * **Additionally for $k_{cat}$ and $k_M$ values**: Metabolite IDs must be BiGG IDs, enzyme IDs and/or names must be readable in Uniprot,
 and reactions need an ```ec-code``` EC number annotation
 * **Additionally for ΔG'° values**: Metabolite annotations must contain any eQuilibrator-API compatible values and annotation keys
@@ -131,7 +136,7 @@ and reactions need an ```ec-code``` EC number annotation
 ## Full automatic data collection
 
 !!! warning
-    Before you can effectively use these functions, make sure that your model uses identifiers/annotations as explained in the [previous subchapter](#model-requirements-for-automatic-data-collection).
+    Before you can effectively use these functions, make sure that you performed the necessary manual downloads (if you want to collect $k_{cat}$ or $k_M$ values) *and* that your model uses identifiers/annotations as explained in the [previous subchapter](#additional-model-requirements-for-automatic-data-collection).
 
 If you do not have any thermokinetic data for you model, COBRA-k provides functions for adding it automatically. Thereby, COBRA-k uses the following databases:
 
@@ -148,7 +153,7 @@ In addition, also for legal reasons, the following databases have to be download
 * The BRENDA .json.tar.gz from <https://www.brenda-enzymes.org/download.php>
 * The BiGG metabolites txt from <http://bigg.ucsd.edu/data_access>
 * The NCBI TAXONOMY data from taxdmp.zip from <https://ftp.ncbi.nih.gov/pub/taxonomy/>
-* Optionally (but recommended), the EC number transfer enzyme.rdf from https://ftp.expasy.org/databases/enzyme/
+* Optionally (but recommended), the EC number transfer enzyme.rdf from <https://ftp.expasy.org/databases/enzyme/>
 
 SABIO-RK and UniProt data are downloaded automatically into a file in the given folder of the function (see below). Keep in mind that the SABIO-RK download may take several dozens of minutes! Once the database is downloaded, it is cached, and no new download is triggered.
 
@@ -251,13 +256,13 @@ print_model(cobrak_model=cobrak_model)
 ## Automatically collecting some of the data
 
 !!! warning
-    Before you can effectively use these functions, make sure that your model uses identifiers/annotations as explained in the [second-to-last subchapter](#model-requirements-for-automatic-data-collection).
+    Before you can effectively use these functions, make sure that your model uses identifiers/annotations as explained in the [second-to-last subchapter](#additional-model-requirements-for-automatic-data-collection).
 
 ### ΔG'° values
 
 To add ΔG'° to a COBRA-k model, use the function ```cobrak.thermodynamic_data_retrieval.get_database_dG0s_for_cobrak_model```. It returns a dictionary with the ΔG'° values that you can then add as explained in subchapter ["Manually adding data"](#manually-adding-data)
 
-### $k_{cat} and $k_{M}$ values
+### $k_{cat}$ and $k_{M}$ values
 
 To add $k_{cat} and $k_{M}$ values to a COBRA-k model, use the function ```cobrak.thermodynamic_data_retrieval.get_database_kcats_kms_kis_and_kas_for_cobrak_model```. It returns a dictionary with the kinetic values that you can then add as explained in subchapter ["Manually adding data"](#manually-adding-data)
 
@@ -274,8 +279,8 @@ data from BRENDA) and ```ncbi_taxonomy_functionality``` (for taxonomy distance d
 
 ## Manually adding data
 
-!!! warning "Fullsplit model" requirement
-    Before using theromkinetic data, make sure that your model is "fullsplit" as explained at the end of [Model requirements for automatic data collection](#model-requirements-for-automatic-data-collection).
+!!! warning
+    Before using theromkinetic data, make sure that your model is "fullsplit" as explained in subsection [Model requirements for any CORBA-k model](#model-requirements-for-any-cobra-k-model).
 
 If you have some or all thermokinetic data already ready, make sure that you have it in the following type form:
 
