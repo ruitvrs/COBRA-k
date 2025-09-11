@@ -9,9 +9,20 @@ All functionality regarding loading and saving a Model instance or parts of it c
 
 There are two formats, JSON and SBML, in which you can interchangeably load and save a COBRA-k model, both of which store it in an human readable way:
 
+!!! info "In case you have a MATLAB model"
+    COBRA-k cannot read a MATLAB .mat metabolic model directly. However, it is usually possible to save such a model as an SBML model, which can then be loaded by COBRA-k. E.g. you could use [COBRApy](https://github.com/opencobra/cobrapy) to do so as follows (thanks to Rui Tavares for this tip :-):
+
+    ```py
+    # Loading the MATLAB model using COBRApy
+    from cobra.io import load_matlab_model, write_sbml_model
+    matlab_model = load_matlab_model("your_matlab_model.mat")
+    write_sbml_model(matlab_model, "your_matlab_model_as_sbml.xml")
+    # ...and then load it as SBML in COBRA-k as explained below :D
+    ```
+
 ## 1. JSON
 
-Any of COBRA-k's dataclasses (see previous chapter), including Model instances, can be stored and loaded as JSON [[Wikipedia]](https://en.wikipedia.org/wiki/JSON) files. JSONs can be quickly saved and loaded tend to be easier to read and have a smaller file size than SBMLs. However, they are not interoperable with other program packages.
+Any of COBRA-k's dataclasses (see previous chapter), including Model instances, can be stored and loaded as JSON [[Wikipedia]](https://en.wikipedia.org/wiki/JSON) files. JSONs can be quickly saved and loaded tend to be easier to read and have a smaller file size than SBMLs. However, they are not interoperable with other program packages so that, if you publish a model, you should always use the SBML format as it is the only widespread "standard" format.
 
 !!! note
     While some other constraint-based modeling packages also provide JSON as input and output format, COBRA-k's JSON definition is incompatible with their definitions. To use an interoperable format that works with virtually all packages, use the SBML format (see below).
@@ -78,9 +89,9 @@ The ```add_enzyme_constraints``` parameter controls whether or not the exported 
 
 When loading such an annotated XML again with COBRA-k, the enzyme constraints are automatically detected and the "normal" COBRA-k form of enzyme constraints is used again (as detailed in the chapter about Linear Programs).
 
-### Load (annotated) SBML
+### Load (annotated or also plain unannotated) SBML
 
-Loading an (annotated) SBML as a Model is simple:
+Loading an (annotated or also plain unannotated) SBML as a Model is simple:
 
 ```py
 from cobrak.io import load_annotated_sbml_model_as_cobrak_model
