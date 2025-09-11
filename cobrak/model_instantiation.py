@@ -4,17 +4,25 @@ import tempfile
 
 # IMPORT SECTION #
 from copy import deepcopy
+from os.path import exists
 
 import cobra
 from cobra.manipulation import remove_genes
 from numpy import log
 
-from .brenda_functionality import brenda_select_enzyme_kinetic_data_for_model
+from .brenda_functionality import brenda_select_enzyme_kinetic_data_for_sbml
 from .cobrapy_model_functionality import get_fullsplit_cobra_model
 from .constants import (
+    EC_INNER_TO_OUTER_COMPARTMENTS,
+    EC_IONIC_STRENGTHS,
+    EC_PHS,
+    EC_PMGS,
+    EC_POTENTIAL_DIFFERENCES,
     REAC_ENZ_SEPARATOR,
     REAC_FWD_SUFFIX,
     REAC_REV_SUFFIX,
+    STANDARD_CONC_RANGES,
+    STANDARD_MAX_PROT_POOL,
     STANDARD_R,
     STANDARD_T,
 )
@@ -27,8 +35,9 @@ from .dataclasses import (
     Reaction,
 )
 from .equilibrator_functionality import (
-    equilibrator_get_model_dG0_and_uncertainty_values,
+    equilibrator_get_model_dG0_and_uncertainty_values_for_sbml,
 )
+from .expasy_functionality import get_ec_number_transfers
 from .io import (
     get_files,
     json_load,
@@ -36,8 +45,8 @@ from .io import (
     load_unannotated_sbml_as_cobrapy_model,
     standardize_folder,
 )
-from .sabio_rk_functionality import sabio_select_enzyme_kinetic_data_for_model
-from .uniprot_functionality import uniprot_get_enzyme_molecular_weights
+from .sabio_rk_functionality import sabio_select_enzyme_kinetic_data_for_sbml
+from .uniprot_functionality import uniprot_get_enzyme_molecular_weights_for_sbml
 from .utilities import (
     combine_enzyme_reaction_datasets,
     delete_orphaned_metabolites_and_enzymes,
@@ -80,8 +89,18 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
         if reac_enz_separator not in reac_id:
             continue
         if reac_id not in enzyme_reaction_data:
-            ignored_reac_ids.append(reac_id)
-            continue
+            enzyme_ids = reac_id.split(reac_enz_separator)[1].split("_and_")
+            enzyme_ids[-1] = (
+                enzyme_ids[-1].replace(rev_suffix, "").replace(fwd_suffix, "")
+            )
+            if not all(
+                enzyme_id in enzyme_molecular_weights for enzyme_id in enzyme_ids
+            ):
+                ignored_reac_ids.append(reac_id)
+            else:
+                enzyme_reaction_data[reac_id] = EnzymeReactionData(
+                    identifiers=enzyme_ids
+                )
 
         current_enzyme_reaction_data = enzyme_reaction_data[reac_id]
         if current_enzyme_reaction_data is None:
@@ -115,19 +134,46 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
         ):
             base_reacs_to_min_mw_by_k_cat[base_id] = (reac_id, mw_by_k_cat)
     enz_reacs_to_keep = [entry[0] for entry in base_reacs_to_min_mw_by_k_cat.values()]
+
+    # Remove superfluous reactions
+    ignored_base_id_suffix_to_reac_ids = {}
+    for reac_id in ignored_reac_ids:
+        base_id = reac_id.split(reac_enz_separator)[0]
+        is_rev = reac_id.endswith(rev_suffix)
+        tuple_ = (base_id, is_rev)
+        if tuple_ not in ignored_base_id_suffix_to_reac_ids:
+            ignored_base_id_suffix_to_reac_ids[tuple_] = []
+        ignored_base_id_suffix_to_reac_ids[tuple_].append(reac_id)
+    extra_reacs_to_delete = []
+    for reacidlist in ignored_base_id_suffix_to_reac_ids.values():
+        if len(reacidlist) <= 1:
+            continue
+        allowed_indices = []
+        for i, singleid in enumerate(reacidlist):
+            if (singleid.replace(rev_suffix, fwd_suffix) in enz_reacs_to_keep) or (
+                reac_id.replace(fwd_suffix, rev_suffix) in enz_reacs_to_keep
+            ):
+                allowed_indices.append(i)
+        if allowed_indices == []:
+            allowed_indices = [reacidlist.index(sorted(reacidlist)[0])]
+        for i, singleid in enumerate(reacidlist):
+            if i not in allowed_indices:
+                extra_reacs_to_delete.append(singleid)
+
     reacs_to_delete = [
         reac_id
         for reac_id in reac_ids
         if (reac_enz_separator in reac_id)
         and (reac_id not in enz_reacs_to_keep)
         and (reac_id not in ignored_reac_ids)
-    ]
+    ] + extra_reacs_to_delete
     cobra_model.remove_reactions(reacs_to_delete)
     return cobra_model
 
 
 def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
     cobrak_model: Model,
+    ignored_ids: list[str] = ["s0001"],
 ) -> Model:
     """Delete enzymatically suboptimal reactions in a COBRA-k model, similar to the idea in sMOMENT/AutoPACMEN [1].
 
@@ -156,9 +202,12 @@ def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
     for reac_id, reac_data in cobrak_model.reactions.items():
         if reac_data.enzyme_reaction_data is None:
             continue
-        if reac_data.enzyme_reaction_data.identifiers == []:
+        if reac_data.enzyme_reaction_data.identifiers in ([], [""]):
             continue
-        if reac_data.enzyme_reaction_data.identifiers == [""]:
+        if any(
+            ignored_id in reac_data.enzyme_reaction_data.identifiers
+            for ignored_id in ignored_ids
+        ):
             continue
 
         mw_by_kcat = (
@@ -203,8 +252,8 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
     conc_ranges: dict[str, tuple[float, float]],
     enzyme_molecular_weights: dict[str, float],
     enzyme_reaction_data: dict[str, EnzymeReactionData | None],
-    max_prot_pool: float,
-    kinetic_ignored_metabolites: list[str],
+    max_prot_pool: float = STANDARD_MAX_PROT_POOL,
+    kinetic_ignored_metabolites: list[str] = [],
     enzyme_conc_ranges: dict[str, tuple[float, float] | None] = {},
     do_model_fullsplit: bool = False,
     do_delete_enzymatically_suboptimal_reactions: bool = True,
@@ -214,7 +263,8 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
     rev_suffix: str = REAC_REV_SUFFIX,
     reac_enz_separator: str = REAC_ENZ_SEPARATOR,
     omitted_metabolites: list[str] = [],
-    keep_parameter_refs: bool = False,
+    ignored_enzyme_ids: str = ["s0001"],
+    remove_enzyme_reaction_data_if_no_kcat_set: bool = False,
 ) -> Model:
     """Creates a COBRAk model from an SBML and given further thermokinetic (thermodynamic and enzymatic) data.
 
@@ -237,6 +287,12 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
         do_delete_enzymatically_suboptimal_reactions (bool, optional): Whether to delete enzymatically suboptimal reactions. Defaults to True.
         R (float, optional): Universal gas constant. Defaults to STANDARD_R.
         T (float, optional): Temperature in Kelvin. Defaults to STANDARD_T.
+        omitted_metabolites (list[str], optional): Metabolites that shall not be included in the model. Their stoichiometries
+         will be jsut deleted. Useful to e.g. delete enzyme-constraint pseudo-metabolites. Defauls to [].
+        ignored_enzyme_ids (list[str], optional): Enzymes that shall not be included if their ID occurs in any identifiers part. Defaults to ["s0001"],
+         i.e. spontaneously occurring reactions.
+        remove_enzyme_reaction_data_if_no_kcat_set (bool, optional): If no $k_{cat}$ is set for a reaction, shall its EnzymeReactionData
+        be set to None? If False, the default EnzymeReactionData with a very high (effectively non-existing) $k_{cat}$ is used. Defaults to False.
 
     Raises:
         ValueError: If a concentration range for a metabolite is not provided and no default is set.
@@ -281,7 +337,11 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
         cobrak_model.metabolites[metabolite.id] = Metabolite(
             log_min_conc=log(min_conc),
             log_max_conc=log(max_conc),
-            annotation=metabolite.annotation,
+            annotation={
+                key: value
+                for key, value in metabolite.annotation.items()
+                if not key.startswith("cobrak_")
+            },
             name=metabolite.name,
             formula="" if not metabolite.formula else metabolite.formula,
             charge=metabolite.charge,
@@ -292,15 +352,16 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
 
         dG0_uncertainty = dG0_uncertainties.get(reaction.id)
 
-        if reaction.id in enzyme_reaction_data:
-            used_enzyme_reaction_data = enzyme_reaction_data[reaction.id]
-            if (used_enzyme_reaction_data is not None) and (not keep_parameter_refs):
-                used_enzyme_reaction_data.k_cat_references = []
-                used_enzyme_reaction_data.k_m_references = {}
-                used_enzyme_reaction_data.k_i_references = {}
-                used_enzyme_reaction_data.k_a_references = {}
-        else:
-            used_enzyme_reaction_data = None
+        used_enzyme_reaction_data = enzyme_reaction_data.get(reaction.id, None)
+        if used_enzyme_reaction_data is None:
+            identifiers = reaction.gene_reaction_rule.split(" and ")
+            used_enzyme_reaction_data = (
+                EnzymeReactionData(
+                    identifiers=identifiers,
+                )
+                if identifiers != [""]
+                else None
+            )
 
         cobrak_model.reactions[reaction.id] = Reaction(
             min_flux=reaction.lower_bound,
@@ -313,7 +374,11 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
             dG0=dG0,
             dG0_uncertainty=dG0_uncertainty,
             enzyme_reaction_data=used_enzyme_reaction_data,
-            annotation=reaction.annotation,
+            annotation={
+                key: value
+                for key, value in reaction.annotation.items()
+                if not key.startswith("cobrak_")
+            },
             name=reaction.name,
         )
 
@@ -342,29 +407,37 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
 
     if do_delete_enzymatically_suboptimal_reactions:
         cobrak_model = delete_enzymatically_suboptimal_reactions_in_cobrak_model(
-            cobrak_model
+            cobrak_model,
+            ignored_ids=ignored_enzyme_ids,
         )
+
+    if remove_enzyme_reaction_data_if_no_kcat_set:
+        for reaction in cobrak_model.reactions.values():
+            if reaction.enzyme_reaction_data is None:
+                continue
+            if reaction.enzyme_reaction_data.k_cat > 1e19:
+                reaction.enzyme_reaction_data = None
 
     return cobrak_model
 
 
 def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
     sbml_path: str,
-    path_to_external_resources: str,
-    folder_of_sabio_database: str,
+    database_data_folder: str,
     brenda_version: str,
-    prefer_brenda: bool,
     base_species: str,
-    max_prot_pool: float,
-    conc_ranges: dict[str, tuple[float, float]],
-    inner_to_outer_compartments: list[str],
-    phs: dict[str, float],
-    pmgs: dict[str, float],
-    ionic_strenghts: dict[str, float],
-    potential_differences: dict[tuple[str, str], float],
-    kinetic_ignored_enzymes: list[str],
-    custom_kms_and_kcats: dict[str, EnzymeReactionData | None],
-    kinetic_ignored_metabolites: list[str],
+    prefer_brenda: bool = False,
+    use_ec_number_transfers: bool = True,
+    max_prot_pool: float = STANDARD_MAX_PROT_POOL,
+    conc_ranges: dict[str, tuple[float, float]] = STANDARD_CONC_RANGES,
+    inner_to_outer_compartments: list[str] = EC_INNER_TO_OUTER_COMPARTMENTS,
+    phs: dict[str, float] = EC_PHS,
+    pmgs: dict[str, float] = EC_PMGS,
+    ionic_strenghts: dict[str, float] = EC_IONIC_STRENGTHS,
+    potential_differences: dict[tuple[str, str], float] = EC_POTENTIAL_DIFFERENCES,
+    kinetic_ignored_enzymes: list[str] = [],
+    custom_kms_and_kcats: dict[str, EnzymeReactionData | None] = {},
+    kinetic_ignored_metabolites: list[str] = [],
     do_model_fullsplit: bool = True,
     do_delete_enzymatically_suboptimal_reactions: bool = True,
     ignore_dG0_uncertainty: bool = True,
@@ -373,51 +446,156 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
     dG0_exclusion_inner_parts: list[str] = [],
     dG0_corrections: dict[str, float] = {},
     extra_linear_constraints: list[ExtraLinearConstraint] = [],
-    data_cache_folder: str = "",
     R: float = STANDARD_R,
     T: float = STANDARD_T,
-    keep_parameter_refs: bool = False,
     enzymes_to_delete: list[str] = [],
-    max_taxonomy_level: float = float("inf"),
+    max_taxonomy_level: float = 1_000.0,
     add_hill_coefficients: bool = True,
 ) -> Model:
-    """This functions creates a Model out of an SBML model and automatically collects kinetic and thermodynamic data.
+    """Build a fully-featured :class:`~cobrak.Model` from an SBML file **and** automatically
+    retrieve all required kinetic and thermodynamic data from the local
+    ``database_data_folder`` (or download it on-the-fly if missing).
 
-    To make this function work, the functions needs in the COBRApy model...
-    ...for the reactions: An EC number annotation [for enzymatic constraints]
-    ...for the metabolites: BiGG IDs
-    ...and all the other non-optional data in its arguments
+    The function orchestrates a multi-step pipeline:
 
-    Args:
-        sbml_path (str): The SBML model file path from which the Model and associated data retrieval shall be made
-        path_to_external_resources (str): _description_
-        brenda_version (str): _description_
-        base_species (str): _description_
-        max_prot_pool (float): _description_
-        conc_ranges (dict[str, tuple[float, float]]): _description_
-        inner_to_outer_compartments (list[str]): _description_
-        phs (dict[str, float]): _description_
-        pmgs (dict[str, float]): _description_
-        ionic_strenghts (dict[str, float]): _description_
-        potential_differences (dict[tuple[str, str], float]): _description_
-        kinetic_ignored_enzymes (list[str]): _description_
-        custom_kms_and_kcats (dict[str, EnzymeReactionData  |  None]): _description_
-        kinetic_ignored_metabolites (list[str]): _description_
-        do_model_fullsplit (bool, optional): _description_. Defaults to True.
-        do_delete_enzymatically_suboptimal_reactions (bool, optional): _description_. Defaults to True.
-        ignore_dG0_uncertainty (bool, optional): _description_. Defaults to True.
-        enzyme_conc_ranges (dict[str, tuple[float, float]  |  None], optional): _description_. Defaults to {}.
-        dG0_exclusion_prefixes (list[str], optional): _description_. Defaults to [].
-        dG0_exclusion_inner_parts (list[str], optional): _description_. Defaults to [].
-        extra_linear_constraints (list[ExtraLinearConstraint], optional): _description_. Defaults to [].
-        data_cache_folder (str, optional): _description_. Defaults to "".
-        R (float, optional): _description_. Defaults to STANDARD_R.
-        T (float, optional): _description_. Defaults to STANDARD_T.
-        add_hill_coefficients (bool, optional): Whether Hill coefficeints shall be collected (True) or not (False).
-            They are added (as they cannot be separated for κ, ι *and* α as HilLCoefficient instances). Defaults to True.
+    1. **Load the SBML** as an un-annotated COBRApy model and optionally delete
+       user-specified enzymes (genes) from the model.
+    2. **Prepare the external data cache** – ensure that the folder structure
+       exists, locate cached JSON files, and (re)generate missing caches.
+    3. **Parse EC-number transfers** (optional) to allow cross-species mapping of
+       enzyme identifiers.
+    4. **Create a “full-split” model** where each enzyme-specific reaction variant
+       is represented as a separate COBRApy reaction (controlled by
+       ``do_model_fullsplit``).
+    5. **Collect enzyme kinetic parameters** from BRENDA and SABIO-RK, optionally
+       preferring one source over the other, and combine the two datasets.
+    6. **Fetch enzyme molecular weights** from UniProt (cached for future runs).
+    7. **Optionally prune sub-optimal enzyme reactions** based on the
+       8. **Compute standard Gibbs free energies** (ΔG⁰) and their uncertainties
+       using eQuilibrator, applying user-defined compartment, pH, ionic-strength,
+       and membrane-potential settings, as well as any exclusion rules.
+    9. **Apply user-provided ΔG⁰ corrections** (e.g. literature adjustments).
+    10. **Assemble the final COBRA-k model** by calling
+        :func:`get_cobrak_model_from_sbml_and_thermokinetic_data` with all
+        gathered data, then clean up orphaned metabolites/enzymes.
 
-    Returns:
-        Model: _description_
+    Parameters
+    ----------
+    sbml_path : str
+        Path to the SBML file that will be converted into a COBRA-k model.
+    database_data_folder : str
+        Root folder containing cached kinetic, thermodynamic and annotation data.
+        The function will create the folder if it does not exist.
+    brenda_version : str
+        Version identifier of the BRENDA JSON archive (e.g. ``"2023.1"``).
+    base_species : str
+        NCBI taxonomy identifier (or scientific name) of the organism for which
+        kinetic data should be retrieved.
+    prefer_brenda : bool, optional
+        If ``True`` BRENDA data are used preferentially when both BRENDA and
+        SABIO-RK contain information for the same reaction; otherwise SABIO-RK
+        is preferred. Default: ``False``.
+    use_ec_number_transfers : bool, optional
+        Enable mapping of EC numbers between organisms using the
+        ``enzyme.rdf`` file from Expasy. Default: ``True``.
+    max_prot_pool : float, optional
+        Upper bound on the total protein mass (g·gDW⁻¹) that can be allocated to
+        enzymes. Default: :data:`STANDARD_MAX_PROT_POOL`.
+    conc_ranges : dict[str, tuple[float, float]], optional
+        Log-linear concentration bounds for metabolites (in M). Keys are metabolite
+        IDs; the special key ``"DEFAULT"`` provides a fallback range. Default:
+        :data:`STANDARD_CONC_RANGES`.
+    inner_to_outer_compartments : list[str], optional
+        Mapping of inner to outer compartments required by eQuilibrator for
+        ΔG⁰ calculations. Default: :data:`EC_INNER_TO_OUTER_COMPARTMENTS`.
+    phs : dict[str, float], optional
+        pH values for each compartment. Default: :data:`EC_PHS`.
+    pmgs : dict[str, float], optional
+        Magnesium concentrations (M) for each compartment. Default: :data:`EC_PMGS`.
+    ionic_strenghts : dict[str, float], optional
+        Ionic strength (M) for each compartment. Default: :data:`EC_IONIC_STRENGTHS`.
+    potential_differences : dict[tuple[str, str], float], optional
+        Membrane potential differences (V) between compartment pairs. Default:
+        :data:`EC_POTENTIAL_DIFFERENCES`.
+    kinetic_ignored_enzymes : list[str], optional
+        Enzyme identifiers that should be ignored when extracting kinetic data.
+        Default: ``[]``.
+    custom_kms_and_kcats : dict[str, EnzymeReactionData | None], optional
+        User-provided kinetic parameters that override any database values.
+        Default: ``{}``.
+    kinetic_ignored_metabolites : list[str], optional
+        Metabolite IDs that shall be excluded from kinetic calculations
+        (e.g., pseudo-metabolites). Default: ``[]``.
+    do_model_fullsplit : bool, optional
+        Whether to split reactions per enzyme before further processing.
+        Default: ``True``.
+    do_delete_enzymatically_suboptimal_reactions : bool, optional
+        If ``True`` remove reactions that are not optimal with respect to the
+        ``MW/k_cat`` criterion. Default: ``True``.
+    ignore_dG0_uncertainty : bool, optional
+        When ``True`` discard ΔG⁰ uncertainty values after they have been computed.
+        Default: ``True``.
+    enzyme_conc_ranges : dict[str, tuple[float, float] | None], optional
+        Optional concentration bounds for enzymes (in M). ``None`` means no bound.
+        Default: ``{}``.
+    dG0_exclusion_prefixes : list[str], optional
+        Reaction IDs starting with any of these prefixes are removed from the
+        ΔG⁰ dataset. Default: ``[]``.
+    dG0_exclusion_inner_parts : list[str], optional
+        Sub-strings that, if present anywhere in a reaction ID, cause its ΔG⁰
+        entry to be removed. Default: ``[]``.
+    dG0_corrections : dict[str, float], optional
+        Additive corrections (in kJ·mol⁻¹) to specific ΔG⁰ values after they have
+        been computed. Default: ``{}``.
+    extra_linear_constraints : list[ExtraLinearConstraint], optional
+        Additional linear constraints (e.g., flux bounds) to be added to the model.
+        Default: ``[]``.
+    R : float, optional
+        Universal gas constant (kJ·mol⁻¹·K⁻¹). Default: :data:`STANDARD_R`.
+    T : float, optional
+        Temperature in Kelvin for thermodynamic calculations. Default:
+        :data:`STANDARD_T`.
+    enzymes_to_delete : list[str], optional
+        Gene identifiers that should be removed from the initial COBRApy model
+        before any further processing. Default: ``[]``.
+    max_taxonomy_level : float, optional
+        Upper bound on the NCBI taxonomy distance used when selecting kinetic
+        data from related organisms. Default: ``1_000.0``.
+    add_hill_coefficients : bool, optional
+        If ``True`` include Hill coefficients from SABIO-RK where available.
+        Default: ``True``.
+
+    Returns
+    -------
+    Model
+        A fully populated :class:`~cobrak.Model` instance containing:
+        * Metabolite objects with concentration bounds,
+        * Reaction objects with flux bounds, ΔG⁰ values, and enzyme reaction data,
+        * Enzyme objects with molecular weights and concentration bounds,
+        * Any extra linear constraints supplied by the user,
+        * The global protein pool constraint.
+
+    Raises
+    ------
+    FileNotFoundError
+        If ``sbml_path`` does not exist or required external files (e.g.
+        ``enzyme.rdf`` when ``use_ec_number_transfers`` is ``True``) are missing.
+    ValueError
+        When a required concentration range for a metabolite is not provided and
+        no ``"DEFAULT"`` range exists.
+    RuntimeError
+        If any of the external data retrieval steps (BRENDA, SABIO-RK,
+        UniProt, eQuilibrator) fail unexpectedly.
+
+    Notes
+    -----
+    * The function heavily relies on caching to avoid repeated expensive web
+      queries. Cache files are stored alongside ``database_data_folder`` with
+      ``_cache_`` prefixes.
+    * The returned model is already cleaned of orphaned metabolites and enzymes
+      via :func:`delete_orphaned_metabolites_and_enzymes`.
+    * Users can bypass the full pipeline by providing pre-computed cache files;
+      in that case the function will simply load the cached data.
     """
     cobra_model = load_unannotated_sbml_as_cobrapy_model(sbml_path)
     remove_genes(
@@ -426,50 +604,75 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
         remove_reactions=False,
     )
 
-    path_to_external_resources = standardize_folder(path_to_external_resources)
-    if data_cache_folder:
-        data_cache_folder = standardize_folder(data_cache_folder)
-        data_cache_files = get_files(data_cache_folder)
+    database_data_folder = standardize_folder(database_data_folder)
+    data_cache_files = get_files(database_data_folder)
 
-    parse_external_resources(path_to_external_resources, brenda_version)
-
-    if do_model_fullsplit:
-        fullsplit_model = get_fullsplit_cobra_model(cobra_model)
+    parse_external_resources(database_data_folder, brenda_version)
+    if use_ec_number_transfers:
+        transfer_json_path = f"{database_data_folder}ec_number_transfers.json"
+        if not exists(transfer_json_path):
+            if not exists(f"{database_data_folder}enzyme.rdf"):
+                print(
+                    f"ERROR: Argument use_ec_number_transfers is True, but no necessary enzyme.rdf can be found in {database_data_folder}"
+                )
+                print(
+                    "You may download it from https://ftp.expasy.org/databases/enzyme/"
+                )
+                print(
+                    f"After downloading, put it into the folder {database_data_folder}"
+                )
+            ec_number_transfers = get_ec_number_transfers(
+                f"{database_data_folder}enzyme.rdf"
+            )
+            json_write(transfer_json_path, ec_number_transfers)
     else:
-        fullsplit_model = deepcopy(cobra_model)
+        transfer_json_path = ""
+
+    fullsplit_model = (
+        get_fullsplit_cobra_model(cobra_model)
+        if do_model_fullsplit
+        else deepcopy(cobra_model)
+    )
 
     enzyme_reaction_data: dict[str, EnzymeReactionData | None] = {}
-    if (not data_cache_folder) or (
-        (data_cache_folder)
+    if (not database_data_folder) or (
+        (database_data_folder)
         and (
             ("_cache_dG0.json" not in data_cache_files)
             or ("_cache_dG0_uncertainties.json" not in data_cache_files)
+            or ("_cache_enzyme_reaction_data.json" not in data_cache_files)
         )
     ):
-        brenda_enzyme_reaction_data = brenda_select_enzyme_kinetic_data_for_model(
-            cobra_model=fullsplit_model,
-            brenda_json_targz_file_path=f"{path_to_external_resources}brenda_2024_1.json.tar.gz",
-            bigg_metabolites_json_path=f"{path_to_external_resources}bigg_models_metabolites.json",
-            brenda_version=brenda_version,
-            base_species=base_species,
-            ncbi_parsed_json_path=f"{path_to_external_resources}parsed_taxdmp.json",
-            kinetic_ignored_metabolites=kinetic_ignored_metabolites,
-            kinetic_ignored_enzyme_ids=kinetic_ignored_enzymes,
-            custom_enzyme_kinetic_data=custom_kms_and_kcats,
-            max_taxonomy_level=max_taxonomy_level,
-        )
-        sabio_enzyme_reaction_data = sabio_select_enzyme_kinetic_data_for_model(
-            cobra_model=fullsplit_model,
-            sabio_target_folder=folder_of_sabio_database,
-            base_species=base_species,
-            ncbi_parsed_json_path=f"{path_to_external_resources}parsed_taxdmp.json",
-            bigg_metabolites_json_path=f"{path_to_external_resources}bigg_models_metabolites.json",
-            kinetic_ignored_metabolites=kinetic_ignored_metabolites,
-            kinetic_ignored_enzyme_ids=kinetic_ignored_enzymes,
-            custom_enzyme_kinetic_data=custom_kms_and_kcats,
-            max_taxonomy_level=max_taxonomy_level,
-            add_hill_coefficients=add_hill_coefficients,
-        )
+        with tempfile.TemporaryDirectory() as tmpdict:
+            temp_sbml_path = tmpdict + "temp.xml"
+            cobra.io.write_sbml_model(fullsplit_model, temp_sbml_path)
+
+            brenda_enzyme_reaction_data = brenda_select_enzyme_kinetic_data_for_sbml(
+                sbml_path=temp_sbml_path,
+                brenda_json_targz_file_path=f"{database_data_folder}brenda_{brenda_version}.json.tar.gz",
+                bigg_metabolites_json_path=f"{database_data_folder}bigg_models_metabolites.json",
+                brenda_version=brenda_version,
+                base_species=base_species,
+                ncbi_parsed_json_path=f"{database_data_folder}parsed_taxdmp.json",
+                kinetic_ignored_metabolites=kinetic_ignored_metabolites,
+                kinetic_ignored_enzyme_ids=kinetic_ignored_enzymes,
+                custom_enzyme_kinetic_data=custom_kms_and_kcats,
+                max_taxonomy_level=max_taxonomy_level,
+                transfered_ec_number_json=transfer_json_path,
+            )
+            sabio_enzyme_reaction_data = sabio_select_enzyme_kinetic_data_for_sbml(
+                sbml_path=temp_sbml_path,
+                sabio_target_folder=database_data_folder,
+                base_species=base_species,
+                ncbi_parsed_json_path=f"{database_data_folder}parsed_taxdmp.json",
+                bigg_metabolites_json_path=f"{database_data_folder}bigg_models_metabolites.json",
+                kinetic_ignored_metabolites=kinetic_ignored_metabolites,
+                kinetic_ignored_enzyme_ids=kinetic_ignored_enzymes,
+                custom_enzyme_kinetic_data=custom_kms_and_kcats,
+                max_taxonomy_level=max_taxonomy_level,
+                add_hill_coefficients=add_hill_coefficients,
+                transfered_ec_number_json=transfer_json_path,
+            )
 
         enzyme_reaction_data = combine_enzyme_reaction_datasets(
             [
@@ -486,21 +689,38 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
             ]
         )
 
-        if data_cache_folder:
+        if database_data_folder:
             json_write(
-                f"{data_cache_folder}_cache_enzyme_reaction_data.json",
+                f"{database_data_folder}_cache_enzyme_reaction_data.json",
                 enzyme_reaction_data,
             )
     else:
         enzyme_reaction_data = json_load(
-            f"{data_cache_folder}_cache_enzyme_reaction_data.json",
+            f"{database_data_folder}_cache_enzyme_reaction_data.json",
             dict[str, EnzymeReactionData | None],
         )
 
-    enzyme_molecular_weights = uniprot_get_enzyme_molecular_weights(
-        model=fullsplit_model,
-        cache_basepath=data_cache_folder,
-    )
+    if (not database_data_folder) or (
+        "_cache_uniprot_mws.json" not in data_cache_files
+    ):
+        with tempfile.TemporaryDirectory() as tmpdict:
+            sbml_path = tmpdict + "temp.xml"
+            cobra.io.write_sbml_model(fullsplit_model, sbml_path)
+            enzyme_molecular_weights = uniprot_get_enzyme_molecular_weights_for_sbml(
+                sbml_path=sbml_path,
+                cache_basepath=database_data_folder,
+                base_species=base_species,
+            )
+
+            if database_data_folder:
+                json_write(
+                    f"{database_data_folder}_cache_uniprot_mws.json",
+                    enzyme_molecular_weights,
+                )
+    else:
+        enzyme_molecular_weights = json_load(
+            f"{database_data_folder}_cache_uniprot_mws.json", dict[str, float]
+        )
 
     if do_delete_enzymatically_suboptimal_reactions:
         fullsplit_model = (
@@ -511,8 +731,8 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
             )
         )
 
-    if (not data_cache_folder) or (
-        (data_cache_folder)
+    if (not database_data_folder) or (
+        (database_data_folder)
         and (
             ("_cache_dG0.json" not in data_cache_files)
             or ("_cache_dG0_uncertainties.json" not in data_cache_files)
@@ -520,26 +740,29 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
     ):
         with tempfile.TemporaryDirectory() as tmpdict:
             cobra.io.write_sbml_model(fullsplit_model, tmpdict + "temp.xml")
-        dG0s, dG0_uncertainties = equilibrator_get_model_dG0_and_uncertainty_values(
-            tmpdict + "temp.xml",
-            inner_to_outer_compartments,
-            phs,
-            pmgs,
-            ionic_strenghts,
-            potential_differences,
-            dG0_exclusion_prefixes,
-            dG0_exclusion_inner_parts,
-            ignore_dG0_uncertainty,
-        )
-        if data_cache_folder:
-            json_write(f"{data_cache_folder}_cache_dG0.json", dG0s)
+            dG0s, dG0_uncertainties = (
+                equilibrator_get_model_dG0_and_uncertainty_values_for_sbml(
+                    tmpdict + "temp.xml",
+                    inner_to_outer_compartments,
+                    phs,
+                    pmgs,
+                    ionic_strenghts,
+                    potential_differences,
+                    dG0_exclusion_prefixes,
+                    dG0_exclusion_inner_parts,
+                    ignore_dG0_uncertainty,
+                )
+            )
+        if database_data_folder:
+            json_write(f"{database_data_folder}_cache_dG0.json", dG0s)
             json_write(
-                f"{data_cache_folder}_cache_dG0_uncertainties.json", dG0_uncertainties
+                f"{database_data_folder}_cache_dG0_uncertainties.json",
+                dG0_uncertainties,
             )
     else:
-        dG0s = json_load(f"{data_cache_folder}_cache_dG0.json", dict[str, float])
+        dG0s = json_load(f"{database_data_folder}_cache_dG0.json", dict[str, float])
         dG0_uncertainties = json_load(
-            f"{data_cache_folder}_cache_dG0_uncertainties.json",
+            f"{database_data_folder}_cache_dG0_uncertainties.json",
             dict[str, float],
         )
 
@@ -561,19 +784,22 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
 
     with tempfile.TemporaryDirectory() as tmpdict:
         cobra.io.write_sbml_model(fullsplit_model, tmpdict + "temp.xml")
-        return get_cobrak_model_from_sbml_and_thermokinetic_data(
-            sbml_path=tmpdict + "temp.xml",
-            extra_linear_constraints=extra_linear_constraints,
-            dG0s=dG0s,
-            dG0_uncertainties=dG0_uncertainties,
-            conc_ranges=conc_ranges,
-            enzyme_molecular_weights=enzyme_molecular_weights,
-            enzyme_reaction_data=enzyme_reaction_data,
-            max_prot_pool=max_prot_pool,
-            kinetic_ignored_metabolites=kinetic_ignored_metabolites,
-            enzyme_conc_ranges=enzyme_conc_ranges,
-            R=R,
-            T=T,
-            keep_parameter_refs=keep_parameter_refs,
-            do_delete_enzymatically_suboptimal_reactions=False,
+        return delete_orphaned_metabolites_and_enzymes(
+            get_cobrak_model_from_sbml_and_thermokinetic_data(
+                sbml_path=tmpdict + "temp.xml",
+                extra_linear_constraints=extra_linear_constraints,
+                dG0s=dG0s,
+                dG0_uncertainties=dG0_uncertainties
+                if not ignore_dG0_uncertainty
+                else {},
+                conc_ranges=conc_ranges,
+                enzyme_molecular_weights=enzyme_molecular_weights,
+                enzyme_reaction_data=enzyme_reaction_data,
+                max_prot_pool=max_prot_pool,
+                kinetic_ignored_metabolites=kinetic_ignored_metabolites,
+                enzyme_conc_ranges=enzyme_conc_ranges,
+                R=R,
+                T=T,
+                do_delete_enzymatically_suboptimal_reactions=False,
+            )
         )

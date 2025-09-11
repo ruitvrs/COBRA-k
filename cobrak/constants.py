@@ -11,6 +11,32 @@ ALL_OK_KEY = "ALL_OK"
 BIG_M = 10_000
 """Big M value for MILPs"""
 
+BIGG_COMPARTMENTS = [
+    "c",
+    "e",
+    "p",
+    "m",
+    "x",
+    "r",
+    "v",
+    "n",
+    "g",
+    "u",
+    "l",
+    "h",
+    "f",
+    "s",
+    "im",
+    "cx",
+    "um",
+    "cm",
+    "i",
+    "mm",
+    "w",
+    "y",
+]
+"""List of BiGG compartment suffixes (without _) as defined in http://bigg.ucsd.edu/compartments/"""
+
 DF_VAR_PREFIX = "f_var_"
 """Prefix for driving force problem variables"""
 
@@ -49,8 +75,8 @@ EC_PMGS: dict[str, float] = {
 """pMg values (unitless) for E. coli model compartments used here"""
 
 EC_POTENTIAL_DIFFERENCES: dict[tuple[str, str], float] = {
-    ("c", "p"): 0.15,  # Source: eQuilibrator standard
-    ("p", "e"): 0.15,
+    ("c", "p"): -0.15,  # Source: eQuilibrator standard
+    ("p", "e"): -0.15,
 }
 """Potential differences (in V) for E. coli model compartments used here"""
 
@@ -125,6 +151,22 @@ REAC_FWD_SUFFIX = "_FWD"
 
 REAC_REV_SUFFIX = "_REV"
 """Standard suffix for reaction IDs that represent reverse directions of originally irreversible reactions"""
+
+STANDARD_MAX_PROT_POOL = 0.25
+"""Just a (for E. coli) quite high pool of metabolic enzymes on the total dry weight mass (in g⋅gDW⁻¹)."""
+
+STANDARD_CONC_RANGES = {
+    "DEFAULT": (1e-6, 0.2),
+    "h_c": (1.0, 1.0),
+    "h_p": (1.0, 1.0),
+    "h_e": (1.0, 1.0),
+    "h20_c": (1.0, 1.0),
+    "h20_p": (1.0, 1.0),
+    "h20_e": (1.0, 1.0),
+}
+"""Standard concentration ranges applicable to models with BiGG IDs; water and protons are set to one
+as their effect is directly included in the ΔG'° calculation (see the eQuilibrator FAQ), while
+the rest is set to wide ranges."""
 
 SOLVER_STATUS_KEY = "SOLVER_STATUS"
 """Solver status optimization dict key"""

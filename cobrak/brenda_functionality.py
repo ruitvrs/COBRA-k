@@ -12,6 +12,7 @@ from typing import Any
 import cobra
 from pydantic import ConfigDict, NonNegativeInt, validate_call
 
+from .constants import BIGG_COMPARTMENTS
 from .dataclasses import EnzymeReactionData, ParameterReference
 from .io import json_load, json_zip_load
 from .ncbi_taxonomy_functionality import (
@@ -197,7 +198,6 @@ def _brenda_parse_full_json(
     name_to_bigg_id_dict: dict[str, str] = json_load(
         bigg_metabolites_json_path, dict[str, str]
     )
-
     with tarfile.open(brenda_json_targz_file_path, "r:gz") as tar:
         json_filename = f"brenda_{brenda_version}.json"
         json_file = tar.extractfile(json_filename)
@@ -464,8 +464,8 @@ def _is_fitting_ec_numbers(
 
 # "PUBLIC" FUNCTIONS SECTION #
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True))
-def brenda_select_enzyme_kinetic_data_for_model(
-    cobra_model: cobra.Model,
+def brenda_select_enzyme_kinetic_data_for_sbml(
+    sbml_path: str,
     brenda_json_targz_file_path: str,
     bigg_metabolites_json_path: str,
     brenda_version: str,
@@ -484,12 +484,12 @@ def brenda_select_enzyme_kinetic_data_for_model(
     transfered_ec_number_json: str = "",
     max_taxonomy_level: NonNegativeInt = 1e9,
 ) -> dict[str, EnzymeReactionData | None]:
-    """Select and assign enzyme kinetic data for each reaction in a COBRApy model based on BRENDA
+    """Select and assign enzyme kinetic data for each reaction in an SBML model based on BRENDA
     database entries and taxonomic similarity.
 
     This function retrieves enzyme kinetic data from a compressed BRENDA JSON file, merges it
     with BiGG metabolite translation data and taxonomy information from NCBI. It then iterates
-    over the reactions in the provided COBRApy model to:
+    over the reactions in the provided SBML model to:
 
       - Filter reactions that have EC code annotations.
       - Identify eligible EC codes (ignoring those with hyphens).
@@ -503,7 +503,7 @@ def brenda_select_enzyme_kinetic_data_for_model(
       - Merge with any custom enzyme kinetic data provided.
 
     Parameters:
-        cobra_model (cobra.Model): A COBRApy model object representing the metabolic network.
+        sbml_path (str): Path to SBML model.
         brenda_json_targz_file_path (str): Path to the compressed JSON file containing
             BRENDA enzyme kinetic data.
         bigg_metabolites_json_path (str): Path to the JSON file mapping metabolite IDs to
@@ -542,12 +542,13 @@ def brenda_select_enzyme_kinetic_data_for_model(
 
     Notes:
         - Kinetic values are converted to standardized units:
-            - k_cat values are converted from s⁻¹ to h⁻¹.
-            - KM and KI values are converted from mM to M.
+            - k_cat values use the unit h⁻¹.
+            - KM, KA and KI values use the unit M=mol⋅l⁻¹.
         - The function leverages taxonomic similarity (using NCBI TAXONOMY data)
           to select the most relevant kinetic values.
         - Custom enzyme kinetic data and k_cat overrides will replace any computed values.
     """
+    cobra_model = cobra.io.read_sbml_model(sbml_path)
     transfered_ec_codes: dict[str, str] = (
         json_load(transfered_ec_number_json, dict[str, str])
         if transfered_ec_number_json
@@ -576,13 +577,19 @@ def brenda_select_enzyme_kinetic_data_for_model(
     # Get reaction<->enzyme reaction data mapping
     enzyme_reaction_data: dict[str, EnzymeReactionData | None] = {}
     for reaction in cobra_model.reactions:
+        if reaction.id.startswith("EX_"):
+            continue
         if "ec-code" not in reaction.annotation:
             continue
-
         substrate_names_and_ids = []
         for metabolite, stoichiometry in reaction.metabolites.items():
             if stoichiometry < 0:
                 substrate_names_and_ids.extend((metabolite.id, metabolite.name.lower()))
+                for suffix in [f"_{compartment}" for compartment in BIGG_COMPARTMENTS]:
+                    if metabolite.id.endswith(suffix):
+                        substrate_names_and_ids.append(
+                            (metabolite.id + "\b").replace(suffix + "\b", "")
+                        )
                 for checked_string in (metabolite.id, metabolite.name.lower()):
                     bigg_id = _search_metname_in_bigg_ids(
                         checked_string,
@@ -784,8 +791,9 @@ def brenda_select_enzyme_kinetic_data_for_model(
             k_cat_references = [
                 ParameterReference(database="OVERWRITE", tax_distance=-1)
             ]
-        else:
+        elif len(list(kcat_overwrite.keys())) > 0:
             taxonomically_best_kcats = []
+            k_cat_references = []
 
         reaction_kms = {}
         for met_id, values in taxonomically_best_kms.items():
@@ -817,8 +825,6 @@ def brenda_select_enzyme_kinetic_data_for_model(
                 k_is=reaction_kis,
                 k_i_references=k_i_references,
             )
-        else:
-            enzyme_reaction_data[reaction.id] = None
 
     enzyme_reaction_data = {**enzyme_reaction_data, **custom_enzyme_kinetic_data}
 
@@ -826,13 +832,14 @@ def brenda_select_enzyme_kinetic_data_for_model(
         if reac_id not in enzyme_reaction_data:
             reaction = cobra_model.reactions.get_by_id(reac_id)
             enzyme_identifiers = reaction.gene_reaction_rule.split(" and ")
-            enzyme_reaction_data[reac_id] = EnzymeReactionData(
-                identifiers=enzyme_identifiers,
-                k_cat=kcat_overwrite[reac_id],
-                k_cat_references=[
-                    ParameterReference(database="OVERWRITE", tax_distance=-1)
-                ],
-                k_ms={},
-                k_is={},
-            )
+            if enzyme_identifiers != [""]:
+                enzyme_reaction_data[reac_id] = EnzymeReactionData(
+                    identifiers=enzyme_identifiers,
+                    k_cat=kcat_overwrite[reac_id],
+                    k_cat_references=[
+                        ParameterReference(database="OVERWRITE", tax_distance=-1)
+                    ],
+                    k_ms={},
+                    k_is={},
+                )
     return enzyme_reaction_data

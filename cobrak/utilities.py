@@ -4,6 +4,7 @@ This module does not include I/O functions which are found in COBRAk's "io" modu
 """
 
 # IMPORT SECTION #
+import operator
 import os
 from copy import deepcopy
 from random import choice
@@ -401,7 +402,6 @@ def combine_enzyme_reaction_datasets(
         dict[str, EnzymeReactionData | None]: The combined enzyme reaction data
     """
     combined_data: dict[str, EnzymeReactionData] = {}
-
     for dataset in datasets:
         for reac_id, enzyme_reaction_data in dataset.items():
             if enzyme_reaction_data is None:
@@ -457,7 +457,9 @@ def combine_enzyme_reaction_datasets(
                         0
                     ].tax_distance
                 ):
-                    combined_data[reac_id].hill_coefficients.kappa[met_id] = hills.kappa
+                    combined_data[reac_id].hill_coefficients.kappa[met_id] = (
+                        hills.kappa[met_id]
+                    )
                     combined_data[reac_id].hill_coefficient_references.kappa[met_id] = (
                         enzyme_reaction_data.hill_coefficient_references.kappa[met_id]
                     )
@@ -470,7 +472,9 @@ def combine_enzyme_reaction_datasets(
                         0
                     ].tax_distance
                 ):
-                    combined_data[reac_id].hill_coefficients.iota[met_id] = hills.iota
+                    combined_data[reac_id].hill_coefficients.iota[met_id] = hills.iota[
+                        met_id
+                    ]
                     combined_data[reac_id].hill_coefficient_references.iota[met_id] = (
                         enzyme_reaction_data.hill_coefficient_references.iota[met_id]
                     )
@@ -483,7 +487,9 @@ def combine_enzyme_reaction_datasets(
                         0
                     ].tax_distance
                 ):
-                    combined_data[reac_id].hill_coefficients.alpha[met_id] = hills.alpha
+                    combined_data[reac_id].hill_coefficients.alpha[met_id] = (
+                        hills.alpha[met_id]
+                    )
                     combined_data[reac_id].hill_coefficient_references.alpha[met_id] = (
                         enzyme_reaction_data.hill_coefficient_references.alpha[met_id]
                     )
@@ -1289,8 +1295,8 @@ def get_df_and_efficiency_factors_sorted_lists(
         4. A dictionary of sorted ι values above the minimum flux.
         5. A dictionary of sorted α values above the minimum flux.
         6. A dictionary of sorted κ⋅γ⋅ι⋅α values, along with a status indicator. If, for a reaction,
-           one or more of these efficiency factors is missing, the respective factor is assumed to be 1.0
-           thus having no effect on the multiplied value.
+        one or more of these efficiency factors is missing, the respective factor is assumed to be 1.0
+        thus having no effect on the multiplied value.
     """
     dfs: dict[str, float] = {}
     kappas: dict[str, float] = {}
@@ -1389,6 +1395,62 @@ def get_metabolite_consumption_and_production(
 
 
 @validate_call(validate_return=True)
+def in_out_fluxes(
+    cobrak_model: Model, opt_dict: dict[str, float], met_id: str
+) -> tuple[dict[str, float], dict[str, float]]:
+    """Return consumption and production fluxes for a metabolite.
+
+    Parameters
+    ----------
+    cobrak_model : Model
+        COBRA-k model instance.
+    opt_dict : dict[str, float]
+        Reaction‑id → optimal flux (e.g., FBA solution).
+    met_id : str
+        Metabolite identifier to analyse.
+
+    Returns
+    -------
+    tuple[dict[str, float], dict[str, float]]
+        (cons_dict, prod_dict) where each maps reaction ids to the absolute
+        flux contributed to consumption (negative stoichiometry) or production
+        (positive stoichiometry) of ``met_id``. All is returned as absolute values.
+    """
+    cons_dict: dict[str, float] = {}
+    prod_dict: dict[str, float] = {}
+    for reac_id, reaction in cobrak_model.reactions.items():
+        if reac_id not in opt_dict:
+            continue
+        if met_id not in reaction.stoichiometries:
+            continue
+        stoichiometry = reaction.stoichiometries[met_id]
+        reac_flux = opt_dict[reac_id]
+        if stoichiometry < 0:
+            cons_dict.append(abs(stoichiometry) * reac_flux)
+        else:
+            prod_dict.append(stoichiometry * reac_flux)
+    return cons_dict, prod_dict
+
+
+@validate_call(validate_return=True)
+def get_sorted_model_kcats(cobrak_model: Model) -> list[tuple[str, float]]:
+    """Extracts k_cat values from reactions with enzyme data in the model, in ascending order
+       together with the associated reaction ID.
+
+    Args:
+        cobrak_model (Model): The COBRAk model containing reactions with enzyme data.
+
+    Returns:
+        list[tuple[str, float]]: A list of (reac_id, k_cat) values for reactions with available enzyme data.
+    """
+    kcats = []
+    for reac_id, reaction in cobrak_model.reactions.items():
+        if reaction.enzyme_reaction_data is not None:
+            kcats.append((reac_id, reaction.enzyme_reaction_data.k_cat))
+    return sorted(kcats, key=operator.itemgetter(1))
+
+
+@validate_call(validate_return=True)
 def get_model_kcats(cobrak_model: Model) -> list[float]:
     """Extracts k_cat values from reactions with enzyme data in the model.
 
@@ -1398,15 +1460,56 @@ def get_model_kcats(cobrak_model: Model) -> list[float]:
     Returns:
         list[float]: A list of k_cat values for reactions with available enzyme data.
     """
-    kcats = []
-    for reaction in cobrak_model.reactions.values():
-        if reaction.enzyme_reaction_data is not None:
-            kcats.append(reaction.enzyme_reaction_data.k_cat)
-    return kcats
+    return [x[1] for x in get_sorted_model_kcats(cobrak_model)]
 
 
 @validate_call(validate_return=True)
-def get_model_kms(cobrak_model: Model) -> list[float]:
+def get_sorted_model_dG0s(
+    cobrak_model: Model, abs_values: bool = False, exclude_bw_reacs: bool = True
+) -> list[tuple[str, float]]:
+    """Extracts standard Gibbs free energy changes (dG0) from reactions in the model and returns them,
+       with reaction IDs, in ascending order.
+
+    Args:
+        cobrak_model (Model): The COBRAk model containing reactions with thermodynamic data.
+        abs_values (bool, optional): If True, returns absolute values of dG0. Defaults to False.
+
+    Returns:
+        list[tuple[str, float]]: A list of (reac_id, dG0) values, possibly as absolute values if specified.
+    """
+    dG0s = []
+    for reac_id, reaction in cobrak_model.reactions.items():
+        if exclude_bw_reacs and reac_id.endswith(cobrak_model.rev_suffix):
+            continue
+        if reaction.dG0 is not None:
+            dG0s.append(
+                (reac_id, abs(reaction.dG0)) if abs_values else (reac_id, reaction.dG0)
+            )
+    return sorted(dG0s, key=operator.itemgetter(1))
+
+
+@validate_call(validate_return=True)
+def get_model_dG0s(
+    cobrak_model: Model, abs_values: bool = False, exclude_bw_reacs: bool = True
+) -> list[float]:
+    """Extracts standard Gibbs free energy changes (dG0) from reactions in the model.
+
+    Args:
+        cobrak_model (Model): The COBRAk model containing reactions with thermodynamic data.
+        abs_values (bool, optional): If True, returns absolute values of dG0. Defaults to False.
+
+    Returns:
+        list[float]: A list of dG0 values, possibly as absolute values if specified.
+    """
+    return [
+        x[1] for x in get_sorted_model_dG0s(cobrak_model, abs_values, exclude_bw_reacs)
+    ]
+
+
+@validate_call(validate_return=True)
+def get_model_kms(
+    cobrak_model: Model, return_only_values_with_reference: bool = False
+) -> list[float]:
     """Extracts k_m values from reactions with enzyme data in the model.
 
     Args:
@@ -1415,11 +1518,10 @@ def get_model_kms(cobrak_model: Model) -> list[float]:
     Returns:
         list[float]: A flat list of k_m values from all reactions with available enzyme data.
     """
-    kms = []
-    for reaction in cobrak_model.reactions.values():
-        if reaction.enzyme_reaction_data is not None:
-            kms.extend(list(reaction.enzyme_reaction_data.k_ms.values()))
-    return kms
+    substrate_kms, product_kms = get_model_kms_by_usage(
+        cobrak_model, return_only_values_with_reference
+    )
+    return substrate_kms + product_kms
 
 
 @validate_call(validate_return=True)
@@ -1442,9 +1544,37 @@ def get_model_kms_by_usage(
         A tuple containing two lists: the first list contains k_M values for substrates,
         and the second list contains k_M values for products.
     """
-    substrate_kms: list[PositiveFloat] = []
-    product_kms: list[PositiveFloat] = []
-    for reaction in cobrak_model.reactions.values():
+    substrate_kms, product_kms = get_sorted_model_kms_by_usage(
+        cobrak_model=cobrak_model,
+        return_only_values_with_reference=return_only_values_with_reference,
+    )
+    return [x[2] for x in substrate_kms], [x[2] for x in product_kms]
+
+
+@validate_call(validate_return=True)
+def get_sorted_model_kms_by_usage(
+    cobrak_model: Model,
+    return_only_values_with_reference: bool = False,
+) -> tuple[list[tuple[str, str, PositiveFloat]], list[tuple[str, str, PositiveFloat]]]:
+    """Collects k_M values from a COBRA-k model, separating them into substrate and product lists,
+       and returns them in ascending order, together with their associated metabolite and reaction IDs.
+
+    This function iterates through the reactions in a COBRA-k model and extracts the
+    k_M values associated with each metabolite. It distinguishes between substrates
+    (metabolites with negative stoichiometry) and products (metabolites with positive
+    stoichiometry) and separates the corresponding Kms values into two lists.
+
+    Args:
+        cobrak_model: The COBRA-k Model object.
+        return_only_values_with_reference: Returns only values with a given database reference. Defaults to False.
+
+    Returns:
+        A tuple containing two lists: the first list contains tuples of (reac_id, met_id, k_m) substrates,
+        and the second list contains the same for products.
+    """
+    substrate_kms: list[tuple[str, PositiveFloat]] = []
+    product_kms: list[tuple[str, PositiveFloat]] = []
+    for reac_id, reaction in cobrak_model.reactions.items():
         if reaction.enzyme_reaction_data is None:
             continue
         for met_id, stoichiometry in reaction.stoichiometries.items():
@@ -1460,10 +1590,46 @@ def get_model_kms_by_usage(
                     continue
             met_km = reaction.enzyme_reaction_data.k_ms[met_id]
             if stoichiometry < 0:
-                substrate_kms.append(met_km)
+                substrate_kms.append((reac_id, met_id, met_km))
             else:
-                product_kms.append(met_km)
-    return substrate_kms, product_kms
+                product_kms.append((reac_id, met_id, met_km))
+    return sorted(substrate_kms, key=operator.itemgetter(2)), sorted(
+        product_kms, key=operator.itemgetter(2)
+    )
+
+
+@validate_call(validate_return=True)
+def get_sorted_model_kis(
+    cobrak_model: Model,
+    return_only_values_with_reference: bool = False,
+) -> list[tuple[str, str, PositiveFloat]]:
+    """Collects k_I values from a COBRA-k model and returns them, with reaction and metabolite IDs, in ascending order.
+
+    This function iterates through the reactions in a COBRA-k model and extracts the
+    k_I values associated with each metabolite
+
+    Args:
+        cobrak_model: The COBRA-k Model object.
+        return_only_values_with_reference: Returns only values with a given database reference. Defaults to False.
+
+    Returns:
+        A list containing the (reac_id, k_I) values
+    """
+    all_kis: list[tuple[str, PositiveFloat]] = []
+    for reac_id, reaction in cobrak_model.reactions.items():
+        if reaction.enzyme_reaction_data is None:
+            continue
+        for met_id, k_i in reaction.enzyme_reaction_data.k_is.items():
+            if return_only_values_with_reference:
+                references = reaction.enzyme_reaction_data.k_i_references
+                if (met_id not in references) or (len(references[met_id]) == 0):
+                    tax_distance = -1
+                else:
+                    tax_distance = references[met_id][0].tax_distance
+                if tax_distance < 0:
+                    continue
+            all_kis.append((reac_id, met_id, k_i))
+    return sorted(all_kis, key=operator.itemgetter(2))
 
 
 @validate_call(validate_return=True)
@@ -1483,21 +1649,44 @@ def get_model_kis(
     Returns:
         A list containing the k_I values
     """
-    all_kis: list[PositiveFloat] = []
-    for reaction in cobrak_model.reactions.values():
+    return [
+        x[2]
+        for x in get_sorted_model_kis(cobrak_model, return_only_values_with_reference)
+    ]
+
+
+@validate_call(validate_return=True)
+def get_sorted_model_kas(
+    cobrak_model: Model,
+    return_only_values_with_reference: bool = False,
+) -> list[tuple[str, str, PositiveFloat]]:
+    """Collects k_A values from a COBRA-k model, in ascending order together with associated reaction and metabolite IDs.
+
+    This function iterates through the reactions in a COBRA-k model and extracts the
+    k_A values associated with each metabolite
+
+    Args:
+        cobrak_model: The COBRA-k Model object.
+        return_only_values_with_reference: Returns only values with a given database reference. Defaults to False.
+
+    Returns:
+        A list containing the (reac_id, met_id, k_A) values
+    """
+    all_kas: list[tuple[str, PositiveFloat]] = []
+    for reac_id, reaction in cobrak_model.reactions.items():
         if reaction.enzyme_reaction_data is None:
             continue
-        for met_id, k_i in reaction.enzyme_reaction_data.k_is.items():
+        for met_id, k_a in reaction.enzyme_reaction_data.k_as.items():
             if return_only_values_with_reference:
-                references = reaction.enzyme_reaction_data.k_i_references
+                references = reaction.enzyme_reaction_data.k_a_references
                 if (met_id not in references) or (len(references[met_id]) == 0):
                     tax_distance = -1
                 else:
                     tax_distance = references[met_id][0].tax_distance
                 if tax_distance < 0:
                     continue
-            all_kis.append(k_i)
-    return all_kis
+            all_kas.append((reac_id, met_id, k_a))
+    return sorted(all_kas, key=operator.itemgetter(2))
 
 
 @validate_call(validate_return=True)
@@ -1517,21 +1706,10 @@ def get_model_kas(
     Returns:
         A list containing the k_A values
     """
-    all_kas: list[PositiveFloat] = []
-    for reaction in cobrak_model.reactions.values():
-        if reaction.enzyme_reaction_data is None:
-            continue
-        for met_id, k_a in reaction.enzyme_reaction_data.k_as.items():
-            if return_only_values_with_reference:
-                references = reaction.enzyme_reaction_data.k_a_references
-                if (met_id not in references) or (len(references[met_id]) == 0):
-                    tax_distance = -1
-                else:
-                    tax_distance = references[met_id][0].tax_distance
-                if tax_distance < 0:
-                    continue
-            all_kas.append(k_a)
-    return all_kas
+    return [
+        x[2]
+        for x in get_sorted_model_kas(cobrak_model, return_only_values_with_reference)
+    ]
 
 
 @validate_call(validate_return=True)
@@ -1630,26 +1808,6 @@ def get_model_mws(cobrak_model: Model) -> list[PositiveFloat]:
 
 
 @validate_call(validate_return=True)
-def get_model_dG0s(cobrak_model: Model, abs_values: bool = False) -> list[float]:
-    """Extracts standard Gibbs free energy changes (dG0) from reactions in the model.
-
-    Args:
-        cobrak_model (Model): The COBRAk model containing reactions with thermodynamic data.
-        abs_values (bool, optional): If True, returns absolute values of dG0. Defaults to False.
-
-    Returns:
-        list[float]: A list of dG0 values, possibly as absolute values if specified.
-    """
-    dG0s = []
-    for reac_id, reaction in cobrak_model.reactions.items():
-        if reac_id.endswith("_bw"):
-            continue
-        if reaction.dG0 is not None:
-            dG0s.append(abs(reaction.dG0) if abs_values else reaction.dG0)
-    return dG0s
-
-
-@validate_call(validate_return=True)
 def get_model_max_kcat_times_e_values(cobrak_model: Model) -> list[NonNegativeFloat]:
     """Calculates the maximum k_cat * E (enzyme concentration in terms of its molecular weight)
     for each reaction with enzyme data and returns these values.
@@ -1685,10 +1843,12 @@ def get_model_max_kcat_times_e_values(cobrak_model: Model) -> list[NonNegativeFl
 def get_model_with_filled_missing_parameters(
     cobrak_model: Model,
     add_dG0_extra_constraints: bool = False,
-    param_percentile: conint(ge=0, le=100) = 90,
+    param_percentile: conint(ge=0, le=100) = 90,  # pyright: ignore[reportInvalidTypeForm]
     ignore_prefixes: list[str] = ["EX_"],
     use_median_for_kms: bool = True,
     use_median_for_kcats: bool = True,
+    ignored_enzyme_ids: list[str] = ["s0001"],
+    exclude_bw_reac_ids_for_dG0s: bool = False,
 ) -> Model:
     """Fills missing parameters in a COBRA-k model, including dG0, k_cat, and k_ms values.
 
@@ -1717,7 +1877,12 @@ def get_model_with_filled_missing_parameters(
     all_mws = get_model_mws(cobrak_model)
     all_kcats = get_model_kcats(cobrak_model)
     substrate_kms, product_kms = get_model_kms_by_usage(cobrak_model)
-    all_abs_dG0s = [abs(dG0) for dG0 in get_model_dG0s(cobrak_model)]
+    all_abs_dG0s = [
+        abs(dG0)
+        for dG0 in get_model_dG0s(
+            cobrak_model, exclude_bw_reacs=exclude_bw_reac_ids_for_dG0s
+        )
+    ]
     dG0_reverse_couples: set[tuple[str]] = set()
     for reac_id in cobrak_model.reactions:
         if sum(reac_id.startswith(ignore_prefix) for ignore_prefix in ignore_prefixes):
@@ -1737,6 +1902,18 @@ def get_model_with_filled_missing_parameters(
                 cobrak_model.reactions[reac_id].dG0 = -percentile(
                     all_abs_dG0s, param_percentile
                 )
+        if cobrak_model.reactions[reac_id].enzyme_reaction_data is not None:
+            stop = False
+            for ignored_enzyme_id in ignored_enzyme_ids:
+                for identifier in cobrak_model.reactions[
+                    reac_id
+                ].enzyme_reaction_data.identifiers:
+                    if ignored_enzyme_id in identifier:
+                        cobrak_model.reactions[reac_id].enzyme_reaction_data = None
+                        stop = True
+                        break
+                if stop:
+                    break
         if (cobrak_model.reactions[reac_id].enzyme_reaction_data is None) or (
             "" in cobrak_model.reactions[reac_id].enzyme_reaction_data.identifiers
         ):
@@ -1959,18 +2136,25 @@ def get_model_with_varied_parameters(
     varied_model = deepcopy(model)
     tested_rev_reacs: list[str] = []
     if use_shuffling_instead_of_uniform_random:
-        substrate_kms, product_kms = get_model_kms_by_usage(
-            model,
-            return_only_values_with_reference=shuffle_using_distribution_of_values_with_reference,
-        )
+        if max_km_variation is not None:
+            substrate_kms, product_kms = get_model_kms_by_usage(
+                model,
+                return_only_values_with_reference=shuffle_using_distribution_of_values_with_reference,
+            )
+            all_substrate_km_indices = list(range(len(substrate_kms)))
+            all_product_km_indices = list(range(len(product_kms)))
         if max_dG0_variation is not None:
             all_dG0s = get_model_dG0s(model)
+            all_dG0_indices = list(range(len(all_dG0s)))
         if max_kcat_variation is not None:
             all_kcats = get_model_kcats(model)
+            all_kcat_indices = list(range(len(all_kcats)))
         if max_ki_variation is not None:
             all_kis = get_model_kis(model)
+            all_ki_indices = list(range(len(all_kis)))
         if max_ka_variation is not None:
             all_kas = get_model_kas(model)
+            all_ka_indices = list(range(len(all_kas)))
     for reac_id, reaction in varied_model.reactions.items():
         if (varied_reacs != []) and (reac_id not in varied_reacs):
             continue
@@ -1980,7 +2164,9 @@ def get_model_with_varied_parameters(
             and reac_id not in tested_rev_reacs
         ):
             if use_shuffling_instead_of_uniform_random:
-                reaction.dG0 = choice(all_dG0s)
+                chosen_index = choice(all_dG0_indices)
+                reaction.dG0 = all_dG0s[chosen_index]
+                del all_dG0_indices[all_dG0_indices.index(chosen_index)]
             else:
                 reaction.dG0 += uniform(-max_dG0_variation, +max_dG0_variation)  # noqa: NPY002
             rev_id = get_reverse_reac_id_if_existing(
@@ -2002,7 +2188,9 @@ def get_model_with_varied_parameters(
                     change_unknown_values and kcat_tax_distance < 0
                 ):
                     if use_shuffling_instead_of_uniform_random:
-                        reaction.enzyme_reaction_data.k_cat = choice(all_kcats)
+                        chosen_index = choice(all_kcat_indices)
+                        reaction.enzyme_reaction_data.k_cat = all_kcats[chosen_index]
+                        del all_kcat_indices[all_kcat_indices.index(chosen_index)]
                     else:
                         reaction.enzyme_reaction_data.k_cat *= max_kcat_variation ** (
                             uniform(-1, 1)  # noqa: NPY002
@@ -2025,18 +2213,26 @@ def get_model_with_varied_parameters(
                         and reaction.stoichiometries[met_id] < 0.0
                     ):  # Substrate k_ms
                         if use_shuffling_instead_of_uniform_random:
-                            reaction.enzyme_reaction_data.k_ms[met_id] = choice(
-                                substrate_kms
-                            )
+                            chosen_index = choice(all_substrate_km_indices)
+                            reaction.enzyme_reaction_data.k_ms[met_id] = substrate_kms[
+                                chosen_index
+                            ]
+                            del all_substrate_km_indices[
+                                all_substrate_km_indices.index(chosen_index)
+                            ]
                         else:
                             reaction.enzyme_reaction_data.k_ms[met_id] *= (
                                 max_km_variation ** (uniform(-1, 1))  # noqa: NPY002
                             )  # noqa: NPY002
                     else:  # Product k_ms
                         if use_shuffling_instead_of_uniform_random:
-                            reaction.enzyme_reaction_data.k_ms[met_id] = choice(
-                                product_kms
-                            )
+                            chosen_index = choice(all_product_km_indices)
+                            reaction.enzyme_reaction_data.k_ms[met_id] = product_kms[
+                                chosen_index
+                            ]
+                            del all_product_km_indices[
+                                all_product_km_indices.index(chosen_index)
+                            ]
                         else:
                             reaction.enzyme_reaction_data.k_ms[met_id] *= (
                                 max_km_variation ** (uniform(-1, 1))  # noqa: NPY002
@@ -2055,7 +2251,11 @@ def get_model_with_varied_parameters(
                     continue
                 for met_id in reaction.enzyme_reaction_data.k_is:
                     if use_shuffling_instead_of_uniform_random:
-                        reaction.enzyme_reaction_data.k_is[met_id] = choice(all_kis)
+                        chosen_index = choice(all_substrate_km_indices)
+                        reaction.enzyme_reaction_data.k_is[met_id] = all_kis[
+                            chosen_index
+                        ]
+                        del all_ki_indices[all_ki_indices.index(chosen_index)]
                     else:
                         reaction.enzyme_reaction_data.k_is[met_id] *= (
                             max_ki_variation
@@ -2077,7 +2277,11 @@ def get_model_with_varied_parameters(
                     continue
                 for met_id in reaction.enzyme_reaction_data.k_as:
                     if use_shuffling_instead_of_uniform_random:
-                        reaction.enzyme_reaction_data.k_as[met_id] = choice(all_kas)
+                        chosen_index = choice(all_ka_indices)
+                        reaction.enzyme_reaction_data.k_as[met_id] = all_kas[
+                            chosen_index
+                        ]
+                        del all_ka_indices[all_ka_indices.index(chosen_index)]
                     else:
                         reaction.enzyme_reaction_data.k_as[met_id] *= (
                             max_ka_variation
@@ -2715,7 +2919,9 @@ def make_kms_better_by_factor(
 
 
 @validate_call(validate_return=True)
-def parse_external_resources(path: str, brenda_version: str) -> None:
+def parse_external_resources(
+    path: str, brenda_version: str, parse_brenda: bool = True
+) -> None:
     """Parse and verify the presence of external resource files required for a COBRAk model.
 
     This function checks if the necessary external resource files are present in the specified directory.
@@ -2741,24 +2947,26 @@ def parse_external_resources(path: str, brenda_version: str) -> None:
         raise ValueError
     filenames = get_files(path)
 
-    needed_filename_data = (
+    needed_filename_data = [
         ("taxdmp.zip", "https://ftp.ncbi.nih.gov/pub/taxonomy/"),
         ("bigg_models_metabolites.txt", "http://bigg.ucsd.edu/data_access"),
-        (
-            f"brenda_{brenda_version}.json.tar.gz",
-            "https://www.brenda-enzymes.org/download.php",
-        ),
-    )
+    ]
+    if parse_brenda:
+        needed_filename_data.append(
+            (
+                f"brenda_{brenda_version}.json.tar.gz",
+                "https://www.brenda-enzymes.org/download.php",
+            )
+        )
     for needed_filename, link in needed_filename_data:
         if needed_filename not in filenames:
             print(
-                f"ERROR: File bigg_models_metabolites.txt not found in given external resources path {path}!"
+                f"ERROR: File {needed_filename} not found in given external resources path {path}!"
             )
             print(
                 "Solution: Either change the path if it is wrong, or download the file from:"
             )
             print(link)
-            print("(Accessed on Jun 24 2024, open link at your own risk!)")
             raise FileNotFoundError
     if "parsed_taxdmp.json.zip" not in filenames:
         parse_ncbi_taxonomy(f"{path}taxdmp.zip", f"{path}parsed_taxdmp.json")

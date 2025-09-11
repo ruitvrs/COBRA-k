@@ -11,6 +11,7 @@ For non-linear-programs (NLP), see nlps.py in the same folder.
 from copy import deepcopy
 from itertools import chain
 from math import ceil, floor
+from time import time
 from typing import Any
 
 from joblib import Parallel, cpu_count, delayed
@@ -35,6 +36,7 @@ from pyomo.environ import (
 from cobrak.pyomo_functionality import add_linear_approximation_to_pyomo_model
 
 from .constants import (
+    ALL_OK_KEY,
     BIG_M,
     DF_VAR_PREFIX,
     DG0_VAR_PREFIX,
@@ -50,13 +52,20 @@ from .constants import (
     KAPPA_SUBSTRATES_VAR_PREFIX,
     LNCONC_VAR_PREFIX,
     MDF_VAR_ID,
+    OBJECTIVE_VAR_NAME,
     PROT_POOL_MET_NAME,
     PROT_POOL_REAC_NAME,
     QUASI_INF,
     STANDARD_MIN_MDF,
     Z_VAR_PREFIX,
 )
-from .dataclasses import CorrectionConfig, Model, Reaction, Solver
+from .dataclasses import (
+    CorrectionConfig,
+    ExtraLinearConstraint,
+    Model,
+    Reaction,
+    Solver,
+)
 from .pyomo_functionality import get_model_var_names, get_objective, get_solver
 from .standard_solvers import SCIP
 from .utilities import (
@@ -141,6 +150,47 @@ def _add_conc_sum_constraints(
     cobrak_model: Model,
     model: ConcreteModel,
 ) -> ConcreteModel:
+    """Add a concentration‑sum constraint to a Pyomo model.
+
+    For every metabolite concentration variable whose name matches the
+    ``LNCONC_VAR_PREFIX`` and satisfies the inclusion/exclusion rules defined in
+    ``cobrak_model``, a linearised exponential approximation is introduced.
+    The sum of these exponentiated variables is then bounded above by a new
+    auxiliary variable ``met_sum_var`` (with a user‑defined upper bound).
+
+    The function performs three logical steps:
+
+    1. **Identify relevant concentration variables** – iterate over all model
+       variables, keep those that start with ``LNCONC_VAR_PREFIX`` and whose
+       suffix is listed in ``cobrak_model.conc_sum_include_suffixes`` while
+       ignoring any that start with a prefix from
+       ``cobrak_model.conc_sum_ignore_prefixes``.
+    2. **Linearise the exponential** – for each selected variable a linear
+       approximation of ``exp(x)`` is added to the model via
+       ``add_linear_approximation_to_pyomo_model``.  The resulting auxiliary
+       variable is named ``exp_<original_var_name>``.
+    3. **Create the sum constraint** – the sum of all auxiliary exponential
+       variables is constrained to be less than or equal to a new variable
+       ``met_sum_var`` whose bounds are ``(1e‑12, cobrak_model.max_conc_sum)``.
+
+    Parameters
+    ----------
+    cobrak_model : Model
+        The COBRAk model that provides configuration values such as the
+        inclusion/exclusion suffixes, the maximum allowed relative error for
+        the linearisation, and the absolute upper bound for the concentration
+        sum.
+    model : ConcreteModel
+        The Pyomo model that will be extended with the new variables and
+        constraint.
+
+    Returns
+    -------
+    ConcreteModel
+        The same Pyomo model instance, now containing the auxiliary exponential
+        variables, the ``met_sum_var`` variable, and the ``met_sum_constraint``
+        constraint.
+    """
     met_sum_ids: list[str] = []
     for var_id in get_model_var_names(model):
         if not var_id.startswith(LNCONC_VAR_PREFIX):
@@ -219,14 +269,17 @@ def _add_df_and_dG0_var_for_reaction(
     )
 
     dG0_var_name = f"{DG0_VAR_PREFIX}{reac_id}"
-    setattr(
-        model,
-        dG0_var_name,
-        Var(
-            within=Reals,
-            bounds=(dG0_value - dG0_uncertainty, dG0_value + dG0_uncertainty),
-        ),
-    )
+    if dG0_value is not None and dG0_uncertainty is not None:
+        setattr(
+            model,
+            dG0_var_name,
+            Var(
+                within=Reals,
+                bounds=(dG0_value - dG0_uncertainty, dG0_value + dG0_uncertainty),
+            ),
+        )
+    else:
+        raise ValueError
 
     f_var_name = f"{DF_VAR_PREFIX}{reac_id}"
     setattr(model, f_var_name, Var(within=Reals, bounds=(-QUASI_INF, QUASI_INF)))
@@ -277,8 +330,8 @@ def _add_error_sum_to_model(
     model: ConcreteModel,
     cobrak_model: Model,
     correction_config: CorrectionConfig,
-) -> Model:
-    """Adds an error sum to the model, which can be either a quadratic or linear sum of error variables,
+) -> ConcreteModel:
+    """Adds an error sum to the pyomo model, which can be either a quadratic or linear sum of error variables,
        optionally weighted based on certain parameters from the COBRA model.
 
     Args:
@@ -296,20 +349,27 @@ def _add_error_sum_to_model(
     ]
 
     if correction_config.use_weights:
-        kcat_times_e_weight: float = percentile(
-            sorted(get_model_max_kcat_times_e_values(cobrak_model)),
-            correction_config.weight_percentile,
-        ) / len(cobrak_model.enzymes)
-        dG0_weight: float = percentile(
-            sorted(get_model_dG0s(cobrak_model, abs_values=True)),
-            correction_config.weight_percentile,
+        kcat_times_e_weight: float = float(
+            percentile(
+                sorted(get_model_max_kcat_times_e_values(cobrak_model)),
+                correction_config.weight_percentile,
+            )
+            / len(cobrak_model.enzymes)
         )
-        km_weight: float = percentile(
-            sorted([abs(log(k_m)) for k_m in get_model_kms(cobrak_model)]),
-            correction_config.weight_percentile,
+        dG0_weight: float = float(
+            percentile(
+                sorted(get_model_dG0s(cobrak_model, abs_values=True)),
+                correction_config.weight_percentile,
+            )
+        )
+        km_weight: float = float(
+            percentile(
+                sorted([abs(log(k_m)) for k_m in get_model_kms(cobrak_model)]),
+                correction_config.weight_percentile,
+            )
         )
 
-    error_expr: Expression = 0.0
+    error_expr: Any = 0.0
     for error_model_var_id in error_model_var_ids:
         if not correction_config.use_weights:
             weight = 1.0
@@ -615,6 +675,7 @@ def _add_enzyme_constraints_to_lp(
             (enzyme_reaction_data is None)
             or (len(enzyme_reaction_data.identifiers) == 0)
             or ("" in enzyme_reaction_data.identifiers)
+            or (enzyme_reaction_data.k_cat > 1e19)
         ):
             continue
 
@@ -1145,6 +1206,7 @@ def _batch_variability_optimization(
     model: ConcreteModel,
     batch: list[tuple[str, str]],
     solve_extra_options: dict[str, Any] = {},
+    verbose: bool = False,
 ) -> list[tuple[bool, str, float | None]]:
     """Perform batch flux variability optimization on a given model. Used in (parallelized) Flux Variability analysis function.
 
@@ -1157,6 +1219,7 @@ def _batch_variability_optimization(
     - pyomo_solver: The pyomo solver instance used to solve the model.
     - model (Model): The pyomo model on which the optimization will be performed.
     - batch (list[tuple[str, str]]): A list of tuples where each tuple contains an objective name and a target variable ID.
+    - verbose (bool): If True, computational time and objective results are printed.
 
     Returns:
     - list[tuple[bool, str, float | None]]: A list of tuples containing:
@@ -1171,6 +1234,8 @@ def _batch_variability_optimization(
     """
     resultslist: list[tuple[bool, str, float | None]] = []
     for objective_name, target_id in batch:
+        if verbose:
+            t0 = time()
         getattr(model, objective_name).activate()
         try:
             results = pyomo_solver.solve(
@@ -1184,6 +1249,9 @@ def _batch_variability_optimization(
             result = value(getattr(model, target_id))
         getattr(model, objective_name).deactivate()
         resultslist.append((objective_name.startswith("MIN_OBJ_"), target_id, result))
+        if verbose:
+            t1 = time()
+            print(f"{target_id}: {result} ({round(t1 - t0, 4)} s)")
     return resultslist
 
 
@@ -1627,7 +1695,7 @@ def perform_lp_min_active_reactions_analysis(
     minz_model.obj = get_objective(minz_model, "extrazsum", minimize)
 
     # Initialize the solver with the specified options and attributes
-    solver = get_solver(solver.name, solver.solver_options, solver.solver_attrs)
+    solver = get_solver(solver)
 
     # Solve the LP model
     solver.solve(minz_model, tee=verbose, **solver.solve_extra_options)
@@ -1728,7 +1796,7 @@ def perform_lp_optimization(
         optimization_model, objective_target, objective_sense
     )
 
-    pyomo_solver = get_solver(solver.name, solver.solver_options, solver.solver_attrs)
+    pyomo_solver = get_solver(solver)
     results = pyomo_solver.solve(
         optimization_model, tee=verbose, **solver.solve_extra_options
     )
@@ -1762,9 +1830,7 @@ def perform_lp_thermodynamic_bottleneck_analysis(
         with_enzyme_constraints (bool): Whether to include enzyme constraints in the analysis.
         min_mdf (float, optional): Minimum max-min driving force (MDF) to be enforced. Defaults to STANDARD_MIN_MDF.
         verbose (bool, optional): If True, print detailed information about identified bottlenecks. Defaults to False.
-        solver_name (str, optional): Name of the solver to use for optimization. Defaults to "scip".
-        solver_options (dict[str, float | int | str], optional): Options for the solver, such as number of threads
-                                                                 and LP method. Defaults to an empty dictionary.
+        solver (Solver, optional): The COBRA-k Solver instance of the MILP solver. Defaults to "SCIP".
         ignore_nonlinear_terms: bool, optional
             Whether or not non-linear extra watches and constraints shall *not* be included. Defaults to False.
             Note: If such non-linear values exist and are included, the whole problem becomes *non-linear*, making it
@@ -1789,7 +1855,7 @@ def perform_lp_thermodynamic_bottleneck_analysis(
         "zb_sum",
         objective_sense=-1,
     )
-    pyomo_solver = get_solver(solver.name, solver.solver_options, solver.solver_attrs)
+    pyomo_solver = get_solver(solver)
     pyomo_solver.solve(thermo_constraint_lp, tee=verbose, **solver.solve_extra_options)
     solution_dict = get_pyomo_solution_as_dict(thermo_constraint_lp)
 
@@ -1815,6 +1881,179 @@ def perform_lp_thermodynamic_bottleneck_analysis(
     return bottleneck_reactions
 
 
+@validate_call(validate_return=True)
+def _batch_dG0_varying_bottleneck_calculation(
+    solver: Solver,
+    old_mdf: float,
+    min_mdf_advantage: float,
+    dG0_variation: float,
+    cobrak_model: Model,
+    with_enzyme_constraints: bool,
+    target_reac_id: str,
+    verbose: bool,
+    ignore_nonlinear_terms: bool,
+) -> str:
+    """Batch function for thermodynamic bottleneck by perturbing its
+    standard Gibbs free‑energy change (ΔG°′) and re‑optimising the model.
+
+    The routine creates a *temporary* copy of ``cobrak_model`` (using the
+    context‑manager protocol of :class:`Model`) and adds a user‑specified
+    variation ``dG0_variation`` to the ΔG°′ of ``target_reac_id``.  An additional
+    linear constraint forces the MDF (maximum thermodynamic driving force) to
+    be at least ``old_mdf + min_mdf_advantage``.  The model is then solved as a
+    linear program with the supplied ``solver``.  If the optimisation succeeds
+    and the new MDF meets the required advantage, the reaction is reported as a
+    bottleneck; otherwise an empty string is returned.
+
+    Parameters
+    ----------
+    solver : Solver
+        Pyomo/COBRApy solver instance that will be used for the LP
+        optimisation (e.g., ``SolverFactory('gurobi')``).
+    old_mdf : float
+        The MDF value of the *unperturbed* model.  Used as a baseline to compute
+        the required improvement.
+    min_mdf_advantage : float
+        Minimum increase in MDF that must be achieved for the reaction to be
+        considered a bottleneck (in kJ·mol⁻¹).
+    dG0_variation : float
+        Amount by which the reaction’s ΔG°′ is shifted (positive values make the
+        reaction less favourable, negative values make it more favourable).
+    cobrak_model : Model
+        The original COBRAk model.  The function works on a *copy* of this
+        model, leaving the original untouched.
+    with_enzyme_constraints : bool
+        If ``True``, enzyme capacity constraints are included in the LP
+        formulation; otherwise they are omitted.
+    target_reac_id : str
+        Identifier of the reaction whose ΔG°′ will be varied.
+    verbose : bool
+        When ``True`` a short message is printed to ``stdout`` indicating that
+        the reaction was identified as a bottleneck and reporting the new MDF.
+    ignore_nonlinear_terms : bool
+        If ``True`` the optimisation ignores any nonlinear thermodynamic terms
+        (e.g., logarithmic concentration approximations).  This can speed up
+        the LP at the cost of reduced fidelity.
+
+    Returns
+    -------
+    str
+        ``target_reac_id`` if the perturbed model satisfies the MDF advantage
+        constraint; otherwise an empty string ``""``.  The return type is
+        validated by the ``@validate_call(validate_return=True)`` decorator.
+
+    Raises
+    ------
+    ValueError
+        Propagated from :func:`perform_lp_optimization` when the optimisation
+        problem is infeasible or the solver encounters an unexpected error.
+        In this function the exception is caught and translated into a result
+        dictionary with ``ALL_OK_KEY`` set to ``False``; therefore the caller
+        will simply receive an empty string.
+    """
+    with cobrak_model as dG0_varied_cobrak_model:
+        dG0_varied_cobrak_model.reactions[target_reac_id].dG0 += dG0_variation
+        dG0_varied_cobrak_model.extra_linear_constraints.append(
+            ExtraLinearConstraint(
+                stoichiometries={MDF_VAR_ID: 1.0},
+                lower_value=old_mdf + min_mdf_advantage,
+            )
+        )
+        try:
+            variation_result = perform_lp_optimization(
+                cobrak_model=dG0_varied_cobrak_model,
+                objective_target=MDF_VAR_ID,
+                objective_sense=+1,
+                solver=solver,
+                with_enzyme_constraints=with_enzyme_constraints,
+                ignore_nonlinear_terms=ignore_nonlinear_terms,
+                with_thermodynamic_constraints=True,
+            )
+        except ValueError:
+            variation_result = {ALL_OK_KEY: False}
+    if variation_result[ALL_OK_KEY]:
+        if verbose:
+            print(
+                f"{target_reac_id} identified as bottleneck (new OptMDF: {variation_result[MDF_VAR_ID]} kJ⋅mol⁻¹)!"
+            )
+        return target_reac_id
+    return ""
+
+
+@validate_call(validate_return=True)
+def perform_lp_dG0_varying_thermodynamic_bottleneck_analysis(
+    cobrak_model: Model,
+    dG0_variation: float = -100,
+    min_mdf_advantage: float = 1e-6,
+    with_enzyme_constraints: bool = False,
+    solver: Solver = SCIP,
+    ignore_nonlinear_terms: bool = False,
+    verbose: bool = False,
+    parallel_verbosity_level: int = 0,
+) -> list[str]:
+    """Perform thermodynamic bottleneck analysis on a COBRA-k model using mixed-integer linear programming *with ΔG'° variations*.
+
+    This is an alternative to ```perform_lp_thermodynamic_bottleneck_analysis```.
+
+    This function identifies the *current* set of thermodynamic bottlenecks in a COBRAk model by lowering the ΔG'° of each
+    one reaction by the given factor (in kJ/mol). Typically, the minimal MDF to be reached would be a previously calculated
+    optimal network-wide MDF (also called OptMDF). The basic methology was first described in [1].
+    To prevent thermodynamic cycles, the ΔG'° of potential reverse reactions is raised by the amount the one ΔG'° was lowered.
+    To speed up calculations, this bottleneck analysis is performed in a parallelized fashion.
+
+    [1] Bekiaris et al. (2021). PLOS Computational Biology, 14(1), https://doi.org/10.1371/journal.pcbi.1009093
+
+    Args:
+        cobrak_model (Model): The COBRAk model to analyze for thermodynamic bottlenecks.
+        dG0_variation (float, optional): The amount in kJ/mol by which a reaction's ΔG'° is lowered. Defaults to -100.
+        min_mdf_advantage (float, optional): The minimal OptMDF advantage through weakening tbhis bottleneck. Defaults to 1e-6.
+        with_enzyme_constraints (bool, optional): Whether to include enzyme constraints in the analysis.
+        verbose (bool, optional): If True, print immediate information about identified bottlenecks. Defaults to False.
+        solver (Solver, optional): The COBRA-k Solver instance describing the used MILP solver. Defaults to SCIP.
+        parallel_verbosity_level (int, optional): Sets the verbosity level for the analysis parallelization. The higher,
+                                            the value, the more is printed. Default: 0.
+        ignore_nonlinear_terms: bool, optional
+            Whether or not non-linear extra watches and constraints shall *not* be included. Defaults to False.
+            Note: If such non-linear values exist and are included, the whole problem becomes *non-linear*, making it
+            incompatible with any purely linear solver!
+
+    Returns:
+        list[str]: A list of reaction IDs identified as thermodynamic bottlenecks.
+    """
+    cobrak_model = deepcopy(cobrak_model)
+
+    old_mdf = perform_lp_optimization(
+        cobrak_model=cobrak_model,
+        objective_target=MDF_VAR_ID,
+        objective_sense=+1,
+        with_enzyme_constraints=with_enzyme_constraints,
+        with_thermodynamic_constraints=True,
+        solver=solver,
+        ignore_nonlinear_terms=ignore_nonlinear_terms,
+    )[OBJECTIVE_VAR_NAME]
+
+    target_reac_ids = [
+        reac_id
+        for reac_id, reac in cobrak_model.reactions.items()
+        if reac.dG0 is not None
+    ]
+    results: list[str] = Parallel(n_jobs=-1, verbose=parallel_verbosity_level)(
+        delayed(_batch_dG0_varying_bottleneck_calculation)(
+            solver,
+            old_mdf,
+            min_mdf_advantage,
+            dG0_variation,
+            cobrak_model,
+            with_enzyme_constraints,
+            target_reac_id,
+            verbose,
+            ignore_nonlinear_terms,
+        )
+        for target_reac_id in target_reac_ids
+    )
+    return [reac_id for reac_id in results if len(reac_id) > 0]
+
+
 @validate_call
 def perform_lp_variability_analysis(
     cobrak_model: Model,
@@ -1834,6 +2073,7 @@ def perform_lp_variability_analysis(
     solver: Solver = SCIP,
     parallel_verbosity_level: int = 0,
     ignore_nonlinear_terms: bool = False,
+    verbose: bool = False,
 ) -> dict[str, tuple[float, float]]:
     """Perform linear programming variability analysis on a COBRAk model.
 
@@ -1864,6 +2104,7 @@ def perform_lp_variability_analysis(
         ignore_nonlinear_terms: (bool): Whether or not non-linear watches/constraints shall be ignored in ecTFBAs. Defaults to True.
             Note: If such non-linear values exist and are included, the whole problem becomes *non-linear*, making it incompatible with any
             purely linear solver!
+        verbose (bool): If True, the objective values of solved problems are shown, together with computation time in s. Defaults to False.
 
     Returns:
         dict[str, tuple[float, float]]: A dictionary mapping variable IDs to their minimum and maximum values
@@ -1984,7 +2225,11 @@ def perform_lp_variability_analysis(
             objective_targets.extend(
                 ((-1, kappa_products_var_name), (+1, kappa_products_var_name))
             )
-        if reaction.enzyme_reaction_data is not None and with_enzyme_constraints:
+        if (
+            reaction.enzyme_reaction_data is not None
+            and with_enzyme_constraints
+            and reaction.enzyme_reaction_data.k_cat < 1e20
+        ):
             full_enzyme_id = get_full_enzyme_id(
                 reaction.enzyme_reaction_data.identifiers
             )
@@ -2016,11 +2261,11 @@ def perform_lp_variability_analysis(
         objectives_data.append((objective_name, target_id))
 
     objectives_data_batches = split_list(objectives_data, cpu_count())
-    pyomo_solver = get_solver(solver.name, solver.solver_options, solver.solver_attrs)
+    pyomo_solver = get_solver(solver)
 
     results_list = Parallel(n_jobs=-1, verbose=parallel_verbosity_level)(
         delayed(_batch_variability_optimization)(
-            pyomo_solver, model, batch, solver.solve_extra_options
+            pyomo_solver, model, batch, solver.solve_extra_options, verbose
         )
         for batch in objectives_data_batches
     )

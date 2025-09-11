@@ -50,8 +50,8 @@ class Enzyme:
             [Optional] Colloquial name of enzyme
     """
 
-    molecular_weight: FiniteFloat
-    """The enzyme's molecular weight in kDa"""
+    molecular_weight: float = 1e20
+    """The enzyme's molecular weight in kDa. Defaults to 1e20 (a very high value that shall be replaced with a real molecular weight)."""
     min_conc: PositiveFloat | None = None
     """[Optional] The enzyme's minimal concentration in mmol⋅gDW⁻¹"""
     max_conc: PositiveFloat | None = None
@@ -110,7 +110,7 @@ class EnzymeReactionData:
 
     identifiers: list[str]
     """The identifiers (must be given in the associated Model enzymes instance) of the reaction's enzyme(s)"""
-    k_cat: PositiveFloat
+    k_cat: PositiveFloat = 1e20
     """The reaction's k_cat (turnover numbers) in h⁻¹"""
     k_cat_references: list[ParameterReference] = Field(default_factory=list)
     """[Optional] List of references showing the source(s) of the k_cat value"""
@@ -126,9 +126,11 @@ class EnzymeReactionData:
     """[Optional] The reaction's k_as (Activation constants) in M=mol⋅l⁻¹. Metabolite IDs are keys, k_as the values. Default is {}"""
     k_a_references: dict[str, list[ParameterReference]] = Field(default_factory=dict)
     """[Optional] References showing the source(s) of the k_a values. Metabolite IDs are keys, the source lists values. Default is {}"""
-    hill_coefficients: HillCoefficients = HillCoefficients()
+    hill_coefficients: HillCoefficients = Field(default_factory=HillCoefficients)
     """[Optional] If given, the reaction's Hill coefficients. Metabolite IDs are keys, coefficients the  in form of HillCoefficients instances. Default is empty HillCoefficients()."""
-    hill_coefficient_references: HillParameterReferences = HillParameterReferences()
+    hill_coefficient_references: HillParameterReferences = Field(
+        default_factory=HillParameterReferences
+    )
     """[Optional] References showing the source(s) of the Hill coefficients. Metabolite IDs are keys, the source lists values. Default is {}"""
     special_stoichiometries: dict[str, PositiveFloat] = Field(default_factory=dict)
     """[Optional] Special (non-1) stoichiometries of polypeptides/enzymes in the reaction's enzyme. Default is {}"""
@@ -298,10 +300,10 @@ class Reaction:
 
     stoichiometries: dict[str, float]
     """Metabolite stoichiometries"""
-    min_flux: float
-    """Minimal flux (for COBRAk, this must be ≥ 0)"""
-    max_flux: float
-    """Maximal flux (must be >= min_flux)"""
+    min_flux: float = 0.0
+    """Minimal flux (for COBRA-k, this must be ≥ 0). Defaults to 0.0."""
+    max_flux: float = 1_000.0
+    """Maximal flux (must be >= min_flux). Defaults to 1_000.0."""
     dG0: FiniteFloat | None = None
     """If given, the Gibb's free energy of the reaction (only relevant for thermodynamic constraints); Default is None"""
     dG0_uncertainty: FiniteFloat | None = None
@@ -446,6 +448,8 @@ class Solver:
     """[Optional] Options set on the solver object in pyomo."""
     solve_extra_options: dict[str, Any] = Field(default_factory=dict)
     """[Optional] Options set on pyomo's solve function."""
+    solver_factory_args: dict[str, float | int | str] = Field(default_factory=dict)
+    """[Optional] Arguments for pyomo's SolverFactory function"""
 
 
 # SHORTHAND TYPE ALIASES

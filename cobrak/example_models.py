@@ -198,3 +198,92 @@ toy_model = Model(
     max_conc_sum=float("inf"),
     annotation={"description": "COBRA-k toy model"},
 )
+
+
+data_toy_model = Model(
+    metabolites={
+        # Most parameter searches need the metabolites to use BiGG
+        # database IDs, which are already used in many existing
+        # metabolite networks. If not, you can look them up (and
+        # download the database itself) from https://bigg.ucsd.edu/
+        "g6p_c": Metabolite(
+            # ...additionally, for the search of ΔG'° values, you
+            # have to use eQuilibrator-API-compatible
+            # annotations, i.e. metabolite IDs from a multitude of databases
+            # Lets define three examples (for a full list of supported
+            # identifiers, check out the USED_IDENTIFIERS_FOR_EQUILIBRATOR
+            # constant in cobrak.constants; note: Sometimes, INCHI strings
+            # and keys cannot be read out correctly)
+            annotation={
+                "bigg.metabolite": "g6p",  # From the BiGG database (https://bigg.ucsd.edu/)
+                "kegg.compound": "C00092",  # From the KEGG database (https://www.genome.jp/kegg/)
+                "metanetx.chemical": "MNXM160",  # From MetaNetX (https://www.metanetx.org/)
+                # ...again, this extra annotation is fully optional as long
+                # as the eQuilibrator-API can read out your metabolite ID
+            },
+        ),
+        # Also for f6p, we have to define an eQuilibrator-API-compatible annotation explicitly
+        "f6p_c": Metabolite(
+            annotation={
+                "bigg.metabolite": "f6p",  # From the BiGG database (https://bigg.ucsd.edu/)
+            }
+        ),
+    },
+    reactions={
+        # While this reaction uses a BiGG ID, the reaction ID can actually
+        # be of any format (unlike many other IDs, as explained here)
+        "PGI_fw": Reaction(
+            stoichiometries={
+                # Note again that the metabolites use BiGG IDs
+                "g6p_c": -1.0,
+                "f6p_c": 1.0,
+            },
+            annotation={
+                # For k_cat, k_M and other kinetic reaction parameters,
+                # it is *neccessary* to give the reaction a valid Enyme Commission
+                # (EC) number through such an 'ec-code' annotation, which is already
+                # included in many published metabolic models.
+                # If you do not know the EC code of your reaction, you can try to
+                # look it up through databases such as, amongst others,
+                # EXPASY ENZYME (https://enzyme.expasy.org/) or also BiGG (https://bigg.ucsd.edu/)
+                "ec-code": "5.3.1.9",
+            },
+            # As always with COBRA-k, reactions have to be *irreversible*,
+            # reversible reactions have to be split up beforehand,
+            # which you can e.g. automatically do for SBML models with the COBRA-k function
+            # ```load_annotated_sbml_model_as_cobrak_model``` in ```cobrak.io````
+            # while keeping the ```do_model_fullsplit``` argument at ```True```.
+            min_flux=0.0,
+            max_flux=1000.0,
+            # And, again, as always with COBRA-k, not only reversible reactions have to be split
+            # into seperate ones, but also reactions that are catalyzed by multiple enzymes (isozymes).
+            # In this case, the reaction is split into as many variants as there are enzymes that catalyze it.
+            # Again, you can do this automatically for SBML models with the COBRA-k function
+            # ```load_annotated_sbml_model_as_cobrak_model``` in ```cobrak.io````
+            # while keeping the ```do_model_fullsplit``` argument at ```True```.
+            enzyme_reaction_data=EnzymeReactionData(
+                identifiers=["b4025"],
+            ),
+        ),
+        # To make this model work, we'll also add pseudo-functions that deliver
+        # g6p_c and take up f6p_c into the environment. As these reactions are not
+        # mass-balanced (mass of substrates ≠ mass of products), thermokinetic parameters
+        # and constraints do not make any sense here, so that we can omit any annotations.
+        "EX_g6p_c": Reaction(
+            stoichiometries={"g6p_c": +1.0}
+        ),  # Produce substrate glucose-6-phosphate
+        "EX_f6p_c": Reaction(
+            stoichiometries={"f6p_c": -1.0}
+        ),  # Take up product fructose-6-phosphate
+    },
+    enzymes={
+        # For the automated collection of molecular weights, enzymes need an ID and/or
+        # name that can be found in Uniprot (https://www.uniprot.org/). Make sure
+        # that the ID and/or name is not ambiguous in your modeled organism (the
+        # automatic routine only searches for enzymes of the modeled organism), so that
+        # the right enzyme can be chosen.
+        "b4025": Enzyme(
+            name="pgi",
+        ),
+    },
+)

@@ -11,14 +11,15 @@ import cobra
 import requests
 from pydantic import ConfigDict, validate_call
 
-from .io import ensure_folder_existence, json_load, json_write, standardize_folder
+from .io import ensure_folder_existence, json_load, standardize_folder
 
 
 # FUNCTIONS SECTION #
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True), validate_return=True)
-def uniprot_get_enzyme_molecular_weights(
-    model: cobra.Model,
+def uniprot_get_enzyme_molecular_weights_for_sbml(
+    sbml_path: str,
     cache_basepath: str,
+    base_species: str,
     multiplication_factor: float = 1 / 1000,
 ) -> dict[str, float]:
     """Returns a JSON with a mapping of protein IDs as keys, and as values the protein mass in kDa.
@@ -28,7 +29,7 @@ def uniprot_get_enzyme_molecular_weights(
 
     Arguments
     ----------
-    * model: cobra.Model ~ The model in the cobrapy format
+    * sbml_path: str ~ The SBML's file path
 
     Output
     ----------
@@ -41,7 +42,7 @@ def uniprot_get_enzyme_molecular_weights(
     }
     </pre>
     """
-
+    model = cobra.io.read_sbml_model(sbml_path)
     # GET UNIPROT ID - PROTEIN MAPPING
     uniprot_id_protein_id_mapping: dict[str, list[str]] = {}
     for gene in model.genes:
@@ -74,6 +75,7 @@ def uniprot_get_enzyme_molecular_weights(
     # masses.
     print("Starting UniProt ID<->Protein mass search using UniProt API...")
     uniprot_ids = list(uniprot_id_protein_id_mapping.keys())
+
     batch_size = 15
     batch_start = 0
     while batch_start < len(uniprot_ids):
@@ -100,13 +102,13 @@ def uniprot_get_enzyme_molecular_weights(
         # With 'OR', all given IDs are searched, and subsequently in this script,
         # the right associated masses are being picked.
         query = " OR ".join(batch)
-        uniprot_query_url = f"https://rest.uniprot.org/uniprotkb/search?query={query}&format=tsv&fields=accession,id,mass"
+        uniprot_query_url = f"https://rest.uniprot.org/uniprotkb/search?query={query}&format=tsv&fields=accession,id,mass,gene_names,gene_orf,gene_oln,organism_name"
         print(f"UniProt batch search for: {query}")
 
         # Call UniProt's API :-)
         uniprot_data = requests.get(uniprot_query_url, timeout=1e6).text.split("\n")
         # Wait in order to cool down their server :-)
-        time.sleep(2.0)
+        time.sleep(1.0)
 
         # Read out the API-returned lines
         found_ids = []
@@ -116,14 +118,26 @@ def uniprot_get_enzyme_molecular_weights(
             accession_id = line.split("\t")[0].lstrip().rstrip()
             entry_id = line.split("\t")[1].lstrip().rstrip()
             mass_string = line.split("\t")[2].lstrip().rstrip()
+            gene_names = line.split("\t")[3].lstrip().rstrip().split(" ")
+            gene_names_orf = line.split("\t")[4].lstrip().rstrip().split(" ")
+            gene_names_ordered_locus = line.split("\t")[5].lstrip().rstrip().split(" ")
+            organism_name = line.split("\t")[6].lstrip().rstrip()
+            if base_species.lower() not in organism_name.lower():
+                continue
             try:
                 # Note that the mass entry from UniProt uses a comma as a thousand separator, so it has to be removed before parsing
                 mass = float(mass_string.replace(",", ""))
             except ValueError:  # We may also risk the entry is missing
-                # print(f"No protein mass obtainable for protein ID {uniprot_id}")
                 continue
             uniprot_id_protein_mass_mapping[accession_id] = float(mass)
             uniprot_id_protein_mass_mapping[entry_id] = float(mass)
+            for extraname in [
+                extraname
+                for extraname in gene_names + gene_names_orf + gene_names_ordered_locus
+                if len(extraname) > 0
+            ]:
+                uniprot_id_protein_mass_mapping[extraname] = float(mass)
+                found_ids.append(extraname)
             found_ids.extend((accession_id, entry_id))
 
         # Create the pickled cache files for the searched protein masses
@@ -141,7 +155,7 @@ def uniprot_get_enzyme_molecular_weights(
     for uniprot_id in list(uniprot_id_protein_mass_mapping.keys()):
         try:
             protein_ids = uniprot_id_protein_id_mapping[uniprot_id]
-        except Exception:
+        except KeyError:
             continue
         for protein_id in protein_ids:
             protein_id_mass_mapping[protein_id] = (
@@ -149,5 +163,4 @@ def uniprot_get_enzyme_molecular_weights(
             )
 
     # Return protein mass list JSON :D
-    json_write(cache_filepath, cache_json)
     return protein_id_mass_mapping

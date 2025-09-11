@@ -8,7 +8,7 @@ from math import sqrt
 from os.path import exists
 from shutil import rmtree
 from statistics import median
-from time import sleep
+from time import sleep, time
 from zipfile import ZIP_LZMA, ZipFile
 
 import cobra
@@ -111,6 +111,10 @@ class SabioThread(threading.Thread):
         Constructs a query string, sends a POST request to the SABIO-RK web service,
         and writes the response to a file in the temporary folder.
         """
+        txt_path = f"{self.temp_folder}zzz{self.start_number}.txt"
+        if exists(txt_path):
+            return
+
         query_numbers = " OR ".join(
             [str(i + 1) for i in range(self.start_number, self.end_number + 1)]
         )
@@ -134,14 +138,25 @@ class SabioThread(threading.Thread):
             ],
             "q": query_string,
         }
-        request = requests.post(
-            "http://sabiork.h-its.org/sabioRestWebServices/kineticlawsExportTsv",
-            params=query,
-            timeout=1e6,
-        )
+        try:
+            t0 = time()
+            request = requests.post(
+                "http://sabiork.h-its.org/sabioRestWebServices/kineticlawsExportTsv",
+                params=query,
+                timeout=120,
+            )
+            t1 = time()
+            print(
+                f"SABIO-ID REQUEST FROM {self.start_number} TO {self.end_number} FINISHED IN {t1 - t0}"
+            )
+        except requests.exceptions.ReadTimeout:
+            print(
+                f"TIMEOUT :O IN REQUEST FROM {self.start_number} TO {self.end_number} IN 120 SEC. YOU MAY TRY THIS AGAIN BY RESTARTING YOUR SCRIPT..."
+            )
+            return
         request.raise_for_status()
         with open(  # noqa: FURB103
-            f"{self.temp_folder}zzz{self.start_number}.txt", "w", encoding="utf-8"
+            txt_path, "w", encoding="utf-8"
         ) as f:
             f.write(request.text)
 
@@ -259,7 +274,10 @@ def _get_sabio_tsv_str(target_folder: str) -> str:
     starts = [0 + 250 * i for i in range(80_000 // 250)]
 
     if not exists(zip_filename):
-        print("READING OUT SABIO-RK ONLINE...")
+        print(
+            f"SABIO-RK CACHE FILE {zip_filename} NOT FOUND IN GIVEN FOLDER {target_folder}"
+        )
+        print("THEREFORE, WE READ OUT SABIO-RK ONLINE...")
 
         temp_folder = f"{target_folder}sabiotemp/"
         ensure_folder_existence(temp_folder)
@@ -416,8 +434,8 @@ def get_full_sabio_dict(sabio_target_folder: str) -> SabioDict:
     return sabio_dict
 
 
-def sabio_select_enzyme_kinetic_data_for_model(
-    cobra_model: cobra.Model,
+def sabio_select_enzyme_kinetic_data_for_sbml(
+    sbml_path: str,
     sabio_target_folder: str,
     base_species: str,
     ncbi_parsed_json_path: str,
@@ -433,10 +451,10 @@ def sabio_select_enzyme_kinetic_data_for_model(
     accept_nan_temperature: bool = True,
     kcat_overwrite: dict[str, float] = {},
     transfered_ec_number_json: str = "",
-    max_taxonomy_level: int = float("inf"),
+    max_taxonomy_level: int | float = float("inf"),
     add_hill_coefficients: bool = True,
 ) -> dict[str, EnzymeReactionData | None]:
-    """Selects enzyme kinetic data for a given COBRA-k model using SABIO-RK data.
+    """Selects enzyme kinetic data for a given SBML model using SABIO-RK data.
 
     If this data cannot be found, an internet connection is built to SABIO-RK and the relevant
     data is downloaded, which may take some time in the order of dozens of minutes.
@@ -447,7 +465,7 @@ def sabio_select_enzyme_kinetic_data_for_model(
     occur in the model's BiGG-compliant EC number annotation.
 
     Args:
-        cobra_model (cobra.Model): The COBRA-k model for which enzyme kinetic data is to be selected.
+        sbml_path (str): Path to the SBML file.
         sabio_target_folder (str): The path to the folder containing SABIO-RK data.
         base_species (str): The base species for taxonomy comparison.
         ncbi_parsed_json_path (str): The path to the NCBI parsed JSON file.
@@ -466,22 +484,8 @@ def sabio_select_enzyme_kinetic_data_for_model(
 
     Returns:
         dict[str, EnzymeReactionData | None]: A dictionary mapping reaction IDs to enzyme kinetic data.
-
-    Example:
-        cobra_model = cobra.io.read_sbml_model("model.xml")
-        sabio_target_folder = "/path/to/sabio/data"
-        base_species = "Escherichia coli"
-        ncbi_parsed_json_path = "/path/to/ncbi.json"
-        bigg_metabolites_json_path = "/path/to/bigg_metabolites.json"
-        enzyme_kinetic_data = sabio_select_enzyme_kinetic_data_for_model(
-            cobra_model,
-            sabio_target_folder,
-            base_species,
-            ncbi_parsed_json_path,
-            bigg_metabolites_json_path
-        )
-        print(enzyme_kinetic_data)
     """
+    cobra_model = cobra.io.read_sbml_model(sbml_path)
     sabio_dict = get_full_sabio_dict(
         sabio_target_folder,
     )
@@ -658,6 +662,7 @@ def sabio_select_enzyme_kinetic_data_for_model(
                             species=entry.organism,
                             substrate=entry.parameter_associated_species,
                             value=entry.parameter_value * multiplier,
+                            tax_distance=taxonomy_score,
                         )
                     )
             else:  # Metabolite-wide search

@@ -19,7 +19,6 @@ from .dataclasses import CorrectionConfig, ExtraLinearConstraint, Model, Solver
 from .genetic import COBRAKGENETIC
 from .io import json_load, json_write
 from .lps import (
-    add_statuses_to_optimziation_dict,
     get_lp_from_cobrak_model,
     perform_lp_optimization,
     perform_lp_variability_analysis,
@@ -32,6 +31,7 @@ from .pyomo_functionality import (
 from .standard_solvers import IPOPT, SCIP
 from .utilities import (
     add_objective_value_as_extra_linear_constraint,
+    add_statuses_to_optimziation_dict,
     apply_variability_dict,
     delete_orphaned_metabolites_and_enzymes,
     get_active_reacs_from_optimization_dict,
@@ -585,7 +585,7 @@ def _postprocess_batch(
                 target_cobrak_model,
                 variability_data,
                 error_scenario=correction_config.error_scenario,
-                min_abs_objvalue=var_data_abs_epsilon,
+                abs_epsilon=var_data_abs_epsilon,
             )
 
             active_z_var_changes_sum = 0.0
@@ -834,9 +834,7 @@ def postprocess(
         variability_data = deepcopy(variability_data)
 
     pyomo_lp_solver = get_solver(
-        lp_solver.name,
-        lp_solver.solver_options,
-        lp_solver.solver_attrs,
+        lp_solver,
     )
 
     cobrak_model = deepcopy(cobrak_model)
