@@ -102,9 +102,13 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
                     identifiers=enzyme_ids
                 )
 
-        current_enzyme_reaction_data = enzyme_reaction_data[reac_id]
-        if current_enzyme_reaction_data is None:
-            ignored_reac_ids.append(reac_id)
+        try:
+            current_enzyme_reaction_data = enzyme_reaction_data[reac_id]
+            if current_enzyme_reaction_data is None:
+                ignored_reac_ids.append(reac_id)
+                continue
+        except KeyError:
+            logging.warning(f'The dict enzyme_reaction_data does not have {reac_id}')
             continue
 
         mw = 0.0
