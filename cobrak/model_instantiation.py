@@ -1,6 +1,7 @@
 """This module contains the most convenient ways to create new Model instances from COBRApy models."""
 
 import tempfile
+import logging
 
 # IMPORT SECTION #
 from copy import deepcopy
@@ -120,7 +121,10 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
                     stoichiometry = 1.0
             else:
                 stoichiometry = 1.0
-            mw += stoichiometry * enzyme_molecular_weights[identifier]
+            try:
+                mw += stoichiometry * enzyme_molecular_weights[identifier]
+            except KeyError:
+                logging.warning(f'Cannot find {identifier} in enzyme_molecular_weights')
         k_cat = current_enzyme_reaction_data.k_cat
         mw_by_k_cat = mw / k_cat
 
