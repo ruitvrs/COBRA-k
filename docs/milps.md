@@ -206,9 +206,9 @@ And that's it! Through the two constraints utilizing $z_i$, we ensure that any t
 
 COBRA-k also provides the possibility to introduce *concentration sum constraints*. They are only activated if a Model's ```max_conc_sum``` member variable is smaller than the default value ```float("inf")```. In exact form, the concentration constraint would be
 
-$$ Φ ≤ \sum{e^(x̃_j)} $$
+$$ Μ_{tot} ≤ \sum{e^(x̃_j)} $$
 
-whereby $Φ$ stands for the maximal concentration sum we set, and $e^(x̃_j)$ for a exponentiated logarithmic concentration. As $e^(x̃_j)$ is *non*-linear, we cannot use them directly in our MILP. Hence, we need a linearized approximation (whereby we use most of the formulation from [[this preprint](https://doi.org/10.1101/2024.03.19.585265)]).
+whereby $Μ_{tot}$ stands for the maximal concentration sum we set, and $e^(x̃_j)$ for a exponentiated logarithmic concentration. As $e^(x̃_j)$ is *non*-linear, we cannot use them directly in our MILP. Hence, we need a linearized approximation (whereby we use most of the formulation from [[this preprint](https://doi.org/10.1101/2024.03.19.585265)]).
 
 This works as, luckily, the exponential function is monotonically rising :D This means that we can always draw a "minimum" linear constraint underneath the exponential function's curve without cutting this curve. Even more lucky, we have to set $x̃_j$ concentration bounds anyway for thermodynamic constraints (see above), so that we know for which range of logarithmic concentrations we apply the exponential function. I.e. we know the possible minimal and maximal logarithmic concentration and only have to approximate the exponential function for these values.
 
@@ -235,10 +235,10 @@ where $S_s$ is the segment $s$'s value.
 
 * Finally, we can constrain our sum of the approximation of delogarithmic concentrations as follows:
 
-$$ Φ ≤ \sum{C_j} $$
+$$ Μ_{tot} ≤ \sum{C_j} $$
 
 !!! warning
-    For numeric reasons, linear approximations at very low concentrations may cause numeric problems :-( To mitigate this, we can set ```conc_sum_min_abs_error``` (default: ```1e-6```) in our Model instance, which sets a minimal value for $Φ$ and removing all linear constraints for any logarithmic concentration where $e^(x̃_j)$ is smaller than ```conc_sum_min_abs_error```.
+    For numeric reasons, linear approximations at very low concentrations may cause numeric problems :-( To mitigate this, we can set ```conc_sum_min_abs_error``` (default: ```1e-6```) in our Model instance, which sets a minimal value for $Μ_{tot}$ and removing all linear constraints for any logarithmic concentration where $e^(x̃_j)$ is smaller than ```conc_sum_min_abs_error```.
 
 ## Thermodynamic Flux Balance Analysis (TFBA)
 

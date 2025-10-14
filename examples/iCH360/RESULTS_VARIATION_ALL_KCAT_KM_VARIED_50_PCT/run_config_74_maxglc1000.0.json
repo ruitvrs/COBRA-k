@@ -1,0 +1,53 @@
+{
+    "manually_changed_kms": {},
+    "manually_changed_kcats": {
+        "NADTRHD_fw": 70605.66952036729,
+        "ME1_fw": 11812.250119759632
+    },
+    "manually_changed_dG0s": {},
+    "results_folder": "/examples/iCH360/RESULTS_VARIATION_ALL_KCAT_KM_VARIED_50_PCT/",
+    "ectfva_active_reacs": [
+        "Biomass_fw"
+    ],
+    "round_num": 74,
+    "objective_target": {
+        "Biomass_fw": 1.0,
+        "prot_pool_delivery": -0.01
+    },
+    "objective_sense": 1,
+    "deactivated_reacs": [],
+    "set_bounds": {
+        "EX_glc__D_e_bw": [
+            0.0,
+            1000.0
+        ]
+    },
+    "working_results": [],
+    "changed_flux_bounds": {},
+    "sampling_rounds_per_metaround": 2,
+    "sampling_wished_num_feasible_starts": 5,
+    "sampling_max_metarounds": 3,
+    "evolution_num_gens": 100,
+    "pop_size": 64,
+    "protein_pool": 0.224,
+    "uses_bennett_concs": false,
+    "max_conc_sum": 0.4,
+    "nameaddition": "maxglc1000.0",
+    "kicked_reacs": [],
+    "do_parameter_variation": true,
+    "varied_reacs": [],
+    "max_km_variation": 0.5,
+    "max_kcat_variation": 0.5,
+    "max_ki_variation": null,
+    "max_ka_variation": null,
+    "max_dG0_variation": null,
+    "with_iota": false,
+    "with_alpha": false,
+    "change_known_values": true,
+    "change_unknown_values": true,
+    "use_shuffling_instead_of_uniform_random": false,
+    "use_shuffling_with_putting_back": false,
+    "free_upper_unfixed_concentrations": false,
+    "json_path_model_to_merge": "",
+    "shuffle_using_distribution_of_values_with_reference": true
+}

@@ -20,7 +20,7 @@ _, kappas, gammas, _, _, kappa_times_gamma = get_df_and_efficiency_factors_sorte
 )
 
 # Create a figure and a set of subplots
-fig, axs = plt.subplots(1, 3, figsize=(15, 5))  # sharex=True; sharey=True
+fig, axs = plt.subplots(1, 3, figsize=(7.25, 2.5))  # sharex=True; sharey=True
 
 # Iterate over the values and create subplots
 for i, value in enumerate(("γ", "κ", "κ⋅γ")):
@@ -43,20 +43,14 @@ for i, value in enumerate(("γ", "κ", "κ⋅γ")):
         case _:
             title = "C"
     # Add title and labels to the subplot
-    axs[i].set_title(title, loc="left", fontweight="bold", fontsize=20)
-    axs[i].set_xlabel("Reaction number", fontsize=17)
-    axs[i].set_ylabel(f"{value} value", fontsize=17)
+    axs[i].set_title(title, loc="left", fontweight="bold", fontsize=9)
+    axs[i].set_xlabel("Reaction number", fontsize=8)
+    axs[i].set_ylabel(f"{value} value", fontsize=8)
     axs[i].set_ylim(0.0, 1.0)
     axs[i].set_xlim(0, len(data))
 
-    axs[i].tick_params(axis="both", which="major", labelsize=16)
-    axs[i].tick_params(axis="both", which="minor", labelsize=13)
-
-    # Calculate and add the mean line
-    # mean_value = sum(data) / len(data)
-    # axs[i].axhline(y=mean_value, color='red', linestyle='--', label=f'Mean = {mean_value:.2f}')
-    # axs[i].axhline(y=median(data), color='orange', linestyle='--', label=f'Median = {median(data):.2f}')
-    # axs[i].legend()
+    axs[i].tick_params(axis="both", which="major", labelsize=8)
+    axs[i].tick_params(axis="both", which="minor", labelsize=8)
 
 # Adjust layout to prevent overlap
 plt.tight_layout()
@@ -65,4 +59,7 @@ plt.tight_layout()
 ensure_folder_existence("examples/iCH360/efficiency_factors_data")
 plt.savefig(
     "examples/iCH360/efficiency_factors_data/efficiency_factors_histogram.png", dpi=500
+)
+plt.savefig(
+    "examples/iCH360/efficiency_factors_data/Figure_5.pdf", dpi=500
 )

@@ -221,7 +221,7 @@ But often, we want to use other weights, especially when mixing different types 
 Therefore, COBRA-k optionally allows one to set weights according to the following procedure, whereby $n$ is a user-defined percentile:
 
 * For reaction fluxes and logarithmic concentrations: The absolute value of the given lower scenario bound
-* For $k_{cat}⋅[E]$ corrections: The $n$th percentile of all possible maximal $k_{cat}⋅[E]$ values in the model, i.e. of all $Ω/W_i$ values.
+* For $k_{cat}⋅[E]$ corrections: The $n$th percentile of all possible maximal $k_{cat}⋅[E]$ values in the model, i.e. of all $E_{tot}/W_i$ values.
 * For $Δ_r G^{´°}_i$ corrections: The $n$th percentile of all absolute Δ_r G^{´°}_i in the model
 * For $k_M$ corrections: The $n$th percentile of all $K_{m,i}$ in the model
 

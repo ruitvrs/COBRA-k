@@ -12,6 +12,8 @@
 !!! warning "Re-run of existing calculation"
     Many iCH360 calculations will not run because existing calculation results are found (this prevents unneccessary double calculations). To mitigate this problem, simply detele all folders in the ``ìCH360```subfolder except of the ```external_resources``` folder.
 
+    *Note:* For the $k_{cat}$ and $K_M$ variation analysis, you have to un-zip the three zip files there ("used_cobrak_models.zip", "variability_dicts.zip" and "best_evolution_results.zip") into the variation results folder beforehand if you want to get exactly the same random variation calculations as the ones shown in COBRA-k's publication.
+
 To reproduce COBRA-k's initial publication (Bekiaris & Klamt, *in submission*) results, head over to the ```examples``` subfolder in COBRA-k's main folder. There, you can already find the first important Python scripts that pre-processed some data:
 
 * FIRST_A_read_out_sabio_rk.py: Reads out SABIO-RK and creates a cache into the ```common_needed_external_resources```folder

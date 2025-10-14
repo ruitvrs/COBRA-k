@@ -544,7 +544,7 @@ Up to now, we only used *stoichiometric* constraints. I.e. we looked for solutio
 
 Now, we introduce "classic" linear *enzyme* constraints as already described by methods such as MOMENT [[Paper]](https://doi.org/10.1371/journal.pcbi.1002575), GECKO [[Paper]](https://doi.org/10.15252/msb.20167411) or sMOMENT [[Paper]](https://doi.org/10.1186/s12859-019-3329-9). They are all based on the observation that the fraction of metabolically active enzymes on a cell's biomass is restricted. I.e. only a maximal percentage of a cell's biomass can be metabolically active enzymes, as the rest is occupied by non-metabolic enzymes, lipids, DNA, RNA etc..
 
-We call the maximal metabolic enzyme fraction *enzyme pool* $Ω$ with the unit g⋅gDW⁻¹, i.e. grams per gram dry weight. E.g. if $Ω=0.5$ g⋅gDW⁻¹, then a maximum of 0.5 grams of a gram dry weight can be used by metabolic enzymes.
+We call the maximal metabolic enzyme fraction *enzyme pool* $E_{tot}$ with the unit g⋅gDW⁻¹, i.e. grams per gram dry weight. E.g. if $E_{tot}=0.5$ g⋅gDW⁻¹, then a maximum of 0.5 grams of a gram dry weight can be used by metabolic enzymes.
 
 Furthermore, from Michaelis-Menten kinetics, we know that the maximal possible flux of a reaction is its $
 k_{cat}^+$ times its enzyme concentration $E_i$.
@@ -561,12 +561,12 @@ $$ v_i ≤ E_i ⋅ k_{cat}^+ $$
 
 * We add the enzyme pool constraint:
 
-$$ ∑_i W_i ⋅ E_i ≤ Ω $$
+$$ ∑_i W_i ⋅ E_i ≤ E_{tot} $$
 
 !!! note
     A alternative formulation is also available which introduces new pseudo-metabolites and pseudo-reactions, as done in GECKO and sMOMENT. This formulation can optionally be used when exporting a COBRA-k model as annotated SBML and setting the ```add_enzyme_constraints``` parameter of ```save_cobrak_model_as_annotated_sbml_model``` to ```True```.
 
-Look again in chapter "Create Model from Scratch" to see where we defined the $k_{cat}$, $W$ and $Ω$ values in our toy model. When we do not want a ```Reaction``` instance to be affected by enzyme constraints, we simply set its ```enzyme_reaction_data``` value to ```None```.
+Look again in chapter "Create Model from Scratch" to see where we defined the $k_{cat}$, $W$ and $E_{tot}$ values in our toy model. When we do not want a ```Reaction``` instance to be affected by enzyme constraints, we simply set its ```enzyme_reaction_data``` value to ```None```.
 
 !!! info
 
@@ -595,7 +595,7 @@ ecfba_result = perform_lp_optimization(
 print_optimization_result(toy_model, ecfba_result)
 ```
 
-Similarly, we can run an ecFVA - i.e.
+Similarly, we can run an ecFVA (an enzyme-constrained Flux *Variability* Analysis) - i.e.
 
 $$ \operatorname*{\mathbf{min}}_{\mathbf{v,E}} \space v_i \\ s.t. \space CBM \space and \space enzyme \space constraints $$
 

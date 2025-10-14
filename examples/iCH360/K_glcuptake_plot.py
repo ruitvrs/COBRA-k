@@ -34,12 +34,12 @@ xaxis_caption = "Glucose uptake [mmol⋅gDW⁻¹⋅h⁻¹]"
 optvalue_id = "Biomass_fw"
 left_ids = ["Biomass_fw", "prot_pool_delivery"]
 left_colors = ["black", "grey"]
-left_captions = ["Growth", "Used enzyme pool"]
+left_captions = ["Growth rate", "Used enzyme pool"]
 right_ids = ["EX_ac_e_fw", "EX_o2_e_bw", "CS_fw"]
 right_colors = ["green", "red", "blue"]
 right_captions = ["Acetate excretion", "Oxygen uptake", "TCA flux"]
-leftaxis_title = "Growth [h⁻¹] / Enzyme pool [g⋅gDW⁻¹]"
-rightaxis_title = "Flux [mmol⋅gDW⁻¹⋅h⁻¹]"
+leftaxis_title = "Growth rate [h⁻¹] / Enzyme pool [g⋅gDW⁻¹]"
+rightaxis_title = "Acetate excretion / TCA flux / Oxygen uptake [mmol⋅gDW⁻¹⋅h⁻¹]"
 glcvalues = (
     1.0,
     1.33,
@@ -62,26 +62,6 @@ glcvalues = (
     7.0,
     7.33,
     7.66,
-    # 7.05,
-    # 7.1,
-    # 7.15,
-    # 7.2,
-    # 7.25,
-    # 7.3,
-    # 7.33,
-    # 7.35,
-    # 7.4,
-    # 7.45,
-    # 7.5,
-    # 7.55,
-    # 7.6,
-    # 7.66,
-    # 7.7,
-    # 7.75,
-    # 7.8,
-    # 7.85,
-    # 7.9,
-    # 7.95,
     8.0,
     8.33,
     8.66,
@@ -124,33 +104,40 @@ extrapoints = [
     (9.65, 0.65, True, "black", "x", r"Measured growth rate", 0.01),
 ]
 
-dual_axis_plot(
-    xpoints=x_values,
-    leftaxis_ypoints_list=left_values,
-    rightaxis_ypoints_list=right_values,
-    xaxis_caption=xaxis_caption,
-    leftaxis_caption=leftaxis_title,
-    rightaxis_caption=rightaxis_title,
-    leftaxis_colors=left_colors,
-    rightaxis_colors=right_colors,
-    leftaxis_titles=left_captions,
-    rightaxis_titles=right_captions,
-    extrapoints=extrapoints,
-    has_legend=True,
-    legend_direction="best",
-    legend_position=(),
-    is_leftaxis_logarithmic=False,
-    is_rightaxis_logarithmic=False,
-    point_style="o",
-    line_style="-",
-    max_digits_after_comma=1,
-    savepath=f"{datafolder}zcomplete_figure_with_protpool.png",
-    left_ylim=(0.0, 0.75),
-    right_ylim=(0.0, 18.0),
-    left_legend_position=[0, 1],
-    right_legend_position=[0, 4, 2, 1, 3],
-    figure_size_inches=(4, 3),
-    special_figure_mode=True,
-)
+for savepath in (f"{datafolder}zcomplete_figure_with_protpool.png", f"{datafolder}Figure_2.pdf"):
+    dual_axis_plot(
+        xpoints=x_values,
+        leftaxis_ypoints_list=left_values,
+        rightaxis_ypoints_list=right_values,
+        xaxis_caption=xaxis_caption,
+        leftaxis_caption=leftaxis_title,
+        rightaxis_caption=rightaxis_title,
+        leftaxis_colors=left_colors,
+        rightaxis_colors=right_colors,
+        leftaxis_titles=left_captions,
+        rightaxis_titles=right_captions,
+        extrapoints=extrapoints,
+        has_legend=True,
+        legend_direction="best",
+        legend_position=(),
+        is_leftaxis_logarithmic=False,
+        is_rightaxis_logarithmic=False,
+        point_style="o",
+        line_style="-",
+        max_digits_after_comma=1,
+        savepath=savepath,
+        left_ylim=(0.0, 0.75),
+        right_ylim=(0.0, 18.0),
+        left_legend_position=[1, 2, 0],
+        right_legend_position=[0, 4, 2, 1, 3],
+        figure_size_inches=(3.55, 2.4),
+        special_figure_mode=True,
+        axistitle_labelsize=8,
+        axisticks_labelsize=8,
+        legend_labelsize=7.5,
+        extrahlines=[
+            (0.224, "grey", "--", "Max. enzyme pool"),
+        ],
+    )
 
 print("All done!")

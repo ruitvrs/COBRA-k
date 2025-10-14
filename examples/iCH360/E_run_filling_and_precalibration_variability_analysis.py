@@ -28,6 +28,7 @@ filled_cobrak_model = get_model_with_filled_missing_parameters(
     add_dG0_extra_constraints=True,
     use_median_for_kms=True,
     use_median_for_kcats=True,
+    verbose=True,
 )
 
 json_write(

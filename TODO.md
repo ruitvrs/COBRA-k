@@ -1,6 +1,6 @@
 # COBRA-k TODOs
 
-## Short-term (0.0.5)
+## Short-term (0.0.6)
 
 * X Compartmentalize kinetic value collection, making them work with COBRA-k models alone or also annotated SBMLs
 * X Add references to annotated SBMLs

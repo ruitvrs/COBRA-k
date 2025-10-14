@@ -1,0 +1,15 @@
+Gerosa_et_al_supplement.xlsx is from:
+https://pubmed.ncbi.nlm.nih.gov/27136056/
+
+Both drg0_prime_mean.csv and EC_iCH360_unadjusted_kcats.xml are from the iCH360 GitHub
+repository, for the associated publication see:
+https://arxiv.org/abs/2406.16596
+
+mcs.json contains Minimal Cut Sets that were calculated through StrainDesign:
+https://doi.org/10.1093/bioinformatics/btac632
+...with the following settings for iCH360:
+* All non-essential EX_ reactions except of Acetate were deactivated
+* module_suppress = sd.SDModule(
+    model, sd.SUPPRESS, constraints="1.0 EX_ac_e + 1.4 EX_glc__D_e <= 0.0"
+)
+* module_protect = sd.SDModule(model, sd.PROTECT, constraints=f"Biomass_fw >= 0.1")

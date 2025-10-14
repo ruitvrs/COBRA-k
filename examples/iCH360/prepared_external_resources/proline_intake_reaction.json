@@ -1,0 +1,84 @@
+{
+    "metabolites": {
+        "pro__L_c": {
+            "log_min_conc": -13.815510557964274,
+            "log_max_conc": -2.3025850929940455,
+            "annotation": {
+                "sbo": "SBO:0000247",
+                "bigg.metabolite": "pro__L",
+                "biocyc": "META:PRO",
+                "chebi": [
+                    "CHEBI:26271",
+                    "CHEBI:60039",
+                    "CHEBI:45100",
+                    "CHEBI:13154",
+                    "CHEBI:184637",
+                    "CHEBI:17203",
+                    "CHEBI:21373",
+                    "CHEBI:32862",
+                    "CHEBI:32872",
+                    "CHEBI:45040",
+                    "CHEBI:32871",
+                    "CHEBI:6286",
+                    "CHEBI:32864",
+                    "CHEBI:42067",
+                    "CHEBI:45159",
+                    "CHEBI:58054"
+                ],
+                "hmdb": "HMDB00162",
+                "inchikey": "ONIBWKKTOPOVIA-BYPYZUCNSA-N",
+                "kegg.compound": "C00148",
+                "kegg.drug": "D00035",
+                "metanetx.chemical": "MNXM114",
+                "reactome": [
+                    "352033",
+                    "379717",
+                    "113538"
+                ],
+                "sabiork.compound": [
+                    "25536",
+                    "82"
+                ],
+                "seed.compound": [
+                    "cpd00129",
+                    "cpd15140"
+                ]
+            },
+            "name": "L-Proline",
+            "formula": "C5H9NO2",
+            "charge": 0
+        }
+    },
+    "reactions": {
+        "EX_pro__L_c_IN": {
+            "stoichiometries": {
+                "pro__L_c": 1.0
+            },
+            "min_flux": 0.0,
+            "max_flux": 1000.0,
+            "dG0": null,
+            "dG0_uncertainty": null,
+            "enzyme_reaction_data": null,
+            "annotation": {},
+            "name": ""
+        }
+    },
+    "enzymes": {},
+    "max_prot_pool": 1000000000.0,
+    "extra_linear_watches": {},
+    "extra_nonlinear_watches": {},
+    "extra_linear_constraints": [],
+    "extra_nonlinear_constraints": [],
+    "kinetic_ignored_metabolites": [],
+    "R": 0.008314,
+    "T": 298.15,
+    "annotation": {},
+    "reac_enz_separator": "_ENZ_",
+    "fwd_suffix": "_FWD",
+    "rev_suffix": "_REV",
+    "max_conc_sum": Infinity,
+    "conc_sum_ignore_prefixes": [],
+    "conc_sum_include_suffixes": [],
+    "conc_sum_max_rel_error": 0.05,
+    "conc_sum_min_abs_error": 1e-06
+}

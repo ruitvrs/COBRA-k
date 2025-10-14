@@ -117,7 +117,7 @@ $$ v_i ≤ V^{+}_i ⋅ κ_i ⋅ γ_i $$
 
 Now, $v_i$ is allowed to become lower than what would be expected from the kinetics. However, we are also still using the central protein pool constrained introduced in the LP chapter:
 
-$$ ∑_i W_i ⋅ E_i ≤ Ω $$
+$$ ∑_i W_i ⋅ E_i ≤ E_{tot} $$
 
 This means that, in a typical optimziation, the enzymes are still going to be used as efficiently as possible. I.e., typically, the lowest needed amount of enzymes is found, such that our inequality often becomes an equality :-) Conversely, in cases where this does not hold, the enzyme usage is not the major constraint for our optimization anyway.
 
@@ -149,7 +149,7 @@ And that's it :D With these additional constraints, on top of our mentioned cons
 
 COBRA-k also provides the possibility to introduce *concentration sum constraints*. They are only activated if a Model's ```max_conc_sum``` member variable is smaller than the default value ```float("inf")```. The concentration sum constraint is simply
 
-$$ Φ ≤ \sum{e^(x̃_j)} $$
+$$ Μ_{tot} ≤ \sum{e^(x̃_j)} $$
 
 !!! note
     We don't need any of the linear approximation tricks used for MILPs (see last chapter) here :-)
@@ -335,9 +335,9 @@ toy_model.extra_nonlinear_constraints = [
 ]
 ```
 
-### Extra linear watches
+### Extra non-linear watches
 
-Optionally, you can also introduce extra linear *watch variables* (corresponding to the ```ExtraNonlinearWatch``` dataclass, used in ```Model```) that add a variable with a fixed non-linear relationships to single fluxes. See COBRA-k's API documentation for more. Currently, the non-linear functions "powerX" (i.e. take the X-th power of a value), "log" and "exp" are usable. See COBRA-k's API documentation for more. Here's an example where we set a watch to the logarithm of the flux of EX_S:
+Optionally, you can also introduce extra non-linear *watch variables* (corresponding to the ```ExtraNonlinearWatch``` dataclass, used in ```Model```) that add a variable with a fixed non-linear relationships to single fluxes. See COBRA-k's API documentation for more. Currently, the non-linear functions "powerX" (i.e. take the X-th power of a value), "log" and "exp" are usable. See COBRA-k's API documentation for more. Here's an example where we set a watch to the logarithm of the flux of EX_S:
 
 ```py
 # ...using the code imports from above
