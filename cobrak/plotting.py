@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 import numpy as np
 from matplotlib.cm import get_cmap
+from matplotlib.lines import Line2D
 from matplotlib.ticker import FuncFormatter
 from pydantic import ConfigDict, validate_call
 
@@ -18,10 +19,10 @@ from cobrak.io import json_load
 
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True))
 def _as_numpy_array(seq: Iterable) -> np.ndarray:
-    """Convert any iterable to a 1‑D NumPy array (fast, safe)."""
+    """Convert any iterable to a 1-D NumPy array (fast, safe)."""
     arr = np.asarray(seq, dtype=float)
     if arr.ndim != 1:
-        raise ValueError("Each dataset must be 1‑dimensional.")
+        raise ValueError("Each dataset must be 1-dimensional.")
     return arr
 
 
@@ -78,7 +79,7 @@ def distinct_colors(n: int) -> list[str]:
     -----
     * The first 10 colours are the Tableau palettetab:orange`` …) – the same palette that
     Matplotlib uses for its default colour cycle.
-    * If ``n`` > 10 the function continues with the CSS‑4 colour
+    * If ``n`` > 10 the function continues with the CSS-4 colour
     dictionary, sorted by hue (HSV) so that successive colours
     are as dissimilar as possible * All colours are returned as hex strings (e.g. ``'#1f77b4'``)
     because hex codes are universally accepted by Matplotlib.
@@ -87,16 +88,16 @@ def distinct_colors(n: int) -> list[str]:
         raise ValueError("n must be a positive integer")
 
     # ----------------------------------------------------------
-    # 1️⃣  Tableau colours – the first 10 highly‑distinct colours
+    # 1️⃣  Tableau colours – the first 10 highly-distinct colours
     # ----------------------------------------------------------
     tableau_hex = list(mcolors.TABLEAU_COLORS.values())  # 10 entries
     if n <= len(tableau_hex):
         return tableau_hex[:n]
 
     # ----------------------------------------------------------
-    # 2️⃣  Prepare the remaining colours (CSS‑4) sorted by hue
+    # 2️⃣  Prepare the remaining colours (CSS-4) sorted by hue
     # ----------------------------------------------------------
-    # Convert every CSS‑4 colour to RGB → HSV, keep the original hex
+    # Convert every CSS-4 colour to RGB → HSV, keep the original hex
     css_items = [
         (mcolors.rgb_to_hsv(mcolors.to_rgb(hexcol)), hexcol)
         for hexcol in mcolors.CSS4_COLORS.values()
@@ -108,7 +109,7 @@ def distinct_colors(n: int) -> list[str]:
     css_sorted_hex = [hexcol for _, hexcol in css_items]
 
     # ----------------------------------------------------------
-    # 3️⃣  Concatenate Tableau + sorted CSS‑4 and slice to *n*
+    # 3️⃣  Concatenate Tableau + sorted CSS-4 and slice to *n*
     # ----------------------------------------------------------
     all_colours = tableau_hex + css_sorted_hex
     return all_colours[:n]
@@ -144,6 +145,10 @@ def dual_axis_plot(
     right_legend_position: list[int] = [],
     figure_size_inches: None | tuple[float, float] = None,
     special_figure_mode: bool = False,
+    axistitle_labelsize: float = 14,
+    axisticks_labelsize: float = 13,
+    legend_labelsize: float = 13,
+    extrahlines: list[tuple[float, str, str, str | None]] = [],
 ) -> None:
     """Creates a plot with a dual Y-axis.
 
@@ -180,6 +185,14 @@ def dual_axis_plot(
         fig.set_size_inches(figure_size_inches[0], figure_size_inches[1])
 
     # Left Axis Plotting
+    for (y, color, linestyle, label) in extrahlines:
+        ax1.axhline(
+            y=y,
+            color=color,
+            linestyle=linestyle,
+            label=label,
+        )
+
     for i, ypoints in enumerate(leftaxis_ypoints_list):
         color = leftaxis_colors[i] if leftaxis_colors else None
         title = leftaxis_titles[i] if leftaxis_titles else None
@@ -192,15 +205,15 @@ def dual_axis_plot(
             label=title,
         )
 
-    ax1.set_xlabel(xaxis_caption, fontsize=14)
-    ax1.set_ylabel(leftaxis_caption, fontsize=14)
+    ax1.set_xlabel(xaxis_caption, fontsize=axistitle_labelsize)
+    ax1.set_ylabel(leftaxis_caption, fontsize=axistitle_labelsize)
     if is_leftaxis_logarithmic:
         ax1.set_yscale("log")
     if left_ylim is not None:
         ax1.set_ylim(left_ylim[0], left_ylim[1])
 
-    plt.xticks(fontsize=13)
-    plt.yticks(fontsize=13)
+    plt.xticks(fontsize=axisticks_labelsize)
+    plt.yticks(fontsize=axisticks_labelsize)
 
     # Right Axis Plotting
     if len(rightaxis_ypoints_list) > 0:
@@ -217,7 +230,7 @@ def dual_axis_plot(
                 label=title,
             )
 
-        ax2.set_ylabel(rightaxis_caption, fontsize=14)
+        ax2.set_ylabel(rightaxis_caption, fontsize=axistitle_labelsize)
         if is_rightaxis_logarithmic:
             ax2.set_yscale("log")
         if right_ylim is not None:
@@ -273,10 +286,11 @@ def dual_axis_plot(
                     labels2[right_legend_position] = oldlabels2[i]
             if special_figure_mode:
                 # Just for COBRA-k's initial publication :-)
-                del handles[1]
-                del labels[1]
-                handles2.append(oldhandles[-2])
-                labels2.append(oldlabels[-2])
+                # del handles[1]
+                # del labels[1]
+                # handles2.append(oldhandles[-2])
+                # labels2.append(oldlabels[-2])
+                pass
 
             handles = handles + handles2
             labels = labels + labels2
@@ -286,15 +300,15 @@ def dual_axis_plot(
         plt.legend(
             handles,
             labels,
-            prop={"size": 10.5},
             bbox_to_anchor=(0.5, 0.5)
             if not legend_position and not legend_direction
             else None,
+            fontsize=legend_labelsize,
             **extraargs,
         )
 
-    plt.xticks(fontsize=13)
-    plt.yticks(fontsize=13)
+    plt.xticks(fontsize=axisticks_labelsize)
+    plt.yticks(fontsize=axisticks_labelsize)
 
     # Format axis ticks
     ax1.xaxis.set_major_formatter(
@@ -313,7 +327,7 @@ def dual_axis_plot(
     if not savepath:
         plt.show()
     else:
-        plt.savefig(savepath)
+        plt.savefig(savepath, dpi=300)
 
     # Close the plot to free up memory
     plt.close()
@@ -508,6 +522,194 @@ def plot_combinations(
 
 
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True))
+def plot_range_bars(
+    data_captions: list[str],
+    data_labels: list[str],
+    data_ranges: list[list[tuple[float, float]]],
+    data_colors: list[str],
+    *,
+    cap_len: float = 0.2,
+    line_width: float = 3.0,
+    figsize: tuple[float, float] = (10, 6),
+    title: str = "Range.Bar Plot",
+    ylabel: str = "Label",
+    xlabel: str = "Value",
+    ax: plt.Axes | None = None,
+    highlight_means: list[bool] | None = None,
+    log_y: bool = False,
+    legend_pos: str | None = None,
+    marker_size: float = 80,
+    title_labelsize: float = 16,
+    axes_labelsize: float = 13,
+    ticks_labelsize: float = 13,
+    legend_labelsize: float = 11,
+    legend_bbox_to_anchor: None | tuple[float, float] = None,
+    ylim: None | tuple[float, float] = None,
+) -> plt.Axes:
+    """Plot vertical range bars with categorical labels on the x‑axis.
+
+    Parameters
+    ----------
+    data_captions: list[str]
+        Labels for the *legend*. List length must equal the one from e.g. data_colors.
+    data_labels : list[str]
+        Labels for the x axis.  The same strings are also
+        used as the x‑axis tick labels after alphabetical sorting.
+    data_ranges : list[list[tuple[float, float]]]
+        Outer list length = number of groups (must equal ``len(data_colors)``).
+        Each inner list must have the same length as ``data_labels``.
+        ``(low, high)`` defines the numeric range for the corresponding label.
+    data_colors : list[str]
+        Colour for each group; length must match the outer dimension of
+        ``data_ranges``.
+    cap_len : float, optional
+        Half‑width of the horizontal caps at each end of a bar (default 0.2).
+    line_width : float, optional
+        Thickness of the vertical bars and caps (default 3.0).
+    figsize : tuple[float, float], optional
+        Figure size passed to ``plt.subplots`` (default (10, 6)).
+    title, ylabel, xlabel : str, optional
+        Plot title and axis labels.
+    ax : matplotlib.axes.Axes, optional
+        Axes to draw on; if ``None`` a new figure and axes are created.
+    highlight_means : list[bool] | None, optional
+        ``True`` for a group means that the mean of each range
+        ``(low+high)/2`` is highlighted with a larger circular marker.
+        Length must equal ``len(data_ranges)``.  If ``None`` no means are
+        highlighted.
+    log_y : bool, optional
+        If ``True`` the y‑axis is set to a logarithmic scale.
+    legend_pos: str | None, optional.
+        If not ```None```, the given matplotlib legend position is used.
+
+    Returns
+    -------
+    matplotlib.axes.Axes
+        The axes containing the generated plot.
+
+    Raises
+    ------
+    ValueError
+        If the lengths of the input sequences are inconsistent.
+    """
+    # ------------------------------------------------------------------ #
+    # 1️⃣  Sanity checks
+    # ------------------------------------------------------------------ #
+    n_groups = len(data_ranges)
+
+    if n_groups != len(data_colors):
+        raise ValueError("len(data_colors) must equal the outer length of data_ranges")
+    if any(len(inner) != len(data_labels) for inner in data_ranges):
+        raise ValueError(
+            "Every inner list in data_ranges must have the same length as data_labels"
+        )
+    if highlight_means is not None and len(highlight_means) != n_groups:
+        raise ValueError(
+            "highlight_means must be ``None`` or a list with length equal to the number of groups"
+        )
+
+    # ------------------------------------------------------------------ #
+    # 2️⃣  Alphabetical ordering of the categorical labels (x‑axis)
+    # ------------------------------------------------------------------ #
+    sorted_idx = sorted(range(len(data_labels)), key=lambda i: data_labels[i])
+    sorted_labels = [data_labels[i] for i in sorted_idx]
+    # reorder each group’s ranges to match the sorted label order
+    sorted_ranges = [[grp[i] for i in sorted_idx] for grp in data_ranges]
+
+    # ------------------------------------------------------------------ #
+    # 3️⃣  Figure / Axes handling
+    # ------------------------------------------------------------------ #
+    if ax is None:
+        fig, ax = plt.subplots(figsize=figsize)
+
+    x_pos = range(len(sorted_labels))
+
+    # ------------------------------------------------------------------ #
+    # 4️⃣  Plot each group
+    # ------------------------------------------------------------------ #
+    for grp_idx, (grp_ranges, colour) in enumerate(zip(sorted_ranges, data_colors)):
+        lows = [rng[0] for rng in grp_ranges]
+        highs = [rng[1] for rng in grp_ranges]
+
+        # vertical range bars
+        ax.vlines(
+            x=x_pos,
+            ymin=lows,
+            ymax=highs,
+            color=colour,
+            linewidth=line_width,
+        )
+        # caps – low end
+        ax.hlines(
+            y=lows,
+            xmin=[xp - cap_len / 2 for xp in x_pos],
+            xmax=[xp + cap_len / 2 for xp in x_pos],
+            color=colour,
+            linewidth=line_width,
+        )
+        # caps – high end
+        ax.hlines(
+            y=highs,
+            xmin=[xp - cap_len / 2 for xp in x_pos],
+            xmax=[xp + cap_len / 2 for xp in x_pos],
+            color=colour,
+            linewidth=line_width,
+        )
+
+        # ------------------------------------------------------------------
+        # 4️⃣️⃣  Optional mean highlighting
+        # ------------------------------------------------------------------
+        if highlight_means and highlight_means[grp_idx]:
+            means = [(low + high) / 2 for low, high in zip(lows, highs)]
+            ax.scatter(
+                x=list(x_pos),
+                y=means,
+                color=colour,
+                edgecolor="k",
+                zorder=5,
+                s=marker_size,
+                marker="_",
+                linewidth=1.5,
+                label="_mean",  # dummy label – we will build the legend ourselves
+            )
+
+    # ------------------------------------------------------------------ #
+    # 5️⃣  Cosmetics
+    # ------------------------------------------------------------------ #
+    ax.set_xticks(list(x_pos))
+    ax.set_xticklabels(sorted_labels, rotation=45, ha="right")
+    ax.set_xlabel(xlabel, fontsize=axes_labelsize)
+    ax.set_ylabel(ylabel, fontsize=axes_labelsize)
+    ax.set_title(title, loc="left", fontweight="bold", fontsize=title_labelsize)
+    ax.yaxis.grid(True, which="both", linestyle="--", alpha=0.5)
+    if ylim:
+        ax.set_ylim(ylim[0], ylim[1])
+    ax.tick_params(axis="x", labelsize=ticks_labelsize)
+    ax.tick_params(axis="y", labelsize=ticks_labelsize)
+
+    if log_y:
+        ax.set_yscale("log")
+
+    # ------------------------------------------------------------------ #
+    # 6️⃣  Legend – use *data_labels* (one entry per group) with the supplied colours
+    # ------------------------------------------------------------------ #
+    legend_handles = [
+        Line2D([0], [0], color=col, lw=line_width, label=lbl)
+        for lbl, col in zip(data_captions, data_colors)
+    ]
+    ax.legend(
+        handles=legend_handles,
+        loc="best" if legend_pos is None else legend_pos,
+        fontsize=legend_labelsize,
+        bbox_to_anchor=legend_bbox_to_anchor
+    )
+    ax.margins(x=0.01)
+
+    plt.tight_layout()
+    return ax
+
+
+@validate_call(config=ConfigDict(arbitrary_types_allowed=True))
 def multi_step_histogram(
     data: list[list[float]],
     *,
@@ -527,8 +729,7 @@ def multi_step_histogram(
     logmode: bool = False,
     **hist_kwargs,  # noqa: ANN003
 ) -> plt.Axes:
-    """
-    Plot several 1‑D data sets as *step* histograms on a single Axes.
+    """Plot several 1-D data sets as *step* histograms on a single Axes.
 
     Parameters
     ----------
@@ -544,7 +745,7 @@ def multi_step_histogram(
         If True, the histogram is normalized to form a probability density,
         i.e. the integral of the histogram is 1.
     labels : sequence of str, optional
-        Human‑readable names for the data sets.  If omitted, generic names
+        Human-readable names for the data sets.  If omitted, generic names
         ``Dataset 0``, ``Dataset 1`` … are used.
     colors : sequence of str, optional
         Matplotlib colour specifications.  If omitted, the default colour cycle
@@ -564,7 +765,7 @@ def multi_step_histogram(
         pair is created.
     **hist_kwargs
         Additional keyword arguments forwarded to ``plt.hist`` (e.g.
-        ``log=True`` for a log‑scale y‑axis).
+        ``log=True`` for a log-scale y-axis).
 
     Returns
     -------
@@ -583,7 +784,7 @@ def multi_step_histogram(
                         density=True,
                         labels=['Normal', 'Exp'],
                         colors=['tab:blue', 'tab:red'],
-                        title='Density step‑histograms')
+                        title='Density step-histograms')
     """
 
     def _fmt(val: Any, _: Any) -> str:  # noqa: ANN401
@@ -641,7 +842,7 @@ def multi_step_histogram(
         med = np.median(arr)  # median of the data set
         # Find the bin that contains the median
         bin_idx = np.searchsorted(bin_edges, med, side="right") - 1
-        # Guard against edge‑cases (median exactly on the rightmost edge)
+        # Guard against edge-cases (median exactly on the rightmost edge)
         bin_idx = np.clip(bin_idx, 0, len(counts) - 1)
 
         # Height of the histogram at the median (count or density)
@@ -892,6 +1093,13 @@ def scatterplot_with_labels(
     extratext: str | None = None,
     x_labelsize: float = 13,
     y_labelsize: float = 13,
+    major_tick_labelsize: float = 13,
+    minor_tick_labelsize: float = 10,
+    legend_labelsize: float = 13,  # noqa: ARG001
+    title_labelsize: float = 16,
+    extratext_labelsize: float = 14,
+    label_fontsize: float = 13,
+    labelcoords: tuple[float, float] = (0, 10),
 ) -> plt.Axes:
     """Generates a scatter plot with error bars and optional point labels.
 
@@ -957,9 +1165,9 @@ def scatterplot_with_labels(
             xerr=[[x_err_low[i]], [x_err_high[i]]],
             yerr=[[y_err_low[i]], [y_err_high[i]]],
             fmt="o",
-            markersize=8,
+            markersize=7,
             color=colors[i],
-            capsize=5,
+            capsize=4,
             capthick=2,
             elinewidth=2,
         )
@@ -971,8 +1179,9 @@ def scatterplot_with_labels(
                 labels[i],
                 (xi, yi),
                 textcoords="offset points",
-                xytext=(0, 10),
+                xytext=labelcoords,
                 ha="center",
+                fontsize=label_fontsize,
             )
 
     # Axis limits & unity line
@@ -1010,24 +1219,25 @@ def scatterplot_with_labels(
         ax.set_ylabel(y_label, fontsize=y_labelsize)
 
     if title is not None:
-        ax.set_title(title, loc="left", fontweight="bold", fontsize=16)
+        ax.set_title(title, loc="left", fontweight="bold", fontsize=title_labelsize)
 
     if extratext:
         ax.text(
-            0.15,
+            0.025,
             0.975,
             extratext,
-            horizontalalignment="center",
+            horizontalalignment="left",
             verticalalignment="top",
             transform=ax.transAxes,
-            fontsize=14,
+            fontsize=extratext_labelsize,
             fontweight="bold",
         )
 
     ax.grid(True)
 
-    ax.tick_params(axis="both", which="major", labelsize=13)
-    ax.tick_params(axis="both", which="minor", labelsize=10)
+    ax.tick_params(axis="both", which="major", labelsize=major_tick_labelsize)
+    ax.tick_params(axis="both", which="minor", labelsize=minor_tick_labelsize)
+    ax.yaxis.set_major_locator(ax.xaxis.get_major_locator())
 
     if _created_fig:
         plt.tight_layout()

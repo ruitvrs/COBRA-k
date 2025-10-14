@@ -127,7 +127,7 @@ class RunConfig:  # noqa: D101
     # Model changes
     manually_changed_kms: dict[str, dict[str, float]]
     manually_changed_kcats: dict[str, float]
-    manually_changed_dG0s: dict[str, dict[str, float]]
+    manually_changed_dG0s: dict[str, float]
     # Folder settings
     results_folder: str
     # ecTFVA settings
@@ -139,6 +139,7 @@ class RunConfig:  # noqa: D101
     deactivated_reacs: list[str]
     set_bounds: dict[str, tuple[float, float]]
     working_results: list[dict[str, float]]
+    changed_flux_bounds: dict[str, tuple[float, float]] = Field(default_factory=list)
     sampling_rounds_per_metaround: int = 2
     sampling_wished_num_feasible_starts: int = 5
     sampling_max_metarounds: int = 3
@@ -161,6 +162,10 @@ class RunConfig:  # noqa: D101
     change_known_values: bool = True
     change_unknown_values: bool = True
     use_shuffling_instead_of_uniform_random: bool = False
+    use_shuffling_with_putting_back: bool = False
+    free_upper_unfixed_concentrations: bool = False
+    json_path_model_to_merge: str = ""
+    shuffle_using_distribution_of_values_with_reference: bool = True
 
 
 def create_and_submit_slurm_job(json_path: str) -> None:  # noqa: D103
@@ -229,6 +234,7 @@ if __name__ == "__main__":
                     evolution_num_gens=100,
                     pop_size=64,
                     working_results=[],
+                    changed_flux_bounds={},
                     set_bounds={
                         "EX_glc__D_e_bw": (0.0, maxglcvalue[0]),
                         # "Biomass_fw": (0.7, 1.0),
@@ -276,6 +282,7 @@ if __name__ == "__main__":
                     evolution_num_gens=100,
                     pop_size=64,
                     working_results=[],
+                    changed_flux_bounds={},
                     set_bounds={
                         "EX_glc__D_e_bw": (0.0, maxglcvalue),
                     },
@@ -337,6 +344,7 @@ if __name__ == "__main__":
                     evolution_num_gens=100,
                     pop_size=64,
                     working_results=[],
+                    changed_flux_bounds={},
                     set_bounds={
                         "EX_glc__D_e_bw": (0.0, maxglcvalue),
                     },
@@ -368,6 +376,7 @@ if __name__ == "__main__":
                     evolution_num_gens=100,
                     pop_size=64,
                     working_results=[],
+                    changed_flux_bounds={},
                     set_bounds={
                         "Biomass_fw": (0.1, 2.0),
                         "EX_glc__D_e_bw": (0.0, 1_000),
@@ -399,6 +408,7 @@ if __name__ == "__main__":
                     evolution_num_gens=100,
                     pop_size=64,
                     working_results=[],
+                    changed_flux_bounds={},
                     set_bounds={
                         "EX_glc__D_e_bw": (0.0, 1_000),
                     },
@@ -469,6 +479,7 @@ if __name__ == "__main__":
                     evolution_num_gens=100,
                     pop_size=64,
                     working_results=[],
+                    changed_flux_bounds={},
                     set_bounds={
                         "EX_glc__D_e_bw": (0.0, 1_000),
                     },
@@ -485,6 +496,287 @@ if __name__ == "__main__":
                 for ko_target in ko_targets
             ]
         )
+
+        # "New" start
+        run_configs.extend(
+            [
+                RunConfig(
+                    manually_changed_kms=MANUALLY_CHANGED_KMS,
+                    manually_changed_kcats=MANUALLY_CHANGED_KCATS,
+                    manually_changed_dG0s={},
+                    results_folder="/examples/iCH360/RESULTS_GLCUPTAKE_DIFFERENT_MAXCONCSUMS/",
+                    ectfva_active_reacs=["Biomass_fw"],
+                    round_num=round_num,
+                    objective_target={
+                        "Biomass_fw": 1.0,
+                        "prot_pool_delivery": -0.01,
+                    },
+                    objective_sense=+1,
+                    deactivated_reacs=[],
+                    evolution_num_gens=100,
+                    pop_size=64,
+                    working_results=[],
+                    changed_flux_bounds={},
+                    set_bounds={
+                        "EX_glc__D_e_bw": (0.0, 1000.0),
+                    },
+                    protein_pool=0.224,
+                    max_conc_sum=maxconcsum,
+                    nameaddition=f"maxconcsum{maxconcsum}",
+                    uses_bennett_concs=False,
+                    kicked_reacs=[],
+                    varied_reacs=[],
+                )
+                # for maxconcsum in (.3, .4, .5, .6, .7, .8, None)
+                # for maxconcsum in (float("inf"),)
+                for maxconcsum in (
+                    0.1,
+                    0.2,
+                )
+            ]
+        )
+        run_configs.extend(
+            [
+                RunConfig(
+                    manually_changed_kms={},
+                    manually_changed_kcats={},
+                    manually_changed_dG0s={},
+                    results_folder="/examples/iCH360/RESULTS_GLCUPTAKE_NO_MANUAL_KCAT_CHANGES_PROTADJ/",
+                    ectfva_active_reacs=[],
+                    round_num=round_num,
+                    objective_target={
+                        "prot_pool_delivery": -1,
+                    },
+                    objective_sense=+1,
+                    deactivated_reacs=[],
+                    evolution_num_gens=100,
+                    pop_size=64,
+                    working_results=[],
+                    changed_flux_bounds={
+                        "Biomass_fw": (0.7, 1000.0),
+                    },
+                    set_bounds={
+                        "EX_glc__D_e_bw": (0.0, maxglcvalue),
+                    },
+                    protein_pool=0.75,
+                    max_conc_sum=0.4,
+                    nameaddition=f"maxglc{maxglcvalue}",
+                    uses_bennett_concs=False,
+                    kicked_reacs=[],
+                    varied_reacs=[],
+                )
+                for maxglcvalue in (1000.0,)
+            ]
+        )
+        run_configs.extend(
+            [
+                RunConfig(
+                    manually_changed_kms=MANUALLY_CHANGED_KMS,
+                    manually_changed_kcats=MANUALLY_CHANGED_KCATS,
+                    manually_changed_dG0s={
+                        "GLU5K_fw": 0.0,
+                    },
+                    results_folder="/examples/iCH360/RESULTS_GLUANALYSIS_LOWER_GLU5K_DG0/",
+                    ectfva_active_reacs=[],
+                    round_num=round_num,
+                    objective_target={
+                        "prot_pool_delivery": -1,
+                    },
+                    objective_sense=+1,
+                    deactivated_reacs=[],
+                    evolution_num_gens=100,
+                    pop_size=64,
+                    working_results=[],
+                    changed_flux_bounds={
+                        "Biomass_fw": (0.7, 1000.0),
+                    },
+                    set_bounds={
+                        "EX_glc__D_e_bw": (0.0, maxglcvalue),
+                    },
+                    protein_pool=0.75,
+                    max_conc_sum=0.4,
+                    nameaddition=f"maxglc{maxglcvalue}",
+                    uses_bennett_concs=False,
+                    kicked_reacs=[],
+                    varied_reacs=[],
+                )
+                for maxglcvalue in (1000.0,)
+            ]
+        )
+        run_configs.extend(
+            [
+                RunConfig(
+                    manually_changed_kms=MANUALLY_CHANGED_KMS,
+                    manually_changed_kcats=MANUALLY_CHANGED_KCATS,
+                    manually_changed_dG0s={},
+                    results_folder="/examples/iCH360/RESULTS_UPTAKE_ACETATE/",
+                    ectfva_active_reacs=["Biomass_fw"],
+                    round_num=round_num,
+                    objective_target={
+                        "Biomass_fw": 1.0,
+                        "prot_pool_delivery": -0.01,
+                    },
+                    objective_sense=+1,
+                    deactivated_reacs=[],
+                    evolution_num_gens=100,
+                    pop_size=64,
+                    working_results=[],
+                    changed_flux_bounds={
+                        "EX_glc__D_e_bw": (0.0, 0.0),
+                        "EX_ac_e_bw": (0.0, 1000.0),
+                    },
+                    set_bounds={},
+                    protein_pool=0.224,
+                    max_conc_sum=0.4,
+                    nameaddition=f"maxglc{maxglcvalue}",
+                    uses_bennett_concs=False,
+                    kicked_reacs=[],
+                    varied_reacs=[],
+                )
+                for maxglcvalue in (1000,)
+            ]
+        )
+        run_configs.extend(
+            [
+                RunConfig(
+                    manually_changed_kms=MANUALLY_CHANGED_KMS,
+                    manually_changed_kcats=MANUALLY_CHANGED_KCATS,
+                    manually_changed_dG0s={},
+                    results_folder="/examples/iCH360/RESULTS_VARIATION_ALL_KCAT_KM_VARIED_50_PCT/",
+                    ectfva_active_reacs=["Biomass_fw"],
+                    round_num=round_num,
+                    objective_target={
+                        "Biomass_fw": 1.0,
+                        "prot_pool_delivery": -0.01,
+                    },
+                    objective_sense=+1,
+                    deactivated_reacs=[],
+                    evolution_num_gens=100,
+                    pop_size=64,
+                    working_results=[],
+                    changed_flux_bounds={},
+                    set_bounds={
+                        "EX_glc__D_e_bw": (0.0, maxglcvalue),
+                    },
+                    protein_pool=0.224,
+                    max_conc_sum=0.4,
+                    nameaddition=f"maxglc{maxglcvalue}",
+                    uses_bennett_concs=False,
+                    kicked_reacs=[],
+                    varied_reacs=[],
+                    use_shuffling_instead_of_uniform_random=False,
+                    change_known_values=True,
+                    change_unknown_values=True,
+                    max_km_variation=0.5,
+                    max_kcat_variation=0.5,
+                    do_parameter_variation=True,
+                )
+                for maxglcvalue in (1000.0,)
+            ]
+        )
+        #
+        run_configs.extend(
+            [
+                RunConfig(
+                    manually_changed_kms={},
+                    manually_changed_kcats={},
+                    manually_changed_dG0s={},
+                    results_folder="/examples/iCH360/RESULTS_GLCUPTAKE_NO_MANUAL_KCAT_CHANGES_DONEPROTADJ/",
+                    ectfva_active_reacs=["Biomass_fw"],
+                    round_num=round_num,
+                    objective_target={
+                        "Biomass_fw": 1.0,
+                        "prot_pool_delivery": -0.01,
+                    },
+                    objective_sense=+1,
+                    deactivated_reacs=[],
+                    evolution_num_gens=100,
+                    pop_size=64,
+                    working_results=[],
+                    changed_flux_bounds={},
+                    set_bounds={
+                        "EX_glc__D_e_bw": (0.0, maxglcvalue),
+                    },
+                    protein_pool=0.21956248749851184,
+                    max_conc_sum=0.4,
+                    nameaddition=f"maxglc{maxglcvalue}",
+                    uses_bennett_concs=False,
+                    kicked_reacs=[],
+                    varied_reacs=[],
+                )
+                for maxglcvalue in (
+                    9.65,
+                    1000.0,
+                )
+            ]
+        )
+        run_configs.extend(
+            [
+                RunConfig(
+                    manually_changed_kms=MANUALLY_CHANGED_KMS,
+                    manually_changed_kcats=MANUALLY_CHANGED_KCATS,
+                    manually_changed_dG0s={},
+                    results_folder="/examples/iCH360/RESULTS_GLUANALYSIS_FREE_PROLINE_STANDARDPOOL/",
+                    ectfva_active_reacs=[],
+                    round_num=round_num,
+                    objective_target={
+                        "Biomass_fw": +1,
+                        "prot_pool_delivery": -0.01,
+                    },
+                    objective_sense=+1,
+                    deactivated_reacs=[],
+                    evolution_num_gens=100,
+                    pop_size=64,
+                    working_results=[],
+                    changed_flux_bounds={},
+                    set_bounds={
+                        "EX_glc__D_e_bw": (0.0, maxglcvalue),
+                    },
+                    protein_pool=0.224,
+                    max_conc_sum=0.4,
+                    nameaddition=f"maxglc{maxglcvalue}",
+                    uses_bennett_concs=False,
+                    kicked_reacs=[],
+                    varied_reacs=[],
+                    json_path_model_to_merge="examples/iCH360/prepared_external_resources/proline_intake_reaction.json",
+                )
+                for maxglcvalue in (1000.0,)
+            ]
+        )
+        run_configs.extend(
+            [
+                RunConfig(
+                    manually_changed_kms=MANUALLY_CHANGED_KMS,
+                    manually_changed_kcats=MANUALLY_CHANGED_KCATS,
+                    manually_changed_dG0s={
+                        "GLU5K_fw": 0.0,
+                    },
+                    results_folder="/examples/iCH360/RESULTS_GLUANALYSIS_LOWER_GLU5K_DG0_DONEPROTADJ/",
+                    ectfva_active_reacs=["Biomass_fw"],
+                    round_num=round_num,
+                    objective_target={
+                        "Biomass_fw": +1,
+                    },
+                    objective_sense=+1,
+                    deactivated_reacs=[],
+                    evolution_num_gens=100,
+                    pop_size=64,
+                    working_results=[],
+                    changed_flux_bounds={},
+                    set_bounds={
+                        "EX_glc__D_e_bw": (0.0, maxglcvalue),
+                    },
+                    protein_pool=0.21674245963610644,
+                    max_conc_sum=0.4,
+                    nameaddition=f"maxglc{maxglcvalue}",
+                    uses_bennett_concs=False,
+                    kicked_reacs=[],
+                    varied_reacs=[],
+                )
+                for maxglcvalue in (9.65,)
+            ]
+        )
+        # "New end"
 
     if argv[-1] == "local":
         ensure_folder_existence("./main_paper_calculations_jsons")

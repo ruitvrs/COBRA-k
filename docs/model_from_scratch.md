@@ -506,7 +506,7 @@ The full molecular weight of a reaction's enzyme is the sum of all its subunit m
 
 Only the molecular weight is mandatory to be set, all other member variables are optional. If ```min_conc``` and/or ```max_conc``` are ```None```, their respective concentration bounds are ignored. I.e., if ```min_conc``` is its default value ```None```, the enzyme's minimal concentration is just 0; if ```max_conc``` is ```None```, the enzyme's maximal concentration is as high as possible (```max_prot_pool / molecular_weight```).
 
-```max_prot_pool``` ($Ω$ in our formulas) stands for the biomass fraction of all modeled metabolic enzymes. Its unit is g⋅gDW⁻¹ and it is an essential upper limit for the usage of enzymes in our analyses with enzyme constraints (see next chapters). In our toy model, we set it to 0.5 g⋅gDW⁻¹:
+```max_prot_pool``` ($E_{tot}$ in our formulas) stands for the biomass fraction of all modeled metabolic enzymes. Its unit is g⋅gDW⁻¹ and it is an essential upper limit for the usage of enzymes in our analyses with enzyme constraints (see next chapters). In our toy model, we set it to 0.5 g⋅gDW⁻¹:
 
 ```py
 toy_model.max_prot_pool = 0.5

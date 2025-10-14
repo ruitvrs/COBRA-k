@@ -1,0 +1,2130 @@
+[S]=Substrate; [P]=Product
+
+==ala__L_c==
+ln(Concentration change): 6.45, from 1e-06 M to 0.00064 M
+Affected reactions with kinetic constraints:
+>[P] VPAMTr_bw (ΔG'°=1.60 kJ⋅mol⁻¹) | κ⋅γ from 0.7528 to 0.9418 // pool usage from 0.000120 g⋅gDW⁻¹ (0.0549 %) to 0.000109 g⋅gDW⁻¹ (0.0497 %)
+
+
+==asn__L_c==
+ln(Concentration change): 6.09, from 1e-06 M to 0.00044 M
+Affected reactions with kinetic constraints:
+>[P] ASNS2_fw (ΔG'°=-31.94 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000318 g⋅gDW⁻¹ (0.1449 %) to 0.000317 g⋅gDW⁻¹ (0.1442 %)
+
+
+==dttp_c==
+ln(Concentration change): 6.08, from 1e-06 M to 0.00044 M
+Affected reactions with kinetic constraints:
+>[P] NDPK4_fw (ΔG'°=0.83 kJ⋅mol⁻¹) | κ⋅γ from 0.5373 to 0.7938 // pool usage from 0.000017 g⋅gDW⁻¹ (0.0077 %) to 0.000026 g⋅gDW⁻¹ (0.0118 %)
+
+
+==pro__L_c==
+ln(Concentration change): 5.92, from 1e-06 M to 0.00037 M
+Affected reactions with kinetic constraints:
+>[P] P5CR_fw (ΔG'°=-9.47 kJ⋅mol⁻¹) | κ⋅γ from 0.9271 to 0.9050 // pool usage from 0.000052 g⋅gDW⁻¹ (0.0235 %) to 0.000053 g⋅gDW⁻¹ (0.0242 %)
+
+
+==arg__L_c==
+ln(Concentration change): 5.76, from 1e-06 M to 0.00032 M
+Affected reactions with kinetic constraints:
+>[P] ARGSL_fw (ΔG'°=-8.67 kJ⋅mol⁻¹) | κ⋅γ from 0.6361 to 0.5807 // pool usage from 0.000412 g⋅gDW⁻¹ (0.1875 %) to 0.000429 g⋅gDW⁻¹ (0.1952 %)
+
+
+==met__L_c==
+ln(Concentration change): 4.88, from 1e-06 M to 0.00013 M
+Affected reactions with kinetic constraints:
+>[P] METS_fw (ΔG'°=0.17 kJ⋅mol⁻¹) | κ⋅γ from 0.6101 to 0.6975 // pool usage from 0.000617 g⋅gDW⁻¹ (0.2810 %) to 0.000587 g⋅gDW⁻¹ (0.2675 %)
+
+
+==lys__L_c==
+ln(Concentration change): 4.77, from 1e-06 M to 0.00012 M
+Affected reactions with kinetic constraints:
+>[P] DAPDC_fw (ΔG'°=-11.82 kJ⋅mol⁻¹) | κ⋅γ from 0.0496 to 0.0362 // pool usage from 0.000241 g⋅gDW⁻¹ (0.1100 %) to 0.000281 g⋅gDW⁻¹ (0.1280 %)
+
+
+==ctp_c==
+ln(Concentration change): 4.26, from 1e-06 M to 7.1e-05 M
+Affected reactions with kinetic constraints:
+>[P] CTPS2_fw (ΔG'°=-25.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9062 to 0.7372 // pool usage from 0.000452 g⋅gDW⁻¹ (0.2057 %) to 0.000498 g⋅gDW⁻¹ (0.2270 %)
+
+
+==his__L_c==
+ln(Concentration change): 3.82, from 1e-06 M to 4.6e-05 M
+Affected reactions with kinetic constraints:
+>[P] HISTD_fw (ΔG'°=-23.37 kJ⋅mol⁻¹) | κ⋅γ from 0.9988 to 1.0000 // pool usage from 0.000260 g⋅gDW⁻¹ (0.1183 %) to 0.000258 g⋅gDW⁻¹ (0.1176 %)
+
+
+==dctp_c==
+ln(Concentration change): 3.26, from 1e-06 M to 2.6e-05 M
+Affected reactions with kinetic constraints:
+>[P] NDPK7_fw (ΔG'°=3.83 kJ⋅mol⁻¹) | κ⋅γ from 0.6650 to 0.8234 // pool usage from 0.000020 g⋅gDW⁻¹ (0.0092 %) to 0.000025 g⋅gDW⁻¹ (0.0115 %)
+
+
+==tyr__L_c==
+ln(Concentration change): 2.93, from 1e-06 M to 1.9e-05 M
+Affected reactions with kinetic constraints:
+>[P] TYRTA_bw (ΔG'°=0.04 kJ⋅mol⁻¹) | κ⋅γ from 0.8144 to 0.8114 // pool usage from 0.000173 g⋅gDW⁻¹ (0.0790 %) to 0.000173 g⋅gDW⁻¹ (0.0787 %)
+
+
+==phe__L_c==
+ln(Concentration change): 2.87, from 1e-06 M to 1.8e-05 M
+Affected reactions with kinetic constraints:
+>[P] PHETA1_bw (ΔG'°=0.41 kJ⋅mol⁻¹) | κ⋅γ from 0.5256 to 0.5169 // pool usage from 0.000181 g⋅gDW⁻¹ (0.0826 %) to 0.000182 g⋅gDW⁻¹ (0.0828 %)
+
+
+==dtdp_c==
+ln(Concentration change): 2.76, from 2.1e-05 M to 0.00034 M
+Affected reactions with kinetic constraints:
+>[S] NDPK4_fw (ΔG'°=0.83 kJ⋅mol⁻¹) | κ⋅γ from 0.5373 to 0.7938 // pool usage from 0.000017 g⋅gDW⁻¹ (0.0077 %) to 0.000026 g⋅gDW⁻¹ (0.0118 %)
+>[P] DTMPK_fw (ΔG'°=-2.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9784 to 0.9846 // pool usage from 0.000017 g⋅gDW⁻¹ (0.0077 %) to 0.000023 g⋅gDW⁻¹ (0.0103 %)
+
+
+==utp_c==
+ln(Concentration change): 2.58, from 2.8e-05 M to 0.00037 M
+Affected reactions with kinetic constraints:
+>[S] CTPS2_fw (ΔG'°=-25.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9062 to 0.7372 // pool usage from 0.000452 g⋅gDW⁻¹ (0.2057 %) to 0.000498 g⋅gDW⁻¹ (0.2270 %)
+>[P] NDPK2_fw (ΔG'°=-0.59 kJ⋅mol⁻¹) | κ⋅γ from 0.6590 to 0.6994 // pool usage from 0.000088 g⋅gDW⁻¹ (0.0400 %) to 0.000124 g⋅gDW⁻¹ (0.0566 %)
+
+
+==glyc3p_c==
+ln(Concentration change): 2.56, from 1e-06 M to 1.3e-05 M
+Affected reactions with kinetic constraints:
+>[P] G3PD2_bw (ΔG'°=-20.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9994 to 0.9994 // pool usage from 0.000022 g⋅gDW⁻¹ (0.0101 %) to 0.000022 g⋅gDW⁻¹ (0.0101 %)
+
+
+==histd_c==
+ln(Concentration change): 2.53, from 1e-06 M to 1.3e-05 M
+Affected reactions with kinetic constraints:
+>[S] HISTD_fw (ΔG'°=-23.37 kJ⋅mol⁻¹) | κ⋅γ from 0.9988 to 1.0000 // pool usage from 0.000260 g⋅gDW⁻¹ (0.1183 %) to 0.000258 g⋅gDW⁻¹ (0.1176 %)
+>[P] HISTP_fw (ΔG'°=-23.01 kJ⋅mol⁻¹) | κ⋅γ from 0.4997 to 0.4907 // pool usage from 0.000306 g⋅gDW⁻¹ (0.1394 %) to 0.000307 g⋅gDW⁻¹ (0.1399 %)
+
+
+==trp__L_c==
+ln(Concentration change): 2.43, from 1e-06 M to 1.1e-05 M
+Affected reactions with kinetic constraints:
+>[P] TRPS2_fw (ΔG'°=-50.41 kJ⋅mol⁻¹) | κ⋅γ from 0.8157 to 0.8111 // pool usage from 0.000107 g⋅gDW⁻¹ (0.0485 %) to 0.000106 g⋅gDW⁻¹ (0.0484 %)
+
+
+==citr__L_c==
+ln(Concentration change): 2.25, from 6.8e-05 M to 0.00064 M
+Affected reactions with kinetic constraints:
+>[S] ARGSS_fw (ΔG'°=10.46 kJ⋅mol⁻¹) | κ⋅γ from 0.9990 to 1.0000 // pool usage from 0.001598 g⋅gDW⁻¹ (0.7276 %) to 0.001582 g⋅gDW⁻¹ (0.7207 %)
+>[P] OCBT_fw (ΔG'°=-31.79 kJ⋅mol⁻¹) | κ⋅γ from 0.6032 to 0.4094 // pool usage from 0.000232 g⋅gDW⁻¹ (0.1058 %) to 0.000281 g⋅gDW⁻¹ (0.1279 %)
+
+
+==datp_c==
+ln(Concentration change): 2.10, from 1e-06 M to 8.1e-06 M
+Affected reactions with kinetic constraints:
+>[P] NDPK8_fw (ΔG'°=2.47 kJ⋅mol⁻¹) | κ⋅γ from 0.6865 to 0.7322 // pool usage from 0.000024 g⋅gDW⁻¹ (0.0109 %) to 0.000025 g⋅gDW⁻¹ (0.0115 %)
+
+
+==val__L_c==
+ln(Concentration change): 1.66, from 0.00013 M to 0.00069 M
+Affected reactions with kinetic constraints:
+>[P] VALTA_bw (ΔG'°=-1.34 kJ⋅mol⁻¹) | κ⋅γ from 0.9917 to 0.9914 // pool usage from 0.000342 g⋅gDW⁻¹ (0.1557 %) to 0.000341 g⋅gDW⁻¹ (0.1551 %)
+>[S] VPAMTr_bw (ΔG'°=1.60 kJ⋅mol⁻¹) | κ⋅γ from 0.7528 to 0.9418 // pool usage from 0.000120 g⋅gDW⁻¹ (0.0549 %) to 0.000109 g⋅gDW⁻¹ (0.0497 %)
+
+
+==dtmp_c==
+ln(Concentration change): 1.63, from 2e-05 M to 0.0001 M
+Affected reactions with kinetic constraints:
+>[P] TMDS_fw (ΔG'°=-45.29 kJ⋅mol⁻¹) | κ⋅γ from 0.9408 to 0.9414 // pool usage from 0.000033 g⋅gDW⁻¹ (0.0153 %) to 0.000033 g⋅gDW⁻¹ (0.0152 %)
+>[S] DTMPK_fw (ΔG'°=-2.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9784 to 0.9846 // pool usage from 0.000017 g⋅gDW⁻¹ (0.0077 %) to 0.000023 g⋅gDW⁻¹ (0.0103 %)
+
+
+==udp_c==
+ln(Concentration change): 1.48, from 4.3e-05 M to 0.00019 M
+Affected reactions with kinetic constraints:
+>[S] RNDR4_fw (ΔG'°=-44.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1852 to 0.5162 // pool usage from 0.000058 g⋅gDW⁻¹ (0.0262 %) to 0.000034 g⋅gDW⁻¹ (0.0156 %)
+>[P] UMPK_fw (ΔG'°=0.63 kJ⋅mol⁻¹) | κ⋅γ from 0.1430 to 0.0918 // pool usage from 0.000299 g⋅gDW⁻¹ (0.1361 %) to 0.000378 g⋅gDW⁻¹ (0.1722 %)
+>[S] NDPK2_fw (ΔG'°=-0.59 kJ⋅mol⁻¹) | κ⋅γ from 0.6590 to 0.6994 // pool usage from 0.000088 g⋅gDW⁻¹ (0.0400 %) to 0.000124 g⋅gDW⁻¹ (0.0566 %)
+
+
+==succ_c==
+ln(Concentration change): 1.44, from 8.7e-06 M to 3.7e-05 M
+Affected reactions with kinetic constraints:
+>[P] SDPDS_fw (ΔG'°=8.20 kJ⋅mol⁻¹) | κ⋅γ from 0.0451 to 0.0346 // pool usage from 0.000133 g⋅gDW⁻¹ (0.0608 %) to 0.000152 g⋅gDW⁻¹ (0.0694 %)
+>[P] SHSL1_fw (ΔG'°=-67.24 kJ⋅mol⁻¹) | κ⋅γ from 0.2962 to 0.2715 // pool usage from 0.000303 g⋅gDW⁻¹ (0.1379 %) to 0.000315 g⋅gDW⁻¹ (0.1433 %)
+>[S] SUCDi_fw (ΔG'°=-73.63 kJ⋅mol⁻¹) | κ⋅γ from 0.3665 to 0.7412 // pool usage from 0.000053 g⋅gDW⁻¹ (0.0242 %) to 0.000037 g⋅gDW⁻¹ (0.0169 %)
+
+
+==skm_c==
+ln(Concentration change): 1.42, from 0.00017 M to 4.1e-05 M
+Affected reactions with kinetic constraints:
+>[P] SHK3Dr_fw (ΔG'°=-3.95 kJ⋅mol⁻¹) | κ⋅γ from 0.9526 to 0.9757 // pool usage from 0.000158 g⋅gDW⁻¹ (0.0718 %) to 0.000153 g⋅gDW⁻¹ (0.0698 %)
+>[S] SHKK_fw (ΔG'°=-28.04 kJ⋅mol⁻¹) | κ⋅γ from 0.6342 to 0.3078 // pool usage from 0.000136 g⋅gDW⁻¹ (0.0620 %) to 0.000195 g⋅gDW⁻¹ (0.0886 %)
+
+
+==pap_c==
+ln(Concentration change): 1.31, from 0.00023 M to 6.2e-05 M
+Affected reactions with kinetic constraints:
+>[S] BPNT_fw (ΔG'°=-7.08 kJ⋅mol⁻¹) | κ⋅γ from 0.1239 to 0.0220 // pool usage from 0.000042 g⋅gDW⁻¹ (0.0193 %) to 0.000100 g⋅gDW⁻¹ (0.0456 %)
+>[P] PAPSR_fw (ΔG'°=-51.48 kJ⋅mol⁻¹) | κ⋅γ from 0.6784 to 0.6508 // pool usage from 0.000156 g⋅gDW⁻¹ (0.0710 %) to 0.000158 g⋅gDW⁻¹ (0.0721 %)
+
+
+==orn_c==
+ln(Concentration change): 1.19, from 5.3e-05 M to 1.6e-05 M
+Affected reactions with kinetic constraints:
+>[P] ACODA_fw (ΔG'°=-7.00 kJ⋅mol⁻¹) | κ⋅γ from 0.2381 to 0.2085 // pool usage from 0.000442 g⋅gDW⁻¹ (0.2012 %) to 0.000470 g⋅gDW⁻¹ (0.2140 %)
+>[S] OCBT_fw (ΔG'°=-31.79 kJ⋅mol⁻¹) | κ⋅γ from 0.6032 to 0.4094 // pool usage from 0.000232 g⋅gDW⁻¹ (0.1058 %) to 0.000281 g⋅gDW⁻¹ (0.1279 %)
+
+
+==dcdp_c==
+ln(Concentration change): 1.10, from 3.4e-05 M to 0.0001 M
+Affected reactions with kinetic constraints:
+>[P] RNDR3_fw (ΔG'°=-40.59 kJ⋅mol⁻¹) | κ⋅γ from 0.3652 to 0.3254 // pool usage from 0.000042 g⋅gDW⁻¹ (0.0193 %) to 0.000045 g⋅gDW⁻¹ (0.0203 %)
+>[S] NDPK7_fw (ΔG'°=3.83 kJ⋅mol⁻¹) | κ⋅γ from 0.6650 to 0.8234 // pool usage from 0.000020 g⋅gDW⁻¹ (0.0092 %) to 0.000025 g⋅gDW⁻¹ (0.0115 %)
+
+
+==anth_c==
+ln(Concentration change): 1.05, from 1e-05 M to 3.6e-06 M
+Affected reactions with kinetic constraints:
+>[P] ANS_fw (ΔG'°=-112.69 kJ⋅mol⁻¹) | κ⋅γ from 0.7670 to 0.8992 // pool usage from 0.000192 g⋅gDW⁻¹ (0.0874 %) to 0.000176 g⋅gDW⁻¹ (0.0803 %)
+>[S] ANPRT_fw (ΔG'°=-65.80 kJ⋅mol⁻¹) | κ⋅γ from 0.7836 to 0.5787 // pool usage from 0.000217 g⋅gDW⁻¹ (0.0990 %) to 0.000252 g⋅gDW⁻¹ (0.1147 %)
+
+
+==3dhsk_c==
+ln(Concentration change): 0.74, from 3.1e-05 M to 1.5e-05 M
+Affected reactions with kinetic constraints:
+>[S] SHK3Dr_fw (ΔG'°=-3.95 kJ⋅mol⁻¹) | κ⋅γ from 0.9526 to 0.9757 // pool usage from 0.000158 g⋅gDW⁻¹ (0.0718 %) to 0.000153 g⋅gDW⁻¹ (0.0698 %)
+>[P] DHQTi_fw (ΔG'°=-5.29 kJ⋅mol⁻¹) | κ⋅γ from 0.5436 to 0.5419 // pool usage from 0.000068 g⋅gDW⁻¹ (0.0310 %) to 0.000067 g⋅gDW⁻¹ (0.0305 %)
+
+
+==1pyr5c_c==
+ln(Concentration change): 0.68, from 3.7e-06 M to 7.2e-06 M
+Affected reactions with kinetic constraints:
+>[S] P5CR_fw (ΔG'°=-9.47 kJ⋅mol⁻¹) | κ⋅γ from 0.9271 to 0.9050 // pool usage from 0.000052 g⋅gDW⁻¹ (0.0235 %) to 0.000053 g⋅gDW⁻¹ (0.0242 %)
+>[P] G5SADs_fw (ΔG'°=-44.52 kJ⋅mol⁻¹) | κ⋅γ from 0.1533 to 0.1567 // pool usage from 0.000203 g⋅gDW⁻¹ (0.0923 %) to 0.000199 g⋅gDW⁻¹ (0.0908 %)
+
+
+==gtp_c==
+ln(Concentration change): 0.67, from 0.00035 M to 0.00069 M
+Affected reactions with kinetic constraints:
+>[S] SADT2_fw (ΔG'°=16.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7208 to 0.7770 // pool usage from 0.000510 g⋅gDW⁻¹ (0.2321 %) to 0.000488 g⋅gDW⁻¹ (0.2224 %)
+>[S] ADSS_fw (ΔG'°=-7.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9992 to 0.9995 // pool usage from 0.001566 g⋅gDW⁻¹ (0.7131 %) to 0.001547 g⋅gDW⁻¹ (0.7045 %)
+>[P] NDPK1_fw (ΔG'°=-2.16 kJ⋅mol⁻¹) | κ⋅γ from 0.5427 to 0.5628 // pool usage from 0.000173 g⋅gDW⁻¹ (0.0786 %) to 0.000172 g⋅gDW⁻¹ (0.0781 %)
+
+
+==gdp_c==
+ln(Concentration change): 0.61, from 9.8e-05 M to 0.00018 M
+Affected reactions with kinetic constraints:
+>[P] SADT2_fw (ΔG'°=16.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7208 to 0.7770 // pool usage from 0.000510 g⋅gDW⁻¹ (0.2321 %) to 0.000488 g⋅gDW⁻¹ (0.2224 %)
+>[P] ADSS_fw (ΔG'°=-7.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9992 to 0.9995 // pool usage from 0.001566 g⋅gDW⁻¹ (0.7131 %) to 0.001547 g⋅gDW⁻¹ (0.7045 %)
+>[S] NDPK1_fw (ΔG'°=-2.16 kJ⋅mol⁻¹) | κ⋅γ from 0.5427 to 0.5628 // pool usage from 0.000173 g⋅gDW⁻¹ (0.0786 %) to 0.000172 g⋅gDW⁻¹ (0.0781 %)
+>[P] GK1_fw (ΔG'°=-0.09 kJ⋅mol⁻¹) | κ⋅γ from 0.6565 to 0.6157 // pool usage from 0.000059 g⋅gDW⁻¹ (0.0268 %) to 0.000085 g⋅gDW⁻¹ (0.0386 %)
+>[S] RNDR2_fw (ΔG'°=-39.90 kJ⋅mol⁻¹) | κ⋅γ from 0.4859 to 0.5927 // pool usage from 0.000037 g⋅gDW⁻¹ (0.0167 %) to 0.000033 g⋅gDW⁻¹ (0.0151 %)
+
+
+==actp_c==
+ln(Concentration change): 0.61, from 4.4e-05 M to 8.1e-05 M
+Affected reactions with kinetic constraints:
+>[P] PTAr_fw (ΔG'°=9.39 kJ⋅mol⁻¹) | κ⋅γ from 0.9710 to 0.9617 // pool usage from 0.002753 g⋅gDW⁻¹ (1.2536 %) to 0.002883 g⋅gDW⁻¹ (1.3129 %)
+>[S] ACKr_bw (ΔG'°=-14.69 kJ⋅mol⁻¹) | κ⋅γ from 0.9936 to 0.9960 // pool usage from 0.000552 g⋅gDW⁻¹ (0.2516 %) to 0.000548 g⋅gDW⁻¹ (0.2497 %)
+
+
+==hcys__L_c==
+ln(Concentration change): 0.57, from 9.7e-05 M to 0.00017 M
+Affected reactions with kinetic constraints:
+>[P] CYSTL_fw (ΔG'°=0.71 kJ⋅mol⁻¹) | κ⋅γ from 0.3634 to 0.2795 // pool usage from 0.000321 g⋅gDW⁻¹ (0.1464 %) to 0.000365 g⋅gDW⁻¹ (0.1661 %)
+>[S] METS_fw (ΔG'°=0.17 kJ⋅mol⁻¹) | κ⋅γ from 0.6101 to 0.6975 // pool usage from 0.000617 g⋅gDW⁻¹ (0.2810 %) to 0.000587 g⋅gDW⁻¹ (0.2675 %)
+
+
+==cbp_c==
+ln(Concentration change): 0.53, from 0.00046 M to 0.00078 M
+Affected reactions with kinetic constraints:
+>[S] ASPCT_fw (ΔG'°=-22.93 kJ⋅mol⁻¹) | κ⋅γ from 0.8410 to 0.8982 // pool usage from 0.000169 g⋅gDW⁻¹ (0.0770 %) to 0.000163 g⋅gDW⁻¹ (0.0741 %)
+>[S] OCBT_fw (ΔG'°=-31.79 kJ⋅mol⁻¹) | κ⋅γ from 0.6032 to 0.4094 // pool usage from 0.000232 g⋅gDW⁻¹ (0.1058 %) to 0.000281 g⋅gDW⁻¹ (0.1279 %)
+>[P] CBPS_fw (ΔG'°=-22.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9941 to 0.9907 // pool usage from 0.003568 g⋅gDW⁻¹ (1.6252 %) to 0.003557 g⋅gDW⁻¹ (1.6198 %)
+
+
+==dhor__S_c==
+ln(Concentration change): 0.47, from 4.8e-06 M to 7.6e-06 M
+Affected reactions with kinetic constraints:
+>[S] DHORD2_fw (ΔG'°=-125.47 kJ⋅mol⁻¹) | κ⋅γ from 0.2323 to 0.3454 // pool usage from 0.000124 g⋅gDW⁻¹ (0.0564 %) to 0.000101 g⋅gDW⁻¹ (0.0460 %)
+>[P] DHORTS_bw (ΔG'°=10.16 kJ⋅mol⁻¹) | κ⋅γ from 0.2017 to 0.2009 // pool usage from 0.000430 g⋅gDW⁻¹ (0.1960 %) to 0.000467 g⋅gDW⁻¹ (0.2129 %)
+
+
+==skm5p_c==
+ln(Concentration change): 0.38, from 0.00035 M to 0.00024 M
+Affected reactions with kinetic constraints:
+>[S] PSCVT_fw (ΔG'°=-15.88 kJ⋅mol⁻¹) | κ⋅γ from 0.8549 to 0.8154 // pool usage from 0.000442 g⋅gDW⁻¹ (0.2012 %) to 0.000460 g⋅gDW⁻¹ (0.2095 %)
+>[P] SHKK_fw (ΔG'°=-28.04 kJ⋅mol⁻¹) | κ⋅γ from 0.6342 to 0.3078 // pool usage from 0.000136 g⋅gDW⁻¹ (0.0620 %) to 0.000195 g⋅gDW⁻¹ (0.0886 %)
+
+
+==ump_c==
+ln(Concentration change): 0.38, from 0.0015 M to 0.0022 M
+Affected reactions with kinetic constraints:
+>[P] OMPDC_fw (ΔG'°=-20.22 kJ⋅mol⁻¹) | κ⋅γ from 0.7394 to 0.7038 // pool usage from 0.000032 g⋅gDW⁻¹ (0.0148 %) to 0.000033 g⋅gDW⁻¹ (0.0151 %)
+>[S] UMPK_fw (ΔG'°=0.63 kJ⋅mol⁻¹) | κ⋅γ from 0.1430 to 0.0918 // pool usage from 0.000299 g⋅gDW⁻¹ (0.1361 %) to 0.000378 g⋅gDW⁻¹ (0.1722 %)
+
+
+==dadp_c==
+ln(Concentration change): 0.37, from 3.8e-05 M to 5.5e-05 M
+Affected reactions with kinetic constraints:
+>[S] NDPK8_fw (ΔG'°=2.47 kJ⋅mol⁻¹) | κ⋅γ from 0.6865 to 0.7322 // pool usage from 0.000024 g⋅gDW⁻¹ (0.0109 %) to 0.000025 g⋅gDW⁻¹ (0.0115 %)
+>[P] RNDR1_fw (ΔG'°=-44.06 kJ⋅mol⁻¹) | κ⋅γ from 0.9116 to 0.8729 // pool usage from 0.000026 g⋅gDW⁻¹ (0.0118 %) to 0.000026 g⋅gDW⁻¹ (0.0120 %)
+
+
+==argsuc_c==
+ln(Concentration change): 0.29, from 0.00063 M to 0.00084 M
+Affected reactions with kinetic constraints:
+>[P] ARGSS_fw (ΔG'°=10.46 kJ⋅mol⁻¹) | κ⋅γ from 0.9990 to 1.0000 // pool usage from 0.001598 g⋅gDW⁻¹ (0.7276 %) to 0.001582 g⋅gDW⁻¹ (0.7207 %)
+>[S] ARGSL_fw (ΔG'°=-8.67 kJ⋅mol⁻¹) | κ⋅γ from 0.6361 to 0.5807 // pool usage from 0.000412 g⋅gDW⁻¹ (0.1875 %) to 0.000429 g⋅gDW⁻¹ (0.1952 %)
+
+
+==so4_c==
+ln(Concentration change): 0.28, from 0.00063 M to 0.00048 M
+Affected reactions with kinetic constraints:
+>[S] SADT2_fw (ΔG'°=16.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7208 to 0.7770 // pool usage from 0.000510 g⋅gDW⁻¹ (0.2321 %) to 0.000488 g⋅gDW⁻¹ (0.2224 %)
+>[P] SO4t2pp_fw (ΔG'°=2.92 kJ⋅mol⁻¹) | κ⋅γ from 0.9903 to 0.9919 // pool usage from 0.000022 g⋅gDW⁻¹ (0.0100 %) to 0.000022 g⋅gDW⁻¹ (0.0099 %)
+
+
+==acorn_c==
+ln(Concentration change): 0.26, from 0.0016 M to 0.0012 M
+Affected reactions with kinetic constraints:
+>[S] ACODA_fw (ΔG'°=-7.00 kJ⋅mol⁻¹) | κ⋅γ from 0.2381 to 0.2085 // pool usage from 0.000442 g⋅gDW⁻¹ (0.2012 %) to 0.000470 g⋅gDW⁻¹ (0.2140 %)
+>[P] ACOTA_bw (ΔG'°=3.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9649 to 0.9636 // pool usage from 0.000393 g⋅gDW⁻¹ (0.1791 %) to 0.000387 g⋅gDW⁻¹ (0.1764 %)
+
+
+==amp_c==
+ln(Concentration change): 0.25, from 0.00074 M to 0.00058 M
+Affected reactions with kinetic constraints:
+>[P] ARGSS_fw (ΔG'°=10.46 kJ⋅mol⁻¹) | κ⋅γ from 0.9990 to 1.0000 // pool usage from 0.001598 g⋅gDW⁻¹ (0.7276 %) to 0.001582 g⋅gDW⁻¹ (0.7207 %)
+>[S] ADK1_fw (ΔG'°=0.60 kJ⋅mol⁻¹) | κ⋅γ from 0.9846 to 0.9829 // pool usage from 0.000495 g⋅gDW⁻¹ (0.2255 %) to 0.000519 g⋅gDW⁻¹ (0.2365 %)
+>[P] ASNS2_fw (ΔG'°=-31.94 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000318 g⋅gDW⁻¹ (0.1449 %) to 0.000317 g⋅gDW⁻¹ (0.1442 %)
+>[P] GMPS2_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.7307 to 0.7133 // pool usage from 0.001313 g⋅gDW⁻¹ (0.5981 %) to 0.001322 g⋅gDW⁻¹ (0.6023 %)
+>[P] PRPPS_fw (ΔG'°=-3.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9822 to 0.9808 // pool usage from 0.000361 g⋅gDW⁻¹ (0.1642 %) to 0.000359 g⋅gDW⁻¹ (0.1636 %)
+>[P] BPNT_fw (ΔG'°=-7.08 kJ⋅mol⁻¹) | κ⋅γ from 0.1239 to 0.0220 // pool usage from 0.000042 g⋅gDW⁻¹ (0.0193 %) to 0.000100 g⋅gDW⁻¹ (0.0456 %)
+>[P] ADSL1r_fw (ΔG'°=17.02 kJ⋅mol⁻¹) | κ⋅γ from 0.9811 to 0.9809 // pool usage from 0.000889 g⋅gDW⁻¹ (0.4049 %) to 0.000869 g⋅gDW⁻¹ (0.3956 %)
+
+
+==trdrd_c==
+ln(Concentration change): 0.24, from 0.00061 M to 0.00048 M
+Affected reactions with kinetic constraints:
+>[S] RNDR1_fw (ΔG'°=-44.06 kJ⋅mol⁻¹) | κ⋅γ from 0.9116 to 0.8729 // pool usage from 0.000026 g⋅gDW⁻¹ (0.0118 %) to 0.000026 g⋅gDW⁻¹ (0.0120 %)
+>[S] RNDR3_fw (ΔG'°=-40.59 kJ⋅mol⁻¹) | κ⋅γ from 0.3652 to 0.3254 // pool usage from 0.000042 g⋅gDW⁻¹ (0.0193 %) to 0.000045 g⋅gDW⁻¹ (0.0203 %)
+>[S] RNDR4_fw (ΔG'°=-44.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1852 to 0.5162 // pool usage from 0.000058 g⋅gDW⁻¹ (0.0262 %) to 0.000034 g⋅gDW⁻¹ (0.0156 %)
+>[P] TRDR_fw (ΔG'°=-3.86 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000340 g⋅gDW⁻¹ (0.1549 %) to 0.000334 g⋅gDW⁻¹ (0.1522 %)
+>[S] PAPSR_fw (ΔG'°=-51.48 kJ⋅mol⁻¹) | κ⋅γ from 0.6784 to 0.6508 // pool usage from 0.000156 g⋅gDW⁻¹ (0.0710 %) to 0.000158 g⋅gDW⁻¹ (0.0721 %)
+>[S] RNDR2_fw (ΔG'°=-39.90 kJ⋅mol⁻¹) | κ⋅γ from 0.4859 to 0.5927 // pool usage from 0.000037 g⋅gDW⁻¹ (0.0167 %) to 0.000033 g⋅gDW⁻¹ (0.0151 %)
+
+
+==gmp_c==
+ln(Concentration change): 0.21, from 6.6e-05 M to 8.1e-05 M
+Affected reactions with kinetic constraints:
+>[P] GMPS2_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.7307 to 0.7133 // pool usage from 0.001313 g⋅gDW⁻¹ (0.5981 %) to 0.001322 g⋅gDW⁻¹ (0.6023 %)
+>[S] GK1_fw (ΔG'°=-0.09 kJ⋅mol⁻¹) | κ⋅γ from 0.6565 to 0.6157 // pool usage from 0.000059 g⋅gDW⁻¹ (0.0268 %) to 0.000085 g⋅gDW⁻¹ (0.0386 %)
+
+
+==5mthf_c==
+ln(Concentration change): 0.19, from 0.00094 M to 0.00078 M
+Affected reactions with kinetic constraints:
+>[S] METS_fw (ΔG'°=0.17 kJ⋅mol⁻¹) | κ⋅γ from 0.6101 to 0.6975 // pool usage from 0.000617 g⋅gDW⁻¹ (0.2810 %) to 0.000587 g⋅gDW⁻¹ (0.2675 %)
+>[P] MTHFR2_fw (ΔG'°=-37.57 kJ⋅mol⁻¹) | κ⋅γ from 0.8518 to 0.8780 // pool usage from 0.000280 g⋅gDW⁻¹ (0.1275 %) to 0.000274 g⋅gDW⁻¹ (0.1250 %)
+
+
+==prpp_c==
+ln(Concentration change): 0.17, from 0.00042 M to 0.00049 M
+Affected reactions with kinetic constraints:
+>[S] ANPRT_fw (ΔG'°=-65.80 kJ⋅mol⁻¹) | κ⋅γ from 0.7836 to 0.5787 // pool usage from 0.000217 g⋅gDW⁻¹ (0.0990 %) to 0.000252 g⋅gDW⁻¹ (0.1147 %)
+>[S] ATPPRT_fw (ΔG'°=-38.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9640 to 0.9659 // pool usage from 0.000162 g⋅gDW⁻¹ (0.0738 %) to 0.000161 g⋅gDW⁻¹ (0.0734 %)
+>[P] PRPPS_fw (ΔG'°=-3.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9822 to 0.9808 // pool usage from 0.000361 g⋅gDW⁻¹ (0.1642 %) to 0.000359 g⋅gDW⁻¹ (0.1636 %)
+>[S] GLUPRT_fw (ΔG'°=-70.09 kJ⋅mol⁻¹) | κ⋅γ from 0.8544 to 0.8678 // pool usage from 0.000277 g⋅gDW⁻¹ (0.1260 %) to 0.000273 g⋅gDW⁻¹ (0.1244 %)
+>[S] ORPT_bw (ΔG'°=-1.21 kJ⋅mol⁻¹) | κ⋅γ from 0.4980 to 0.5388 // pool usage from 0.000026 g⋅gDW⁻¹ (0.0118 %) to 0.000025 g⋅gDW⁻¹ (0.0113 %)
+
+
+==ac_c==
+ln(Concentration change): 0.17, from 0.00043 M to 0.00051 M
+Affected reactions with kinetic constraints:
+>[P] ACODA_fw (ΔG'°=-7.00 kJ⋅mol⁻¹) | κ⋅γ from 0.2381 to 0.2085 // pool usage from 0.000442 g⋅gDW⁻¹ (0.2012 %) to 0.000470 g⋅gDW⁻¹ (0.2140 %)
+>[P] CYSS_fw (ΔG'°=-50.85 kJ⋅mol⁻¹) | κ⋅γ from 0.3963 to 0.3780 // pool usage from 0.000214 g⋅gDW⁻¹ (0.0976 %) to 0.000218 g⋅gDW⁻¹ (0.0994 %)
+>[P] ACKr_bw (ΔG'°=-14.69 kJ⋅mol⁻¹) | κ⋅γ from 0.9936 to 0.9960 // pool usage from 0.000552 g⋅gDW⁻¹ (0.2516 %) to 0.000548 g⋅gDW⁻¹ (0.2497 %)
+>[S] ACt2rpp_bw (ΔG'°=5.28 kJ⋅mol⁻¹) | κ⋅γ from 0.5309 to 0.5778 // pool usage from 0.000742 g⋅gDW⁻¹ (0.3380 %) to 0.000728 g⋅gDW⁻¹ (0.3316 %)
+
+
+==orot5p_c==
+ln(Concentration change): 0.16, from 3.7e-05 M to 4.4e-05 M
+Affected reactions with kinetic constraints:
+>[S] OMPDC_fw (ΔG'°=-20.22 kJ⋅mol⁻¹) | κ⋅γ from 0.7394 to 0.7038 // pool usage from 0.000032 g⋅gDW⁻¹ (0.0148 %) to 0.000033 g⋅gDW⁻¹ (0.0151 %)
+>[P] ORPT_bw (ΔG'°=-1.21 kJ⋅mol⁻¹) | κ⋅γ from 0.4980 to 0.5388 // pool usage from 0.000026 g⋅gDW⁻¹ (0.0118 %) to 0.000025 g⋅gDW⁻¹ (0.0113 %)
+
+
+==3psme_c==
+ln(Concentration change): 0.16, from 0.00045 M to 0.00038 M
+Affected reactions with kinetic constraints:
+>[P] PSCVT_fw (ΔG'°=-15.88 kJ⋅mol⁻¹) | κ⋅γ from 0.8549 to 0.8154 // pool usage from 0.000442 g⋅gDW⁻¹ (0.2012 %) to 0.000460 g⋅gDW⁻¹ (0.2095 %)
+>[S] CHORS_fw (ΔG'°=-47.05 kJ⋅mol⁻¹) | κ⋅γ from 0.2045 to 0.1853 // pool usage from 0.000190 g⋅gDW⁻¹ (0.0867 %) to 0.000199 g⋅gDW⁻¹ (0.0906 %)
+
+
+==adp_c==
+ln(Concentration change): 0.15, from 0.0009 M to 0.00078 M
+Affected reactions with kinetic constraints:
+>[P] NDPK5_fw (ΔG'°=1.40 kJ⋅mol⁻¹) | κ⋅γ from 0.6507 to 0.6373 // pool usage from 0.000020 g⋅gDW⁻¹ (0.0090 %) to 0.000020 g⋅gDW⁻¹ (0.0091 %)
+>[P] NDPK6_fw (ΔG'°=-1.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9314 to 0.9317 // pool usage from 0.000867 g⋅gDW⁻¹ (0.3950 %) to 0.000861 g⋅gDW⁻¹ (0.3920 %)
+>[P] NDPK8_fw (ΔG'°=2.47 kJ⋅mol⁻¹) | κ⋅γ from 0.6865 to 0.7322 // pool usage from 0.000024 g⋅gDW⁻¹ (0.0109 %) to 0.000025 g⋅gDW⁻¹ (0.0115 %)
+>[S] PYK_fw (ΔG'°=-22.79 kJ⋅mol⁻¹) | κ⋅γ from 0.0706 to 0.0706 // pool usage from 0.001543 g⋅gDW⁻¹ (0.7029 %) to 0.001667 g⋅gDW⁻¹ (0.7591 %)
+>[S] RNDR1_fw (ΔG'°=-44.06 kJ⋅mol⁻¹) | κ⋅γ from 0.9116 to 0.8729 // pool usage from 0.000026 g⋅gDW⁻¹ (0.0118 %) to 0.000026 g⋅gDW⁻¹ (0.0120 %)
+>[P] ACCOAC_fw (ΔG'°=-11.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9390 to 0.9398 // pool usage from 0.004175 g⋅gDW⁻¹ (1.9014 %) to 0.004159 g⋅gDW⁻¹ (1.8944 %)
+>[P] UMPK_fw (ΔG'°=0.63 kJ⋅mol⁻¹) | κ⋅γ from 0.1430 to 0.0918 // pool usage from 0.000299 g⋅gDW⁻¹ (0.1361 %) to 0.000378 g⋅gDW⁻¹ (0.1722 %)
+>[P] CTPS2_fw (ΔG'°=-25.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9062 to 0.7372 // pool usage from 0.000452 g⋅gDW⁻¹ (0.2057 %) to 0.000498 g⋅gDW⁻¹ (0.2270 %)
+>[P] NDPK7_fw (ΔG'°=3.83 kJ⋅mol⁻¹) | κ⋅γ from 0.6650 to 0.8234 // pool usage from 0.000020 g⋅gDW⁻¹ (0.0092 %) to 0.000025 g⋅gDW⁻¹ (0.0115 %)
+>[P] ADK1_fw (ΔG'°=0.60 kJ⋅mol⁻¹) | κ⋅γ from 0.9846 to 0.9829 // pool usage from 0.000495 g⋅gDW⁻¹ (0.2255 %) to 0.000519 g⋅gDW⁻¹ (0.2365 %)
+>[P] NDPK2_fw (ΔG'°=-0.59 kJ⋅mol⁻¹) | κ⋅γ from 0.6590 to 0.6994 // pool usage from 0.000088 g⋅gDW⁻¹ (0.0400 %) to 0.000124 g⋅gDW⁻¹ (0.0566 %)
+>[P] NDPK4_fw (ΔG'°=0.83 kJ⋅mol⁻¹) | κ⋅γ from 0.5373 to 0.7938 // pool usage from 0.000017 g⋅gDW⁻¹ (0.0077 %) to 0.000026 g⋅gDW⁻¹ (0.0118 %)
+>[P] HSK_fw (ΔG'°=-41.85 kJ⋅mol⁻¹) | κ⋅γ from 0.0199 to 0.0242 // pool usage from 0.000161 g⋅gDW⁻¹ (0.0735 %) to 0.000145 g⋅gDW⁻¹ (0.0663 %)
+>[P] DTMPK_fw (ΔG'°=-2.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9784 to 0.9846 // pool usage from 0.000017 g⋅gDW⁻¹ (0.0077 %) to 0.000023 g⋅gDW⁻¹ (0.0103 %)
+>[P] NDPK1_fw (ΔG'°=-2.16 kJ⋅mol⁻¹) | κ⋅γ from 0.5427 to 0.5628 // pool usage from 0.000173 g⋅gDW⁻¹ (0.0786 %) to 0.000172 g⋅gDW⁻¹ (0.0781 %)
+>[P] ASPK_fw (ΔG'°=20.92 kJ⋅mol⁻¹) | κ⋅γ from 0.9969 to 0.9965 // pool usage from 0.003320 g⋅gDW⁻¹ (1.5121 %) to 0.003303 g⋅gDW⁻¹ (1.5043 %)
+>[P] PRAGSr_fw (ΔG'°=-27.89 kJ⋅mol⁻¹) | κ⋅γ from 0.8381 to 0.8321 // pool usage from 0.000309 g⋅gDW⁻¹ (0.1410 %) to 0.000309 g⋅gDW⁻¹ (0.1408 %)
+>[P] PRFGS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.9968 to 0.9968 // pool usage from 0.001234 g⋅gDW⁻¹ (0.5620 %) to 0.001231 g⋅gDW⁻¹ (0.5606 %)
+>[P] AIRC2_fw (ΔG'°=-59.12 kJ⋅mol⁻¹) | κ⋅γ from 0.7398 to 0.7358 // pool usage from 0.000080 g⋅gDW⁻¹ (0.0366 %) to 0.000080 g⋅gDW⁻¹ (0.0365 %)
+>[P] CBPS_fw (ΔG'°=-22.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9941 to 0.9907 // pool usage from 0.003568 g⋅gDW⁻¹ (1.6252 %) to 0.003557 g⋅gDW⁻¹ (1.6198 %)
+>[P] GLU5K_fw (ΔG'°=29.49 kJ⋅mol⁻¹) | κ⋅γ from 0.9965 to 0.9960 // pool usage from 0.000983 g⋅gDW⁻¹ (0.4476 %) to 0.000960 g⋅gDW⁻¹ (0.4374 %)
+>[P] ADSK_fw (ΔG'°=-19.14 kJ⋅mol⁻¹) | κ⋅γ from 0.4572 to 0.4422 // pool usage from 0.000018 g⋅gDW⁻¹ (0.0082 %) to 0.000018 g⋅gDW⁻¹ (0.0083 %)
+>[S] ATPS4rpp_fw (ΔG'°=-21.64 kJ⋅mol⁻¹) | κ⋅γ from 0.0281 to 0.0264 // pool usage from 0.009275 g⋅gDW⁻¹ (4.2241 %) to 0.009447 g⋅gDW⁻¹ (4.3028 %)
+>[P] GK1_fw (ΔG'°=-0.09 kJ⋅mol⁻¹) | κ⋅γ from 0.6565 to 0.6157 // pool usage from 0.000059 g⋅gDW⁻¹ (0.0268 %) to 0.000085 g⋅gDW⁻¹ (0.0386 %)
+>[P] PRASCSi_fw (ΔG'°=-83.42 kJ⋅mol⁻¹) | κ⋅γ from 0.9055 to 0.9051 // pool usage from 0.000434 g⋅gDW⁻¹ (0.1978 %) to 0.000432 g⋅gDW⁻¹ (0.1969 %)
+>[P] ACGK_fw (ΔG'°=25.72 kJ⋅mol⁻¹) | κ⋅γ from 0.9954 to 0.9946 // pool usage from 0.000735 g⋅gDW⁻¹ (0.3347 %) to 0.000723 g⋅gDW⁻¹ (0.3292 %)
+>[P] SHKK_fw (ΔG'°=-28.04 kJ⋅mol⁻¹) | κ⋅γ from 0.6342 to 0.3078 // pool usage from 0.000136 g⋅gDW⁻¹ (0.0620 %) to 0.000195 g⋅gDW⁻¹ (0.0886 %)
+>[P] GLNS_fw (ΔG'°=-17.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9249 to 0.9178 // pool usage from 0.001697 g⋅gDW⁻¹ (0.7727 %) to 0.001695 g⋅gDW⁻¹ (0.7719 %)
+>[P] PRAIS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.6068 to 0.5934 // pool usage from 0.000283 g⋅gDW⁻¹ (0.1290 %) to 0.000285 g⋅gDW⁻¹ (0.1299 %)
+>[P] PFK_fw (ΔG'°=-21.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2786 to 0.2823 // pool usage from 0.001462 g⋅gDW⁻¹ (0.6660 %) to 0.001478 g⋅gDW⁻¹ (0.6732 %)
+>[S] ACKr_bw (ΔG'°=-14.69 kJ⋅mol⁻¹) | κ⋅γ from 0.9936 to 0.9960 // pool usage from 0.000552 g⋅gDW⁻¹ (0.2516 %) to 0.000548 g⋅gDW⁻¹ (0.2497 %)
+>[S] PGK_bw (ΔG'°=-19.54 kJ⋅mol⁻¹) | κ⋅γ from 0.0469 to 0.0472 // pool usage from 0.007014 g⋅gDW⁻¹ (3.1947 %) to 0.007045 g⋅gDW⁻¹ (3.2086 %)
+
+
+==nh4_c==
+ln(Concentration change): 0.14, from 0.00067 M to 0.00058 M
+Affected reactions with kinetic constraints:
+>[P] GLYCL_fw (ΔG'°=19.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0019 to 0.0018 // pool usage from 0.001701 g⋅gDW⁻¹ (0.7746 %) to 0.001710 g⋅gDW⁻¹ (0.7786 %)
+>[S] ASNS2_fw (ΔG'°=-31.94 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000318 g⋅gDW⁻¹ (0.1449 %) to 0.000317 g⋅gDW⁻¹ (0.1442 %)
+>[P] CYSTL_fw (ΔG'°=0.71 kJ⋅mol⁻¹) | κ⋅γ from 0.3634 to 0.2795 // pool usage from 0.000321 g⋅gDW⁻¹ (0.1464 %) to 0.000365 g⋅gDW⁻¹ (0.1661 %)
+>[P] NH4tpp_fw (ΔG'°=0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.9899 to 0.9909 // pool usage from 0.003894 g⋅gDW⁻¹ (1.7733 %) to 0.003872 g⋅gDW⁻¹ (1.7636 %)
+>[P] THRD_L_fw (ΔG'°=-23.70 kJ⋅mol⁻¹) | κ⋅γ from 0.0160 to 0.0156 // pool usage from 0.000874 g⋅gDW⁻¹ (0.3982 %) to 0.000879 g⋅gDW⁻¹ (0.4004 %)
+>[S] GLNS_fw (ΔG'°=-17.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9249 to 0.9178 // pool usage from 0.001697 g⋅gDW⁻¹ (0.7727 %) to 0.001695 g⋅gDW⁻¹ (0.7719 %)
+>[S] GLUDy_bw (ΔG'°=-31.30 kJ⋅mol⁻¹) | κ⋅γ from 0.1971 to 0.1958 // pool usage from 0.002932 g⋅gDW⁻¹ (1.3353 %) to 0.002930 g⋅gDW⁻¹ (1.3347 %)
+
+
+==cdp_c==
+ln(Concentration change): 0.14, from 0.00014 M to 0.00016 M
+Affected reactions with kinetic constraints:
+>[S] RNDR3_fw (ΔG'°=-40.59 kJ⋅mol⁻¹) | κ⋅γ from 0.3652 to 0.3254 // pool usage from 0.000042 g⋅gDW⁻¹ (0.0193 %) to 0.000045 g⋅gDW⁻¹ (0.0203 %)
+
+
+==26dap__M_c==
+ln(Concentration change): 0.13, from 0.00072 M to 0.00082 M
+Affected reactions with kinetic constraints:
+>[P] DAPE_fw (ΔG'°=-1.65 kJ⋅mol⁻¹) | κ⋅γ from 0.4374 to 0.4199 // pool usage from 0.000101 g⋅gDW⁻¹ (0.0462 %) to 0.000111 g⋅gDW⁻¹ (0.0507 %)
+>[S] DAPDC_fw (ΔG'°=-11.82 kJ⋅mol⁻¹) | κ⋅γ from 0.0496 to 0.0362 // pool usage from 0.000241 g⋅gDW⁻¹ (0.1100 %) to 0.000281 g⋅gDW⁻¹ (0.1280 %)
+
+
+==dcamp_c==
+ln(Concentration change): 0.13, from 0.0007 M to 0.00061 M
+Affected reactions with kinetic constraints:
+>[P] ADSS_fw (ΔG'°=-7.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9992 to 0.9995 // pool usage from 0.001566 g⋅gDW⁻¹ (0.7131 %) to 0.001547 g⋅gDW⁻¹ (0.7045 %)
+>[S] ADSL1r_fw (ΔG'°=17.02 kJ⋅mol⁻¹) | κ⋅γ from 0.9811 to 0.9809 // pool usage from 0.000889 g⋅gDW⁻¹ (0.4049 %) to 0.000869 g⋅gDW⁻¹ (0.3956 %)
+
+
+==paps_c==
+ln(Concentration change): 0.12, from 0.0002 M to 0.00022 M
+Affected reactions with kinetic constraints:
+>[S] PAPSR_fw (ΔG'°=-51.48 kJ⋅mol⁻¹) | κ⋅γ from 0.6784 to 0.6508 // pool usage from 0.000156 g⋅gDW⁻¹ (0.0710 %) to 0.000158 g⋅gDW⁻¹ (0.0721 %)
+>[P] ADSK_fw (ΔG'°=-19.14 kJ⋅mol⁻¹) | κ⋅γ from 0.4572 to 0.4422 // pool usage from 0.000018 g⋅gDW⁻¹ (0.0082 %) to 0.000018 g⋅gDW⁻¹ (0.0083 %)
+
+
+==thr__L_c==
+ln(Concentration change): 0.11, from 0.0032 M to 0.0028 M
+Affected reactions with kinetic constraints:
+>[P] THRS_fw (ΔG'°=-29.69 kJ⋅mol⁻¹) | κ⋅γ from 0.0834 to 0.0915 // pool usage from 0.000586 g⋅gDW⁻¹ (0.2667 %) to 0.000556 g⋅gDW⁻¹ (0.2534 %)
+>[S] THRD_L_fw (ΔG'°=-23.70 kJ⋅mol⁻¹) | κ⋅γ from 0.0160 to 0.0156 // pool usage from 0.000874 g⋅gDW⁻¹ (0.3982 %) to 0.000879 g⋅gDW⁻¹ (0.4004 %)
+
+
+==atp_c==
+ln(Concentration change): 0.11, from 0.0033 M to 0.003 M
+Affected reactions with kinetic constraints:
+>[S] NDPK5_fw (ΔG'°=1.40 kJ⋅mol⁻¹) | κ⋅γ from 0.6507 to 0.6373 // pool usage from 0.000020 g⋅gDW⁻¹ (0.0090 %) to 0.000020 g⋅gDW⁻¹ (0.0091 %)
+>[S] NDPK6_fw (ΔG'°=-1.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9314 to 0.9317 // pool usage from 0.000867 g⋅gDW⁻¹ (0.3950 %) to 0.000861 g⋅gDW⁻¹ (0.3920 %)
+>[S] NDPK8_fw (ΔG'°=2.47 kJ⋅mol⁻¹) | κ⋅γ from 0.6865 to 0.7322 // pool usage from 0.000024 g⋅gDW⁻¹ (0.0109 %) to 0.000025 g⋅gDW⁻¹ (0.0115 %)
+>[P] PYK_fw (ΔG'°=-22.79 kJ⋅mol⁻¹) | κ⋅γ from 0.0706 to 0.0706 // pool usage from 0.001543 g⋅gDW⁻¹ (0.7029 %) to 0.001667 g⋅gDW⁻¹ (0.7591 %)
+>[S] ACCOAC_fw (ΔG'°=-11.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9390 to 0.9398 // pool usage from 0.004175 g⋅gDW⁻¹ (1.9014 %) to 0.004159 g⋅gDW⁻¹ (1.8944 %)
+>[S] ARGSS_fw (ΔG'°=10.46 kJ⋅mol⁻¹) | κ⋅γ from 0.9990 to 1.0000 // pool usage from 0.001598 g⋅gDW⁻¹ (0.7276 %) to 0.001582 g⋅gDW⁻¹ (0.7207 %)
+>[S] SADT2_fw (ΔG'°=16.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7208 to 0.7770 // pool usage from 0.000510 g⋅gDW⁻¹ (0.2321 %) to 0.000488 g⋅gDW⁻¹ (0.2224 %)
+>[S] UMPK_fw (ΔG'°=0.63 kJ⋅mol⁻¹) | κ⋅γ from 0.1430 to 0.0918 // pool usage from 0.000299 g⋅gDW⁻¹ (0.1361 %) to 0.000378 g⋅gDW⁻¹ (0.1722 %)
+>[S] CTPS2_fw (ΔG'°=-25.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9062 to 0.7372 // pool usage from 0.000452 g⋅gDW⁻¹ (0.2057 %) to 0.000498 g⋅gDW⁻¹ (0.2270 %)
+>[S] NDPK7_fw (ΔG'°=3.83 kJ⋅mol⁻¹) | κ⋅γ from 0.6650 to 0.8234 // pool usage from 0.000020 g⋅gDW⁻¹ (0.0092 %) to 0.000025 g⋅gDW⁻¹ (0.0115 %)
+>[S] ADK1_fw (ΔG'°=0.60 kJ⋅mol⁻¹) | κ⋅γ from 0.9846 to 0.9829 // pool usage from 0.000495 g⋅gDW⁻¹ (0.2255 %) to 0.000519 g⋅gDW⁻¹ (0.2365 %)
+>[S] NDPK2_fw (ΔG'°=-0.59 kJ⋅mol⁻¹) | κ⋅γ from 0.6590 to 0.6994 // pool usage from 0.000088 g⋅gDW⁻¹ (0.0400 %) to 0.000124 g⋅gDW⁻¹ (0.0566 %)
+>[S] NDPK4_fw (ΔG'°=0.83 kJ⋅mol⁻¹) | κ⋅γ from 0.5373 to 0.7938 // pool usage from 0.000017 g⋅gDW⁻¹ (0.0077 %) to 0.000026 g⋅gDW⁻¹ (0.0118 %)
+>[S] ASNS2_fw (ΔG'°=-31.94 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000318 g⋅gDW⁻¹ (0.1449 %) to 0.000317 g⋅gDW⁻¹ (0.1442 %)
+>[S] HSK_fw (ΔG'°=-41.85 kJ⋅mol⁻¹) | κ⋅γ from 0.0199 to 0.0242 // pool usage from 0.000161 g⋅gDW⁻¹ (0.0735 %) to 0.000145 g⋅gDW⁻¹ (0.0663 %)
+>[S] DTMPK_fw (ΔG'°=-2.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9784 to 0.9846 // pool usage from 0.000017 g⋅gDW⁻¹ (0.0077 %) to 0.000023 g⋅gDW⁻¹ (0.0103 %)
+>[S] NDPK1_fw (ΔG'°=-2.16 kJ⋅mol⁻¹) | κ⋅γ from 0.5427 to 0.5628 // pool usage from 0.000173 g⋅gDW⁻¹ (0.0786 %) to 0.000172 g⋅gDW⁻¹ (0.0781 %)
+>[S] GMPS2_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.7307 to 0.7133 // pool usage from 0.001313 g⋅gDW⁻¹ (0.5981 %) to 0.001322 g⋅gDW⁻¹ (0.6023 %)
+>[S] ATPPRT_fw (ΔG'°=-38.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9640 to 0.9659 // pool usage from 0.000162 g⋅gDW⁻¹ (0.0738 %) to 0.000161 g⋅gDW⁻¹ (0.0734 %)
+>[S] PRPPS_fw (ΔG'°=-3.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9822 to 0.9808 // pool usage from 0.000361 g⋅gDW⁻¹ (0.1642 %) to 0.000359 g⋅gDW⁻¹ (0.1636 %)
+>[S] ASPK_fw (ΔG'°=20.92 kJ⋅mol⁻¹) | κ⋅γ from 0.9969 to 0.9965 // pool usage from 0.003320 g⋅gDW⁻¹ (1.5121 %) to 0.003303 g⋅gDW⁻¹ (1.5043 %)
+>[S] PRAGSr_fw (ΔG'°=-27.89 kJ⋅mol⁻¹) | κ⋅γ from 0.8381 to 0.8321 // pool usage from 0.000309 g⋅gDW⁻¹ (0.1410 %) to 0.000309 g⋅gDW⁻¹ (0.1408 %)
+>[S] PRFGS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.9968 to 0.9968 // pool usage from 0.001234 g⋅gDW⁻¹ (0.5620 %) to 0.001231 g⋅gDW⁻¹ (0.5606 %)
+>[S] AIRC2_fw (ΔG'°=-59.12 kJ⋅mol⁻¹) | κ⋅γ from 0.7398 to 0.7358 // pool usage from 0.000080 g⋅gDW⁻¹ (0.0366 %) to 0.000080 g⋅gDW⁻¹ (0.0365 %)
+>[S] CBPS_fw (ΔG'°=-22.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9941 to 0.9907 // pool usage from 0.003568 g⋅gDW⁻¹ (1.6252 %) to 0.003557 g⋅gDW⁻¹ (1.6198 %)
+>[S] GLU5K_fw (ΔG'°=29.49 kJ⋅mol⁻¹) | κ⋅γ from 0.9965 to 0.9960 // pool usage from 0.000983 g⋅gDW⁻¹ (0.4476 %) to 0.000960 g⋅gDW⁻¹ (0.4374 %)
+>[S] ADSK_fw (ΔG'°=-19.14 kJ⋅mol⁻¹) | κ⋅γ from 0.4572 to 0.4422 // pool usage from 0.000018 g⋅gDW⁻¹ (0.0082 %) to 0.000018 g⋅gDW⁻¹ (0.0083 %)
+>[P] ATPS4rpp_fw (ΔG'°=-21.64 kJ⋅mol⁻¹) | κ⋅γ from 0.0281 to 0.0264 // pool usage from 0.009275 g⋅gDW⁻¹ (4.2241 %) to 0.009447 g⋅gDW⁻¹ (4.3028 %)
+>[S] GK1_fw (ΔG'°=-0.09 kJ⋅mol⁻¹) | κ⋅γ from 0.6565 to 0.6157 // pool usage from 0.000059 g⋅gDW⁻¹ (0.0268 %) to 0.000085 g⋅gDW⁻¹ (0.0386 %)
+>[S] PRASCSi_fw (ΔG'°=-83.42 kJ⋅mol⁻¹) | κ⋅γ from 0.9055 to 0.9051 // pool usage from 0.000434 g⋅gDW⁻¹ (0.1978 %) to 0.000432 g⋅gDW⁻¹ (0.1969 %)
+>[S] ACGK_fw (ΔG'°=25.72 kJ⋅mol⁻¹) | κ⋅γ from 0.9954 to 0.9946 // pool usage from 0.000735 g⋅gDW⁻¹ (0.3347 %) to 0.000723 g⋅gDW⁻¹ (0.3292 %)
+>[S] SHKK_fw (ΔG'°=-28.04 kJ⋅mol⁻¹) | κ⋅γ from 0.6342 to 0.3078 // pool usage from 0.000136 g⋅gDW⁻¹ (0.0620 %) to 0.000195 g⋅gDW⁻¹ (0.0886 %)
+>[S] GLNS_fw (ΔG'°=-17.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9249 to 0.9178 // pool usage from 0.001697 g⋅gDW⁻¹ (0.7727 %) to 0.001695 g⋅gDW⁻¹ (0.7719 %)
+>[S] PRAIS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.6068 to 0.5934 // pool usage from 0.000283 g⋅gDW⁻¹ (0.1290 %) to 0.000285 g⋅gDW⁻¹ (0.1299 %)
+>[S] PFK_fw (ΔG'°=-21.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2786 to 0.2823 // pool usage from 0.001462 g⋅gDW⁻¹ (0.6660 %) to 0.001478 g⋅gDW⁻¹ (0.6732 %)
+>[P] ACKr_bw (ΔG'°=-14.69 kJ⋅mol⁻¹) | κ⋅γ from 0.9936 to 0.9960 // pool usage from 0.000552 g⋅gDW⁻¹ (0.2516 %) to 0.000548 g⋅gDW⁻¹ (0.2497 %)
+>[P] PGK_bw (ΔG'°=-19.54 kJ⋅mol⁻¹) | κ⋅γ from 0.0469 to 0.0472 // pool usage from 0.007014 g⋅gDW⁻¹ (3.1947 %) to 0.007045 g⋅gDW⁻¹ (3.2086 %)
+
+
+==suchms_c==
+ln(Concentration change): 0.10, from 0.00029 M to 0.00032 M
+Affected reactions with kinetic constraints:
+>[P] HSST_fw (ΔG'°=-29.20 kJ⋅mol⁻¹) | κ⋅γ from 0.0717 to 0.0677 // pool usage from 0.000454 g⋅gDW⁻¹ (0.2067 %) to 0.000465 g⋅gDW⁻¹ (0.2117 %)
+>[S] SHSL1_fw (ΔG'°=-67.24 kJ⋅mol⁻¹) | κ⋅γ from 0.2962 to 0.2715 // pool usage from 0.000303 g⋅gDW⁻¹ (0.1379 %) to 0.000315 g⋅gDW⁻¹ (0.1433 %)
+
+
+==chor_c==
+ln(Concentration change): 0.10, from 0.00071 M to 0.00065 M
+Affected reactions with kinetic constraints:
+>[S] ANS_fw (ΔG'°=-112.69 kJ⋅mol⁻¹) | κ⋅γ from 0.7670 to 0.8992 // pool usage from 0.000192 g⋅gDW⁻¹ (0.0874 %) to 0.000176 g⋅gDW⁻¹ (0.0803 %)
+>[S] CHORM_fw (ΔG'°=-48.72 kJ⋅mol⁻¹) | κ⋅γ from 0.3510 to 0.3285 // pool usage from 0.000333 g⋅gDW⁻¹ (0.1517 %) to 0.000343 g⋅gDW⁻¹ (0.1560 %)
+>[P] CHORS_fw (ΔG'°=-47.05 kJ⋅mol⁻¹) | κ⋅γ from 0.2045 to 0.1853 // pool usage from 0.000190 g⋅gDW⁻¹ (0.0867 %) to 0.000199 g⋅gDW⁻¹ (0.0906 %)
+
+
+==cyst__L_c==
+ln(Concentration change): 0.09, from 0.00096 M to 0.0011 M
+Affected reactions with kinetic constraints:
+>[S] CYSTL_fw (ΔG'°=0.71 kJ⋅mol⁻¹) | κ⋅γ from 0.3634 to 0.2795 // pool usage from 0.000321 g⋅gDW⁻¹ (0.1464 %) to 0.000365 g⋅gDW⁻¹ (0.1661 %)
+>[P] SHSL1_fw (ΔG'°=-67.24 kJ⋅mol⁻¹) | κ⋅γ from 0.2962 to 0.2715 // pool usage from 0.000303 g⋅gDW⁻¹ (0.1379 %) to 0.000315 g⋅gDW⁻¹ (0.1433 %)
+
+
+==gly_c==
+ln(Concentration change): 0.08, from 0.00047 M to 0.00043 M
+Affected reactions with kinetic constraints:
+>[S] GLYCL_fw (ΔG'°=19.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0019 to 0.0018 // pool usage from 0.001701 g⋅gDW⁻¹ (0.7746 %) to 0.001710 g⋅gDW⁻¹ (0.7786 %)
+>[P] GHMT2r_fw (ΔG'°=-9.96 kJ⋅mol⁻¹) | κ⋅γ from 0.5259 to 0.5224 // pool usage from 0.003567 g⋅gDW⁻¹ (1.6245 %) to 0.003568 g⋅gDW⁻¹ (1.6252 %)
+>[S] PRAGSr_fw (ΔG'°=-27.89 kJ⋅mol⁻¹) | κ⋅γ from 0.8381 to 0.8321 // pool usage from 0.000309 g⋅gDW⁻¹ (0.1410 %) to 0.000309 g⋅gDW⁻¹ (0.1408 %)
+
+
+==cys__L_c==
+ln(Concentration change): 0.07, from 0.00065 M to 0.0007 M
+Affected reactions with kinetic constraints:
+>[P] CYSS_fw (ΔG'°=-50.85 kJ⋅mol⁻¹) | κ⋅γ from 0.3963 to 0.3780 // pool usage from 0.000214 g⋅gDW⁻¹ (0.0976 %) to 0.000218 g⋅gDW⁻¹ (0.0994 %)
+>[S] SHSL1_fw (ΔG'°=-67.24 kJ⋅mol⁻¹) | κ⋅γ from 0.2962 to 0.2715 // pool usage from 0.000303 g⋅gDW⁻¹ (0.1379 %) to 0.000315 g⋅gDW⁻¹ (0.1433 %)
+
+
+==nadp_c==
+ln(Concentration change): 0.07, from 0.00059 M to 0.00055 M
+Affected reactions with kinetic constraints:
+>[P] SHK3Dr_fw (ΔG'°=-3.95 kJ⋅mol⁻¹) | κ⋅γ from 0.9526 to 0.9757 // pool usage from 0.000158 g⋅gDW⁻¹ (0.0718 %) to 0.000153 g⋅gDW⁻¹ (0.0698 %)
+>[P] G5SD_fw (ΔG'°=-5.25 kJ⋅mol⁻¹) | κ⋅γ from 0.1736 to 0.1731 // pool usage from 0.000463 g⋅gDW⁻¹ (0.2108 %) to 0.000461 g⋅gDW⁻¹ (0.2101 %)
+>[S] ICDHyr_fw (ΔG'°=5.37 kJ⋅mol⁻¹) | κ⋅γ from 0.4224 to 0.3982 // pool usage from 0.002117 g⋅gDW⁻¹ (0.9643 %) to 0.002171 g⋅gDW⁻¹ (0.9888 %)
+>[P] KARA2_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9753 to 0.9757 // pool usage from 0.002396 g⋅gDW⁻¹ (1.0913 %) to 0.002383 g⋅gDW⁻¹ (1.0855 %)
+>[P] DHDPRy_fw (ΔG'°=-18.52 kJ⋅mol⁻¹) | κ⋅γ from 0.9641 to 0.9642 // pool usage from 0.000235 g⋅gDW⁻¹ (0.1069 %) to 0.000234 g⋅gDW⁻¹ (0.1064 %)
+>[P] TRDR_fw (ΔG'°=-3.86 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000340 g⋅gDW⁻¹ (0.1549 %) to 0.000334 g⋅gDW⁻¹ (0.1522 %)
+>[P] NADTRHD_fw (ΔG'°=-0.31 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.002429 g⋅gDW⁻¹ (1.1061 %) to 0.002068 g⋅gDW⁻¹ (0.9421 %)
+>[P] P5CR_fw (ΔG'°=-9.47 kJ⋅mol⁻¹) | κ⋅γ from 0.9271 to 0.9050 // pool usage from 0.000052 g⋅gDW⁻¹ (0.0235 %) to 0.000053 g⋅gDW⁻¹ (0.0242 %)
+>[P] SULR_fw (ΔG'°=-99.32 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000692 g⋅gDW⁻¹ (0.3154 %) to 0.000689 g⋅gDW⁻¹ (0.3138 %)
+>[S] GND_fw (ΔG'°=10.40 kJ⋅mol⁻¹) | κ⋅γ from 0.1671 to 0.1601 // pool usage from 0.004013 g⋅gDW⁻¹ (1.8279 %) to 0.003921 g⋅gDW⁻¹ (1.7859 %)
+>[S] G6PDH2r_fw (ΔG'°=-9.36 kJ⋅mol⁻¹) | κ⋅γ from 0.1648 to 0.1645 // pool usage from 0.001959 g⋅gDW⁻¹ (0.8922 %) to 0.001874 g⋅gDW⁻¹ (0.8534 %)
+>[P] HSDy_fw (ΔG'°=-16.73 kJ⋅mol⁻¹) | κ⋅γ from 0.2626 to 0.2583 // pool usage from 0.007464 g⋅gDW⁻¹ (3.3997 %) to 0.007489 g⋅gDW⁻¹ (3.4110 %)
+>[S] MTHFD_fw (ΔG'°=3.79 kJ⋅mol⁻¹) | κ⋅γ from 0.9610 to 0.9608 // pool usage from 0.000822 g⋅gDW⁻¹ (0.3745 %) to 0.000822 g⋅gDW⁻¹ (0.3746 %)
+>[P] DHFR_fw (ΔG'°=-16.27 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000031 g⋅gDW⁻¹ (0.0140 %) to 0.000031 g⋅gDW⁻¹ (0.0139 %)
+>[P] EAR161y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8073 to 0.8060 // pool usage from 0.000060 g⋅gDW⁻¹ (0.0274 %) to 0.000060 g⋅gDW⁻¹ (0.0273 %)
+>[P] 3OAR121_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.7004 to 0.7033 // pool usage from 0.000231 g⋅gDW⁻¹ (0.1053 %) to 0.000230 g⋅gDW⁻¹ (0.1046 %)
+>[P] EAR141y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7499 to 0.7518 // pool usage from 0.000062 g⋅gDW⁻¹ (0.0284 %) to 0.000062 g⋅gDW⁻¹ (0.0282 %)
+>[P] 3OAR120_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7333 to 0.7370 // pool usage from 0.000259 g⋅gDW⁻¹ (0.1181 %) to 0.000257 g⋅gDW⁻¹ (0.1172 %)
+>[P] EAR80y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8748 to 0.8771 // pool usage from 0.000858 g⋅gDW⁻¹ (0.3907 %) to 0.000853 g⋅gDW⁻¹ (0.3883 %)
+>[P] EAR120y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8586 to 0.8609 // pool usage from 0.000500 g⋅gDW⁻¹ (0.2277 %) to 0.000497 g⋅gDW⁻¹ (0.2263 %)
+>[P] 3OAR140_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7155 to 0.7193 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1256 %) to 0.000274 g⋅gDW⁻¹ (0.1246 %)
+>[P] EAR160y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9147 to 0.9142 // pool usage from 0.000337 g⋅gDW⁻¹ (0.1533 %) to 0.000335 g⋅gDW⁻¹ (0.1526 %)
+>[P] 3OAR160_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7528 to 0.7562 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000221 g⋅gDW⁻¹ (0.1008 %)
+>[P] EAR100y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9786 to 0.9794 // pool usage from 0.000468 g⋅gDW⁻¹ (0.2133 %) to 0.000466 g⋅gDW⁻¹ (0.2121 %)
+>[P] 3OAR141_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.8289 to 0.8313 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0967 %) to 0.000211 g⋅gDW⁻¹ (0.0961 %)
+>[P] 3OAR161_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.8301 to 0.8324 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0966 %) to 0.000211 g⋅gDW⁻¹ (0.0960 %)
+>[P] EAR121y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7390 to 0.7413 // pool usage from 0.000063 g⋅gDW⁻¹ (0.0286 %) to 0.000062 g⋅gDW⁻¹ (0.0284 %)
+>[P] 3OAR60_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.2821 to 0.2853 // pool usage from 0.000398 g⋅gDW⁻¹ (0.1811 %) to 0.000393 g⋅gDW⁻¹ (0.1791 %)
+>[P] 3OAR80_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.6274 to 0.6336 // pool usage from 0.000264 g⋅gDW⁻¹ (0.1204 %) to 0.000262 g⋅gDW⁻¹ (0.1192 %)
+>[P] EAR140y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8543 to 0.8565 // pool usage from 0.000311 g⋅gDW⁻¹ (0.1418 %) to 0.000309 g⋅gDW⁻¹ (0.1409 %)
+>[P] 3OAR40_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.7688 to 0.7740 // pool usage from 0.000238 g⋅gDW⁻¹ (0.1086 %) to 0.000236 g⋅gDW⁻¹ (0.1077 %)
+>[P] 3OAR100_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.5770 to 0.5834 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1257 %) to 0.000273 g⋅gDW⁻¹ (0.1243 %)
+>[P] EAR60y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8567 to 0.8595 // pool usage from 0.000867 g⋅gDW⁻¹ (0.3949 %) to 0.000861 g⋅gDW⁻¹ (0.3923 %)
+>[P] KARA1_bw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9970 to 0.9970 // pool usage from 0.002366 g⋅gDW⁻¹ (1.0778 %) to 0.002355 g⋅gDW⁻¹ (1.0724 %)
+>[P] AGPR_bw (ΔG'°=-2.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2340 to 0.2361 // pool usage from 0.000336 g⋅gDW⁻¹ (0.1528 %) to 0.000332 g⋅gDW⁻¹ (0.1513 %)
+>[P] G3PD2_bw (ΔG'°=-20.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9994 to 0.9994 // pool usage from 0.000022 g⋅gDW⁻¹ (0.0101 %) to 0.000022 g⋅gDW⁻¹ (0.0101 %)
+>[P] ASAD_bw (ΔG'°=28.08 kJ⋅mol⁻¹) | κ⋅γ from 0.8964 to 0.8949 // pool usage from 0.001743 g⋅gDW⁻¹ (0.7939 %) to 0.001735 g⋅gDW⁻¹ (0.7900 %)
+>[P] GLUDy_bw (ΔG'°=-31.30 kJ⋅mol⁻¹) | κ⋅γ from 0.1971 to 0.1958 // pool usage from 0.002932 g⋅gDW⁻¹ (1.3353 %) to 0.002930 g⋅gDW⁻¹ (1.3347 %)
+
+
+==accoa_c==
+ln(Concentration change): 0.07, from 0.0026 M to 0.0024 M
+Affected reactions with kinetic constraints:
+>[S] CS_fw (ΔG'°=-41.76 kJ⋅mol⁻¹) | κ⋅γ from 0.1311 to 0.1344 // pool usage from 0.001269 g⋅gDW⁻¹ (0.5782 %) to 0.001248 g⋅gDW⁻¹ (0.5683 %)
+>[S] PTAr_fw (ΔG'°=9.39 kJ⋅mol⁻¹) | κ⋅γ from 0.9710 to 0.9617 // pool usage from 0.002753 g⋅gDW⁻¹ (1.2536 %) to 0.002883 g⋅gDW⁻¹ (1.3129 %)
+>[S] ACCOAC_fw (ΔG'°=-11.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9390 to 0.9398 // pool usage from 0.004175 g⋅gDW⁻¹ (1.9014 %) to 0.004159 g⋅gDW⁻¹ (1.8944 %)
+>[S] SERAT_fw (ΔG'°=-6.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9480 to 0.9425 // pool usage from 0.000066 g⋅gDW⁻¹ (0.0300 %) to 0.000066 g⋅gDW⁻¹ (0.0300 %)
+>[S] IPPS_fw (ΔG'°=-28.79 kJ⋅mol⁻¹) | κ⋅γ from 0.8679 to 0.8626 // pool usage from 0.000608 g⋅gDW⁻¹ (0.2771 %) to 0.000607 g⋅gDW⁻¹ (0.2765 %)
+>[P] PDH_fw (ΔG'°=-34.43 kJ⋅mol⁻¹) | κ⋅γ from 0.2702 to 0.2698 // pool usage from 0.005394 g⋅gDW⁻¹ (2.4567 %) to 0.005482 g⋅gDW⁻¹ (2.4969 %)
+>[S] ACGS_fw (ΔG'°=-27.83 kJ⋅mol⁻¹) | κ⋅γ from 0.6724 to 0.6589 // pool usage from 0.000129 g⋅gDW⁻¹ (0.0589 %) to 0.000130 g⋅gDW⁻¹ (0.0592 %)
+>[S] KAS15_fw (ΔG'°=20.67 kJ⋅mol⁻¹) | κ⋅γ from 0.9955 to 0.9952 // pool usage from 0.000151 g⋅gDW⁻¹ (0.0687 %) to 0.000150 g⋅gDW⁻¹ (0.0684 %)
+
+
+==pram_c==
+ln(Concentration change): 0.07, from 0.00018 M to 0.00019 M
+Affected reactions with kinetic constraints:
+>[P] GLUPRT_fw (ΔG'°=-70.09 kJ⋅mol⁻¹) | κ⋅γ from 0.8544 to 0.8678 // pool usage from 0.000277 g⋅gDW⁻¹ (0.1260 %) to 0.000273 g⋅gDW⁻¹ (0.1244 %)
+>[S] PRAGSr_fw (ΔG'°=-27.89 kJ⋅mol⁻¹) | κ⋅γ from 0.8381 to 0.8321 // pool usage from 0.000309 g⋅gDW⁻¹ (0.1410 %) to 0.000309 g⋅gDW⁻¹ (0.1408 %)
+
+
+==xmp_c==
+ln(Concentration change): 0.07, from 8.1e-06 M to 8.7e-06 M
+Affected reactions with kinetic constraints:
+>[P] IMPD_fw (ΔG'°=13.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9733 to 0.9741 // pool usage from 0.001899 g⋅gDW⁻¹ (0.8649 %) to 0.001902 g⋅gDW⁻¹ (0.8662 %)
+>[S] GMPS2_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.7307 to 0.7133 // pool usage from 0.001313 g⋅gDW⁻¹ (0.5981 %) to 0.001322 g⋅gDW⁻¹ (0.6023 %)
+
+
+==succoa_c==
+ln(Concentration change): 0.06, from 0.0065 M to 0.0061 M
+Affected reactions with kinetic constraints:
+>[S] HSST_fw (ΔG'°=-29.20 kJ⋅mol⁻¹) | κ⋅γ from 0.0717 to 0.0677 // pool usage from 0.000454 g⋅gDW⁻¹ (0.2067 %) to 0.000465 g⋅gDW⁻¹ (0.2117 %)
+>[P] AKGDH_fw (ΔG'°=-28.90 kJ⋅mol⁻¹) | κ⋅γ from 0.5123 to 0.5363 // pool usage from 0.000216 g⋅gDW⁻¹ (0.0982 %) to 0.000210 g⋅gDW⁻¹ (0.0955 %)
+>[S] THDPS_fw (ΔG'°=26.48 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.001628 g⋅gDW⁻¹ (0.7416 %) to 0.001628 g⋅gDW⁻¹ (0.7414 %)
+
+
+==h2s_c==
+ln(Concentration change): 0.06, from 0.00066 M to 0.0007 M
+Affected reactions with kinetic constraints:
+>[S] CYSS_fw (ΔG'°=-50.85 kJ⋅mol⁻¹) | κ⋅γ from 0.3963 to 0.3780 // pool usage from 0.000214 g⋅gDW⁻¹ (0.0976 %) to 0.000218 g⋅gDW⁻¹ (0.0994 %)
+>[P] SULR_fw (ΔG'°=-99.32 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000692 g⋅gDW⁻¹ (0.3154 %) to 0.000689 g⋅gDW⁻¹ (0.3138 %)
+
+
+==sl26da_c==
+ln(Concentration change): 0.06, from 0.00012 M to 0.00013 M
+Affected reactions with kinetic constraints:
+>[S] SDPDS_fw (ΔG'°=8.20 kJ⋅mol⁻¹) | κ⋅γ from 0.0451 to 0.0346 // pool usage from 0.000133 g⋅gDW⁻¹ (0.0608 %) to 0.000152 g⋅gDW⁻¹ (0.0694 %)
+>[P] SDPTA_bw (ΔG'°=1.17 kJ⋅mol⁻¹) | κ⋅γ from 0.4055 to 0.3946 // pool usage from 0.000728 g⋅gDW⁻¹ (0.3315 %) to 0.000747 g⋅gDW⁻¹ (0.3404 %)
+
+
+==acg5sa_c==
+ln(Concentration change): 0.06, from 4.3e-05 M to 4.1e-05 M
+Affected reactions with kinetic constraints:
+>[P] AGPR_bw (ΔG'°=-2.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2340 to 0.2361 // pool usage from 0.000336 g⋅gDW⁻¹ (0.1528 %) to 0.000332 g⋅gDW⁻¹ (0.1513 %)
+>[S] ACOTA_bw (ΔG'°=3.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9649 to 0.9636 // pool usage from 0.000393 g⋅gDW⁻¹ (0.1791 %) to 0.000387 g⋅gDW⁻¹ (0.1764 %)
+
+
+==acser_c==
+ln(Concentration change): 0.06, from 0.00066 M to 0.0007 M
+Affected reactions with kinetic constraints:
+>[P] SERAT_fw (ΔG'°=-6.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9480 to 0.9425 // pool usage from 0.000066 g⋅gDW⁻¹ (0.0300 %) to 0.000066 g⋅gDW⁻¹ (0.0300 %)
+>[S] CYSS_fw (ΔG'°=-50.85 kJ⋅mol⁻¹) | κ⋅γ from 0.3963 to 0.3780 // pool usage from 0.000214 g⋅gDW⁻¹ (0.0976 %) to 0.000218 g⋅gDW⁻¹ (0.0994 %)
+
+
+==fpram_c==
+ln(Concentration change): 0.06, from 1.1e-05 M to 1.2e-05 M
+Affected reactions with kinetic constraints:
+>[P] PRFGS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.9968 to 0.9968 // pool usage from 0.001234 g⋅gDW⁻¹ (0.5620 %) to 0.001231 g⋅gDW⁻¹ (0.5606 %)
+>[S] PRAIS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.6068 to 0.5934 // pool usage from 0.000283 g⋅gDW⁻¹ (0.1290 %) to 0.000285 g⋅gDW⁻¹ (0.1299 %)
+
+
+==pi_c==
+ln(Concentration change): 0.06, from 0.0068 M to 0.0072 M
+Affected reactions with kinetic constraints:
+>[P] G5SD_fw (ΔG'°=-5.25 kJ⋅mol⁻¹) | κ⋅γ from 0.1736 to 0.1731 // pool usage from 0.000463 g⋅gDW⁻¹ (0.2108 %) to 0.000461 g⋅gDW⁻¹ (0.2101 %)
+>[P] PSCVT_fw (ΔG'°=-15.88 kJ⋅mol⁻¹) | κ⋅γ from 0.8549 to 0.8154 // pool usage from 0.000442 g⋅gDW⁻¹ (0.2012 %) to 0.000460 g⋅gDW⁻¹ (0.2095 %)
+>[S] PTAr_fw (ΔG'°=9.39 kJ⋅mol⁻¹) | κ⋅γ from 0.9710 to 0.9617 // pool usage from 0.002753 g⋅gDW⁻¹ (1.2536 %) to 0.002883 g⋅gDW⁻¹ (1.3129 %)
+>[P] CHORS_fw (ΔG'°=-47.05 kJ⋅mol⁻¹) | κ⋅γ from 0.2045 to 0.1853 // pool usage from 0.000190 g⋅gDW⁻¹ (0.0867 %) to 0.000199 g⋅gDW⁻¹ (0.0906 %)
+>[P] ACCOAC_fw (ΔG'°=-11.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9390 to 0.9398 // pool usage from 0.004175 g⋅gDW⁻¹ (1.9014 %) to 0.004159 g⋅gDW⁻¹ (1.8944 %)
+>[P] PPC_fw (ΔG'°=-43.54 kJ⋅mol⁻¹) | κ⋅γ from 0.2801 to 0.2840 // pool usage from 0.001705 g⋅gDW⁻¹ (0.7765 %) to 0.001685 g⋅gDW⁻¹ (0.7673 %)
+>[P] SADT2_fw (ΔG'°=16.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7208 to 0.7770 // pool usage from 0.000510 g⋅gDW⁻¹ (0.2321 %) to 0.000488 g⋅gDW⁻¹ (0.2224 %)
+>[P] CTPS2_fw (ΔG'°=-25.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9062 to 0.7372 // pool usage from 0.000452 g⋅gDW⁻¹ (0.2057 %) to 0.000498 g⋅gDW⁻¹ (0.2270 %)
+>[P] ADSS_fw (ΔG'°=-7.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9992 to 0.9995 // pool usage from 0.001566 g⋅gDW⁻¹ (0.7131 %) to 0.001547 g⋅gDW⁻¹ (0.7045 %)
+>[P] ASPCT_fw (ΔG'°=-22.93 kJ⋅mol⁻¹) | κ⋅γ from 0.8410 to 0.8982 // pool usage from 0.000169 g⋅gDW⁻¹ (0.0770 %) to 0.000163 g⋅gDW⁻¹ (0.0741 %)
+>[P] THRS_fw (ΔG'°=-29.69 kJ⋅mol⁻¹) | κ⋅γ from 0.0834 to 0.0915 // pool usage from 0.000586 g⋅gDW⁻¹ (0.2667 %) to 0.000556 g⋅gDW⁻¹ (0.2534 %)
+>[P] DDPA_fw (ΔG'°=-74.24 kJ⋅mol⁻¹) | κ⋅γ from 0.9846 to 0.9848 // pool usage from 0.000251 g⋅gDW⁻¹ (0.1143 %) to 0.000250 g⋅gDW⁻¹ (0.1138 %)
+>[P] BPNT_fw (ΔG'°=-7.08 kJ⋅mol⁻¹) | κ⋅γ from 0.1239 to 0.0220 // pool usage from 0.000042 g⋅gDW⁻¹ (0.0193 %) to 0.000100 g⋅gDW⁻¹ (0.0456 %)
+>[P] OCBT_fw (ΔG'°=-31.79 kJ⋅mol⁻¹) | κ⋅γ from 0.6032 to 0.4094 // pool usage from 0.000232 g⋅gDW⁻¹ (0.1058 %) to 0.000281 g⋅gDW⁻¹ (0.1279 %)
+>[P] PRAGSr_fw (ΔG'°=-27.89 kJ⋅mol⁻¹) | κ⋅γ from 0.8381 to 0.8321 // pool usage from 0.000309 g⋅gDW⁻¹ (0.1410 %) to 0.000309 g⋅gDW⁻¹ (0.1408 %)
+>[P] PRFGS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.9968 to 0.9968 // pool usage from 0.001234 g⋅gDW⁻¹ (0.5620 %) to 0.001231 g⋅gDW⁻¹ (0.5606 %)
+>[P] AIRC2_fw (ΔG'°=-59.12 kJ⋅mol⁻¹) | κ⋅γ from 0.7398 to 0.7358 // pool usage from 0.000080 g⋅gDW⁻¹ (0.0366 %) to 0.000080 g⋅gDW⁻¹ (0.0365 %)
+>[S] GAPD_fw (ΔG'°=-1.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9706 to 0.9692 // pool usage from 0.007343 g⋅gDW⁻¹ (3.3446 %) to 0.007392 g⋅gDW⁻¹ (3.3665 %)
+>[P] CBPS_fw (ΔG'°=-22.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9941 to 0.9907 // pool usage from 0.003568 g⋅gDW⁻¹ (1.6252 %) to 0.003557 g⋅gDW⁻¹ (1.6198 %)
+>[P] PSP_L_fw (ΔG'°=-10.48 kJ⋅mol⁻¹) | κ⋅γ from 0.0369 to 0.0366 // pool usage from 0.000024 g⋅gDW⁻¹ (0.0108 %) to 0.000024 g⋅gDW⁻¹ (0.0108 %)
+>[S] ATPS4rpp_fw (ΔG'°=-21.64 kJ⋅mol⁻¹) | κ⋅γ from 0.0281 to 0.0264 // pool usage from 0.009275 g⋅gDW⁻¹ (4.2241 %) to 0.009447 g⋅gDW⁻¹ (4.3028 %)
+>[P] PRASCSi_fw (ΔG'°=-83.42 kJ⋅mol⁻¹) | κ⋅γ from 0.9055 to 0.9051 // pool usage from 0.000434 g⋅gDW⁻¹ (0.1978 %) to 0.000432 g⋅gDW⁻¹ (0.1969 %)
+>[P] GLNS_fw (ΔG'°=-17.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9249 to 0.9178 // pool usage from 0.001697 g⋅gDW⁻¹ (0.7727 %) to 0.001695 g⋅gDW⁻¹ (0.7719 %)
+>[P] PRAIS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.6068 to 0.5934 // pool usage from 0.000283 g⋅gDW⁻¹ (0.1290 %) to 0.000285 g⋅gDW⁻¹ (0.1299 %)
+>[P] HISTP_fw (ΔG'°=-23.01 kJ⋅mol⁻¹) | κ⋅γ from 0.4997 to 0.4907 // pool usage from 0.000306 g⋅gDW⁻¹ (0.1394 %) to 0.000307 g⋅gDW⁻¹ (0.1399 %)
+>[P] DHQS_fw (ΔG'°=-151.01 kJ⋅mol⁻¹) | κ⋅γ from 0.8004 to 0.8019 // pool usage from 0.000082 g⋅gDW⁻¹ (0.0373 %) to 0.000081 g⋅gDW⁻¹ (0.0371 %)
+>[P] AGPR_bw (ΔG'°=-2.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2340 to 0.2361 // pool usage from 0.000336 g⋅gDW⁻¹ (0.1528 %) to 0.000332 g⋅gDW⁻¹ (0.1513 %)
+>[P] ASAD_bw (ΔG'°=28.08 kJ⋅mol⁻¹) | κ⋅γ from 0.8964 to 0.8949 // pool usage from 0.001743 g⋅gDW⁻¹ (0.7939 %) to 0.001735 g⋅gDW⁻¹ (0.7900 %)
+
+
+==dgdp_c==
+ln(Concentration change): 0.06, from 3.3e-05 M to 3.4e-05 M
+Affected reactions with kinetic constraints:
+>[S] NDPK5_fw (ΔG'°=1.40 kJ⋅mol⁻¹) | κ⋅γ from 0.6507 to 0.6373 // pool usage from 0.000020 g⋅gDW⁻¹ (0.0090 %) to 0.000020 g⋅gDW⁻¹ (0.0091 %)
+>[P] RNDR2_fw (ΔG'°=-39.90 kJ⋅mol⁻¹) | κ⋅γ from 0.4859 to 0.5927 // pool usage from 0.000037 g⋅gDW⁻¹ (0.0167 %) to 0.000033 g⋅gDW⁻¹ (0.0151 %)
+
+
+==imacp_c==
+ln(Concentration change): 0.06, from 4.8e-05 M to 5e-05 M
+Affected reactions with kinetic constraints:
+>[P] IGPDH_fw (ΔG'°=-42.02 kJ⋅mol⁻¹) | κ⋅γ from 0.1853 to 0.1848 // pool usage from 0.000502 g⋅gDW⁻¹ (0.2288 %) to 0.000501 g⋅gDW⁻¹ (0.2280 %)
+>[S] HSTPT_fw (ΔG'°=9.73 kJ⋅mol⁻¹) | κ⋅γ from 0.9750 to 0.9754 // pool usage from 0.000153 g⋅gDW⁻¹ (0.0698 %) to 0.000154 g⋅gDW⁻¹ (0.0702 %)
+
+
+==3dhq_c==
+ln(Concentration change): 0.06, from 0.00014 M to 0.00013 M
+Affected reactions with kinetic constraints:
+>[S] DHQTi_fw (ΔG'°=-5.29 kJ⋅mol⁻¹) | κ⋅γ from 0.5436 to 0.5419 // pool usage from 0.000068 g⋅gDW⁻¹ (0.0310 %) to 0.000067 g⋅gDW⁻¹ (0.0305 %)
+>[P] DHQS_fw (ΔG'°=-151.01 kJ⋅mol⁻¹) | κ⋅γ from 0.8004 to 0.8019 // pool usage from 0.000082 g⋅gDW⁻¹ (0.0373 %) to 0.000081 g⋅gDW⁻¹ (0.0371 %)
+
+
+==fgam_c==
+ln(Concentration change): 0.05, from 0.00038 M to 0.0004 M
+Affected reactions with kinetic constraints:
+>[P] GARFT_fw (ΔG'°=-0.70 kJ⋅mol⁻¹) | κ⋅γ from 0.4193 to 0.4190 // pool usage from 0.000070 g⋅gDW⁻¹ (0.0320 %) to 0.000070 g⋅gDW⁻¹ (0.0321 %)
+>[S] PRFGS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.9968 to 0.9968 // pool usage from 0.001234 g⋅gDW⁻¹ (0.5620 %) to 0.001231 g⋅gDW⁻¹ (0.5606 %)
+
+
+==akg_c==
+ln(Concentration change): 0.05, from 2.5e-05 M to 2.6e-05 M
+Affected reactions with kinetic constraints:
+>[P] ICDHyr_fw (ΔG'°=5.37 kJ⋅mol⁻¹) | κ⋅γ from 0.4224 to 0.3982 // pool usage from 0.002117 g⋅gDW⁻¹ (0.9643 %) to 0.002171 g⋅gDW⁻¹ (0.9888 %)
+>[P] LEUTAi_fw (ΔG'°=0.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9452 to 0.9444 // pool usage from 0.000237 g⋅gDW⁻¹ (0.1079 %) to 0.000236 g⋅gDW⁻¹ (0.1075 %)
+>[S] AKGDH_fw (ΔG'°=-28.90 kJ⋅mol⁻¹) | κ⋅γ from 0.5123 to 0.5363 // pool usage from 0.000216 g⋅gDW⁻¹ (0.0982 %) to 0.000210 g⋅gDW⁻¹ (0.0955 %)
+>[P] PSERT_fw (ΔG'°=-11.07 kJ⋅mol⁻¹) | κ⋅γ from 0.8699 to 0.8676 // pool usage from 0.000382 g⋅gDW⁻¹ (0.1738 %) to 0.000380 g⋅gDW⁻¹ (0.1732 %)
+>[P] HSTPT_fw (ΔG'°=9.73 kJ⋅mol⁻¹) | κ⋅γ from 0.9750 to 0.9754 // pool usage from 0.000153 g⋅gDW⁻¹ (0.0698 %) to 0.000154 g⋅gDW⁻¹ (0.0702 %)
+>[P] ASPTA_bw (ΔG'°=-2.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9196 to 0.9195 // pool usage from 0.001950 g⋅gDW⁻¹ (0.8880 %) to 0.001944 g⋅gDW⁻¹ (0.8853 %)
+>[P] ILETA_bw (ΔG'°=6.30 kJ⋅mol⁻¹) | κ⋅γ from 0.9392 to 0.9384 // pool usage from 0.000228 g⋅gDW⁻¹ (0.1040 %) to 0.000227 g⋅gDW⁻¹ (0.1035 %)
+>[P] VALTA_bw (ΔG'°=-1.34 kJ⋅mol⁻¹) | κ⋅γ from 0.9917 to 0.9914 // pool usage from 0.000342 g⋅gDW⁻¹ (0.1557 %) to 0.000341 g⋅gDW⁻¹ (0.1551 %)
+>[P] SDPTA_bw (ΔG'°=1.17 kJ⋅mol⁻¹) | κ⋅γ from 0.4055 to 0.3946 // pool usage from 0.000728 g⋅gDW⁻¹ (0.3315 %) to 0.000747 g⋅gDW⁻¹ (0.3404 %)
+>[P] PHETA1_bw (ΔG'°=0.41 kJ⋅mol⁻¹) | κ⋅γ from 0.5256 to 0.5169 // pool usage from 0.000181 g⋅gDW⁻¹ (0.0826 %) to 0.000182 g⋅gDW⁻¹ (0.0828 %)
+>[P] ACOTA_bw (ΔG'°=3.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9649 to 0.9636 // pool usage from 0.000393 g⋅gDW⁻¹ (0.1791 %) to 0.000387 g⋅gDW⁻¹ (0.1764 %)
+>[S] GLUDy_bw (ΔG'°=-31.30 kJ⋅mol⁻¹) | κ⋅γ from 0.1971 to 0.1958 // pool usage from 0.002932 g⋅gDW⁻¹ (1.3353 %) to 0.002930 g⋅gDW⁻¹ (1.3347 %)
+>[P] TYRTA_bw (ΔG'°=0.04 kJ⋅mol⁻¹) | κ⋅γ from 0.8144 to 0.8114 // pool usage from 0.000173 g⋅gDW⁻¹ (0.0790 %) to 0.000173 g⋅gDW⁻¹ (0.0787 %)
+
+
+==air_c==
+ln(Concentration change): 0.05, from 2.1e-06 M to 2.3e-06 M
+Affected reactions with kinetic constraints:
+>[S] AIRC2_fw (ΔG'°=-59.12 kJ⋅mol⁻¹) | κ⋅γ from 0.7398 to 0.7358 // pool usage from 0.000080 g⋅gDW⁻¹ (0.0366 %) to 0.000080 g⋅gDW⁻¹ (0.0365 %)
+>[P] PRAIS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.6068 to 0.5934 // pool usage from 0.000283 g⋅gDW⁻¹ (0.1290 %) to 0.000285 g⋅gDW⁻¹ (0.1299 %)
+
+
+==oaa_c==
+ln(Concentration change): 0.05, from 1.3e-05 M to 1.4e-05 M
+Affected reactions with kinetic constraints:
+>[S] CS_fw (ΔG'°=-41.76 kJ⋅mol⁻¹) | κ⋅γ from 0.1311 to 0.1344 // pool usage from 0.001269 g⋅gDW⁻¹ (0.5782 %) to 0.001248 g⋅gDW⁻¹ (0.5683 %)
+>[P] MDH_fw (ΔG'°=23.57 kJ⋅mol⁻¹) | κ⋅γ from 0.9928 to 0.9933 // pool usage from 0.000520 g⋅gDW⁻¹ (0.2368 %) to 0.000517 g⋅gDW⁻¹ (0.2353 %)
+>[P] PPC_fw (ΔG'°=-43.54 kJ⋅mol⁻¹) | κ⋅γ from 0.2801 to 0.2840 // pool usage from 0.001705 g⋅gDW⁻¹ (0.7765 %) to 0.001685 g⋅gDW⁻¹ (0.7673 %)
+>[S] ASPTA_bw (ΔG'°=-2.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9196 to 0.9195 // pool usage from 0.001950 g⋅gDW⁻¹ (0.8880 %) to 0.001944 g⋅gDW⁻¹ (0.8853 %)
+
+
+==gln__L_c==
+ln(Concentration change): 0.05, from 0.0045 M to 0.0043 M
+Affected reactions with kinetic constraints:
+>[S] ANS_fw (ΔG'°=-112.69 kJ⋅mol⁻¹) | κ⋅γ from 0.7670 to 0.8992 // pool usage from 0.000192 g⋅gDW⁻¹ (0.0874 %) to 0.000176 g⋅gDW⁻¹ (0.0803 %)
+>[S] CTPS2_fw (ΔG'°=-25.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9062 to 0.7372 // pool usage from 0.000452 g⋅gDW⁻¹ (0.2057 %) to 0.000498 g⋅gDW⁻¹ (0.2270 %)
+>[S] GMPS2_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.7307 to 0.7133 // pool usage from 0.001313 g⋅gDW⁻¹ (0.5981 %) to 0.001322 g⋅gDW⁻¹ (0.6023 %)
+>[S] GLUPRT_fw (ΔG'°=-70.09 kJ⋅mol⁻¹) | κ⋅γ from 0.8544 to 0.8678 // pool usage from 0.000277 g⋅gDW⁻¹ (0.1260 %) to 0.000273 g⋅gDW⁻¹ (0.1244 %)
+>[S] PRFGS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.9968 to 0.9968 // pool usage from 0.001234 g⋅gDW⁻¹ (0.5620 %) to 0.001231 g⋅gDW⁻¹ (0.5606 %)
+>[S] CBPS_fw (ΔG'°=-22.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9941 to 0.9907 // pool usage from 0.003568 g⋅gDW⁻¹ (1.6252 %) to 0.003557 g⋅gDW⁻¹ (1.6198 %)
+>[S] IG3PS_fw (ΔG'°=-44.41 kJ⋅mol⁻¹) | κ⋅γ from 0.0621 to 0.0619 // pool usage from 0.000359 g⋅gDW⁻¹ (0.1635 %) to 0.000358 g⋅gDW⁻¹ (0.1630 %)
+>[P] GLNS_fw (ΔG'°=-17.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9249 to 0.9178 // pool usage from 0.001697 g⋅gDW⁻¹ (0.7727 %) to 0.001695 g⋅gDW⁻¹ (0.7719 %)
+
+
+==hom__L_c==
+ln(Concentration change): 0.05, from 2.2e-05 M to 2.3e-05 M
+Affected reactions with kinetic constraints:
+>[S] HSK_fw (ΔG'°=-41.85 kJ⋅mol⁻¹) | κ⋅γ from 0.0199 to 0.0242 // pool usage from 0.000161 g⋅gDW⁻¹ (0.0735 %) to 0.000145 g⋅gDW⁻¹ (0.0663 %)
+>[S] HSST_fw (ΔG'°=-29.20 kJ⋅mol⁻¹) | κ⋅γ from 0.0717 to 0.0677 // pool usage from 0.000454 g⋅gDW⁻¹ (0.2067 %) to 0.000465 g⋅gDW⁻¹ (0.2117 %)
+>[P] HSDy_fw (ΔG'°=-16.73 kJ⋅mol⁻¹) | κ⋅γ from 0.2626 to 0.2583 // pool usage from 0.007464 g⋅gDW⁻¹ (3.3997 %) to 0.007489 g⋅gDW⁻¹ (3.4110 %)
+
+
+==mal__L_c==
+ln(Concentration change): 0.05, from 0.00032 M to 0.00034 M
+Affected reactions with kinetic constraints:
+>[S] MDH_fw (ΔG'°=23.57 kJ⋅mol⁻¹) | κ⋅γ from 0.9928 to 0.9933 // pool usage from 0.000520 g⋅gDW⁻¹ (0.2368 %) to 0.000517 g⋅gDW⁻¹ (0.2353 %)
+>[P] FUM_fw (ΔG'°=-3.42 kJ⋅mol⁻¹) | κ⋅γ from 0.0413 to 0.0422 // pool usage from 0.001767 g⋅gDW⁻¹ (0.8050 %) to 0.001765 g⋅gDW⁻¹ (0.8041 %)
+
+
+==ru5p__D_c==
+ln(Concentration change): 0.05, from 0.0015 M to 0.0014 M
+Affected reactions with kinetic constraints:
+>[S] RPE_fw (ΔG'°=-3.39 kJ⋅mol⁻¹) | κ⋅γ from 0.0381 to 0.0360 // pool usage from 0.002360 g⋅gDW⁻¹ (1.0749 %) to 0.002313 g⋅gDW⁻¹ (1.0534 %)
+>[P] GND_fw (ΔG'°=10.40 kJ⋅mol⁻¹) | κ⋅γ from 0.1671 to 0.1601 // pool usage from 0.004013 g⋅gDW⁻¹ (1.8279 %) to 0.003921 g⋅gDW⁻¹ (1.7859 %)
+>[S] RPI_bw (ΔG'°=-4.49 kJ⋅mol⁻¹) | κ⋅γ from 0.3103 to 0.3038 // pool usage from 0.000838 g⋅gDW⁻¹ (0.3818 %) to 0.000820 g⋅gDW⁻¹ (0.3733 %)
+
+
+==13dpg_c==
+ln(Concentration change): 0.05, from 0.00066 M to 0.0007 M
+Affected reactions with kinetic constraints:
+>[P] GAPD_fw (ΔG'°=-1.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9706 to 0.9692 // pool usage from 0.007343 g⋅gDW⁻¹ (3.3446 %) to 0.007392 g⋅gDW⁻¹ (3.3665 %)
+>[S] PGK_bw (ΔG'°=-19.54 kJ⋅mol⁻¹) | κ⋅γ from 0.0469 to 0.0472 // pool usage from 0.007014 g⋅gDW⁻¹ (3.1947 %) to 0.007045 g⋅gDW⁻¹ (3.2086 %)
+
+
+==q8_c==
+ln(Concentration change): 0.05, from 0.0052 M to 0.0049 M
+Affected reactions with kinetic constraints:
+>[S] DHORD2_fw (ΔG'°=-125.47 kJ⋅mol⁻¹) | κ⋅γ from 0.2323 to 0.3454 // pool usage from 0.000124 g⋅gDW⁻¹ (0.0564 %) to 0.000101 g⋅gDW⁻¹ (0.0460 %)
+>[P] CYTBO3_4pp_fw (ΔG'°=-79.21 kJ⋅mol⁻¹) | κ⋅γ from 0.0180 to 0.0179 // pool usage from 0.005210 g⋅gDW⁻¹ (2.3730 %) to 0.005160 g⋅gDW⁻¹ (2.3502 %)
+>[S] SUCDi_fw (ΔG'°=-73.63 kJ⋅mol⁻¹) | κ⋅γ from 0.3665 to 0.7412 // pool usage from 0.000053 g⋅gDW⁻¹ (0.0242 %) to 0.000037 g⋅gDW⁻¹ (0.0169 %)
+>[S] NADH16pp_fw (ΔG'°=-88.44 kJ⋅mol⁻¹) | κ⋅γ from 0.0705 to 0.0702 // pool usage from 0.012970 g⋅gDW⁻¹ (5.9070 %) to 0.012851 g⋅gDW⁻¹ (5.8532 %)
+
+
+==dudp_c==
+ln(Concentration change): 0.05, from 0.00057 M to 0.00059 M
+Affected reactions with kinetic constraints:
+>[S] NDPK6_fw (ΔG'°=-1.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9314 to 0.9317 // pool usage from 0.000867 g⋅gDW⁻¹ (0.3950 %) to 0.000861 g⋅gDW⁻¹ (0.3920 %)
+>[P] RNDR4_fw (ΔG'°=-44.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1852 to 0.5162 // pool usage from 0.000058 g⋅gDW⁻¹ (0.0262 %) to 0.000034 g⋅gDW⁻¹ (0.0156 %)
+
+
+==aps_c==
+ln(Concentration change): 0.04, from 4.8e-05 M to 5e-05 M
+Affected reactions with kinetic constraints:
+>[P] SADT2_fw (ΔG'°=16.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7208 to 0.7770 // pool usage from 0.000510 g⋅gDW⁻¹ (0.2321 %) to 0.000488 g⋅gDW⁻¹ (0.2224 %)
+>[S] ADSK_fw (ΔG'°=-19.14 kJ⋅mol⁻¹) | κ⋅γ from 0.4572 to 0.4422 // pool usage from 0.000018 g⋅gDW⁻¹ (0.0082 %) to 0.000018 g⋅gDW⁻¹ (0.0083 %)
+
+
+==q8h2_c==
+ln(Concentration change): 0.04, from 7.1e-05 M to 6.8e-05 M
+Affected reactions with kinetic constraints:
+>[P] DHORD2_fw (ΔG'°=-125.47 kJ⋅mol⁻¹) | κ⋅γ from 0.2323 to 0.3454 // pool usage from 0.000124 g⋅gDW⁻¹ (0.0564 %) to 0.000101 g⋅gDW⁻¹ (0.0460 %)
+>[S] CYTBO3_4pp_fw (ΔG'°=-79.21 kJ⋅mol⁻¹) | κ⋅γ from 0.0180 to 0.0179 // pool usage from 0.005210 g⋅gDW⁻¹ (2.3730 %) to 0.005160 g⋅gDW⁻¹ (2.3502 %)
+>[P] SUCDi_fw (ΔG'°=-73.63 kJ⋅mol⁻¹) | κ⋅γ from 0.3665 to 0.7412 // pool usage from 0.000053 g⋅gDW⁻¹ (0.0242 %) to 0.000037 g⋅gDW⁻¹ (0.0169 %)
+>[P] NADH16pp_fw (ΔG'°=-88.44 kJ⋅mol⁻¹) | κ⋅γ from 0.0705 to 0.0702 // pool usage from 0.012970 g⋅gDW⁻¹ (5.9070 %) to 0.012851 g⋅gDW⁻¹ (5.8532 %)
+
+
+==phom_c==
+ln(Concentration change): 0.04, from 0.0024 M to 0.0023 M
+Affected reactions with kinetic constraints:
+>[P] HSK_fw (ΔG'°=-41.85 kJ⋅mol⁻¹) | κ⋅γ from 0.0199 to 0.0242 // pool usage from 0.000161 g⋅gDW⁻¹ (0.0735 %) to 0.000145 g⋅gDW⁻¹ (0.0663 %)
+>[S] THRS_fw (ΔG'°=-29.69 kJ⋅mol⁻¹) | κ⋅γ from 0.0834 to 0.0915 // pool usage from 0.000586 g⋅gDW⁻¹ (0.2667 %) to 0.000556 g⋅gDW⁻¹ (0.2534 %)
+
+
+==hco3_c==
+ln(Concentration change): 0.04, from 0.0011 M to 0.0011 M
+Affected reactions with kinetic constraints:
+>[S] ACCOAC_fw (ΔG'°=-11.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9390 to 0.9398 // pool usage from 0.004175 g⋅gDW⁻¹ (1.9014 %) to 0.004159 g⋅gDW⁻¹ (1.8944 %)
+>[S] AIRC2_fw (ΔG'°=-59.12 kJ⋅mol⁻¹) | κ⋅γ from 0.7398 to 0.7358 // pool usage from 0.000080 g⋅gDW⁻¹ (0.0366 %) to 0.000080 g⋅gDW⁻¹ (0.0365 %)
+>[S] CBPS_fw (ΔG'°=-22.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9941 to 0.9907 // pool usage from 0.003568 g⋅gDW⁻¹ (1.6252 %) to 0.003557 g⋅gDW⁻¹ (1.6198 %)
+
+
+==trdox_c==
+ln(Concentration change): 0.04, from 5.6e-05 M to 5.8e-05 M
+Affected reactions with kinetic constraints:
+>[P] RNDR1_fw (ΔG'°=-44.06 kJ⋅mol⁻¹) | κ⋅γ from 0.9116 to 0.8729 // pool usage from 0.000026 g⋅gDW⁻¹ (0.0118 %) to 0.000026 g⋅gDW⁻¹ (0.0120 %)
+>[P] RNDR3_fw (ΔG'°=-40.59 kJ⋅mol⁻¹) | κ⋅γ from 0.3652 to 0.3254 // pool usage from 0.000042 g⋅gDW⁻¹ (0.0193 %) to 0.000045 g⋅gDW⁻¹ (0.0203 %)
+>[P] RNDR4_fw (ΔG'°=-44.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1852 to 0.5162 // pool usage from 0.000058 g⋅gDW⁻¹ (0.0262 %) to 0.000034 g⋅gDW⁻¹ (0.0156 %)
+>[S] TRDR_fw (ΔG'°=-3.86 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000340 g⋅gDW⁻¹ (0.1549 %) to 0.000334 g⋅gDW⁻¹ (0.1522 %)
+>[P] PAPSR_fw (ΔG'°=-51.48 kJ⋅mol⁻¹) | κ⋅γ from 0.6784 to 0.6508 // pool usage from 0.000156 g⋅gDW⁻¹ (0.0710 %) to 0.000158 g⋅gDW⁻¹ (0.0721 %)
+>[P] RNDR2_fw (ΔG'°=-39.90 kJ⋅mol⁻¹) | κ⋅γ from 0.4859 to 0.5927 // pool usage from 0.000037 g⋅gDW⁻¹ (0.0167 %) to 0.000033 g⋅gDW⁻¹ (0.0151 %)
+
+
+==pser__L_c==
+ln(Concentration change): 0.04, from 3.4e-05 M to 3.3e-05 M
+Affected reactions with kinetic constraints:
+>[P] PSERT_fw (ΔG'°=-11.07 kJ⋅mol⁻¹) | κ⋅γ from 0.8699 to 0.8676 // pool usage from 0.000382 g⋅gDW⁻¹ (0.1738 %) to 0.000380 g⋅gDW⁻¹ (0.1732 %)
+>[S] PSP_L_fw (ΔG'°=-10.48 kJ⋅mol⁻¹) | κ⋅γ from 0.0369 to 0.0366 // pool usage from 0.000024 g⋅gDW⁻¹ (0.0108 %) to 0.000024 g⋅gDW⁻¹ (0.0108 %)
+
+
+==alac__S_c==
+ln(Concentration change): 0.04, from 3.5e-05 M to 3.4e-05 M
+Affected reactions with kinetic constraints:
+>[P] ACLS_fw (ΔG'°=-23.71 kJ⋅mol⁻¹) | κ⋅γ from 0.7111 to 0.7009 // pool usage from 0.000266 g⋅gDW⁻¹ (0.1212 %) to 0.000267 g⋅gDW⁻¹ (0.1215 %)
+>[S] KARA1_bw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9970 to 0.9970 // pool usage from 0.002366 g⋅gDW⁻¹ (1.0778 %) to 0.002355 g⋅gDW⁻¹ (1.0724 %)
+
+
+==indole_c==
+ln(Concentration change): 0.04, from 3.2e-05 M to 3.3e-05 M
+Affected reactions with kinetic constraints:
+>[S] TRPS2_fw (ΔG'°=-50.41 kJ⋅mol⁻¹) | κ⋅γ from 0.8157 to 0.8111 // pool usage from 0.000107 g⋅gDW⁻¹ (0.0485 %) to 0.000106 g⋅gDW⁻¹ (0.0484 %)
+>[P] TRPS3_fw (ΔG'°=19.17 kJ⋅mol⁻¹) | κ⋅γ from 0.4424 to 0.4426 // pool usage from 0.000117 g⋅gDW⁻¹ (0.0533 %) to 0.000116 g⋅gDW⁻¹ (0.0530 %)
+
+
+==thf_c==
+ln(Concentration change): 0.04, from 2.2e-05 M to 2.2e-05 M
+Affected reactions with kinetic constraints:
+>[S] GLYCL_fw (ΔG'°=19.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0019 to 0.0018 // pool usage from 0.001701 g⋅gDW⁻¹ (0.7746 %) to 0.001710 g⋅gDW⁻¹ (0.7786 %)
+>[S] GHMT2r_fw (ΔG'°=-9.96 kJ⋅mol⁻¹) | κ⋅γ from 0.5259 to 0.5224 // pool usage from 0.003567 g⋅gDW⁻¹ (1.6245 %) to 0.003568 g⋅gDW⁻¹ (1.6252 %)
+>[P] GARFT_fw (ΔG'°=-0.70 kJ⋅mol⁻¹) | κ⋅γ from 0.4193 to 0.4190 // pool usage from 0.000070 g⋅gDW⁻¹ (0.0320 %) to 0.000070 g⋅gDW⁻¹ (0.0321 %)
+>[P] METS_fw (ΔG'°=0.17 kJ⋅mol⁻¹) | κ⋅γ from 0.6101 to 0.6975 // pool usage from 0.000617 g⋅gDW⁻¹ (0.2810 %) to 0.000587 g⋅gDW⁻¹ (0.2675 %)
+>[P] DHFR_fw (ΔG'°=-16.27 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000031 g⋅gDW⁻¹ (0.0140 %) to 0.000031 g⋅gDW⁻¹ (0.0139 %)
+>[P] AICART_fw (ΔG'°=15.17 kJ⋅mol⁻¹) | κ⋅γ from 0.9631 to 0.9622 // pool usage from 0.001578 g⋅gDW⁻¹ (0.7187 %) to 0.001576 g⋅gDW⁻¹ (0.7178 %)
+
+
+==26dap_LL_c==
+ln(Concentration change): 0.03, from 0.00085 M to 0.00088 M
+Affected reactions with kinetic constraints:
+>[P] SDPDS_fw (ΔG'°=8.20 kJ⋅mol⁻¹) | κ⋅γ from 0.0451 to 0.0346 // pool usage from 0.000133 g⋅gDW⁻¹ (0.0608 %) to 0.000152 g⋅gDW⁻¹ (0.0694 %)
+>[S] DAPE_fw (ΔG'°=-1.65 kJ⋅mol⁻¹) | κ⋅γ from 0.4374 to 0.4199 // pool usage from 0.000101 g⋅gDW⁻¹ (0.0462 %) to 0.000111 g⋅gDW⁻¹ (0.0507 %)
+
+
+==fum_c==
+ln(Concentration change): 0.03, from 0.00018 M to 0.00018 M
+Affected reactions with kinetic constraints:
+>[P] ADSL2r_fw (ΔG'°=24.94 kJ⋅mol⁻¹) | κ⋅γ from 0.8944 to 0.8943 // pool usage from 0.001336 g⋅gDW⁻¹ (0.6086 %) to 0.001337 g⋅gDW⁻¹ (0.6089 %)
+>[S] FUM_fw (ΔG'°=-3.42 kJ⋅mol⁻¹) | κ⋅γ from 0.0413 to 0.0422 // pool usage from 0.001767 g⋅gDW⁻¹ (0.8050 %) to 0.001765 g⋅gDW⁻¹ (0.8041 %)
+>[P] ARGSL_fw (ΔG'°=-8.67 kJ⋅mol⁻¹) | κ⋅γ from 0.6361 to 0.5807 // pool usage from 0.000412 g⋅gDW⁻¹ (0.1875 %) to 0.000429 g⋅gDW⁻¹ (0.1952 %)
+>[P] ADSL1r_fw (ΔG'°=17.02 kJ⋅mol⁻¹) | κ⋅γ from 0.9811 to 0.9809 // pool usage from 0.000889 g⋅gDW⁻¹ (0.4049 %) to 0.000869 g⋅gDW⁻¹ (0.3956 %)
+>[P] SUCDi_fw (ΔG'°=-73.63 kJ⋅mol⁻¹) | κ⋅γ from 0.3665 to 0.7412 // pool usage from 0.000053 g⋅gDW⁻¹ (0.0242 %) to 0.000037 g⋅gDW⁻¹ (0.0169 %)
+
+
+==glu__L_c==
+ln(Concentration change): 0.03, from 0.046 M to 0.045 M
+Affected reactions with kinetic constraints:
+>[P] ANS_fw (ΔG'°=-112.69 kJ⋅mol⁻¹) | κ⋅γ from 0.7670 to 0.8992 // pool usage from 0.000192 g⋅gDW⁻¹ (0.0874 %) to 0.000176 g⋅gDW⁻¹ (0.0803 %)
+>[S] LEUTAi_fw (ΔG'°=0.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9452 to 0.9444 // pool usage from 0.000237 g⋅gDW⁻¹ (0.1079 %) to 0.000236 g⋅gDW⁻¹ (0.1075 %)
+>[P] CTPS2_fw (ΔG'°=-25.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9062 to 0.7372 // pool usage from 0.000452 g⋅gDW⁻¹ (0.2057 %) to 0.000498 g⋅gDW⁻¹ (0.2270 %)
+>[P] GMPS2_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.7307 to 0.7133 // pool usage from 0.001313 g⋅gDW⁻¹ (0.5981 %) to 0.001322 g⋅gDW⁻¹ (0.6023 %)
+>[P] GLUPRT_fw (ΔG'°=-70.09 kJ⋅mol⁻¹) | κ⋅γ from 0.8544 to 0.8678 // pool usage from 0.000277 g⋅gDW⁻¹ (0.1260 %) to 0.000273 g⋅gDW⁻¹ (0.1244 %)
+>[P] PRFGS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.9968 to 0.9968 // pool usage from 0.001234 g⋅gDW⁻¹ (0.5620 %) to 0.001231 g⋅gDW⁻¹ (0.5606 %)
+>[S] PSERT_fw (ΔG'°=-11.07 kJ⋅mol⁻¹) | κ⋅γ from 0.8699 to 0.8676 // pool usage from 0.000382 g⋅gDW⁻¹ (0.1738 %) to 0.000380 g⋅gDW⁻¹ (0.1732 %)
+>[P] CBPS_fw (ΔG'°=-22.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9941 to 0.9907 // pool usage from 0.003568 g⋅gDW⁻¹ (1.6252 %) to 0.003557 g⋅gDW⁻¹ (1.6198 %)
+>[S] GLU5K_fw (ΔG'°=29.49 kJ⋅mol⁻¹) | κ⋅γ from 0.9965 to 0.9960 // pool usage from 0.000983 g⋅gDW⁻¹ (0.4476 %) to 0.000960 g⋅gDW⁻¹ (0.4374 %)
+>[S] HSTPT_fw (ΔG'°=9.73 kJ⋅mol⁻¹) | κ⋅γ from 0.9750 to 0.9754 // pool usage from 0.000153 g⋅gDW⁻¹ (0.0698 %) to 0.000154 g⋅gDW⁻¹ (0.0702 %)
+>[P] IG3PS_fw (ΔG'°=-44.41 kJ⋅mol⁻¹) | κ⋅γ from 0.0621 to 0.0619 // pool usage from 0.000359 g⋅gDW⁻¹ (0.1635 %) to 0.000358 g⋅gDW⁻¹ (0.1630 %)
+>[S] GLNS_fw (ΔG'°=-17.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9249 to 0.9178 // pool usage from 0.001697 g⋅gDW⁻¹ (0.7727 %) to 0.001695 g⋅gDW⁻¹ (0.7719 %)
+>[S] ACGS_fw (ΔG'°=-27.83 kJ⋅mol⁻¹) | κ⋅γ from 0.6724 to 0.6589 // pool usage from 0.000129 g⋅gDW⁻¹ (0.0589 %) to 0.000130 g⋅gDW⁻¹ (0.0592 %)
+>[S] ASPTA_bw (ΔG'°=-2.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9196 to 0.9195 // pool usage from 0.001950 g⋅gDW⁻¹ (0.8880 %) to 0.001944 g⋅gDW⁻¹ (0.8853 %)
+>[S] ILETA_bw (ΔG'°=6.30 kJ⋅mol⁻¹) | κ⋅γ from 0.9392 to 0.9384 // pool usage from 0.000228 g⋅gDW⁻¹ (0.1040 %) to 0.000227 g⋅gDW⁻¹ (0.1035 %)
+>[S] VALTA_bw (ΔG'°=-1.34 kJ⋅mol⁻¹) | κ⋅γ from 0.9917 to 0.9914 // pool usage from 0.000342 g⋅gDW⁻¹ (0.1557 %) to 0.000341 g⋅gDW⁻¹ (0.1551 %)
+>[S] SDPTA_bw (ΔG'°=1.17 kJ⋅mol⁻¹) | κ⋅γ from 0.4055 to 0.3946 // pool usage from 0.000728 g⋅gDW⁻¹ (0.3315 %) to 0.000747 g⋅gDW⁻¹ (0.3404 %)
+>[S] PHETA1_bw (ΔG'°=0.41 kJ⋅mol⁻¹) | κ⋅γ from 0.5256 to 0.5169 // pool usage from 0.000181 g⋅gDW⁻¹ (0.0826 %) to 0.000182 g⋅gDW⁻¹ (0.0828 %)
+>[S] ACOTA_bw (ΔG'°=3.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9649 to 0.9636 // pool usage from 0.000393 g⋅gDW⁻¹ (0.1791 %) to 0.000387 g⋅gDW⁻¹ (0.1764 %)
+>[P] GLUDy_bw (ΔG'°=-31.30 kJ⋅mol⁻¹) | κ⋅γ from 0.1971 to 0.1958 // pool usage from 0.002932 g⋅gDW⁻¹ (1.3353 %) to 0.002930 g⋅gDW⁻¹ (1.3347 %)
+>[S] TYRTA_bw (ΔG'°=0.04 kJ⋅mol⁻¹) | κ⋅γ from 0.8144 to 0.8114 // pool usage from 0.000173 g⋅gDW⁻¹ (0.0790 %) to 0.000173 g⋅gDW⁻¹ (0.0787 %)
+
+
+==dutp_c==
+ln(Concentration change): 0.03, from 0.00017 M to 0.00017 M
+Affected reactions with kinetic constraints:
+>[P] NDPK6_fw (ΔG'°=-1.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9314 to 0.9317 // pool usage from 0.000867 g⋅gDW⁻¹ (0.3950 %) to 0.000861 g⋅gDW⁻¹ (0.3920 %)
+>[S] DUTPDP_fw (ΔG'°=-48.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9480 to 0.9496 // pool usage from 0.003223 g⋅gDW⁻¹ (1.4681 %) to 0.003205 g⋅gDW⁻¹ (1.4595 %)
+
+
+==asp__L_c==
+ln(Concentration change): 0.03, from 0.031 M to 0.03 M
+Affected reactions with kinetic constraints:
+>[S] ARGSS_fw (ΔG'°=10.46 kJ⋅mol⁻¹) | κ⋅γ from 0.9990 to 1.0000 // pool usage from 0.001598 g⋅gDW⁻¹ (0.7276 %) to 0.001582 g⋅gDW⁻¹ (0.7207 %)
+>[S] ADSS_fw (ΔG'°=-7.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9992 to 0.9995 // pool usage from 0.001566 g⋅gDW⁻¹ (0.7131 %) to 0.001547 g⋅gDW⁻¹ (0.7045 %)
+>[S] ASNS2_fw (ΔG'°=-31.94 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000318 g⋅gDW⁻¹ (0.1449 %) to 0.000317 g⋅gDW⁻¹ (0.1442 %)
+>[S] ASPCT_fw (ΔG'°=-22.93 kJ⋅mol⁻¹) | κ⋅γ from 0.8410 to 0.8982 // pool usage from 0.000169 g⋅gDW⁻¹ (0.0770 %) to 0.000163 g⋅gDW⁻¹ (0.0741 %)
+>[S] ASPK_fw (ΔG'°=20.92 kJ⋅mol⁻¹) | κ⋅γ from 0.9969 to 0.9965 // pool usage from 0.003320 g⋅gDW⁻¹ (1.5121 %) to 0.003303 g⋅gDW⁻¹ (1.5043 %)
+>[S] PRASCSi_fw (ΔG'°=-83.42 kJ⋅mol⁻¹) | κ⋅γ from 0.9055 to 0.9051 // pool usage from 0.000434 g⋅gDW⁻¹ (0.1978 %) to 0.000432 g⋅gDW⁻¹ (0.1969 %)
+>[P] ASPTA_bw (ΔG'°=-2.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9196 to 0.9195 // pool usage from 0.001950 g⋅gDW⁻¹ (0.8880 %) to 0.001944 g⋅gDW⁻¹ (0.8853 %)
+
+
+==nad_c==
+ln(Concentration change): 0.03, from 0.022 M to 0.023 M
+Affected reactions with kinetic constraints:
+>[S] IMPD_fw (ΔG'°=13.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9733 to 0.9741 // pool usage from 0.001899 g⋅gDW⁻¹ (0.8649 %) to 0.001902 g⋅gDW⁻¹ (0.8662 %)
+>[S] IPMD_fw (ΔG'°=12.73 kJ⋅mol⁻¹) | κ⋅γ from 0.9574 to 0.9586 // pool usage from 0.000563 g⋅gDW⁻¹ (0.2565 %) to 0.000560 g⋅gDW⁻¹ (0.2551 %)
+>[S] MDH_fw (ΔG'°=23.57 kJ⋅mol⁻¹) | κ⋅γ from 0.9928 to 0.9933 // pool usage from 0.000520 g⋅gDW⁻¹ (0.2368 %) to 0.000517 g⋅gDW⁻¹ (0.2353 %)
+>[S] GLYCL_fw (ΔG'°=19.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0019 to 0.0018 // pool usage from 0.001701 g⋅gDW⁻¹ (0.7746 %) to 0.001710 g⋅gDW⁻¹ (0.7786 %)
+>[S] NADTRHD_fw (ΔG'°=-0.31 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.002429 g⋅gDW⁻¹ (1.1061 %) to 0.002068 g⋅gDW⁻¹ (0.9421 %)
+>[S] AKGDH_fw (ΔG'°=-28.90 kJ⋅mol⁻¹) | κ⋅γ from 0.5123 to 0.5363 // pool usage from 0.000216 g⋅gDW⁻¹ (0.0982 %) to 0.000210 g⋅gDW⁻¹ (0.0955 %)
+>[S] HISTD_fw (ΔG'°=-23.37 kJ⋅mol⁻¹) | κ⋅γ from 0.9988 to 1.0000 // pool usage from 0.000260 g⋅gDW⁻¹ (0.1183 %) to 0.000258 g⋅gDW⁻¹ (0.1176 %)
+>[S] PPND_fw (ΔG'°=-10.96 kJ⋅mol⁻¹) | κ⋅γ from 0.9948 to 0.9948 // pool usage from 0.000055 g⋅gDW⁻¹ (0.0250 %) to 0.000055 g⋅gDW⁻¹ (0.0249 %)
+>[S] GAPD_fw (ΔG'°=-1.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9706 to 0.9692 // pool usage from 0.007343 g⋅gDW⁻¹ (3.3446 %) to 0.007392 g⋅gDW⁻¹ (3.3665 %)
+>[S] PDH_fw (ΔG'°=-34.43 kJ⋅mol⁻¹) | κ⋅γ from 0.2702 to 0.2698 // pool usage from 0.005394 g⋅gDW⁻¹ (2.4567 %) to 0.005482 g⋅gDW⁻¹ (2.4969 %)
+>[P] MTHFR2_fw (ΔG'°=-37.57 kJ⋅mol⁻¹) | κ⋅γ from 0.8518 to 0.8780 // pool usage from 0.000280 g⋅gDW⁻¹ (0.1275 %) to 0.000274 g⋅gDW⁻¹ (0.1250 %)
+>[S] PGCD_fw (ΔG'°=27.64 kJ⋅mol⁻¹) | κ⋅γ from 0.9923 to 0.9925 // pool usage from 0.000420 g⋅gDW⁻¹ (0.1914 %) to 0.000419 g⋅gDW⁻¹ (0.1907 %)
+>[P] EAR40x_fw (ΔG'°=-53.31 kJ⋅mol⁻¹) | κ⋅γ from 0.1220 to 0.1227 // pool usage from 0.001642 g⋅gDW⁻¹ (0.7477 %) to 0.001629 g⋅gDW⁻¹ (0.7418 %)
+>[P] NADH16pp_fw (ΔG'°=-88.44 kJ⋅mol⁻¹) | κ⋅γ from 0.0705 to 0.0702 // pool usage from 0.012970 g⋅gDW⁻¹ (5.9070 %) to 0.012851 g⋅gDW⁻¹ (5.8532 %)
+
+
+==ser__L_c==
+ln(Concentration change): 0.03, from 0.014 M to 0.014 M
+Affected reactions with kinetic constraints:
+>[S] TRPS2_fw (ΔG'°=-50.41 kJ⋅mol⁻¹) | κ⋅γ from 0.8157 to 0.8111 // pool usage from 0.000107 g⋅gDW⁻¹ (0.0485 %) to 0.000106 g⋅gDW⁻¹ (0.0484 %)
+>[S] GHMT2r_fw (ΔG'°=-9.96 kJ⋅mol⁻¹) | κ⋅γ from 0.5259 to 0.5224 // pool usage from 0.003567 g⋅gDW⁻¹ (1.6245 %) to 0.003568 g⋅gDW⁻¹ (1.6252 %)
+>[S] SERAT_fw (ΔG'°=-6.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9480 to 0.9425 // pool usage from 0.000066 g⋅gDW⁻¹ (0.0300 %) to 0.000066 g⋅gDW⁻¹ (0.0300 %)
+>[P] PSP_L_fw (ΔG'°=-10.48 kJ⋅mol⁻¹) | κ⋅γ from 0.0369 to 0.0366 // pool usage from 0.000024 g⋅gDW⁻¹ (0.0108 %) to 0.000024 g⋅gDW⁻¹ (0.0108 %)
+
+
+==f6p_c==
+ln(Concentration change): 0.03, from 0.00015 M to 0.00015 M
+Affected reactions with kinetic constraints:
+>[P] PGI_fw (ΔG'°=2.42 kJ⋅mol⁻¹) | κ⋅γ from 0.2005 to 0.2088 // pool usage from 0.000688 g⋅gDW⁻¹ (0.3132 %) to 0.000776 g⋅gDW⁻¹ (0.3533 %)
+>[P] TALA_fw (ΔG'°=-1.22 kJ⋅mol⁻¹) | κ⋅γ from 0.5389 to 0.5310 // pool usage from 0.001005 g⋅gDW⁻¹ (0.4577 %) to 0.000966 g⋅gDW⁻¹ (0.4398 %)
+>[P] TKT2_fw (ΔG'°=-10.59 kJ⋅mol⁻¹) | κ⋅γ from 0.6186 to 0.6137 // pool usage from 0.001676 g⋅gDW⁻¹ (0.7633 %) to 0.001595 g⋅gDW⁻¹ (0.7263 %)
+>[S] PFK_fw (ΔG'°=-21.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2786 to 0.2823 // pool usage from 0.001462 g⋅gDW⁻¹ (0.6660 %) to 0.001478 g⋅gDW⁻¹ (0.6732 %)
+
+
+==6pgl_c==
+ln(Concentration change): 0.03, from 0.00043 M to 0.00042 M
+Affected reactions with kinetic constraints:
+>[S] PGL_fw (ΔG'°=-28.03 kJ⋅mol⁻¹) | κ⋅γ from 0.0067 to 0.0067 // pool usage from 0.001574 g⋅gDW⁻¹ (0.7167 %) to 0.001506 g⋅gDW⁻¹ (0.6861 %)
+>[P] G6PDH2r_fw (ΔG'°=-9.36 kJ⋅mol⁻¹) | κ⋅γ from 0.1648 to 0.1645 // pool usage from 0.001959 g⋅gDW⁻¹ (0.8922 %) to 0.001874 g⋅gDW⁻¹ (0.8534 %)
+
+
+==acglu_c==
+ln(Concentration change): 0.03, from 0.013 M to 0.012 M
+Affected reactions with kinetic constraints:
+>[S] ACGK_fw (ΔG'°=25.72 kJ⋅mol⁻¹) | κ⋅γ from 0.9954 to 0.9946 // pool usage from 0.000735 g⋅gDW⁻¹ (0.3347 %) to 0.000723 g⋅gDW⁻¹ (0.3292 %)
+>[P] ACGS_fw (ΔG'°=-27.83 kJ⋅mol⁻¹) | κ⋅γ from 0.6724 to 0.6589 // pool usage from 0.000129 g⋅gDW⁻¹ (0.0589 %) to 0.000130 g⋅gDW⁻¹ (0.0592 %)
+
+
+==nadh_c==
+ln(Concentration change): 0.03, from 3.3e-05 M to 3.4e-05 M
+Affected reactions with kinetic constraints:
+>[P] IMPD_fw (ΔG'°=13.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9733 to 0.9741 // pool usage from 0.001899 g⋅gDW⁻¹ (0.8649 %) to 0.001902 g⋅gDW⁻¹ (0.8662 %)
+>[P] IPMD_fw (ΔG'°=12.73 kJ⋅mol⁻¹) | κ⋅γ from 0.9574 to 0.9586 // pool usage from 0.000563 g⋅gDW⁻¹ (0.2565 %) to 0.000560 g⋅gDW⁻¹ (0.2551 %)
+>[P] MDH_fw (ΔG'°=23.57 kJ⋅mol⁻¹) | κ⋅γ from 0.9928 to 0.9933 // pool usage from 0.000520 g⋅gDW⁻¹ (0.2368 %) to 0.000517 g⋅gDW⁻¹ (0.2353 %)
+>[P] GLYCL_fw (ΔG'°=19.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0019 to 0.0018 // pool usage from 0.001701 g⋅gDW⁻¹ (0.7746 %) to 0.001710 g⋅gDW⁻¹ (0.7786 %)
+>[P] NADTRHD_fw (ΔG'°=-0.31 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.002429 g⋅gDW⁻¹ (1.1061 %) to 0.002068 g⋅gDW⁻¹ (0.9421 %)
+>[P] AKGDH_fw (ΔG'°=-28.90 kJ⋅mol⁻¹) | κ⋅γ from 0.5123 to 0.5363 // pool usage from 0.000216 g⋅gDW⁻¹ (0.0982 %) to 0.000210 g⋅gDW⁻¹ (0.0955 %)
+>[P] HISTD_fw (ΔG'°=-23.37 kJ⋅mol⁻¹) | κ⋅γ from 0.9988 to 1.0000 // pool usage from 0.000260 g⋅gDW⁻¹ (0.1183 %) to 0.000258 g⋅gDW⁻¹ (0.1176 %)
+>[P] PPND_fw (ΔG'°=-10.96 kJ⋅mol⁻¹) | κ⋅γ from 0.9948 to 0.9948 // pool usage from 0.000055 g⋅gDW⁻¹ (0.0250 %) to 0.000055 g⋅gDW⁻¹ (0.0249 %)
+>[P] GAPD_fw (ΔG'°=-1.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9706 to 0.9692 // pool usage from 0.007343 g⋅gDW⁻¹ (3.3446 %) to 0.007392 g⋅gDW⁻¹ (3.3665 %)
+>[P] PDH_fw (ΔG'°=-34.43 kJ⋅mol⁻¹) | κ⋅γ from 0.2702 to 0.2698 // pool usage from 0.005394 g⋅gDW⁻¹ (2.4567 %) to 0.005482 g⋅gDW⁻¹ (2.4969 %)
+>[S] MTHFR2_fw (ΔG'°=-37.57 kJ⋅mol⁻¹) | κ⋅γ from 0.8518 to 0.8780 // pool usage from 0.000280 g⋅gDW⁻¹ (0.1275 %) to 0.000274 g⋅gDW⁻¹ (0.1250 %)
+>[P] PGCD_fw (ΔG'°=27.64 kJ⋅mol⁻¹) | κ⋅γ from 0.9923 to 0.9925 // pool usage from 0.000420 g⋅gDW⁻¹ (0.1914 %) to 0.000419 g⋅gDW⁻¹ (0.1907 %)
+>[S] EAR40x_fw (ΔG'°=-53.31 kJ⋅mol⁻¹) | κ⋅γ from 0.1220 to 0.1227 // pool usage from 0.001642 g⋅gDW⁻¹ (0.7477 %) to 0.001629 g⋅gDW⁻¹ (0.7418 %)
+>[S] NADH16pp_fw (ΔG'°=-88.44 kJ⋅mol⁻¹) | κ⋅γ from 0.0705 to 0.0702 // pool usage from 0.012970 g⋅gDW⁻¹ (5.9070 %) to 0.012851 g⋅gDW⁻¹ (5.8532 %)
+
+
+==glu5sa_c==
+ln(Concentration change): 0.03, from 0.0001 M to 0.00011 M
+Affected reactions with kinetic constraints:
+>[P] G5SD_fw (ΔG'°=-5.25 kJ⋅mol⁻¹) | κ⋅γ from 0.1736 to 0.1731 // pool usage from 0.000463 g⋅gDW⁻¹ (0.2108 %) to 0.000461 g⋅gDW⁻¹ (0.2101 %)
+>[S] G5SADs_fw (ΔG'°=-44.52 kJ⋅mol⁻¹) | κ⋅γ from 0.1533 to 0.1567 // pool usage from 0.000203 g⋅gDW⁻¹ (0.0923 %) to 0.000199 g⋅gDW⁻¹ (0.0908 %)
+
+
+==6pgc_c==
+ln(Concentration change): 0.03, from 0.0088 M to 0.0085 M
+Affected reactions with kinetic constraints:
+>[P] PGL_fw (ΔG'°=-28.03 kJ⋅mol⁻¹) | κ⋅γ from 0.0067 to 0.0067 // pool usage from 0.001574 g⋅gDW⁻¹ (0.7167 %) to 0.001506 g⋅gDW⁻¹ (0.6861 %)
+>[S] GND_fw (ΔG'°=10.40 kJ⋅mol⁻¹) | κ⋅γ from 0.1671 to 0.1601 // pool usage from 0.004013 g⋅gDW⁻¹ (1.8279 %) to 0.003921 g⋅gDW⁻¹ (1.7859 %)
+
+
+==methf_c==
+ln(Concentration change): 0.03, from 2.2e-05 M to 2.1e-05 M
+Affected reactions with kinetic constraints:
+>[S] MTHFC_fw (ΔG'°=-5.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0503 to 0.0495 // pool usage from 0.001637 g⋅gDW⁻¹ (0.7455 %) to 0.001644 g⋅gDW⁻¹ (0.7487 %)
+>[P] MTHFD_fw (ΔG'°=3.79 kJ⋅mol⁻¹) | κ⋅γ from 0.9610 to 0.9608 // pool usage from 0.000822 g⋅gDW⁻¹ (0.3745 %) to 0.000822 g⋅gDW⁻¹ (0.3746 %)
+
+
+==actACP_c==
+ln(Concentration change): 0.03, from 0.00025 M to 0.00024 M
+Affected reactions with kinetic constraints:
+>[P] KAS15_fw (ΔG'°=20.67 kJ⋅mol⁻¹) | κ⋅γ from 0.9955 to 0.9952 // pool usage from 0.000151 g⋅gDW⁻¹ (0.0687 %) to 0.000150 g⋅gDW⁻¹ (0.0684 %)
+>[S] 3OAR40_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.7688 to 0.7740 // pool usage from 0.000238 g⋅gDW⁻¹ (0.1086 %) to 0.000236 g⋅gDW⁻¹ (0.1077 %)
+
+
+==gar_c==
+ln(Concentration change): 0.03, from 0.00024 M to 0.00025 M
+Affected reactions with kinetic constraints:
+>[S] GARFT_fw (ΔG'°=-0.70 kJ⋅mol⁻¹) | κ⋅γ from 0.4193 to 0.4190 // pool usage from 0.000070 g⋅gDW⁻¹ (0.0320 %) to 0.000070 g⋅gDW⁻¹ (0.0321 %)
+>[P] PRAGSr_fw (ΔG'°=-27.89 kJ⋅mol⁻¹) | κ⋅γ from 0.8381 to 0.8321 // pool usage from 0.000309 g⋅gDW⁻¹ (0.1410 %) to 0.000309 g⋅gDW⁻¹ (0.1408 %)
+
+
+==pphn_c==
+ln(Concentration change): 0.03, from 0.00046 M to 0.00045 M
+Affected reactions with kinetic constraints:
+>[P] CHORM_fw (ΔG'°=-48.72 kJ⋅mol⁻¹) | κ⋅γ from 0.3510 to 0.3285 // pool usage from 0.000333 g⋅gDW⁻¹ (0.1517 %) to 0.000343 g⋅gDW⁻¹ (0.1560 %)
+>[S] PPNDH_fw (ΔG'°=-61.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1437 to 0.1383 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000226 g⋅gDW⁻¹ (0.1029 %)
+>[S] PPND_fw (ΔG'°=-10.96 kJ⋅mol⁻¹) | κ⋅γ from 0.9948 to 0.9948 // pool usage from 0.000055 g⋅gDW⁻¹ (0.0250 %) to 0.000055 g⋅gDW⁻¹ (0.0249 %)
+
+
+==10fthf_c==
+ln(Concentration change): 0.03, from 0.00011 M to 0.0001 M
+Affected reactions with kinetic constraints:
+>[S] GARFT_fw (ΔG'°=-0.70 kJ⋅mol⁻¹) | κ⋅γ from 0.4193 to 0.4190 // pool usage from 0.000070 g⋅gDW⁻¹ (0.0320 %) to 0.000070 g⋅gDW⁻¹ (0.0321 %)
+>[P] MTHFC_fw (ΔG'°=-5.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0503 to 0.0495 // pool usage from 0.001637 g⋅gDW⁻¹ (0.7455 %) to 0.001644 g⋅gDW⁻¹ (0.7487 %)
+>[S] AICART_fw (ΔG'°=15.17 kJ⋅mol⁻¹) | κ⋅γ from 0.9631 to 0.9622 // pool usage from 0.001578 g⋅gDW⁻¹ (0.7187 %) to 0.001576 g⋅gDW⁻¹ (0.7178 %)
+
+
+==r5p_c==
+ln(Concentration change): 0.03, from 0.0019 M to 0.0018 M
+Affected reactions with kinetic constraints:
+>[S] TKT1_fw (ΔG'°=-1.48 kJ⋅mol⁻¹) | κ⋅γ from 0.3113 to 0.3025 // pool usage from 0.001414 g⋅gDW⁻¹ (0.6440 %) to 0.001369 g⋅gDW⁻¹ (0.6236 %)
+>[S] PRPPS_fw (ΔG'°=-3.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9822 to 0.9808 // pool usage from 0.000361 g⋅gDW⁻¹ (0.1642 %) to 0.000359 g⋅gDW⁻¹ (0.1636 %)
+>[P] RPI_bw (ΔG'°=-4.49 kJ⋅mol⁻¹) | κ⋅γ from 0.3103 to 0.3038 // pool usage from 0.000838 g⋅gDW⁻¹ (0.3818 %) to 0.000820 g⋅gDW⁻¹ (0.3733 %)
+
+
+==s7p_c==
+ln(Concentration change): 0.03, from 0.00059 M to 0.00057 M
+Affected reactions with kinetic constraints:
+>[S] TALA_fw (ΔG'°=-1.22 kJ⋅mol⁻¹) | κ⋅γ from 0.5389 to 0.5310 // pool usage from 0.001005 g⋅gDW⁻¹ (0.4577 %) to 0.000966 g⋅gDW⁻¹ (0.4398 %)
+>[P] TKT1_fw (ΔG'°=-1.48 kJ⋅mol⁻¹) | κ⋅γ from 0.3113 to 0.3025 // pool usage from 0.001414 g⋅gDW⁻¹ (0.6440 %) to 0.001369 g⋅gDW⁻¹ (0.6236 %)
+
+
+==orot_c==
+ln(Concentration change): 0.03, from 4.5e-05 M to 4.4e-05 M
+Affected reactions with kinetic constraints:
+>[P] DHORD2_fw (ΔG'°=-125.47 kJ⋅mol⁻¹) | κ⋅γ from 0.2323 to 0.3454 // pool usage from 0.000124 g⋅gDW⁻¹ (0.0564 %) to 0.000101 g⋅gDW⁻¹ (0.0460 %)
+>[S] ORPT_bw (ΔG'°=-1.21 kJ⋅mol⁻¹) | κ⋅γ from 0.4980 to 0.5388 // pool usage from 0.000026 g⋅gDW⁻¹ (0.0118 %) to 0.000025 g⋅gDW⁻¹ (0.0113 %)
+
+
+==23dhdp_c==
+ln(Concentration change): 0.03, from 3.4e-06 M to 3.3e-06 M
+Affected reactions with kinetic constraints:
+>[S] DHDPRy_fw (ΔG'°=-18.52 kJ⋅mol⁻¹) | κ⋅γ from 0.9641 to 0.9642 // pool usage from 0.000235 g⋅gDW⁻¹ (0.1069 %) to 0.000234 g⋅gDW⁻¹ (0.1064 %)
+>[P] DHDPS_fw (ΔG'°=-130.60 kJ⋅mol⁻¹) | κ⋅γ from 0.1088 to 0.1053 // pool usage from 0.000933 g⋅gDW⁻¹ (0.4247 %) to 0.000943 g⋅gDW⁻¹ (0.4295 %)
+
+
+==thdp_c==
+ln(Concentration change): 0.03, from 0.004 M to 0.0041 M
+Affected reactions with kinetic constraints:
+>[P] DHDPRy_fw (ΔG'°=-18.52 kJ⋅mol⁻¹) | κ⋅γ from 0.9641 to 0.9642 // pool usage from 0.000235 g⋅gDW⁻¹ (0.1069 %) to 0.000234 g⋅gDW⁻¹ (0.1064 %)
+>[S] THDPS_fw (ΔG'°=26.48 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.001628 g⋅gDW⁻¹ (0.7416 %) to 0.001628 g⋅gDW⁻¹ (0.7414 %)
+
+
+==2obut_c==
+ln(Concentration change): 0.02, from 0.00085 M to 0.00087 M
+Affected reactions with kinetic constraints:
+>[S] ACHBS_fw (ΔG'°=-15.05 kJ⋅mol⁻¹) | κ⋅γ from 0.0801 to 0.0802 // pool usage from 0.001062 g⋅gDW⁻¹ (0.4835 %) to 0.001056 g⋅gDW⁻¹ (0.4808 %)
+>[P] THRD_L_fw (ΔG'°=-23.70 kJ⋅mol⁻¹) | κ⋅γ from 0.0160 to 0.0156 // pool usage from 0.000874 g⋅gDW⁻¹ (0.3982 %) to 0.000879 g⋅gDW⁻¹ (0.4004 %)
+
+
+==mlthf_c==
+ln(Concentration change): 0.02, from 0.0064 M to 0.0065 M
+Affected reactions with kinetic constraints:
+>[S] TMDS_fw (ΔG'°=-45.29 kJ⋅mol⁻¹) | κ⋅γ from 0.9408 to 0.9414 // pool usage from 0.000033 g⋅gDW⁻¹ (0.0153 %) to 0.000033 g⋅gDW⁻¹ (0.0152 %)
+>[P] GLYCL_fw (ΔG'°=19.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0019 to 0.0018 // pool usage from 0.001701 g⋅gDW⁻¹ (0.7746 %) to 0.001710 g⋅gDW⁻¹ (0.7786 %)
+>[P] GHMT2r_fw (ΔG'°=-9.96 kJ⋅mol⁻¹) | κ⋅γ from 0.5259 to 0.5224 // pool usage from 0.003567 g⋅gDW⁻¹ (1.6245 %) to 0.003568 g⋅gDW⁻¹ (1.6252 %)
+>[S] MTHFD_fw (ΔG'°=3.79 kJ⋅mol⁻¹) | κ⋅γ from 0.9610 to 0.9608 // pool usage from 0.000822 g⋅gDW⁻¹ (0.3745 %) to 0.000822 g⋅gDW⁻¹ (0.3746 %)
+>[S] MTHFR2_fw (ΔG'°=-37.57 kJ⋅mol⁻¹) | κ⋅γ from 0.8518 to 0.8780 // pool usage from 0.000280 g⋅gDW⁻¹ (0.1275 %) to 0.000274 g⋅gDW⁻¹ (0.1250 %)
+
+
+==pyr_c==
+ln(Concentration change): 0.02, from 0.013 M to 0.012 M
+Affected reactions with kinetic constraints:
+>[P] PYK_fw (ΔG'°=-22.79 kJ⋅mol⁻¹) | κ⋅γ from 0.0706 to 0.0706 // pool usage from 0.001543 g⋅gDW⁻¹ (0.7029 %) to 0.001667 g⋅gDW⁻¹ (0.7591 %)
+>[S] ACHBS_fw (ΔG'°=-15.05 kJ⋅mol⁻¹) | κ⋅γ from 0.0801 to 0.0802 // pool usage from 0.001062 g⋅gDW⁻¹ (0.4835 %) to 0.001056 g⋅gDW⁻¹ (0.4808 %)
+>[S] ACLS_fw (ΔG'°=-23.71 kJ⋅mol⁻¹) | κ⋅γ from 0.7111 to 0.7009 // pool usage from 0.000266 g⋅gDW⁻¹ (0.1212 %) to 0.000267 g⋅gDW⁻¹ (0.1215 %)
+>[P] ANS_fw (ΔG'°=-112.69 kJ⋅mol⁻¹) | κ⋅γ from 0.7670 to 0.8992 // pool usage from 0.000192 g⋅gDW⁻¹ (0.0874 %) to 0.000176 g⋅gDW⁻¹ (0.0803 %)
+>[S] DHDPS_fw (ΔG'°=-130.60 kJ⋅mol⁻¹) | κ⋅γ from 0.1088 to 0.1053 // pool usage from 0.000933 g⋅gDW⁻¹ (0.4247 %) to 0.000943 g⋅gDW⁻¹ (0.4295 %)
+>[P] CYSTL_fw (ΔG'°=0.71 kJ⋅mol⁻¹) | κ⋅γ from 0.3634 to 0.2795 // pool usage from 0.000321 g⋅gDW⁻¹ (0.1464 %) to 0.000365 g⋅gDW⁻¹ (0.1661 %)
+>[P] GLCptspp_fw (ΔG'°=-45.70 kJ⋅mol⁻¹) | κ⋅γ from 0.3178 to 0.3231 // pool usage from 0.002917 g⋅gDW⁻¹ (1.3283 %) to 0.002893 g⋅gDW⁻¹ (1.3174 %)
+>[S] PDH_fw (ΔG'°=-34.43 kJ⋅mol⁻¹) | κ⋅γ from 0.2702 to 0.2698 // pool usage from 0.005394 g⋅gDW⁻¹ (2.4567 %) to 0.005482 g⋅gDW⁻¹ (2.4969 %)
+>[S] VPAMTr_bw (ΔG'°=1.60 kJ⋅mol⁻¹) | κ⋅γ from 0.7528 to 0.9418 // pool usage from 0.000120 g⋅gDW⁻¹ (0.0549 %) to 0.000109 g⋅gDW⁻¹ (0.0497 %)
+
+
+==coa_c==
+ln(Concentration change): 0.02, from 0.00014 M to 0.00014 M
+Affected reactions with kinetic constraints:
+>[P] CS_fw (ΔG'°=-41.76 kJ⋅mol⁻¹) | κ⋅γ from 0.1311 to 0.1344 // pool usage from 0.001269 g⋅gDW⁻¹ (0.5782 %) to 0.001248 g⋅gDW⁻¹ (0.5683 %)
+>[P] PTAr_fw (ΔG'°=9.39 kJ⋅mol⁻¹) | κ⋅γ from 0.9710 to 0.9617 // pool usage from 0.002753 g⋅gDW⁻¹ (1.2536 %) to 0.002883 g⋅gDW⁻¹ (1.3129 %)
+>[P] MCOATA_fw (ΔG'°=9.34 kJ⋅mol⁻¹) | κ⋅γ from 0.9953 to 0.9953 // pool usage from 0.002988 g⋅gDW⁻¹ (1.3607 %) to 0.002968 g⋅gDW⁻¹ (1.3520 %)
+>[P] HSST_fw (ΔG'°=-29.20 kJ⋅mol⁻¹) | κ⋅γ from 0.0717 to 0.0677 // pool usage from 0.000454 g⋅gDW⁻¹ (0.2067 %) to 0.000465 g⋅gDW⁻¹ (0.2117 %)
+>[S] AKGDH_fw (ΔG'°=-28.90 kJ⋅mol⁻¹) | κ⋅γ from 0.5123 to 0.5363 // pool usage from 0.000216 g⋅gDW⁻¹ (0.0982 %) to 0.000210 g⋅gDW⁻¹ (0.0955 %)
+>[P] SERAT_fw (ΔG'°=-6.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9480 to 0.9425 // pool usage from 0.000066 g⋅gDW⁻¹ (0.0300 %) to 0.000066 g⋅gDW⁻¹ (0.0300 %)
+>[P] IPPS_fw (ΔG'°=-28.79 kJ⋅mol⁻¹) | κ⋅γ from 0.8679 to 0.8626 // pool usage from 0.000608 g⋅gDW⁻¹ (0.2771 %) to 0.000607 g⋅gDW⁻¹ (0.2765 %)
+>[P] THDPS_fw (ΔG'°=26.48 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.001628 g⋅gDW⁻¹ (0.7416 %) to 0.001628 g⋅gDW⁻¹ (0.7414 %)
+>[S] PDH_fw (ΔG'°=-34.43 kJ⋅mol⁻¹) | κ⋅γ from 0.2702 to 0.2698 // pool usage from 0.005394 g⋅gDW⁻¹ (2.4567 %) to 0.005482 g⋅gDW⁻¹ (2.4969 %)
+>[P] ACGS_fw (ΔG'°=-27.83 kJ⋅mol⁻¹) | κ⋅γ from 0.6724 to 0.6589 // pool usage from 0.000129 g⋅gDW⁻¹ (0.0589 %) to 0.000130 g⋅gDW⁻¹ (0.0592 %)
+>[P] KAS15_fw (ΔG'°=20.67 kJ⋅mol⁻¹) | κ⋅γ from 0.9955 to 0.9952 // pool usage from 0.000151 g⋅gDW⁻¹ (0.0687 %) to 0.000150 g⋅gDW⁻¹ (0.0684 %)
+
+
+==xu5p__D_c==
+ln(Concentration change): 0.02, from 0.00031 M to 0.0003 M
+Affected reactions with kinetic constraints:
+>[P] RPE_fw (ΔG'°=-3.39 kJ⋅mol⁻¹) | κ⋅γ from 0.0381 to 0.0360 // pool usage from 0.002360 g⋅gDW⁻¹ (1.0749 %) to 0.002313 g⋅gDW⁻¹ (1.0534 %)
+>[S] TKT1_fw (ΔG'°=-1.48 kJ⋅mol⁻¹) | κ⋅γ from 0.3113 to 0.3025 // pool usage from 0.001414 g⋅gDW⁻¹ (0.6440 %) to 0.001369 g⋅gDW⁻¹ (0.6236 %)
+>[S] TKT2_fw (ΔG'°=-10.59 kJ⋅mol⁻¹) | κ⋅γ from 0.6186 to 0.6137 // pool usage from 0.001676 g⋅gDW⁻¹ (0.7633 %) to 0.001595 g⋅gDW⁻¹ (0.7263 %)
+
+
+==icit_c==
+ln(Concentration change): 0.02, from 6.3e-05 M to 6.5e-05 M
+Affected reactions with kinetic constraints:
+>[S] ICDHyr_fw (ΔG'°=5.37 kJ⋅mol⁻¹) | κ⋅γ from 0.4224 to 0.3982 // pool usage from 0.002117 g⋅gDW⁻¹ (0.9643 %) to 0.002171 g⋅gDW⁻¹ (0.9888 %)
+>[P] ACONTb_fw (ΔG'°=-1.37 kJ⋅mol⁻¹) | κ⋅γ from 0.1965 to 0.1920 // pool usage from 0.001857 g⋅gDW⁻¹ (0.8456 %) to 0.001899 g⋅gDW⁻¹ (0.8650 %)
+
+
+==3php_c==
+ln(Concentration change): 0.02, from 1.3e-06 M to 1.3e-06 M
+Affected reactions with kinetic constraints:
+>[S] PSERT_fw (ΔG'°=-11.07 kJ⋅mol⁻¹) | κ⋅γ from 0.8699 to 0.8676 // pool usage from 0.000382 g⋅gDW⁻¹ (0.1738 %) to 0.000380 g⋅gDW⁻¹ (0.1732 %)
+>[P] PGCD_fw (ΔG'°=27.64 kJ⋅mol⁻¹) | κ⋅γ from 0.9923 to 0.9925 // pool usage from 0.000420 g⋅gDW⁻¹ (0.1914 %) to 0.000419 g⋅gDW⁻¹ (0.1907 %)
+
+
+==g6p_c==
+ln(Concentration change): 0.02, from 0.0048 M to 0.0049 M
+Affected reactions with kinetic constraints:
+>[S] PGI_fw (ΔG'°=2.42 kJ⋅mol⁻¹) | κ⋅γ from 0.2005 to 0.2088 // pool usage from 0.000688 g⋅gDW⁻¹ (0.3132 %) to 0.000776 g⋅gDW⁻¹ (0.3533 %)
+>[S] G6PDH2r_fw (ΔG'°=-9.36 kJ⋅mol⁻¹) | κ⋅γ from 0.1648 to 0.1645 // pool usage from 0.001959 g⋅gDW⁻¹ (0.8922 %) to 0.001874 g⋅gDW⁻¹ (0.8534 %)
+>[P] GLCptspp_fw (ΔG'°=-45.70 kJ⋅mol⁻¹) | κ⋅γ from 0.3178 to 0.3231 // pool usage from 0.002917 g⋅gDW⁻¹ (1.3283 %) to 0.002893 g⋅gDW⁻¹ (1.3174 %)
+
+
+==cit_c==
+ln(Concentration change): 0.02, from 0.011 M to 0.011 M
+Affected reactions with kinetic constraints:
+>[P] CS_fw (ΔG'°=-41.76 kJ⋅mol⁻¹) | κ⋅γ from 0.1311 to 0.1344 // pool usage from 0.001269 g⋅gDW⁻¹ (0.5782 %) to 0.001248 g⋅gDW⁻¹ (0.5683 %)
+>[S] ACONTa_fw (ΔG'°=9.24 kJ⋅mol⁻¹) | κ⋅γ from 0.3198 to 0.3155 // pool usage from 0.001529 g⋅gDW⁻¹ (0.6962 %) to 0.001535 g⋅gDW⁻¹ (0.6991 %)
+
+
+==3odecACP_c==
+ln(Concentration change): 0.02, from 3e-05 M to 3e-05 M
+Affected reactions with kinetic constraints:
+>[P] 3OAS100_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8443 to 0.8466 // pool usage from 0.001184 g⋅gDW⁻¹ (0.5393 %) to 0.001177 g⋅gDW⁻¹ (0.5359 %)
+>[S] 3OAR100_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.5770 to 0.5834 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1257 %) to 0.000273 g⋅gDW⁻¹ (0.1243 %)
+
+
+==3oddecACP_c==
+ln(Concentration change): 0.02, from 2.6e-05 M to 2.6e-05 M
+Affected reactions with kinetic constraints:
+>[S] 3OAR120_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7333 to 0.7370 // pool usage from 0.000259 g⋅gDW⁻¹ (0.1181 %) to 0.000257 g⋅gDW⁻¹ (0.1172 %)
+>[P] 3OAS120_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8463 to 0.8477 // pool usage from 0.000683 g⋅gDW⁻¹ (0.3109 %) to 0.000679 g⋅gDW⁻¹ (0.3091 %)
+
+
+==co2_c==
+ln(Concentration change): 0.02, from 3.4e-05 M to 3.5e-05 M
+Affected reactions with kinetic constraints:
+>[P] OMPDC_fw (ΔG'°=-20.22 kJ⋅mol⁻¹) | κ⋅γ from 0.7394 to 0.7038 // pool usage from 0.000032 g⋅gDW⁻¹ (0.0148 %) to 0.000033 g⋅gDW⁻¹ (0.0151 %)
+>[P] ICDHyr_fw (ΔG'°=5.37 kJ⋅mol⁻¹) | κ⋅γ from 0.4224 to 0.3982 // pool usage from 0.002117 g⋅gDW⁻¹ (0.9643 %) to 0.002171 g⋅gDW⁻¹ (0.9888 %)
+>[P] ACHBS_fw (ΔG'°=-15.05 kJ⋅mol⁻¹) | κ⋅γ from 0.0801 to 0.0802 // pool usage from 0.001062 g⋅gDW⁻¹ (0.4835 %) to 0.001056 g⋅gDW⁻¹ (0.4808 %)
+>[P] ACLS_fw (ΔG'°=-23.71 kJ⋅mol⁻¹) | κ⋅γ from 0.7111 to 0.7009 // pool usage from 0.000266 g⋅gDW⁻¹ (0.1212 %) to 0.000267 g⋅gDW⁻¹ (0.1215 %)
+>[P] IGPS_fw (ΔG'°=-69.87 kJ⋅mol⁻¹) | κ⋅γ from 0.9322 to 0.9321 // pool usage from 0.000163 g⋅gDW⁻¹ (0.0742 %) to 0.000162 g⋅gDW⁻¹ (0.0739 %)
+>[P] GLYCL_fw (ΔG'°=19.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0019 to 0.0018 // pool usage from 0.001701 g⋅gDW⁻¹ (0.7746 %) to 0.001710 g⋅gDW⁻¹ (0.7786 %)
+>[S] PPC_fw (ΔG'°=-43.54 kJ⋅mol⁻¹) | κ⋅γ from 0.2801 to 0.2840 // pool usage from 0.001705 g⋅gDW⁻¹ (0.7765 %) to 0.001685 g⋅gDW⁻¹ (0.7673 %)
+>[P] PPNDH_fw (ΔG'°=-61.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1437 to 0.1383 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000226 g⋅gDW⁻¹ (0.1029 %)
+>[P] AKGDH_fw (ΔG'°=-28.90 kJ⋅mol⁻¹) | κ⋅γ from 0.5123 to 0.5363 // pool usage from 0.000216 g⋅gDW⁻¹ (0.0982 %) to 0.000210 g⋅gDW⁻¹ (0.0955 %)
+>[P] DAPDC_fw (ΔG'°=-11.82 kJ⋅mol⁻¹) | κ⋅γ from 0.0496 to 0.0362 // pool usage from 0.000241 g⋅gDW⁻¹ (0.1100 %) to 0.000281 g⋅gDW⁻¹ (0.1280 %)
+>[P] PPND_fw (ΔG'°=-10.96 kJ⋅mol⁻¹) | κ⋅γ from 0.9948 to 0.9948 // pool usage from 0.000055 g⋅gDW⁻¹ (0.0250 %) to 0.000055 g⋅gDW⁻¹ (0.0249 %)
+>[P] GND_fw (ΔG'°=10.40 kJ⋅mol⁻¹) | κ⋅γ from 0.1671 to 0.1601 // pool usage from 0.004013 g⋅gDW⁻¹ (1.8279 %) to 0.003921 g⋅gDW⁻¹ (1.7859 %)
+>[P] OMCDC_fw (ΔG'°=-44.52 kJ⋅mol⁻¹) | κ⋅γ from 0.1055 to 0.1054 // pool usage from 0.000498 g⋅gDW⁻¹ (0.2268 %) to 0.000496 g⋅gDW⁻¹ (0.2258 %)
+>[P] PDH_fw (ΔG'°=-34.43 kJ⋅mol⁻¹) | κ⋅γ from 0.2702 to 0.2698 // pool usage from 0.005394 g⋅gDW⁻¹ (2.4567 %) to 0.005482 g⋅gDW⁻¹ (2.4969 %)
+>[P] KAS15_fw (ΔG'°=20.67 kJ⋅mol⁻¹) | κ⋅γ from 0.9955 to 0.9952 // pool usage from 0.000151 g⋅gDW⁻¹ (0.0687 %) to 0.000150 g⋅gDW⁻¹ (0.0684 %)
+>[P] 3OAS161_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.9467 to 0.9473 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3032 %) to 0.000662 g⋅gDW⁻¹ (0.3016 %)
+>[P] 3OAS141_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9463 to 0.9470 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3033 %) to 0.000662 g⋅gDW⁻¹ (0.3017 %)
+>[P] 3OAS140_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8728 to 0.8742 // pool usage from 0.001166 g⋅gDW⁻¹ (0.5312 %) to 0.001160 g⋅gDW⁻¹ (0.5281 %)
+>[P] 3OAS60_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.3016 to 0.3018 // pool usage from 0.001985 g⋅gDW⁻¹ (0.9039 %) to 0.001974 g⋅gDW⁻¹ (0.8992 %)
+>[P] 3OAS160_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7960 to 0.7982 // pool usage from 0.000437 g⋅gDW⁻¹ (0.1992 %) to 0.000435 g⋅gDW⁻¹ (0.1980 %)
+>[P] 3OAS121_fw (ΔG'°=12.13 kJ⋅mol⁻¹) | κ⋅γ from 0.8413 to 0.8424 // pool usage from 0.000710 g⋅gDW⁻¹ (0.3233 %) to 0.000706 g⋅gDW⁻¹ (0.3215 %)
+>[P] 3OAS80_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.8502 to 0.8526 // pool usage from 0.001180 g⋅gDW⁻¹ (0.5373 %) to 0.001172 g⋅gDW⁻¹ (0.5339 %)
+>[P] 3OAS100_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8443 to 0.8466 // pool usage from 0.001184 g⋅gDW⁻¹ (0.5393 %) to 0.001177 g⋅gDW⁻¹ (0.5359 %)
+>[P] 3OAS120_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8463 to 0.8477 // pool usage from 0.000683 g⋅gDW⁻¹ (0.3109 %) to 0.000679 g⋅gDW⁻¹ (0.3091 %)
+
+
+==nadph_c==
+ln(Concentration change): 0.02, from 0.031 M to 0.03 M
+Affected reactions with kinetic constraints:
+>[S] SHK3Dr_fw (ΔG'°=-3.95 kJ⋅mol⁻¹) | κ⋅γ from 0.9526 to 0.9757 // pool usage from 0.000158 g⋅gDW⁻¹ (0.0718 %) to 0.000153 g⋅gDW⁻¹ (0.0698 %)
+>[S] G5SD_fw (ΔG'°=-5.25 kJ⋅mol⁻¹) | κ⋅γ from 0.1736 to 0.1731 // pool usage from 0.000463 g⋅gDW⁻¹ (0.2108 %) to 0.000461 g⋅gDW⁻¹ (0.2101 %)
+>[P] ICDHyr_fw (ΔG'°=5.37 kJ⋅mol⁻¹) | κ⋅γ from 0.4224 to 0.3982 // pool usage from 0.002117 g⋅gDW⁻¹ (0.9643 %) to 0.002171 g⋅gDW⁻¹ (0.9888 %)
+>[S] KARA2_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9753 to 0.9757 // pool usage from 0.002396 g⋅gDW⁻¹ (1.0913 %) to 0.002383 g⋅gDW⁻¹ (1.0855 %)
+>[S] DHDPRy_fw (ΔG'°=-18.52 kJ⋅mol⁻¹) | κ⋅γ from 0.9641 to 0.9642 // pool usage from 0.000235 g⋅gDW⁻¹ (0.1069 %) to 0.000234 g⋅gDW⁻¹ (0.1064 %)
+>[S] TRDR_fw (ΔG'°=-3.86 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000340 g⋅gDW⁻¹ (0.1549 %) to 0.000334 g⋅gDW⁻¹ (0.1522 %)
+>[S] NADTRHD_fw (ΔG'°=-0.31 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.002429 g⋅gDW⁻¹ (1.1061 %) to 0.002068 g⋅gDW⁻¹ (0.9421 %)
+>[S] P5CR_fw (ΔG'°=-9.47 kJ⋅mol⁻¹) | κ⋅γ from 0.9271 to 0.9050 // pool usage from 0.000052 g⋅gDW⁻¹ (0.0235 %) to 0.000053 g⋅gDW⁻¹ (0.0242 %)
+>[S] SULR_fw (ΔG'°=-99.32 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000692 g⋅gDW⁻¹ (0.3154 %) to 0.000689 g⋅gDW⁻¹ (0.3138 %)
+>[P] GND_fw (ΔG'°=10.40 kJ⋅mol⁻¹) | κ⋅γ from 0.1671 to 0.1601 // pool usage from 0.004013 g⋅gDW⁻¹ (1.8279 %) to 0.003921 g⋅gDW⁻¹ (1.7859 %)
+>[P] G6PDH2r_fw (ΔG'°=-9.36 kJ⋅mol⁻¹) | κ⋅γ from 0.1648 to 0.1645 // pool usage from 0.001959 g⋅gDW⁻¹ (0.8922 %) to 0.001874 g⋅gDW⁻¹ (0.8534 %)
+>[S] HSDy_fw (ΔG'°=-16.73 kJ⋅mol⁻¹) | κ⋅γ from 0.2626 to 0.2583 // pool usage from 0.007464 g⋅gDW⁻¹ (3.3997 %) to 0.007489 g⋅gDW⁻¹ (3.4110 %)
+>[P] MTHFD_fw (ΔG'°=3.79 kJ⋅mol⁻¹) | κ⋅γ from 0.9610 to 0.9608 // pool usage from 0.000822 g⋅gDW⁻¹ (0.3745 %) to 0.000822 g⋅gDW⁻¹ (0.3746 %)
+>[S] DHFR_fw (ΔG'°=-16.27 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000031 g⋅gDW⁻¹ (0.0140 %) to 0.000031 g⋅gDW⁻¹ (0.0139 %)
+>[S] EAR161y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8073 to 0.8060 // pool usage from 0.000060 g⋅gDW⁻¹ (0.0274 %) to 0.000060 g⋅gDW⁻¹ (0.0273 %)
+>[S] 3OAR121_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.7004 to 0.7033 // pool usage from 0.000231 g⋅gDW⁻¹ (0.1053 %) to 0.000230 g⋅gDW⁻¹ (0.1046 %)
+>[S] EAR141y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7499 to 0.7518 // pool usage from 0.000062 g⋅gDW⁻¹ (0.0284 %) to 0.000062 g⋅gDW⁻¹ (0.0282 %)
+>[S] 3OAR120_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7333 to 0.7370 // pool usage from 0.000259 g⋅gDW⁻¹ (0.1181 %) to 0.000257 g⋅gDW⁻¹ (0.1172 %)
+>[S] EAR80y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8748 to 0.8771 // pool usage from 0.000858 g⋅gDW⁻¹ (0.3907 %) to 0.000853 g⋅gDW⁻¹ (0.3883 %)
+>[S] EAR120y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8586 to 0.8609 // pool usage from 0.000500 g⋅gDW⁻¹ (0.2277 %) to 0.000497 g⋅gDW⁻¹ (0.2263 %)
+>[S] 3OAR140_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7155 to 0.7193 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1256 %) to 0.000274 g⋅gDW⁻¹ (0.1246 %)
+>[S] EAR160y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9147 to 0.9142 // pool usage from 0.000337 g⋅gDW⁻¹ (0.1533 %) to 0.000335 g⋅gDW⁻¹ (0.1526 %)
+>[S] 3OAR160_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7528 to 0.7562 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000221 g⋅gDW⁻¹ (0.1008 %)
+>[S] EAR100y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9786 to 0.9794 // pool usage from 0.000468 g⋅gDW⁻¹ (0.2133 %) to 0.000466 g⋅gDW⁻¹ (0.2121 %)
+>[S] 3OAR141_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.8289 to 0.8313 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0967 %) to 0.000211 g⋅gDW⁻¹ (0.0961 %)
+>[S] 3OAR161_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.8301 to 0.8324 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0966 %) to 0.000211 g⋅gDW⁻¹ (0.0960 %)
+>[S] EAR121y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7390 to 0.7413 // pool usage from 0.000063 g⋅gDW⁻¹ (0.0286 %) to 0.000062 g⋅gDW⁻¹ (0.0284 %)
+>[S] 3OAR60_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.2821 to 0.2853 // pool usage from 0.000398 g⋅gDW⁻¹ (0.1811 %) to 0.000393 g⋅gDW⁻¹ (0.1791 %)
+>[S] 3OAR80_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.6274 to 0.6336 // pool usage from 0.000264 g⋅gDW⁻¹ (0.1204 %) to 0.000262 g⋅gDW⁻¹ (0.1192 %)
+>[S] EAR140y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8543 to 0.8565 // pool usage from 0.000311 g⋅gDW⁻¹ (0.1418 %) to 0.000309 g⋅gDW⁻¹ (0.1409 %)
+>[S] 3OAR40_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.7688 to 0.7740 // pool usage from 0.000238 g⋅gDW⁻¹ (0.1086 %) to 0.000236 g⋅gDW⁻¹ (0.1077 %)
+>[S] 3OAR100_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.5770 to 0.5834 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1257 %) to 0.000273 g⋅gDW⁻¹ (0.1243 %)
+>[S] EAR60y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8567 to 0.8595 // pool usage from 0.000867 g⋅gDW⁻¹ (0.3949 %) to 0.000861 g⋅gDW⁻¹ (0.3923 %)
+>[S] KARA1_bw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9970 to 0.9970 // pool usage from 0.002366 g⋅gDW⁻¹ (1.0778 %) to 0.002355 g⋅gDW⁻¹ (1.0724 %)
+>[S] AGPR_bw (ΔG'°=-2.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2340 to 0.2361 // pool usage from 0.000336 g⋅gDW⁻¹ (0.1528 %) to 0.000332 g⋅gDW⁻¹ (0.1513 %)
+>[S] G3PD2_bw (ΔG'°=-20.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9994 to 0.9994 // pool usage from 0.000022 g⋅gDW⁻¹ (0.0101 %) to 0.000022 g⋅gDW⁻¹ (0.0101 %)
+>[S] ASAD_bw (ΔG'°=28.08 kJ⋅mol⁻¹) | κ⋅γ from 0.8964 to 0.8949 // pool usage from 0.001743 g⋅gDW⁻¹ (0.7939 %) to 0.001735 g⋅gDW⁻¹ (0.7900 %)
+>[S] GLUDy_bw (ΔG'°=-31.30 kJ⋅mol⁻¹) | κ⋅γ from 0.1971 to 0.1958 // pool usage from 0.002932 g⋅gDW⁻¹ (1.3353 %) to 0.002930 g⋅gDW⁻¹ (1.3347 %)
+
+
+==acon_C_c==
+ln(Concentration change): 0.02, from 0.00014 M to 0.00013 M
+Affected reactions with kinetic constraints:
+>[S] ACONTb_fw (ΔG'°=-1.37 kJ⋅mol⁻¹) | κ⋅γ from 0.1965 to 0.1920 // pool usage from 0.001857 g⋅gDW⁻¹ (0.8456 %) to 0.001899 g⋅gDW⁻¹ (0.8650 %)
+>[P] ACONTa_fw (ΔG'°=9.24 kJ⋅mol⁻¹) | κ⋅γ from 0.3198 to 0.3155 // pool usage from 0.001529 g⋅gDW⁻¹ (0.6962 %) to 0.001535 g⋅gDW⁻¹ (0.6991 %)
+
+
+==3mop_c==
+ln(Concentration change): 0.02, from 1.7e-05 M to 1.8e-05 M
+Affected reactions with kinetic constraints:
+>[P] DHAD2_fw (ΔG'°=-36.93 kJ⋅mol⁻¹) | κ⋅γ from 0.5652 to 0.5667 // pool usage from 0.000375 g⋅gDW⁻¹ (0.1707 %) to 0.000372 g⋅gDW⁻¹ (0.1696 %)
+>[S] ILETA_bw (ΔG'°=6.30 kJ⋅mol⁻¹) | κ⋅γ from 0.9392 to 0.9384 // pool usage from 0.000228 g⋅gDW⁻¹ (0.1040 %) to 0.000227 g⋅gDW⁻¹ (0.1035 %)
+
+
+==34hpp_c==
+ln(Concentration change): 0.02, from 0.00014 M to 0.00014 M
+Affected reactions with kinetic constraints:
+>[P] PPND_fw (ΔG'°=-10.96 kJ⋅mol⁻¹) | κ⋅γ from 0.9948 to 0.9948 // pool usage from 0.000055 g⋅gDW⁻¹ (0.0250 %) to 0.000055 g⋅gDW⁻¹ (0.0249 %)
+>[S] TYRTA_bw (ΔG'°=0.04 kJ⋅mol⁻¹) | κ⋅γ from 0.8144 to 0.8114 // pool usage from 0.000173 g⋅gDW⁻¹ (0.0790 %) to 0.000173 g⋅gDW⁻¹ (0.0787 %)
+
+
+==4mop_c==
+ln(Concentration change): 0.02, from 5.4e-06 M to 5.5e-06 M
+Affected reactions with kinetic constraints:
+>[S] LEUTAi_fw (ΔG'°=0.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9452 to 0.9444 // pool usage from 0.000237 g⋅gDW⁻¹ (0.1079 %) to 0.000236 g⋅gDW⁻¹ (0.1075 %)
+>[P] OMCDC_fw (ΔG'°=-44.52 kJ⋅mol⁻¹) | κ⋅γ from 0.1055 to 0.1054 // pool usage from 0.000498 g⋅gDW⁻¹ (0.2268 %) to 0.000496 g⋅gDW⁻¹ (0.2258 %)
+
+
+==aicar_c==
+ln(Concentration change): 0.02, from 0.0036 M to 0.0035 M
+Affected reactions with kinetic constraints:
+>[P] ADSL2r_fw (ΔG'°=24.94 kJ⋅mol⁻¹) | κ⋅γ from 0.8944 to 0.8943 // pool usage from 0.001336 g⋅gDW⁻¹ (0.6086 %) to 0.001337 g⋅gDW⁻¹ (0.6089 %)
+>[P] IG3PS_fw (ΔG'°=-44.41 kJ⋅mol⁻¹) | κ⋅γ from 0.0621 to 0.0619 // pool usage from 0.000359 g⋅gDW⁻¹ (0.1635 %) to 0.000358 g⋅gDW⁻¹ (0.1630 %)
+>[S] AICART_fw (ΔG'°=15.17 kJ⋅mol⁻¹) | κ⋅γ from 0.9631 to 0.9622 // pool usage from 0.001578 g⋅gDW⁻¹ (0.7187 %) to 0.001576 g⋅gDW⁻¹ (0.7178 %)
+
+
+==3ocmrs7eACP_c==
+ln(Concentration change): 0.02, from 3.6e-05 M to 3.5e-05 M
+Affected reactions with kinetic constraints:
+>[P] 3OAS141_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9463 to 0.9470 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3033 %) to 0.000662 g⋅gDW⁻¹ (0.3017 %)
+>[S] 3OAR141_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.8289 to 0.8313 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0967 %) to 0.000211 g⋅gDW⁻¹ (0.0961 %)
+
+
+==3ocddec5eACP_c==
+ln(Concentration change): 0.02, from 1.7e-05 M to 1.6e-05 M
+Affected reactions with kinetic constraints:
+>[S] 3OAR121_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.7004 to 0.7033 // pool usage from 0.000231 g⋅gDW⁻¹ (0.1053 %) to 0.000230 g⋅gDW⁻¹ (0.1046 %)
+>[P] 3OAS121_fw (ΔG'°=12.13 kJ⋅mol⁻¹) | κ⋅γ from 0.8413 to 0.8424 // pool usage from 0.000710 g⋅gDW⁻¹ (0.3233 %) to 0.000706 g⋅gDW⁻¹ (0.3215 %)
+
+
+==2ahbut_c==
+ln(Concentration change): 0.02, from 1.5e-05 M to 1.5e-05 M
+Affected reactions with kinetic constraints:
+>[P] ACHBS_fw (ΔG'°=-15.05 kJ⋅mol⁻¹) | κ⋅γ from 0.0801 to 0.0802 // pool usage from 0.001062 g⋅gDW⁻¹ (0.4835 %) to 0.001056 g⋅gDW⁻¹ (0.4808 %)
+>[S] KARA2_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9753 to 0.9757 // pool usage from 0.002396 g⋅gDW⁻¹ (1.0913 %) to 0.002383 g⋅gDW⁻¹ (1.0855 %)
+
+
+==3ocpalm9eACP_c==
+ln(Concentration change): 0.02, from 3.6e-05 M to 3.5e-05 M
+Affected reactions with kinetic constraints:
+>[P] 3OAS161_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.9467 to 0.9473 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3032 %) to 0.000662 g⋅gDW⁻¹ (0.3016 %)
+>[S] 3OAR161_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.8301 to 0.8324 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0966 %) to 0.000211 g⋅gDW⁻¹ (0.0960 %)
+
+
+==pep_c==
+ln(Concentration change): 0.02, from 0.00022 M to 0.00023 M
+Affected reactions with kinetic constraints:
+>[S] PYK_fw (ΔG'°=-22.79 kJ⋅mol⁻¹) | κ⋅γ from 0.0706 to 0.0706 // pool usage from 0.001543 g⋅gDW⁻¹ (0.7029 %) to 0.001667 g⋅gDW⁻¹ (0.7591 %)
+>[S] PSCVT_fw (ΔG'°=-15.88 kJ⋅mol⁻¹) | κ⋅γ from 0.8549 to 0.8154 // pool usage from 0.000442 g⋅gDW⁻¹ (0.2012 %) to 0.000460 g⋅gDW⁻¹ (0.2095 %)
+>[P] ENO_fw (ΔG'°=-3.89 kJ⋅mol⁻¹) | κ⋅γ from 0.2363 to 0.2360 // pool usage from 0.007593 g⋅gDW⁻¹ (3.4582 %) to 0.007682 g⋅gDW⁻¹ (3.4988 %)
+>[S] PPC_fw (ΔG'°=-43.54 kJ⋅mol⁻¹) | κ⋅γ from 0.2801 to 0.2840 // pool usage from 0.001705 g⋅gDW⁻¹ (0.7765 %) to 0.001685 g⋅gDW⁻¹ (0.7673 %)
+>[S] DDPA_fw (ΔG'°=-74.24 kJ⋅mol⁻¹) | κ⋅γ from 0.9846 to 0.9848 // pool usage from 0.000251 g⋅gDW⁻¹ (0.1143 %) to 0.000250 g⋅gDW⁻¹ (0.1138 %)
+>[S] GLCptspp_fw (ΔG'°=-45.70 kJ⋅mol⁻¹) | κ⋅γ from 0.3178 to 0.3231 // pool usage from 0.002917 g⋅gDW⁻¹ (1.3283 %) to 0.002893 g⋅gDW⁻¹ (1.3174 %)
+
+
+==malcoa_c==
+ln(Concentration change): 0.02, from 0.0071 M to 0.007 M
+Affected reactions with kinetic constraints:
+>[P] ACCOAC_fw (ΔG'°=-11.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9390 to 0.9398 // pool usage from 0.004175 g⋅gDW⁻¹ (1.9014 %) to 0.004159 g⋅gDW⁻¹ (1.8944 %)
+>[S] MCOATA_fw (ΔG'°=9.34 kJ⋅mol⁻¹) | κ⋅γ from 0.9953 to 0.9953 // pool usage from 0.002988 g⋅gDW⁻¹ (1.3607 %) to 0.002968 g⋅gDW⁻¹ (1.3520 %)
+
+
+==3ooctACP_c==
+ln(Concentration change): 0.02, from 2.1e-05 M to 2.1e-05 M
+Affected reactions with kinetic constraints:
+>[S] 3OAR80_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.6274 to 0.6336 // pool usage from 0.000264 g⋅gDW⁻¹ (0.1204 %) to 0.000262 g⋅gDW⁻¹ (0.1192 %)
+>[P] 3OAS80_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.8502 to 0.8526 // pool usage from 0.001180 g⋅gDW⁻¹ (0.5373 %) to 0.001172 g⋅gDW⁻¹ (0.5339 %)
+
+
+==3ohexACP_c==
+ln(Concentration change): 0.02, from 4.2e-06 M to 4.1e-06 M
+Affected reactions with kinetic constraints:
+>[P] 3OAS60_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.3016 to 0.3018 // pool usage from 0.001985 g⋅gDW⁻¹ (0.9039 %) to 0.001974 g⋅gDW⁻¹ (0.8992 %)
+>[S] 3OAR60_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.2821 to 0.2853 // pool usage from 0.000398 g⋅gDW⁻¹ (0.1811 %) to 0.000393 g⋅gDW⁻¹ (0.1791 %)
+
+
+==toct2eACP_c==
+ln(Concentration change): 0.02, from 4.8e-05 M to 4.8e-05 M
+Affected reactions with kinetic constraints:
+>[P] 3HAD80_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6782 to 0.6794 // pool usage from 0.000675 g⋅gDW⁻¹ (0.3074 %) to 0.000670 g⋅gDW⁻¹ (0.3053 %)
+>[S] EAR80y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8748 to 0.8771 // pool usage from 0.000858 g⋅gDW⁻¹ (0.3907 %) to 0.000853 g⋅gDW⁻¹ (0.3883 %)
+
+
+==tddec2eACP_c==
+ln(Concentration change): 0.01, from 3.9e-05 M to 3.9e-05 M
+Affected reactions with kinetic constraints:
+>[P] 3HAD120_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6153 to 0.6162 // pool usage from 0.000411 g⋅gDW⁻¹ (0.1870 %) to 0.000408 g⋅gDW⁻¹ (0.1857 %)
+>[S] EAR120y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8586 to 0.8609 // pool usage from 0.000500 g⋅gDW⁻¹ (0.2277 %) to 0.000497 g⋅gDW⁻¹ (0.2263 %)
+
+
+==25aics_c==
+ln(Concentration change): 0.01, from 0.022 M to 0.023 M
+Affected reactions with kinetic constraints:
+>[S] ADSL2r_fw (ΔG'°=24.94 kJ⋅mol⁻¹) | κ⋅γ from 0.8944 to 0.8943 // pool usage from 0.001336 g⋅gDW⁻¹ (0.6086 %) to 0.001337 g⋅gDW⁻¹ (0.6089 %)
+>[P] PRASCSi_fw (ΔG'°=-83.42 kJ⋅mol⁻¹) | κ⋅γ from 0.9055 to 0.9051 // pool usage from 0.000434 g⋅gDW⁻¹ (0.1978 %) to 0.000432 g⋅gDW⁻¹ (0.1969 %)
+
+
+==tpalm2eACP_c==
+ln(Concentration change): 0.01, from 1.8e-05 M to 1.9e-05 M
+Affected reactions with kinetic constraints:
+>[S] EAR160y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9147 to 0.9142 // pool usage from 0.000337 g⋅gDW⁻¹ (0.1533 %) to 0.000335 g⋅gDW⁻¹ (0.1526 %)
+>[P] 3HAD160_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5204 to 0.5223 // pool usage from 0.000239 g⋅gDW⁻¹ (0.1090 %) to 0.000238 g⋅gDW⁻¹ (0.1083 %)
+
+
+==3omrsACP_c==
+ln(Concentration change): 0.01, from 1.8e-05 M to 1.7e-05 M
+Affected reactions with kinetic constraints:
+>[P] 3OAS140_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8728 to 0.8742 // pool usage from 0.001166 g⋅gDW⁻¹ (0.5312 %) to 0.001160 g⋅gDW⁻¹ (0.5281 %)
+>[S] 3OAR140_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7155 to 0.7193 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1256 %) to 0.000274 g⋅gDW⁻¹ (0.1246 %)
+
+
+==3opalmACP_c==
+ln(Concentration change): 0.01, from 2.1e-05 M to 2.1e-05 M
+Affected reactions with kinetic constraints:
+>[S] 3OAR160_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7528 to 0.7562 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000221 g⋅gDW⁻¹ (0.1008 %)
+>[P] 3OAS160_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7960 to 0.7982 // pool usage from 0.000437 g⋅gDW⁻¹ (0.1992 %) to 0.000435 g⋅gDW⁻¹ (0.1980 %)
+
+
+==dump_c==
+ln(Concentration change): 0.01, from 8.3e-06 M to 8.2e-06 M
+Affected reactions with kinetic constraints:
+>[S] TMDS_fw (ΔG'°=-45.29 kJ⋅mol⁻¹) | κ⋅γ from 0.9408 to 0.9414 // pool usage from 0.000033 g⋅gDW⁻¹ (0.0153 %) to 0.000033 g⋅gDW⁻¹ (0.0152 %)
+>[P] DUTPDP_fw (ΔG'°=-48.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9480 to 0.9496 // pool usage from 0.003223 g⋅gDW⁻¹ (1.4681 %) to 0.003205 g⋅gDW⁻¹ (1.4595 %)
+
+
+==t3c9palmeACP_c==
+ln(Concentration change): 0.01, from 7.4e-06 M to 7.5e-06 M
+Affected reactions with kinetic constraints:
+>[S] EAR161y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8073 to 0.8060 // pool usage from 0.000060 g⋅gDW⁻¹ (0.0274 %) to 0.000060 g⋅gDW⁻¹ (0.0273 %)
+>[P] 3HAD161_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5571 to 0.5582 // pool usage from 0.000273 g⋅gDW⁻¹ (0.1243 %) to 0.000271 g⋅gDW⁻¹ (0.1236 %)
+
+
+==3hhexACP_c==
+ln(Concentration change): 0.01, from 0.00052 M to 0.00053 M
+Affected reactions with kinetic constraints:
+>[P] 3OAR60_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.2821 to 0.2853 // pool usage from 0.000398 g⋅gDW⁻¹ (0.1811 %) to 0.000393 g⋅gDW⁻¹ (0.1791 %)
+>[S] 3HAD60_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5528 to 0.5562 // pool usage from 0.000664 g⋅gDW⁻¹ (0.3025 %) to 0.000658 g⋅gDW⁻¹ (0.2997 %)
+
+
+==phpyr_c==
+ln(Concentration change): 0.01, from 0.00011 M to 0.00011 M
+Affected reactions with kinetic constraints:
+>[P] PPNDH_fw (ΔG'°=-61.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1437 to 0.1383 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000226 g⋅gDW⁻¹ (0.1029 %)
+>[S] PHETA1_bw (ΔG'°=0.41 kJ⋅mol⁻¹) | κ⋅γ from 0.5256 to 0.5169 // pool usage from 0.000181 g⋅gDW⁻¹ (0.0826 %) to 0.000182 g⋅gDW⁻¹ (0.0828 %)
+
+
+==fdp_c==
+ln(Concentration change): 0.01, from 0.016 M to 0.016 M
+Affected reactions with kinetic constraints:
+>[S] FBA_fw (ΔG'°=24.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9096 to 0.9100 // pool usage from 0.002411 g⋅gDW⁻¹ (1.0980 %) to 0.002429 g⋅gDW⁻¹ (1.1064 %)
+>[P] PFK_fw (ΔG'°=-21.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2786 to 0.2823 // pool usage from 0.001462 g⋅gDW⁻¹ (0.6660 %) to 0.001478 g⋅gDW⁻¹ (0.6732 %)
+
+
+==g3p_c==
+ln(Concentration change): 0.01, from 0.00016 M to 0.00016 M
+Affected reactions with kinetic constraints:
+>[P] FBA_fw (ΔG'°=24.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9096 to 0.9100 // pool usage from 0.002411 g⋅gDW⁻¹ (1.0980 %) to 0.002429 g⋅gDW⁻¹ (1.1064 %)
+>[S] TALA_fw (ΔG'°=-1.22 kJ⋅mol⁻¹) | κ⋅γ from 0.5389 to 0.5310 // pool usage from 0.001005 g⋅gDW⁻¹ (0.4577 %) to 0.000966 g⋅gDW⁻¹ (0.4398 %)
+>[P] TKT1_fw (ΔG'°=-1.48 kJ⋅mol⁻¹) | κ⋅γ from 0.3113 to 0.3025 // pool usage from 0.001414 g⋅gDW⁻¹ (0.6440 %) to 0.001369 g⋅gDW⁻¹ (0.6236 %)
+>[P] TRPS3_fw (ΔG'°=19.17 kJ⋅mol⁻¹) | κ⋅γ from 0.4424 to 0.4426 // pool usage from 0.000117 g⋅gDW⁻¹ (0.0533 %) to 0.000116 g⋅gDW⁻¹ (0.0530 %)
+>[S] GAPD_fw (ΔG'°=-1.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9706 to 0.9692 // pool usage from 0.007343 g⋅gDW⁻¹ (3.3446 %) to 0.007392 g⋅gDW⁻¹ (3.3665 %)
+>[P] TKT2_fw (ΔG'°=-10.59 kJ⋅mol⁻¹) | κ⋅γ from 0.6186 to 0.6137 // pool usage from 0.001676 g⋅gDW⁻¹ (0.7633 %) to 0.001595 g⋅gDW⁻¹ (0.7263 %)
+>[P] TPI_fw (ΔG'°=5.66 kJ⋅mol⁻¹) | κ⋅γ from 0.8091 to 0.8081 // pool usage from 0.001027 g⋅gDW⁻¹ (0.4677 %) to 0.001045 g⋅gDW⁻¹ (0.4759 %)
+
+
+==dhap_c==
+ln(Concentration change): 0.01, from 0.0022 M to 0.0022 M
+Affected reactions with kinetic constraints:
+>[P] FBA_fw (ΔG'°=24.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9096 to 0.9100 // pool usage from 0.002411 g⋅gDW⁻¹ (1.0980 %) to 0.002429 g⋅gDW⁻¹ (1.1064 %)
+>[S] TPI_fw (ΔG'°=5.66 kJ⋅mol⁻¹) | κ⋅γ from 0.8091 to 0.8081 // pool usage from 0.001027 g⋅gDW⁻¹ (0.4677 %) to 0.001045 g⋅gDW⁻¹ (0.4759 %)
+>[S] G3PD2_bw (ΔG'°=-20.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9994 to 0.9994 // pool usage from 0.000022 g⋅gDW⁻¹ (0.0101 %) to 0.000022 g⋅gDW⁻¹ (0.0101 %)
+
+
+==tmrs2eACP_c==
+ln(Concentration change): 0.01, from 2.8e-05 M to 2.8e-05 M
+Affected reactions with kinetic constraints:
+>[S] EAR140y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8543 to 0.8565 // pool usage from 0.000311 g⋅gDW⁻¹ (0.1418 %) to 0.000309 g⋅gDW⁻¹ (0.1409 %)
+>[P] 3HAD140_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5095 to 0.5114 // pool usage from 0.000247 g⋅gDW⁻¹ (0.1124 %) to 0.000245 g⋅gDW⁻¹ (0.1115 %)
+
+
+==fprica_c==
+ln(Concentration change): 0.01, from 2.6e-05 M to 2.6e-05 M
+Affected reactions with kinetic constraints:
+>[P] AICART_fw (ΔG'°=15.17 kJ⋅mol⁻¹) | κ⋅γ from 0.9631 to 0.9622 // pool usage from 0.001578 g⋅gDW⁻¹ (0.7187 %) to 0.001576 g⋅gDW⁻¹ (0.7178 %)
+>[S] IMPC_bw (ΔG'°=-19.60 kJ⋅mol⁻¹) | κ⋅γ from 0.0162 to 0.0159 // pool usage from 0.003885 g⋅gDW⁻¹ (1.7693 %) to 0.003895 g⋅gDW⁻¹ (1.7738 %)
+
+
+==2dda7p_c==
+ln(Concentration change): 0.01, from 6.9e-05 M to 6.8e-05 M
+Affected reactions with kinetic constraints:
+>[P] DDPA_fw (ΔG'°=-74.24 kJ⋅mol⁻¹) | κ⋅γ from 0.9846 to 0.9848 // pool usage from 0.000251 g⋅gDW⁻¹ (0.1143 %) to 0.000250 g⋅gDW⁻¹ (0.1138 %)
+>[S] DHQS_fw (ΔG'°=-151.01 kJ⋅mol⁻¹) | κ⋅γ from 0.8004 to 0.8019 // pool usage from 0.000082 g⋅gDW⁻¹ (0.0373 %) to 0.000081 g⋅gDW⁻¹ (0.0371 %)
+
+
+==3mob_c==
+ln(Concentration change): 0.01, from 0.00013 M to 0.00013 M
+Affected reactions with kinetic constraints:
+>[P] DHAD1_fw (ΔG'°=-36.93 kJ⋅mol⁻¹) | κ⋅γ from 0.5680 to 0.5678 // pool usage from 0.000374 g⋅gDW⁻¹ (0.1703 %) to 0.000372 g⋅gDW⁻¹ (0.1695 %)
+>[S] IPPS_fw (ΔG'°=-28.79 kJ⋅mol⁻¹) | κ⋅γ from 0.8679 to 0.8626 // pool usage from 0.000608 g⋅gDW⁻¹ (0.2771 %) to 0.000607 g⋅gDW⁻¹ (0.2765 %)
+>[S] VALTA_bw (ΔG'°=-1.34 kJ⋅mol⁻¹) | κ⋅γ from 0.9917 to 0.9914 // pool usage from 0.000342 g⋅gDW⁻¹ (0.1557 %) to 0.000341 g⋅gDW⁻¹ (0.1551 %)
+>[P] VPAMTr_bw (ΔG'°=1.60 kJ⋅mol⁻¹) | κ⋅γ from 0.7528 to 0.9418 // pool usage from 0.000120 g⋅gDW⁻¹ (0.0549 %) to 0.000109 g⋅gDW⁻¹ (0.0497 %)
+
+
+==thex2eACP_c==
+ln(Concentration change): 0.01, from 3.7e-05 M to 3.6e-05 M
+Affected reactions with kinetic constraints:
+>[P] 3HAD60_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5528 to 0.5562 // pool usage from 0.000664 g⋅gDW⁻¹ (0.3025 %) to 0.000658 g⋅gDW⁻¹ (0.2997 %)
+>[S] EAR60y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8567 to 0.8595 // pool usage from 0.000867 g⋅gDW⁻¹ (0.3949 %) to 0.000861 g⋅gDW⁻¹ (0.3923 %)
+
+
+==hisp_c==
+ln(Concentration change): 0.01, from 0.00039 M to 0.00039 M
+Affected reactions with kinetic constraints:
+>[P] HSTPT_fw (ΔG'°=9.73 kJ⋅mol⁻¹) | κ⋅γ from 0.9750 to 0.9754 // pool usage from 0.000153 g⋅gDW⁻¹ (0.0698 %) to 0.000154 g⋅gDW⁻¹ (0.0702 %)
+>[S] HISTP_fw (ΔG'°=-23.01 kJ⋅mol⁻¹) | κ⋅γ from 0.4997 to 0.4907 // pool usage from 0.000306 g⋅gDW⁻¹ (0.1394 %) to 0.000307 g⋅gDW⁻¹ (0.1399 %)
+
+
+==3hpalmACP_c==
+ln(Concentration change): 0.01, from 0.00044 M to 0.00044 M
+Affected reactions with kinetic constraints:
+>[P] 3OAR160_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7528 to 0.7562 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000221 g⋅gDW⁻¹ (0.1008 %)
+>[S] 3HAD160_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5204 to 0.5223 // pool usage from 0.000239 g⋅gDW⁻¹ (0.1090 %) to 0.000238 g⋅gDW⁻¹ (0.1083 %)
+
+
+==butACP_c==
+ln(Concentration change): 0.01, from 2.2e-05 M to 2.1e-05 M
+Affected reactions with kinetic constraints:
+>[S] 3OAS60_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.3016 to 0.3018 // pool usage from 0.001985 g⋅gDW⁻¹ (0.9039 %) to 0.001974 g⋅gDW⁻¹ (0.8992 %)
+>[P] EAR40x_fw (ΔG'°=-53.31 kJ⋅mol⁻¹) | κ⋅γ from 0.1220 to 0.1227 // pool usage from 0.001642 g⋅gDW⁻¹ (0.7477 %) to 0.001629 g⋅gDW⁻¹ (0.7418 %)
+
+
+==dcaACP_c==
+ln(Concentration change): 0.01, from 0.00043 M to 0.00042 M
+Affected reactions with kinetic constraints:
+>[P] EAR100y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9786 to 0.9794 // pool usage from 0.000468 g⋅gDW⁻¹ (0.2133 %) to 0.000466 g⋅gDW⁻¹ (0.2121 %)
+>[S] 3OAS120_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8463 to 0.8477 // pool usage from 0.000683 g⋅gDW⁻¹ (0.3109 %) to 0.000679 g⋅gDW⁻¹ (0.3091 %)
+
+
+==23dhmp_c==
+ln(Concentration change): 0.01, from 0.00051 M to 0.00052 M
+Affected reactions with kinetic constraints:
+>[S] DHAD2_fw (ΔG'°=-36.93 kJ⋅mol⁻¹) | κ⋅γ from 0.5652 to 0.5667 // pool usage from 0.000375 g⋅gDW⁻¹ (0.1707 %) to 0.000372 g⋅gDW⁻¹ (0.1696 %)
+>[P] KARA2_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9753 to 0.9757 // pool usage from 0.002396 g⋅gDW⁻¹ (1.0913 %) to 0.002383 g⋅gDW⁻¹ (1.0855 %)
+
+
+==2pg_c==
+ln(Concentration change): 0.01, from 0.00026 M to 0.00027 M
+Affected reactions with kinetic constraints:
+>[S] ENO_fw (ΔG'°=-3.89 kJ⋅mol⁻¹) | κ⋅γ from 0.2363 to 0.2360 // pool usage from 0.007593 g⋅gDW⁻¹ (3.4582 %) to 0.007682 g⋅gDW⁻¹ (3.4988 %)
+>[P] PGM_bw (ΔG'°=4.27 kJ⋅mol⁻¹) | κ⋅γ from 0.7317 to 0.7321 // pool usage from 0.002878 g⋅gDW⁻¹ (1.3106 %) to 0.002911 g⋅gDW⁻¹ (1.3258 %)
+
+
+==t3c7mrseACP_c==
+ln(Concentration change): 0.01, from 1e-05 M to 1e-05 M
+Affected reactions with kinetic constraints:
+>[S] EAR141y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7499 to 0.7518 // pool usage from 0.000062 g⋅gDW⁻¹ (0.0284 %) to 0.000062 g⋅gDW⁻¹ (0.0282 %)
+>[P] 3HAD141_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5592 to 0.5601 // pool usage from 0.000274 g⋅gDW⁻¹ (0.1246 %) to 0.000272 g⋅gDW⁻¹ (0.1239 %)
+
+
+==3hmrsACP_c==
+ln(Concentration change): 0.01, from 0.00044 M to 0.00044 M
+Affected reactions with kinetic constraints:
+>[P] 3OAR140_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7155 to 0.7193 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1256 %) to 0.000274 g⋅gDW⁻¹ (0.1246 %)
+>[S] 3HAD140_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5095 to 0.5114 // pool usage from 0.000247 g⋅gDW⁻¹ (0.1124 %) to 0.000245 g⋅gDW⁻¹ (0.1115 %)
+
+
+==3hcddec5eACP_c==
+ln(Concentration change): 0.01, from 0.00044 M to 0.00044 M
+Affected reactions with kinetic constraints:
+>[P] 3OAR121_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.7004 to 0.7033 // pool usage from 0.000231 g⋅gDW⁻¹ (0.1053 %) to 0.000230 g⋅gDW⁻¹ (0.1046 %)
+>[S] 3HAD121_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5297 to 0.5315 // pool usage from 0.000281 g⋅gDW⁻¹ (0.1282 %) to 0.000280 g⋅gDW⁻¹ (0.1273 %)
+
+
+==cbasp_c==
+ln(Concentration change): 0.01, from 0.0024 M to 0.0024 M
+Affected reactions with kinetic constraints:
+>[P] ASPCT_fw (ΔG'°=-22.93 kJ⋅mol⁻¹) | κ⋅γ from 0.8410 to 0.8982 // pool usage from 0.000169 g⋅gDW⁻¹ (0.0770 %) to 0.000163 g⋅gDW⁻¹ (0.0741 %)
+>[S] DHORTS_bw (ΔG'°=10.16 kJ⋅mol⁻¹) | κ⋅γ from 0.2017 to 0.2009 // pool usage from 0.000430 g⋅gDW⁻¹ (0.1960 %) to 0.000467 g⋅gDW⁻¹ (0.2129 %)
+
+
+==eig3p_c==
+ln(Concentration change): 0.01, from 0.00014 M to 0.00014 M
+Affected reactions with kinetic constraints:
+>[S] IGPDH_fw (ΔG'°=-42.02 kJ⋅mol⁻¹) | κ⋅γ from 0.1853 to 0.1848 // pool usage from 0.000502 g⋅gDW⁻¹ (0.2288 %) to 0.000501 g⋅gDW⁻¹ (0.2280 %)
+>[P] IG3PS_fw (ΔG'°=-44.41 kJ⋅mol⁻¹) | κ⋅γ from 0.0621 to 0.0619 // pool usage from 0.000359 g⋅gDW⁻¹ (0.1635 %) to 0.000358 g⋅gDW⁻¹ (0.1630 %)
+
+
+==but2eACP_c==
+ln(Concentration change): 0.01, from 0.0026 M to 0.0026 M
+Affected reactions with kinetic constraints:
+>[P] 3HAD40_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6383 to 0.6387 // pool usage from 0.001029 g⋅gDW⁻¹ (0.4685 %) to 0.001022 g⋅gDW⁻¹ (0.4655 %)
+>[S] EAR40x_fw (ΔG'°=-53.31 kJ⋅mol⁻¹) | κ⋅γ from 0.1220 to 0.1227 // pool usage from 0.001642 g⋅gDW⁻¹ (0.7477 %) to 0.001629 g⋅gDW⁻¹ (0.7418 %)
+
+
+==cdec3eACP_c==
+ln(Concentration change): 0.01, from 2.7e-05 M to 2.7e-05 M
+Affected reactions with kinetic constraints:
+>[P] T2DECAI_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.3890 to 0.3893 // pool usage from 0.000465 g⋅gDW⁻¹ (0.2119 %) to 0.000463 g⋅gDW⁻¹ (0.2107 %)
+>[S] 3OAS121_fw (ΔG'°=12.13 kJ⋅mol⁻¹) | κ⋅γ from 0.8413 to 0.8424 // pool usage from 0.000710 g⋅gDW⁻¹ (0.3233 %) to 0.000706 g⋅gDW⁻¹ (0.3215 %)
+
+
+==hexACP_c==
+ln(Concentration change): 0.00, from 0.00039 M to 0.00039 M
+Affected reactions with kinetic constraints:
+>[S] 3OAS80_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.8502 to 0.8526 // pool usage from 0.001180 g⋅gDW⁻¹ (0.5373 %) to 0.001172 g⋅gDW⁻¹ (0.5339 %)
+>[P] EAR60y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8567 to 0.8595 // pool usage from 0.000867 g⋅gDW⁻¹ (0.3949 %) to 0.000861 g⋅gDW⁻¹ (0.3923 %)
+
+
+==3pg_c==
+ln(Concentration change): 0.00, from 0.0023 M to 0.0023 M
+Affected reactions with kinetic constraints:
+>[S] PGCD_fw (ΔG'°=27.64 kJ⋅mol⁻¹) | κ⋅γ from 0.9923 to 0.9925 // pool usage from 0.000420 g⋅gDW⁻¹ (0.1914 %) to 0.000419 g⋅gDW⁻¹ (0.1907 %)
+>[P] PGK_bw (ΔG'°=-19.54 kJ⋅mol⁻¹) | κ⋅γ from 0.0469 to 0.0472 // pool usage from 0.007014 g⋅gDW⁻¹ (3.1947 %) to 0.007045 g⋅gDW⁻¹ (3.2086 %)
+>[S] PGM_bw (ΔG'°=4.27 kJ⋅mol⁻¹) | κ⋅γ from 0.7317 to 0.7321 // pool usage from 0.002878 g⋅gDW⁻¹ (1.3106 %) to 0.002911 g⋅gDW⁻¹ (1.3258 %)
+
+
+==5aizc_c==
+ln(Concentration change): 0.00, from 0.00017 M to 0.00018 M
+Affected reactions with kinetic constraints:
+>[S] PRASCSi_fw (ΔG'°=-83.42 kJ⋅mol⁻¹) | κ⋅γ from 0.9055 to 0.9051 // pool usage from 0.000434 g⋅gDW⁻¹ (0.1978 %) to 0.000432 g⋅gDW⁻¹ (0.1969 %)
+
+
+==o2_c==
+ln(Concentration change): 0.00, from 0.037 M to 0.037 M
+Affected reactions with kinetic constraints:
+>[S] CYTBO3_4pp_fw (ΔG'°=-79.21 kJ⋅mol⁻¹) | κ⋅γ from 0.0180 to 0.0179 // pool usage from 0.005210 g⋅gDW⁻¹ (2.3730 %) to 0.005160 g⋅gDW⁻¹ (2.3502 %)
+
+
+==t3c5ddeceACP_c==
+ln(Concentration change): 0.00, from 9.7e-06 M to 9.6e-06 M
+Affected reactions with kinetic constraints:
+>[P] 3HAD121_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5297 to 0.5315 // pool usage from 0.000281 g⋅gDW⁻¹ (0.1282 %) to 0.000280 g⋅gDW⁻¹ (0.1273 %)
+>[S] EAR121y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7390 to 0.7413 // pool usage from 0.000063 g⋅gDW⁻¹ (0.0286 %) to 0.000062 g⋅gDW⁻¹ (0.0284 %)
+
+
+==malACP_c==
+ln(Concentration change): 0.00, from 0.0018 M to 0.0018 M
+Affected reactions with kinetic constraints:
+>[P] MCOATA_fw (ΔG'°=9.34 kJ⋅mol⁻¹) | κ⋅γ from 0.9953 to 0.9953 // pool usage from 0.002988 g⋅gDW⁻¹ (1.3607 %) to 0.002968 g⋅gDW⁻¹ (1.3520 %)
+>[S] KAS15_fw (ΔG'°=20.67 kJ⋅mol⁻¹) | κ⋅γ from 0.9955 to 0.9952 // pool usage from 0.000151 g⋅gDW⁻¹ (0.0687 %) to 0.000150 g⋅gDW⁻¹ (0.0684 %)
+>[S] 3OAS161_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.9467 to 0.9473 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3032 %) to 0.000662 g⋅gDW⁻¹ (0.3016 %)
+>[S] 3OAS141_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9463 to 0.9470 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3033 %) to 0.000662 g⋅gDW⁻¹ (0.3017 %)
+>[S] 3OAS140_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8728 to 0.8742 // pool usage from 0.001166 g⋅gDW⁻¹ (0.5312 %) to 0.001160 g⋅gDW⁻¹ (0.5281 %)
+>[S] 3OAS60_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.3016 to 0.3018 // pool usage from 0.001985 g⋅gDW⁻¹ (0.9039 %) to 0.001974 g⋅gDW⁻¹ (0.8992 %)
+>[S] 3OAS160_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7960 to 0.7982 // pool usage from 0.000437 g⋅gDW⁻¹ (0.1992 %) to 0.000435 g⋅gDW⁻¹ (0.1980 %)
+>[S] 3OAS121_fw (ΔG'°=12.13 kJ⋅mol⁻¹) | κ⋅γ from 0.8413 to 0.8424 // pool usage from 0.000710 g⋅gDW⁻¹ (0.3233 %) to 0.000706 g⋅gDW⁻¹ (0.3215 %)
+>[S] 3OAS80_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.8502 to 0.8526 // pool usage from 0.001180 g⋅gDW⁻¹ (0.5373 %) to 0.001172 g⋅gDW⁻¹ (0.5339 %)
+>[S] 3OAS100_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8443 to 0.8466 // pool usage from 0.001184 g⋅gDW⁻¹ (0.5393 %) to 0.001177 g⋅gDW⁻¹ (0.5359 %)
+>[S] 3OAS120_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8463 to 0.8477 // pool usage from 0.000683 g⋅gDW⁻¹ (0.3109 %) to 0.000679 g⋅gDW⁻¹ (0.3091 %)
+
+
+==4pasp_c==
+ln(Concentration change): 0.00, from 1.5e-05 M to 1.5e-05 M
+Affected reactions with kinetic constraints:
+>[P] ASPK_fw (ΔG'°=20.92 kJ⋅mol⁻¹) | κ⋅γ from 0.9969 to 0.9965 // pool usage from 0.003320 g⋅gDW⁻¹ (1.5121 %) to 0.003303 g⋅gDW⁻¹ (1.5043 %)
+>[S] ASAD_bw (ΔG'°=28.08 kJ⋅mol⁻¹) | κ⋅γ from 0.8964 to 0.8949 // pool usage from 0.001743 g⋅gDW⁻¹ (0.7939 %) to 0.001735 g⋅gDW⁻¹ (0.7900 %)
+
+
+==3hcpalm9eACP_c==
+ln(Concentration change): 0.00, from 0.00048 M to 0.00048 M
+Affected reactions with kinetic constraints:
+>[S] 3HAD161_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5571 to 0.5582 // pool usage from 0.000273 g⋅gDW⁻¹ (0.1243 %) to 0.000271 g⋅gDW⁻¹ (0.1236 %)
+>[P] 3OAR161_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.8301 to 0.8324 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0966 %) to 0.000211 g⋅gDW⁻¹ (0.0960 %)
+
+
+==3hdecACP_c==
+ln(Concentration change): 0.00, from 0.0016 M to 0.0016 M
+Affected reactions with kinetic constraints:
+>[P] 3OAR100_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.5770 to 0.5834 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1257 %) to 0.000273 g⋅gDW⁻¹ (0.1243 %)
+>[S] 3HAD100_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6993 to 0.7001 // pool usage from 0.000746 g⋅gDW⁻¹ (0.3399 %) to 0.000742 g⋅gDW⁻¹ (0.3379 %)
+
+
+==e4p_c==
+ln(Concentration change): 0.00, from 0.00022 M to 0.00022 M
+Affected reactions with kinetic constraints:
+>[P] TALA_fw (ΔG'°=-1.22 kJ⋅mol⁻¹) | κ⋅γ from 0.5389 to 0.5310 // pool usage from 0.001005 g⋅gDW⁻¹ (0.4577 %) to 0.000966 g⋅gDW⁻¹ (0.4398 %)
+>[S] DDPA_fw (ΔG'°=-74.24 kJ⋅mol⁻¹) | κ⋅γ from 0.9846 to 0.9848 // pool usage from 0.000251 g⋅gDW⁻¹ (0.1143 %) to 0.000250 g⋅gDW⁻¹ (0.1138 %)
+>[S] TKT2_fw (ΔG'°=-10.59 kJ⋅mol⁻¹) | κ⋅γ from 0.6186 to 0.6137 // pool usage from 0.001676 g⋅gDW⁻¹ (0.7633 %) to 0.001595 g⋅gDW⁻¹ (0.7263 %)
+
+
+==3haACP_c==
+ln(Concentration change): 0.00, from 0.0062 M to 0.0062 M
+Affected reactions with kinetic constraints:
+>[S] 3HAD40_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6383 to 0.6387 // pool usage from 0.001029 g⋅gDW⁻¹ (0.4685 %) to 0.001022 g⋅gDW⁻¹ (0.4655 %)
+>[P] 3OAR40_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.7688 to 0.7740 // pool usage from 0.000238 g⋅gDW⁻¹ (0.1086 %) to 0.000236 g⋅gDW⁻¹ (0.1077 %)
+
+
+==3hcmrs7eACP_c==
+ln(Concentration change): 0.00, from 0.00049 M to 0.00049 M
+Affected reactions with kinetic constraints:
+>[P] 3OAR141_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.8289 to 0.8313 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0967 %) to 0.000211 g⋅gDW⁻¹ (0.0961 %)
+>[S] 3HAD141_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5592 to 0.5601 // pool usage from 0.000274 g⋅gDW⁻¹ (0.1246 %) to 0.000272 g⋅gDW⁻¹ (0.1239 %)
+
+
+==3c3hmp_c==
+ln(Concentration change): 0.00, from 0.0029 M to 0.0029 M
+Affected reactions with kinetic constraints:
+>[P] IPPS_fw (ΔG'°=-28.79 kJ⋅mol⁻¹) | κ⋅γ from 0.8679 to 0.8626 // pool usage from 0.000608 g⋅gDW⁻¹ (0.2771 %) to 0.000607 g⋅gDW⁻¹ (0.2765 %)
+>[S] IPPMIb_bw (ΔG'°=0.40 kJ⋅mol⁻¹) | κ⋅γ from 0.6993 to 0.6991 // pool usage from 0.000626 g⋅gDW⁻¹ (0.2850 %) to 0.000623 g⋅gDW⁻¹ (0.2837 %)
+
+
+==tdeACP_c==
+ln(Concentration change): 0.00, from 0.00014 M to 0.00014 M
+Affected reactions with kinetic constraints:
+>[S] 3OAS161_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.9467 to 0.9473 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3032 %) to 0.000662 g⋅gDW⁻¹ (0.3016 %)
+>[P] EAR141y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7499 to 0.7518 // pool usage from 0.000062 g⋅gDW⁻¹ (0.0284 %) to 0.000062 g⋅gDW⁻¹ (0.0282 %)
+
+
+==3hoctACP_c==
+ln(Concentration change): 0.00, from 0.00087 M to 0.00087 M
+Affected reactions with kinetic constraints:
+>[S] 3HAD80_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6782 to 0.6794 // pool usage from 0.000675 g⋅gDW⁻¹ (0.3074 %) to 0.000670 g⋅gDW⁻¹ (0.3053 %)
+>[P] 3OAR80_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.6274 to 0.6336 // pool usage from 0.000264 g⋅gDW⁻¹ (0.1204 %) to 0.000262 g⋅gDW⁻¹ (0.1192 %)
+
+
+==prlp_c==
+ln(Concentration change): 0.00, from 0.0016 M to 0.0016 M
+Affected reactions with kinetic constraints:
+>[P] PRMICI_fw (ΔG'°=-9.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1022 to 0.1020 // pool usage from 0.000116 g⋅gDW⁻¹ (0.0527 %) to 0.000115 g⋅gDW⁻¹ (0.0525 %)
+>[S] IG3PS_fw (ΔG'°=-44.41 kJ⋅mol⁻¹) | κ⋅γ from 0.0621 to 0.0619 // pool usage from 0.000359 g⋅gDW⁻¹ (0.1635 %) to 0.000358 g⋅gDW⁻¹ (0.1630 %)
+
+
+==cddec5eACP_c==
+ln(Concentration change): 0.00, from 0.00014 M to 0.00014 M
+Affected reactions with kinetic constraints:
+>[S] 3OAS141_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9463 to 0.9470 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3033 %) to 0.000662 g⋅gDW⁻¹ (0.3017 %)
+>[P] EAR121y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7390 to 0.7413 // pool usage from 0.000063 g⋅gDW⁻¹ (0.0286 %) to 0.000062 g⋅gDW⁻¹ (0.0284 %)
+
+
+==3ig3p_c==
+ln(Concentration change): 0.00, from 0.00034 M to 0.00034 M
+Affected reactions with kinetic constraints:
+>[P] IGPS_fw (ΔG'°=-69.87 kJ⋅mol⁻¹) | κ⋅γ from 0.9322 to 0.9321 // pool usage from 0.000163 g⋅gDW⁻¹ (0.0742 %) to 0.000162 g⋅gDW⁻¹ (0.0739 %)
+>[S] TRPS3_fw (ΔG'°=19.17 kJ⋅mol⁻¹) | κ⋅γ from 0.4424 to 0.4426 // pool usage from 0.000117 g⋅gDW⁻¹ (0.0533 %) to 0.000116 g⋅gDW⁻¹ (0.0530 %)
+
+
+==3c2hmp_c==
+ln(Concentration change): 0.00, from 5.4e-05 M to 5.4e-05 M
+Affected reactions with kinetic constraints:
+>[S] IPMD_fw (ΔG'°=12.73 kJ⋅mol⁻¹) | κ⋅γ from 0.9574 to 0.9586 // pool usage from 0.000563 g⋅gDW⁻¹ (0.2565 %) to 0.000560 g⋅gDW⁻¹ (0.2551 %)
+>[P] IPPMIa_bw (ΔG'°=3.69 kJ⋅mol⁻¹) | κ⋅γ from 0.6430 to 0.6425 // pool usage from 0.000680 g⋅gDW⁻¹ (0.3099 %) to 0.000677 g⋅gDW⁻¹ (0.3084 %)
+
+
+==2ippm_c==
+ln(Concentration change): 0.00, from 0.00076 M to 0.00076 M
+Affected reactions with kinetic constraints:
+>[P] IPPMIb_bw (ΔG'°=0.40 kJ⋅mol⁻¹) | κ⋅γ from 0.6993 to 0.6991 // pool usage from 0.000626 g⋅gDW⁻¹ (0.2850 %) to 0.000623 g⋅gDW⁻¹ (0.2837 %)
+>[S] IPPMIa_bw (ΔG'°=3.69 kJ⋅mol⁻¹) | κ⋅γ from 0.6430 to 0.6425 // pool usage from 0.000680 g⋅gDW⁻¹ (0.3099 %) to 0.000677 g⋅gDW⁻¹ (0.3084 %)
+
+
+==23dhmb_c==
+ln(Concentration change): 0.00, from 0.0007 M to 0.0007 M
+Affected reactions with kinetic constraints:
+>[S] DHAD1_fw (ΔG'°=-36.93 kJ⋅mol⁻¹) | κ⋅γ from 0.5680 to 0.5678 // pool usage from 0.000374 g⋅gDW⁻¹ (0.1703 %) to 0.000372 g⋅gDW⁻¹ (0.1695 %)
+>[P] KARA1_bw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9970 to 0.9970 // pool usage from 0.002366 g⋅gDW⁻¹ (1.0778 %) to 0.002355 g⋅gDW⁻¹ (1.0724 %)
+
+
+==3hddecACP_c==
+ln(Concentration change): 0.00, from 0.00066 M to 0.00066 M
+Affected reactions with kinetic constraints:
+>[P] 3OAR120_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7333 to 0.7370 // pool usage from 0.000259 g⋅gDW⁻¹ (0.1181 %) to 0.000257 g⋅gDW⁻¹ (0.1172 %)
+>[S] 3HAD120_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6153 to 0.6162 // pool usage from 0.000411 g⋅gDW⁻¹ (0.1870 %) to 0.000408 g⋅gDW⁻¹ (0.1857 %)
+
+
+==pran_c==
+ln(Concentration change): 0.00, from 9.7e-05 M to 9.7e-05 M
+Affected reactions with kinetic constraints:
+>[P] ANPRT_fw (ΔG'°=-65.80 kJ⋅mol⁻¹) | κ⋅γ from 0.7836 to 0.5787 // pool usage from 0.000217 g⋅gDW⁻¹ (0.0990 %) to 0.000252 g⋅gDW⁻¹ (0.1147 %)
+>[S] PRAIi_fw (ΔG'°=-9.78 kJ⋅mol⁻¹) | κ⋅γ from 0.8772 to 0.8770 // pool usage from 0.000169 g⋅gDW⁻¹ (0.0770 %) to 0.000168 g⋅gDW⁻¹ (0.0766 %)
+
+
+==imp_c==
+ln(Concentration change): 0.00, from 3.2e-05 M to 3.2e-05 M
+Affected reactions with kinetic constraints:
+>[S] IMPD_fw (ΔG'°=13.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9733 to 0.9741 // pool usage from 0.001899 g⋅gDW⁻¹ (0.8649 %) to 0.001902 g⋅gDW⁻¹ (0.8662 %)
+>[S] ADSS_fw (ΔG'°=-7.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9992 to 0.9995 // pool usage from 0.001566 g⋅gDW⁻¹ (0.7131 %) to 0.001547 g⋅gDW⁻¹ (0.7045 %)
+>[P] IMPC_bw (ΔG'°=-19.60 kJ⋅mol⁻¹) | κ⋅γ from 0.0162 to 0.0159 // pool usage from 0.003885 g⋅gDW⁻¹ (1.7693 %) to 0.003895 g⋅gDW⁻¹ (1.7738 %)
+
+
+==myrsACP_c==
+ln(Concentration change): 0.00, from 0.00027 M to 0.00027 M
+Affected reactions with kinetic constraints:
+>[S] 3OAS160_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7960 to 0.7982 // pool usage from 0.000437 g⋅gDW⁻¹ (0.1992 %) to 0.000435 g⋅gDW⁻¹ (0.1980 %)
+>[P] EAR140y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8543 to 0.8565 // pool usage from 0.000311 g⋅gDW⁻¹ (0.1418 %) to 0.000309 g⋅gDW⁻¹ (0.1409 %)
+
+
+==ddcaACP_c==
+ln(Concentration change): 0.00, from 0.00042 M to 0.00042 M
+Affected reactions with kinetic constraints:
+>[P] EAR120y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8586 to 0.8609 // pool usage from 0.000500 g⋅gDW⁻¹ (0.2277 %) to 0.000497 g⋅gDW⁻¹ (0.2263 %)
+>[S] 3OAS140_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8728 to 0.8742 // pool usage from 0.001166 g⋅gDW⁻¹ (0.5312 %) to 0.001160 g⋅gDW⁻¹ (0.5281 %)
+
+
+==prfp_c==
+ln(Concentration change): 0.00, from 0.00048 M to 0.00048 M
+Affected reactions with kinetic constraints:
+>[S] PRMICI_fw (ΔG'°=-9.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1022 to 0.1020 // pool usage from 0.000116 g⋅gDW⁻¹ (0.0527 %) to 0.000115 g⋅gDW⁻¹ (0.0525 %)
+>[P] PRAMPC_fw (ΔG'°=-44.41 kJ⋅mol⁻¹) | κ⋅γ from 0.2328 to 0.2327 // pool usage from 0.000091 g⋅gDW⁻¹ (0.0413 %) to 0.000090 g⋅gDW⁻¹ (0.0411 %)
+
+
+==ocACP_c==
+ln(Concentration change): 0.00, from 0.00046 M to 0.00046 M
+Affected reactions with kinetic constraints:
+>[P] EAR80y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8748 to 0.8771 // pool usage from 0.000858 g⋅gDW⁻¹ (0.3907 %) to 0.000853 g⋅gDW⁻¹ (0.3883 %)
+>[S] 3OAS100_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8443 to 0.8466 // pool usage from 0.001184 g⋅gDW⁻¹ (0.5393 %) to 0.001177 g⋅gDW⁻¹ (0.5359 %)
+
+
+==3c4mop_c==
+ln(Concentration change): 0.00, from 7.8e-05 M to 7.8e-05 M
+Affected reactions with kinetic constraints:
+>[P] IPMD_fw (ΔG'°=12.73 kJ⋅mol⁻¹) | κ⋅γ from 0.9574 to 0.9586 // pool usage from 0.000563 g⋅gDW⁻¹ (0.2565 %) to 0.000560 g⋅gDW⁻¹ (0.2551 %)
+>[S] OMCDC_fw (ΔG'°=-44.52 kJ⋅mol⁻¹) | κ⋅γ from 0.1055 to 0.1054 // pool usage from 0.000498 g⋅gDW⁻¹ (0.2268 %) to 0.000496 g⋅gDW⁻¹ (0.2258 %)
+
+
+==tdec2eACP_c==
+ln(Concentration change): 0.00, from 0.00029 M to 0.00029 M
+Affected reactions with kinetic constraints:
+>[S] T2DECAI_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.3890 to 0.3893 // pool usage from 0.000465 g⋅gDW⁻¹ (0.2119 %) to 0.000463 g⋅gDW⁻¹ (0.2107 %)
+>[S] EAR100y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9786 to 0.9794 // pool usage from 0.000468 g⋅gDW⁻¹ (0.2133 %) to 0.000466 g⋅gDW⁻¹ (0.2121 %)
+>[P] 3HAD100_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6993 to 0.7001 // pool usage from 0.000746 g⋅gDW⁻¹ (0.3399 %) to 0.000742 g⋅gDW⁻¹ (0.3379 %)
+
+
+==2cpr5p_c==
+ln(Concentration change): 0.00, from 3e-05 M to 3e-05 M
+Affected reactions with kinetic constraints:
+>[S] IGPS_fw (ΔG'°=-69.87 kJ⋅mol⁻¹) | κ⋅γ from 0.9322 to 0.9321 // pool usage from 0.000163 g⋅gDW⁻¹ (0.0742 %) to 0.000162 g⋅gDW⁻¹ (0.0739 %)
+>[P] PRAIi_fw (ΔG'°=-9.78 kJ⋅mol⁻¹) | κ⋅γ from 0.8772 to 0.8770 // pool usage from 0.000169 g⋅gDW⁻¹ (0.0770 %) to 0.000168 g⋅gDW⁻¹ (0.0766 %)
+
+
+==prbamp_c==
+ln(Concentration change): 0.00, from 0.00039 M to 0.00039 M
+Affected reactions with kinetic constraints:
+>[P] PRATPP_fw (ΔG'°=-56.86 kJ⋅mol⁻¹) | κ⋅γ from 0.3605 to 0.3605 // pool usage from 0.000073 g⋅gDW⁻¹ (0.0332 %) to 0.000072 g⋅gDW⁻¹ (0.0330 %)
+>[S] PRAMPC_fw (ΔG'°=-44.41 kJ⋅mol⁻¹) | κ⋅γ from 0.2328 to 0.2327 // pool usage from 0.000091 g⋅gDW⁻¹ (0.0413 %) to 0.000090 g⋅gDW⁻¹ (0.0411 %)
+
+
+==ACP_c==
+ln(Concentration change): 0.00, from 0.0057 M to 0.0057 M
+Affected reactions with kinetic constraints:
+>[S] MCOATA_fw (ΔG'°=9.34 kJ⋅mol⁻¹) | κ⋅γ from 0.9953 to 0.9953 // pool usage from 0.002988 g⋅gDW⁻¹ (1.3607 %) to 0.002968 g⋅gDW⁻¹ (1.3520 %)
+>[P] 3OAS161_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.9467 to 0.9473 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3032 %) to 0.000662 g⋅gDW⁻¹ (0.3016 %)
+>[P] 3OAS141_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9463 to 0.9470 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3033 %) to 0.000662 g⋅gDW⁻¹ (0.3017 %)
+>[P] 3OAS140_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8728 to 0.8742 // pool usage from 0.001166 g⋅gDW⁻¹ (0.5312 %) to 0.001160 g⋅gDW⁻¹ (0.5281 %)
+>[P] 3OAS60_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.3016 to 0.3018 // pool usage from 0.001985 g⋅gDW⁻¹ (0.9039 %) to 0.001974 g⋅gDW⁻¹ (0.8992 %)
+>[P] 3OAS160_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7960 to 0.7982 // pool usage from 0.000437 g⋅gDW⁻¹ (0.1992 %) to 0.000435 g⋅gDW⁻¹ (0.1980 %)
+>[P] 3OAS121_fw (ΔG'°=12.13 kJ⋅mol⁻¹) | κ⋅γ from 0.8413 to 0.8424 // pool usage from 0.000710 g⋅gDW⁻¹ (0.3233 %) to 0.000706 g⋅gDW⁻¹ (0.3215 %)
+>[P] 3OAS80_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.8502 to 0.8526 // pool usage from 0.001180 g⋅gDW⁻¹ (0.5373 %) to 0.001172 g⋅gDW⁻¹ (0.5339 %)
+>[P] 3OAS100_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8443 to 0.8466 // pool usage from 0.001184 g⋅gDW⁻¹ (0.5393 %) to 0.001177 g⋅gDW⁻¹ (0.5359 %)
+>[P] 3OAS120_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8463 to 0.8477 // pool usage from 0.000683 g⋅gDW⁻¹ (0.3109 %) to 0.000679 g⋅gDW⁻¹ (0.3091 %)
+
+
+==prbatp_c==
+ln(Concentration change): 0.00, from 0.00024 M to 0.00024 M
+Affected reactions with kinetic constraints:
+>[P] ATPPRT_fw (ΔG'°=-38.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9640 to 0.9659 // pool usage from 0.000162 g⋅gDW⁻¹ (0.0738 %) to 0.000161 g⋅gDW⁻¹ (0.0734 %)
+>[S] PRATPP_fw (ΔG'°=-56.86 kJ⋅mol⁻¹) | κ⋅γ from 0.3605 to 0.3605 // pool usage from 0.000073 g⋅gDW⁻¹ (0.0332 %) to 0.000072 g⋅gDW⁻¹ (0.0330 %)
+
+
+==dhf_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] TMDS_fw (ΔG'°=-45.29 kJ⋅mol⁻¹) | κ⋅γ from 0.9408 to 0.9414 // pool usage from 0.000033 g⋅gDW⁻¹ (0.0153 %) to 0.000033 g⋅gDW⁻¹ (0.0152 %)
+>[S] DHFR_fw (ΔG'°=-16.27 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000031 g⋅gDW⁻¹ (0.0140 %) to 0.000031 g⋅gDW⁻¹ (0.0139 %)
+
+
+==leu__L_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] LEUTAi_fw (ΔG'°=0.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9452 to 0.9444 // pool usage from 0.000237 g⋅gDW⁻¹ (0.1079 %) to 0.000236 g⋅gDW⁻¹ (0.1075 %)
+
+
+==so3_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] PAPSR_fw (ΔG'°=-51.48 kJ⋅mol⁻¹) | κ⋅γ from 0.6784 to 0.6508 // pool usage from 0.000156 g⋅gDW⁻¹ (0.0710 %) to 0.000158 g⋅gDW⁻¹ (0.0721 %)
+>[S] SULR_fw (ΔG'°=-99.32 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000692 g⋅gDW⁻¹ (0.3154 %) to 0.000689 g⋅gDW⁻¹ (0.3138 %)
+
+
+==hdeACP_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] EAR161y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8073 to 0.8060 // pool usage from 0.000060 g⋅gDW⁻¹ (0.0274 %) to 0.000060 g⋅gDW⁻¹ (0.0273 %)
+
+
+==ile__L_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] ILETA_bw (ΔG'°=6.30 kJ⋅mol⁻¹) | κ⋅γ from 0.9392 to 0.9384 // pool usage from 0.000228 g⋅gDW⁻¹ (0.1040 %) to 0.000227 g⋅gDW⁻¹ (0.1035 %)
+
+
+==palmACP_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] EAR160y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9147 to 0.9142 // pool usage from 0.000337 g⋅gDW⁻¹ (0.1533 %) to 0.000335 g⋅gDW⁻¹ (0.1526 %)
+
+
+==5caiz_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] AIRC2_fw (ΔG'°=-59.12 kJ⋅mol⁻¹) | κ⋅γ from 0.7398 to 0.7358 // pool usage from 0.000080 g⋅gDW⁻¹ (0.0366 %) to 0.000080 g⋅gDW⁻¹ (0.0365 %)
+
+
+==so4_p==
+ln(Concentration change): 0.00, from 0.1 M to 0.1 M
+Affected reactions with kinetic constraints:
+>[S] SO4t2pp_fw (ΔG'°=2.92 kJ⋅mol⁻¹) | κ⋅γ from 0.9903 to 0.9919 // pool usage from 0.000022 g⋅gDW⁻¹ (0.0100 %) to 0.000022 g⋅gDW⁻¹ (0.0099 %)
+
+
+==dgtp_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] NDPK5_fw (ΔG'°=1.40 kJ⋅mol⁻¹) | κ⋅γ from 0.6507 to 0.6373 // pool usage from 0.000020 g⋅gDW⁻¹ (0.0090 %) to 0.000020 g⋅gDW⁻¹ (0.0091 %)
+
+
+==nh4_p==
+ln(Concentration change): 0.00, from 0.1 M to 0.1 M
+Affected reactions with kinetic constraints:
+>[S] NH4tpp_fw (ΔG'°=0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.9899 to 0.9909 // pool usage from 0.003894 g⋅gDW⁻¹ (1.7733 %) to 0.003872 g⋅gDW⁻¹ (1.7636 %)
+
+
+==ppi_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] ANPRT_fw (ΔG'°=-65.80 kJ⋅mol⁻¹) | κ⋅γ from 0.7836 to 0.5787 // pool usage from 0.000217 g⋅gDW⁻¹ (0.0990 %) to 0.000252 g⋅gDW⁻¹ (0.1147 %)
+>[P] ARGSS_fw (ΔG'°=10.46 kJ⋅mol⁻¹) | κ⋅γ from 0.9990 to 1.0000 // pool usage from 0.001598 g⋅gDW⁻¹ (0.7276 %) to 0.001582 g⋅gDW⁻¹ (0.7207 %)
+>[P] SADT2_fw (ΔG'°=16.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7208 to 0.7770 // pool usage from 0.000510 g⋅gDW⁻¹ (0.2321 %) to 0.000488 g⋅gDW⁻¹ (0.2224 %)
+>[P] ASNS2_fw (ΔG'°=-31.94 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000318 g⋅gDW⁻¹ (0.1449 %) to 0.000317 g⋅gDW⁻¹ (0.1442 %)
+>[P] GMPS2_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.7307 to 0.7133 // pool usage from 0.001313 g⋅gDW⁻¹ (0.5981 %) to 0.001322 g⋅gDW⁻¹ (0.6023 %)
+>[P] ATPPRT_fw (ΔG'°=-38.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9640 to 0.9659 // pool usage from 0.000162 g⋅gDW⁻¹ (0.0738 %) to 0.000161 g⋅gDW⁻¹ (0.0734 %)
+>[P] PRATPP_fw (ΔG'°=-56.86 kJ⋅mol⁻¹) | κ⋅γ from 0.3605 to 0.3605 // pool usage from 0.000073 g⋅gDW⁻¹ (0.0332 %) to 0.000072 g⋅gDW⁻¹ (0.0330 %)
+>[P] GLUPRT_fw (ΔG'°=-70.09 kJ⋅mol⁻¹) | κ⋅γ from 0.8544 to 0.8678 // pool usage from 0.000277 g⋅gDW⁻¹ (0.1260 %) to 0.000273 g⋅gDW⁻¹ (0.1244 %)
+>[P] DUTPDP_fw (ΔG'°=-48.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9480 to 0.9496 // pool usage from 0.003223 g⋅gDW⁻¹ (1.4681 %) to 0.003205 g⋅gDW⁻¹ (1.4595 %)
+>[P] ORPT_bw (ΔG'°=-1.21 kJ⋅mol⁻¹) | κ⋅γ from 0.4980 to 0.5388 // pool usage from 0.000026 g⋅gDW⁻¹ (0.0118 %) to 0.000025 g⋅gDW⁻¹ (0.0113 %)
+
+
+==ac_p==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] ACt2rpp_bw (ΔG'°=5.28 kJ⋅mol⁻¹) | κ⋅γ from 0.5309 to 0.5778 // pool usage from 0.000742 g⋅gDW⁻¹ (0.3380 %) to 0.000728 g⋅gDW⁻¹ (0.3316 %)
+
+
+==sl2a6o_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] THDPS_fw (ΔG'°=26.48 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.001628 g⋅gDW⁻¹ (0.7416 %) to 0.001628 g⋅gDW⁻¹ (0.7414 %)
+>[S] SDPTA_bw (ΔG'°=1.17 kJ⋅mol⁻¹) | κ⋅γ from 0.4055 to 0.3946 // pool usage from 0.000728 g⋅gDW⁻¹ (0.3315 %) to 0.000747 g⋅gDW⁻¹ (0.3404 %)
+
+
+==aspsa_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[S] DHDPS_fw (ΔG'°=-130.60 kJ⋅mol⁻¹) | κ⋅γ from 0.1088 to 0.1053 // pool usage from 0.000933 g⋅gDW⁻¹ (0.4247 %) to 0.000943 g⋅gDW⁻¹ (0.4295 %)
+>[S] HSDy_fw (ΔG'°=-16.73 kJ⋅mol⁻¹) | κ⋅γ from 0.2626 to 0.2583 // pool usage from 0.007464 g⋅gDW⁻¹ (3.3997 %) to 0.007489 g⋅gDW⁻¹ (3.4110 %)
+>[P] ASAD_bw (ΔG'°=28.08 kJ⋅mol⁻¹) | κ⋅γ from 0.8964 to 0.8949 // pool usage from 0.001743 g⋅gDW⁻¹ (0.7939 %) to 0.001735 g⋅gDW⁻¹ (0.7900 %)
+
+
+==glc__D_p==
+ln(Concentration change): 0.00, from 0.1 M to 0.1 M
+Affected reactions with kinetic constraints:
+>[S] GLCptspp_fw (ΔG'°=-45.70 kJ⋅mol⁻¹) | κ⋅γ from 0.3178 to 0.3231 // pool usage from 0.002917 g⋅gDW⁻¹ (1.3283 %) to 0.002893 g⋅gDW⁻¹ (1.3174 %)
+
+
+==acg5p_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[P] ACGK_fw (ΔG'°=25.72 kJ⋅mol⁻¹) | κ⋅γ from 0.9954 to 0.9946 // pool usage from 0.000735 g⋅gDW⁻¹ (0.3347 %) to 0.000723 g⋅gDW⁻¹ (0.3292 %)
+>[S] AGPR_bw (ΔG'°=-2.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2340 to 0.2361 // pool usage from 0.000336 g⋅gDW⁻¹ (0.1528 %) to 0.000332 g⋅gDW⁻¹ (0.1513 %)
+
+
+==glu5p_c==
+ln(Concentration change): 0.00, from 1e-06 M to 1e-06 M
+Affected reactions with kinetic constraints:
+>[S] G5SD_fw (ΔG'°=-5.25 kJ⋅mol⁻¹) | κ⋅γ from 0.1736 to 0.1731 // pool usage from 0.000463 g⋅gDW⁻¹ (0.2108 %) to 0.000461 g⋅gDW⁻¹ (0.2101 %)
+>[P] GLU5K_fw (ΔG'°=29.49 kJ⋅mol⁻¹) | κ⋅γ from 0.9965 to 0.9960 // pool usage from 0.000983 g⋅gDW⁻¹ (0.4476 %) to 0.000960 g⋅gDW⁻¹ (0.4374 %)
+
+
+==h2o_c==
+ln(Concentration change): 0.00, from 1 M to 1 M
+Affected reactions with kinetic constraints:
+>[S] CS_fw (ΔG'°=-41.76 kJ⋅mol⁻¹) | κ⋅γ from 0.1311 to 0.1344 // pool usage from 0.001269 g⋅gDW⁻¹ (0.5782 %) to 0.001248 g⋅gDW⁻¹ (0.5683 %)
+>[P] DHAD2_fw (ΔG'°=-36.93 kJ⋅mol⁻¹) | κ⋅γ from 0.5652 to 0.5667 // pool usage from 0.000375 g⋅gDW⁻¹ (0.1707 %) to 0.000372 g⋅gDW⁻¹ (0.1696 %)
+>[P] TRPS2_fw (ΔG'°=-50.41 kJ⋅mol⁻¹) | κ⋅γ from 0.8157 to 0.8111 // pool usage from 0.000107 g⋅gDW⁻¹ (0.0485 %) to 0.000106 g⋅gDW⁻¹ (0.0484 %)
+>[P] IGPS_fw (ΔG'°=-69.87 kJ⋅mol⁻¹) | κ⋅γ from 0.9322 to 0.9321 // pool usage from 0.000163 g⋅gDW⁻¹ (0.0742 %) to 0.000162 g⋅gDW⁻¹ (0.0739 %)
+>[P] ENO_fw (ΔG'°=-3.89 kJ⋅mol⁻¹) | κ⋅γ from 0.2363 to 0.2360 // pool usage from 0.007593 g⋅gDW⁻¹ (3.4582 %) to 0.007682 g⋅gDW⁻¹ (3.4988 %)
+>[S] IMPD_fw (ΔG'°=13.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9733 to 0.9741 // pool usage from 0.001899 g⋅gDW⁻¹ (0.8649 %) to 0.001902 g⋅gDW⁻¹ (0.8662 %)
+>[S] PGL_fw (ΔG'°=-28.03 kJ⋅mol⁻¹) | κ⋅γ from 0.0067 to 0.0067 // pool usage from 0.001574 g⋅gDW⁻¹ (0.7167 %) to 0.001506 g⋅gDW⁻¹ (0.6861 %)
+>[P] DHQTi_fw (ΔG'°=-5.29 kJ⋅mol⁻¹) | κ⋅γ from 0.5436 to 0.5419 // pool usage from 0.000068 g⋅gDW⁻¹ (0.0310 %) to 0.000067 g⋅gDW⁻¹ (0.0305 %)
+>[P] RNDR1_fw (ΔG'°=-44.06 kJ⋅mol⁻¹) | κ⋅γ from 0.9116 to 0.8729 // pool usage from 0.000026 g⋅gDW⁻¹ (0.0118 %) to 0.000026 g⋅gDW⁻¹ (0.0120 %)
+>[P] RNDR3_fw (ΔG'°=-40.59 kJ⋅mol⁻¹) | κ⋅γ from 0.3652 to 0.3254 // pool usage from 0.000042 g⋅gDW⁻¹ (0.0193 %) to 0.000045 g⋅gDW⁻¹ (0.0203 %)
+>[P] RNDR4_fw (ΔG'°=-44.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1852 to 0.5162 // pool usage from 0.000058 g⋅gDW⁻¹ (0.0262 %) to 0.000034 g⋅gDW⁻¹ (0.0156 %)
+>[P] DHAD1_fw (ΔG'°=-36.93 kJ⋅mol⁻¹) | κ⋅γ from 0.5680 to 0.5678 // pool usage from 0.000374 g⋅gDW⁻¹ (0.1703 %) to 0.000372 g⋅gDW⁻¹ (0.1695 %)
+>[S] FUM_fw (ΔG'°=-3.42 kJ⋅mol⁻¹) | κ⋅γ from 0.0413 to 0.0422 // pool usage from 0.001767 g⋅gDW⁻¹ (0.8050 %) to 0.001765 g⋅gDW⁻¹ (0.8041 %)
+>[S] PPC_fw (ΔG'°=-43.54 kJ⋅mol⁻¹) | κ⋅γ from 0.2801 to 0.2840 // pool usage from 0.001705 g⋅gDW⁻¹ (0.7765 %) to 0.001685 g⋅gDW⁻¹ (0.7673 %)
+>[S] SADT2_fw (ΔG'°=16.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7208 to 0.7770 // pool usage from 0.000510 g⋅gDW⁻¹ (0.2321 %) to 0.000488 g⋅gDW⁻¹ (0.2224 %)
+>[P] GHMT2r_fw (ΔG'°=-9.96 kJ⋅mol⁻¹) | κ⋅γ from 0.5259 to 0.5224 // pool usage from 0.003567 g⋅gDW⁻¹ (1.6245 %) to 0.003568 g⋅gDW⁻¹ (1.6252 %)
+>[S] SDPDS_fw (ΔG'°=8.20 kJ⋅mol⁻¹) | κ⋅γ from 0.0451 to 0.0346 // pool usage from 0.000133 g⋅gDW⁻¹ (0.0608 %) to 0.000152 g⋅gDW⁻¹ (0.0694 %)
+>[S] CTPS2_fw (ΔG'°=-25.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9062 to 0.7372 // pool usage from 0.000452 g⋅gDW⁻¹ (0.2057 %) to 0.000498 g⋅gDW⁻¹ (0.2270 %)
+>[S] ACODA_fw (ΔG'°=-7.00 kJ⋅mol⁻¹) | κ⋅γ from 0.2381 to 0.2085 // pool usage from 0.000442 g⋅gDW⁻¹ (0.2012 %) to 0.000470 g⋅gDW⁻¹ (0.2140 %)
+>[S] THRS_fw (ΔG'°=-29.69 kJ⋅mol⁻¹) | κ⋅γ from 0.0834 to 0.0915 // pool usage from 0.000586 g⋅gDW⁻¹ (0.2667 %) to 0.000556 g⋅gDW⁻¹ (0.2534 %)
+>[P] PPNDH_fw (ΔG'°=-61.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1437 to 0.1383 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000226 g⋅gDW⁻¹ (0.1029 %)
+>[S] DDPA_fw (ΔG'°=-74.24 kJ⋅mol⁻¹) | κ⋅γ from 0.9846 to 0.9848 // pool usage from 0.000251 g⋅gDW⁻¹ (0.1143 %) to 0.000250 g⋅gDW⁻¹ (0.1138 %)
+>[S] GMPS2_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.7307 to 0.7133 // pool usage from 0.001313 g⋅gDW⁻¹ (0.5981 %) to 0.001322 g⋅gDW⁻¹ (0.6023 %)
+>[P] G5SADs_fw (ΔG'°=-44.52 kJ⋅mol⁻¹) | κ⋅γ from 0.1533 to 0.1567 // pool usage from 0.000203 g⋅gDW⁻¹ (0.0923 %) to 0.000199 g⋅gDW⁻¹ (0.0908 %)
+>[S] HISTD_fw (ΔG'°=-23.37 kJ⋅mol⁻¹) | κ⋅γ from 0.9988 to 1.0000 // pool usage from 0.000260 g⋅gDW⁻¹ (0.1183 %) to 0.000258 g⋅gDW⁻¹ (0.1176 %)
+>[P] DHDPS_fw (ΔG'°=-130.60 kJ⋅mol⁻¹) | κ⋅γ from 0.1088 to 0.1053 // pool usage from 0.000933 g⋅gDW⁻¹ (0.4247 %) to 0.000943 g⋅gDW⁻¹ (0.4295 %)
+>[P] IGPDH_fw (ΔG'°=-42.02 kJ⋅mol⁻¹) | κ⋅γ from 0.1853 to 0.1848 // pool usage from 0.000502 g⋅gDW⁻¹ (0.2288 %) to 0.000501 g⋅gDW⁻¹ (0.2280 %)
+>[S] PRATPP_fw (ΔG'°=-56.86 kJ⋅mol⁻¹) | κ⋅γ from 0.3605 to 0.3605 // pool usage from 0.000073 g⋅gDW⁻¹ (0.0332 %) to 0.000072 g⋅gDW⁻¹ (0.0330 %)
+>[S] GLUPRT_fw (ΔG'°=-70.09 kJ⋅mol⁻¹) | κ⋅γ from 0.8544 to 0.8678 // pool usage from 0.000277 g⋅gDW⁻¹ (0.1260 %) to 0.000273 g⋅gDW⁻¹ (0.1244 %)
+>[S] BPNT_fw (ΔG'°=-7.08 kJ⋅mol⁻¹) | κ⋅γ from 0.1239 to 0.0220 // pool usage from 0.000042 g⋅gDW⁻¹ (0.0193 %) to 0.000100 g⋅gDW⁻¹ (0.0456 %)
+>[S] PRAMPC_fw (ΔG'°=-44.41 kJ⋅mol⁻¹) | κ⋅γ from 0.2328 to 0.2327 // pool usage from 0.000091 g⋅gDW⁻¹ (0.0413 %) to 0.000090 g⋅gDW⁻¹ (0.0411 %)
+>[P] SULR_fw (ΔG'°=-99.32 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000692 g⋅gDW⁻¹ (0.3154 %) to 0.000689 g⋅gDW⁻¹ (0.3138 %)
+>[S] PRFGS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.9968 to 0.9968 // pool usage from 0.001234 g⋅gDW⁻¹ (0.5620 %) to 0.001231 g⋅gDW⁻¹ (0.5606 %)
+>[S] CBPS_fw (ΔG'°=-22.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9941 to 0.9907 // pool usage from 0.003568 g⋅gDW⁻¹ (1.6252 %) to 0.003557 g⋅gDW⁻¹ (1.6198 %)
+>[S] IPPS_fw (ΔG'°=-28.79 kJ⋅mol⁻¹) | κ⋅γ from 0.8679 to 0.8626 // pool usage from 0.000608 g⋅gDW⁻¹ (0.2771 %) to 0.000607 g⋅gDW⁻¹ (0.2765 %)
+>[S] PSP_L_fw (ΔG'°=-10.48 kJ⋅mol⁻¹) | κ⋅γ from 0.0369 to 0.0366 // pool usage from 0.000024 g⋅gDW⁻¹ (0.0108 %) to 0.000024 g⋅gDW⁻¹ (0.0108 %)
+>[S] CYSTL_fw (ΔG'°=0.71 kJ⋅mol⁻¹) | κ⋅γ from 0.3634 to 0.2795 // pool usage from 0.000321 g⋅gDW⁻¹ (0.1464 %) to 0.000365 g⋅gDW⁻¹ (0.1661 %)
+>[P] ATPS4rpp_fw (ΔG'°=-21.64 kJ⋅mol⁻¹) | κ⋅γ from 0.0281 to 0.0264 // pool usage from 0.009275 g⋅gDW⁻¹ (4.2241 %) to 0.009447 g⋅gDW⁻¹ (4.3028 %)
+>[S] MTHFC_fw (ΔG'°=-5.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0503 to 0.0495 // pool usage from 0.001637 g⋅gDW⁻¹ (0.7455 %) to 0.001644 g⋅gDW⁻¹ (0.7487 %)
+>[S] THDPS_fw (ΔG'°=26.48 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.001628 g⋅gDW⁻¹ (0.7416 %) to 0.001628 g⋅gDW⁻¹ (0.7414 %)
+>[P] RNDR2_fw (ΔG'°=-39.90 kJ⋅mol⁻¹) | κ⋅γ from 0.4859 to 0.5927 // pool usage from 0.000037 g⋅gDW⁻¹ (0.0167 %) to 0.000033 g⋅gDW⁻¹ (0.0151 %)
+>[S] DUTPDP_fw (ΔG'°=-48.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9480 to 0.9496 // pool usage from 0.003223 g⋅gDW⁻¹ (1.4681 %) to 0.003205 g⋅gDW⁻¹ (1.4595 %)
+>[S] HISTP_fw (ΔG'°=-23.01 kJ⋅mol⁻¹) | κ⋅γ from 0.4997 to 0.4907 // pool usage from 0.000306 g⋅gDW⁻¹ (0.1394 %) to 0.000307 g⋅gDW⁻¹ (0.1399 %)
+>[P] CYTBO3_4pp_fw (ΔG'°=-79.21 kJ⋅mol⁻¹) | κ⋅γ from 0.0180 to 0.0179 // pool usage from 0.005210 g⋅gDW⁻¹ (2.3730 %) to 0.005160 g⋅gDW⁻¹ (2.3502 %)
+>[P] 3HAD80_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6782 to 0.6794 // pool usage from 0.000675 g⋅gDW⁻¹ (0.3074 %) to 0.000670 g⋅gDW⁻¹ (0.3053 %)
+>[P] 3HAD120_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6153 to 0.6162 // pool usage from 0.000411 g⋅gDW⁻¹ (0.1870 %) to 0.000408 g⋅gDW⁻¹ (0.1857 %)
+>[S] ACONTb_fw (ΔG'°=-1.37 kJ⋅mol⁻¹) | κ⋅γ from 0.1965 to 0.1920 // pool usage from 0.001857 g⋅gDW⁻¹ (0.8456 %) to 0.001899 g⋅gDW⁻¹ (0.8650 %)
+>[P] 3HAD161_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5571 to 0.5582 // pool usage from 0.000273 g⋅gDW⁻¹ (0.1243 %) to 0.000271 g⋅gDW⁻¹ (0.1236 %)
+>[P] 3HAD121_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5297 to 0.5315 // pool usage from 0.000281 g⋅gDW⁻¹ (0.1282 %) to 0.000280 g⋅gDW⁻¹ (0.1273 %)
+>[P] 3HAD141_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5592 to 0.5601 // pool usage from 0.000274 g⋅gDW⁻¹ (0.1246 %) to 0.000272 g⋅gDW⁻¹ (0.1239 %)
+>[P] ACONTa_fw (ΔG'°=9.24 kJ⋅mol⁻¹) | κ⋅γ from 0.3198 to 0.3155 // pool usage from 0.001529 g⋅gDW⁻¹ (0.6962 %) to 0.001535 g⋅gDW⁻¹ (0.6991 %)
+>[P] 3HAD40_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6383 to 0.6387 // pool usage from 0.001029 g⋅gDW⁻¹ (0.4685 %) to 0.001022 g⋅gDW⁻¹ (0.4655 %)
+>[P] 3HAD60_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5528 to 0.5562 // pool usage from 0.000664 g⋅gDW⁻¹ (0.3025 %) to 0.000658 g⋅gDW⁻¹ (0.2997 %)
+>[P] 3HAD100_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.6993 to 0.7001 // pool usage from 0.000746 g⋅gDW⁻¹ (0.3399 %) to 0.000742 g⋅gDW⁻¹ (0.3379 %)
+>[P] 3HAD140_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5095 to 0.5114 // pool usage from 0.000247 g⋅gDW⁻¹ (0.1124 %) to 0.000245 g⋅gDW⁻¹ (0.1115 %)
+>[P] 3HAD160_fw (ΔG'°=-0.43 kJ⋅mol⁻¹) | κ⋅γ from 0.5204 to 0.5223 // pool usage from 0.000239 g⋅gDW⁻¹ (0.1090 %) to 0.000238 g⋅gDW⁻¹ (0.1083 %)
+>[P] DHORTS_bw (ΔG'°=10.16 kJ⋅mol⁻¹) | κ⋅γ from 0.2017 to 0.2009 // pool usage from 0.000430 g⋅gDW⁻¹ (0.1960 %) to 0.000467 g⋅gDW⁻¹ (0.2129 %)
+>[P] IPPMIb_bw (ΔG'°=0.40 kJ⋅mol⁻¹) | κ⋅γ from 0.6993 to 0.6991 // pool usage from 0.000626 g⋅gDW⁻¹ (0.2850 %) to 0.000623 g⋅gDW⁻¹ (0.2837 %)
+>[P] IMPC_bw (ΔG'°=-19.60 kJ⋅mol⁻¹) | κ⋅γ from 0.0162 to 0.0159 // pool usage from 0.003885 g⋅gDW⁻¹ (1.7693 %) to 0.003895 g⋅gDW⁻¹ (1.7738 %)
+>[S] IPPMIa_bw (ΔG'°=3.69 kJ⋅mol⁻¹) | κ⋅γ from 0.6430 to 0.6425 // pool usage from 0.000680 g⋅gDW⁻¹ (0.3099 %) to 0.000677 g⋅gDW⁻¹ (0.3084 %)
+>[P] GLUDy_bw (ΔG'°=-31.30 kJ⋅mol⁻¹) | κ⋅γ from 0.1971 to 0.1958 // pool usage from 0.002932 g⋅gDW⁻¹ (1.3353 %) to 0.002930 g⋅gDW⁻¹ (1.3347 %)
+
+
+==h_c==
+ln(Concentration change): 0.00, from 1 M to 1 M
+Affected reactions with kinetic constraints:
+>[S] SHK3Dr_fw (ΔG'°=-3.95 kJ⋅mol⁻¹) | κ⋅γ from 0.9526 to 0.9757 // pool usage from 0.000158 g⋅gDW⁻¹ (0.0718 %) to 0.000153 g⋅gDW⁻¹ (0.0698 %)
+>[S] OMPDC_fw (ΔG'°=-20.22 kJ⋅mol⁻¹) | κ⋅γ from 0.7394 to 0.7038 // pool usage from 0.000032 g⋅gDW⁻¹ (0.0148 %) to 0.000033 g⋅gDW⁻¹ (0.0151 %)
+>[S] G5SD_fw (ΔG'°=-5.25 kJ⋅mol⁻¹) | κ⋅γ from 0.1736 to 0.1731 // pool usage from 0.000463 g⋅gDW⁻¹ (0.2108 %) to 0.000461 g⋅gDW⁻¹ (0.2101 %)
+>[P] CS_fw (ΔG'°=-41.76 kJ⋅mol⁻¹) | κ⋅γ from 0.1311 to 0.1344 // pool usage from 0.001269 g⋅gDW⁻¹ (0.5782 %) to 0.001248 g⋅gDW⁻¹ (0.5683 %)
+>[S] PYK_fw (ΔG'°=-22.79 kJ⋅mol⁻¹) | κ⋅γ from 0.0706 to 0.0706 // pool usage from 0.001543 g⋅gDW⁻¹ (0.7029 %) to 0.001667 g⋅gDW⁻¹ (0.7591 %)
+>[S] ACHBS_fw (ΔG'°=-15.05 kJ⋅mol⁻¹) | κ⋅γ from 0.0801 to 0.0802 // pool usage from 0.001062 g⋅gDW⁻¹ (0.4835 %) to 0.001056 g⋅gDW⁻¹ (0.4808 %)
+>[S] ACLS_fw (ΔG'°=-23.71 kJ⋅mol⁻¹) | κ⋅γ from 0.7111 to 0.7009 // pool usage from 0.000266 g⋅gDW⁻¹ (0.1212 %) to 0.000267 g⋅gDW⁻¹ (0.1215 %)
+>[P] ANS_fw (ΔG'°=-112.69 kJ⋅mol⁻¹) | κ⋅γ from 0.7670 to 0.8992 // pool usage from 0.000192 g⋅gDW⁻¹ (0.0874 %) to 0.000176 g⋅gDW⁻¹ (0.0803 %)
+>[S] IGPS_fw (ΔG'°=-69.87 kJ⋅mol⁻¹) | κ⋅γ from 0.9322 to 0.9321 // pool usage from 0.000163 g⋅gDW⁻¹ (0.0742 %) to 0.000162 g⋅gDW⁻¹ (0.0739 %)
+>[P] IMPD_fw (ΔG'°=13.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9733 to 0.9741 // pool usage from 0.001899 g⋅gDW⁻¹ (0.8649 %) to 0.001902 g⋅gDW⁻¹ (0.8662 %)
+>[P] PGL_fw (ΔG'°=-28.03 kJ⋅mol⁻¹) | κ⋅γ from 0.0067 to 0.0067 // pool usage from 0.001574 g⋅gDW⁻¹ (0.7167 %) to 0.001506 g⋅gDW⁻¹ (0.6861 %)
+>[P] IPMD_fw (ΔG'°=12.73 kJ⋅mol⁻¹) | κ⋅γ from 0.9574 to 0.9586 // pool usage from 0.000563 g⋅gDW⁻¹ (0.2565 %) to 0.000560 g⋅gDW⁻¹ (0.2551 %)
+>[P] MDH_fw (ΔG'°=23.57 kJ⋅mol⁻¹) | κ⋅γ from 0.9928 to 0.9933 // pool usage from 0.000520 g⋅gDW⁻¹ (0.2368 %) to 0.000517 g⋅gDW⁻¹ (0.2353 %)
+>[S] KARA2_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9753 to 0.9757 // pool usage from 0.002396 g⋅gDW⁻¹ (1.0913 %) to 0.002383 g⋅gDW⁻¹ (1.0855 %)
+>[P] ACCOAC_fw (ΔG'°=-11.77 kJ⋅mol⁻¹) | κ⋅γ from 0.9390 to 0.9398 // pool usage from 0.004175 g⋅gDW⁻¹ (1.9014 %) to 0.004159 g⋅gDW⁻¹ (1.8944 %)
+>[P] ARGSS_fw (ΔG'°=10.46 kJ⋅mol⁻¹) | κ⋅γ from 0.9990 to 1.0000 // pool usage from 0.001598 g⋅gDW⁻¹ (0.7276 %) to 0.001582 g⋅gDW⁻¹ (0.7207 %)
+>[P] PPC_fw (ΔG'°=-43.54 kJ⋅mol⁻¹) | κ⋅γ from 0.2801 to 0.2840 // pool usage from 0.001705 g⋅gDW⁻¹ (0.7765 %) to 0.001685 g⋅gDW⁻¹ (0.7673 %)
+>[P] CTPS2_fw (ΔG'°=-25.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9062 to 0.7372 // pool usage from 0.000452 g⋅gDW⁻¹ (0.2057 %) to 0.000498 g⋅gDW⁻¹ (0.2270 %)
+>[P] ADSS_fw (ΔG'°=-7.20 kJ⋅mol⁻¹) | κ⋅γ from 0.9992 to 0.9995 // pool usage from 0.001566 g⋅gDW⁻¹ (0.7131 %) to 0.001547 g⋅gDW⁻¹ (0.7045 %)
+>[P] ASNS2_fw (ΔG'°=-31.94 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000318 g⋅gDW⁻¹ (0.1449 %) to 0.000317 g⋅gDW⁻¹ (0.1442 %)
+>[P] ASPCT_fw (ΔG'°=-22.93 kJ⋅mol⁻¹) | κ⋅γ from 0.8410 to 0.8982 // pool usage from 0.000169 g⋅gDW⁻¹ (0.0770 %) to 0.000163 g⋅gDW⁻¹ (0.0741 %)
+>[S] DHDPRy_fw (ΔG'°=-18.52 kJ⋅mol⁻¹) | κ⋅γ from 0.9641 to 0.9642 // pool usage from 0.000235 g⋅gDW⁻¹ (0.1069 %) to 0.000234 g⋅gDW⁻¹ (0.1064 %)
+>[P] HSK_fw (ΔG'°=-41.85 kJ⋅mol⁻¹) | κ⋅γ from 0.0199 to 0.0242 // pool usage from 0.000161 g⋅gDW⁻¹ (0.0735 %) to 0.000145 g⋅gDW⁻¹ (0.0663 %)
+>[S] PPNDH_fw (ΔG'°=-61.78 kJ⋅mol⁻¹) | κ⋅γ from 0.1437 to 0.1383 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000226 g⋅gDW⁻¹ (0.1029 %)
+>[S] TRDR_fw (ΔG'°=-3.86 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000340 g⋅gDW⁻¹ (0.1549 %) to 0.000334 g⋅gDW⁻¹ (0.1522 %)
+>[P] GMPS2_fw (ΔG'°=-0.00 kJ⋅mol⁻¹) | κ⋅γ from 0.7307 to 0.7133 // pool usage from 0.001313 g⋅gDW⁻¹ (0.5981 %) to 0.001322 g⋅gDW⁻¹ (0.6023 %)
+>[S] P5CR_fw (ΔG'°=-9.47 kJ⋅mol⁻¹) | κ⋅γ from 0.9271 to 0.9050 // pool usage from 0.000052 g⋅gDW⁻¹ (0.0235 %) to 0.000053 g⋅gDW⁻¹ (0.0242 %)
+>[P] G5SADs_fw (ΔG'°=-44.52 kJ⋅mol⁻¹) | κ⋅γ from 0.1533 to 0.1567 // pool usage from 0.000203 g⋅gDW⁻¹ (0.0923 %) to 0.000199 g⋅gDW⁻¹ (0.0908 %)
+>[P] HISTD_fw (ΔG'°=-23.37 kJ⋅mol⁻¹) | κ⋅γ from 0.9988 to 1.0000 // pool usage from 0.000260 g⋅gDW⁻¹ (0.1183 %) to 0.000258 g⋅gDW⁻¹ (0.1176 %)
+>[P] DHDPS_fw (ΔG'°=-130.60 kJ⋅mol⁻¹) | κ⋅γ from 0.1088 to 0.1053 // pool usage from 0.000933 g⋅gDW⁻¹ (0.4247 %) to 0.000943 g⋅gDW⁻¹ (0.4295 %)
+>[P] PRPPS_fw (ΔG'°=-3.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9822 to 0.9808 // pool usage from 0.000361 g⋅gDW⁻¹ (0.1642 %) to 0.000359 g⋅gDW⁻¹ (0.1636 %)
+>[P] PRATPP_fw (ΔG'°=-56.86 kJ⋅mol⁻¹) | κ⋅γ from 0.3605 to 0.3605 // pool usage from 0.000073 g⋅gDW⁻¹ (0.0332 %) to 0.000072 g⋅gDW⁻¹ (0.0330 %)
+>[P] CYSS_fw (ΔG'°=-50.85 kJ⋅mol⁻¹) | κ⋅γ from 0.3963 to 0.3780 // pool usage from 0.000214 g⋅gDW⁻¹ (0.0976 %) to 0.000218 g⋅gDW⁻¹ (0.0994 %)
+>[P] PAPSR_fw (ΔG'°=-51.48 kJ⋅mol⁻¹) | κ⋅γ from 0.6784 to 0.6508 // pool usage from 0.000156 g⋅gDW⁻¹ (0.0710 %) to 0.000158 g⋅gDW⁻¹ (0.0721 %)
+>[S] DAPDC_fw (ΔG'°=-11.82 kJ⋅mol⁻¹) | κ⋅γ from 0.0496 to 0.0362 // pool usage from 0.000241 g⋅gDW⁻¹ (0.1100 %) to 0.000281 g⋅gDW⁻¹ (0.1280 %)
+>[P] OCBT_fw (ΔG'°=-31.79 kJ⋅mol⁻¹) | κ⋅γ from 0.6032 to 0.4094 // pool usage from 0.000232 g⋅gDW⁻¹ (0.1058 %) to 0.000281 g⋅gDW⁻¹ (0.1279 %)
+>[P] GARFT_fw (ΔG'°=-0.70 kJ⋅mol⁻¹) | κ⋅γ from 0.4193 to 0.4190 // pool usage from 0.000070 g⋅gDW⁻¹ (0.0320 %) to 0.000070 g⋅gDW⁻¹ (0.0321 %)
+>[S] SULR_fw (ΔG'°=-99.32 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000692 g⋅gDW⁻¹ (0.3154 %) to 0.000689 g⋅gDW⁻¹ (0.3138 %)
+>[P] PRAGSr_fw (ΔG'°=-27.89 kJ⋅mol⁻¹) | κ⋅γ from 0.8381 to 0.8321 // pool usage from 0.000309 g⋅gDW⁻¹ (0.1410 %) to 0.000309 g⋅gDW⁻¹ (0.1408 %)
+>[P] PRFGS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.9968 to 0.9968 // pool usage from 0.001234 g⋅gDW⁻¹ (0.5620 %) to 0.001231 g⋅gDW⁻¹ (0.5606 %)
+>[P] AIRC2_fw (ΔG'°=-59.12 kJ⋅mol⁻¹) | κ⋅γ from 0.7398 to 0.7358 // pool usage from 0.000080 g⋅gDW⁻¹ (0.0366 %) to 0.000080 g⋅gDW⁻¹ (0.0365 %)
+>[P] GAPD_fw (ΔG'°=-1.83 kJ⋅mol⁻¹) | κ⋅γ from 0.9706 to 0.9692 // pool usage from 0.007343 g⋅gDW⁻¹ (3.3446 %) to 0.007392 g⋅gDW⁻¹ (3.3665 %)
+>[P] G6PDH2r_fw (ΔG'°=-9.36 kJ⋅mol⁻¹) | κ⋅γ from 0.1648 to 0.1645 // pool usage from 0.001959 g⋅gDW⁻¹ (0.8922 %) to 0.001874 g⋅gDW⁻¹ (0.8534 %)
+>[P] CBPS_fw (ΔG'°=-22.56 kJ⋅mol⁻¹) | κ⋅γ from 0.9941 to 0.9907 // pool usage from 0.003568 g⋅gDW⁻¹ (1.6252 %) to 0.003557 g⋅gDW⁻¹ (1.6198 %)
+>[P] IPPS_fw (ΔG'°=-28.79 kJ⋅mol⁻¹) | κ⋅γ from 0.8679 to 0.8626 // pool usage from 0.000608 g⋅gDW⁻¹ (0.2771 %) to 0.000607 g⋅gDW⁻¹ (0.2765 %)
+>[P] ADSK_fw (ΔG'°=-19.14 kJ⋅mol⁻¹) | κ⋅γ from 0.4572 to 0.4422 // pool usage from 0.000018 g⋅gDW⁻¹ (0.0082 %) to 0.000018 g⋅gDW⁻¹ (0.0083 %)
+>[S] HSDy_fw (ΔG'°=-16.73 kJ⋅mol⁻¹) | κ⋅γ from 0.2626 to 0.2583 // pool usage from 0.007464 g⋅gDW⁻¹ (3.3997 %) to 0.007489 g⋅gDW⁻¹ (3.4110 %)
+>[P] SHSL1_fw (ΔG'°=-67.24 kJ⋅mol⁻¹) | κ⋅γ from 0.2962 to 0.2715 // pool usage from 0.000303 g⋅gDW⁻¹ (0.1379 %) to 0.000315 g⋅gDW⁻¹ (0.1433 %)
+>[P] ATPS4rpp_fw (ΔG'°=-21.64 kJ⋅mol⁻¹) | κ⋅γ from 0.0281 to 0.0264 // pool usage from 0.009275 g⋅gDW⁻¹ (4.2241 %) to 0.009447 g⋅gDW⁻¹ (4.3028 %)
+>[P] METS_fw (ΔG'°=0.17 kJ⋅mol⁻¹) | κ⋅γ from 0.6101 to 0.6975 // pool usage from 0.000617 g⋅gDW⁻¹ (0.2810 %) to 0.000587 g⋅gDW⁻¹ (0.2675 %)
+>[P] PRASCSi_fw (ΔG'°=-83.42 kJ⋅mol⁻¹) | κ⋅γ from 0.9055 to 0.9051 // pool usage from 0.000434 g⋅gDW⁻¹ (0.1978 %) to 0.000432 g⋅gDW⁻¹ (0.1969 %)
+>[P] MTHFC_fw (ΔG'°=-5.15 kJ⋅mol⁻¹) | κ⋅γ from 0.0503 to 0.0495 // pool usage from 0.001637 g⋅gDW⁻¹ (0.7455 %) to 0.001644 g⋅gDW⁻¹ (0.7487 %)
+>[S] DHFR_fw (ΔG'°=-16.27 kJ⋅mol⁻¹) | κ⋅γ from 1.0000 to 1.0000 // pool usage from 0.000031 g⋅gDW⁻¹ (0.0140 %) to 0.000031 g⋅gDW⁻¹ (0.0139 %)
+>[P] SHKK_fw (ΔG'°=-28.04 kJ⋅mol⁻¹) | κ⋅γ from 0.6342 to 0.3078 // pool usage from 0.000136 g⋅gDW⁻¹ (0.0620 %) to 0.000195 g⋅gDW⁻¹ (0.0886 %)
+>[S] OMCDC_fw (ΔG'°=-44.52 kJ⋅mol⁻¹) | κ⋅γ from 0.1055 to 0.1054 // pool usage from 0.000498 g⋅gDW⁻¹ (0.2268 %) to 0.000496 g⋅gDW⁻¹ (0.2258 %)
+>[P] IG3PS_fw (ΔG'°=-44.41 kJ⋅mol⁻¹) | κ⋅γ from 0.0621 to 0.0619 // pool usage from 0.000359 g⋅gDW⁻¹ (0.1635 %) to 0.000358 g⋅gDW⁻¹ (0.1630 %)
+>[S] MTHFR2_fw (ΔG'°=-37.57 kJ⋅mol⁻¹) | κ⋅γ from 0.8518 to 0.8780 // pool usage from 0.000280 g⋅gDW⁻¹ (0.1275 %) to 0.000274 g⋅gDW⁻¹ (0.1250 %)
+>[P] DUTPDP_fw (ΔG'°=-48.33 kJ⋅mol⁻¹) | κ⋅γ from 0.9480 to 0.9496 // pool usage from 0.003223 g⋅gDW⁻¹ (1.4681 %) to 0.003205 g⋅gDW⁻¹ (1.4595 %)
+>[P] GLNS_fw (ΔG'°=-17.85 kJ⋅mol⁻¹) | κ⋅γ from 0.9249 to 0.9178 // pool usage from 0.001697 g⋅gDW⁻¹ (0.7727 %) to 0.001695 g⋅gDW⁻¹ (0.7719 %)
+>[P] ACGS_fw (ΔG'°=-27.83 kJ⋅mol⁻¹) | κ⋅γ from 0.6724 to 0.6589 // pool usage from 0.000129 g⋅gDW⁻¹ (0.0589 %) to 0.000130 g⋅gDW⁻¹ (0.0592 %)
+>[P] PRAIS_fw (ΔG'°=11.25 kJ⋅mol⁻¹) | κ⋅γ from 0.6068 to 0.5934 // pool usage from 0.000283 g⋅gDW⁻¹ (0.1290 %) to 0.000285 g⋅gDW⁻¹ (0.1299 %)
+>[S] KAS15_fw (ΔG'°=20.67 kJ⋅mol⁻¹) | κ⋅γ from 0.9955 to 0.9952 // pool usage from 0.000151 g⋅gDW⁻¹ (0.0687 %) to 0.000150 g⋅gDW⁻¹ (0.0684 %)
+>[S] 3OAS161_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.9467 to 0.9473 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3032 %) to 0.000662 g⋅gDW⁻¹ (0.3016 %)
+>[S] EAR161y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8073 to 0.8060 // pool usage from 0.000060 g⋅gDW⁻¹ (0.0274 %) to 0.000060 g⋅gDW⁻¹ (0.0273 %)
+>[P] PGCD_fw (ΔG'°=27.64 kJ⋅mol⁻¹) | κ⋅γ from 0.9923 to 0.9925 // pool usage from 0.000420 g⋅gDW⁻¹ (0.1914 %) to 0.000419 g⋅gDW⁻¹ (0.1907 %)
+>[S] 3OAS141_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.9463 to 0.9470 // pool usage from 0.000666 g⋅gDW⁻¹ (0.3033 %) to 0.000662 g⋅gDW⁻¹ (0.3017 %)
+>[S] 3OAR121_fw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.7004 to 0.7033 // pool usage from 0.000231 g⋅gDW⁻¹ (0.1053 %) to 0.000230 g⋅gDW⁻¹ (0.1046 %)
+>[P] PFK_fw (ΔG'°=-21.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2786 to 0.2823 // pool usage from 0.001462 g⋅gDW⁻¹ (0.6660 %) to 0.001478 g⋅gDW⁻¹ (0.6732 %)
+>[S] CYTBO3_4pp_fw (ΔG'°=-79.21 kJ⋅mol⁻¹) | κ⋅γ from 0.0180 to 0.0179 // pool usage from 0.005210 g⋅gDW⁻¹ (2.3730 %) to 0.005160 g⋅gDW⁻¹ (2.3502 %)
+>[S] EAR141y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7499 to 0.7518 // pool usage from 0.000062 g⋅gDW⁻¹ (0.0284 %) to 0.000062 g⋅gDW⁻¹ (0.0282 %)
+>[S] 3OAR120_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7333 to 0.7370 // pool usage from 0.000259 g⋅gDW⁻¹ (0.1181 %) to 0.000257 g⋅gDW⁻¹ (0.1172 %)
+>[P] SO4t2pp_fw (ΔG'°=2.92 kJ⋅mol⁻¹) | κ⋅γ from 0.9903 to 0.9919 // pool usage from 0.000022 g⋅gDW⁻¹ (0.0100 %) to 0.000022 g⋅gDW⁻¹ (0.0099 %)
+>[S] EAR80y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8748 to 0.8771 // pool usage from 0.000858 g⋅gDW⁻¹ (0.3907 %) to 0.000853 g⋅gDW⁻¹ (0.3883 %)
+>[S] EAR120y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8586 to 0.8609 // pool usage from 0.000500 g⋅gDW⁻¹ (0.2277 %) to 0.000497 g⋅gDW⁻¹ (0.2263 %)
+>[S] 3OAS140_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8728 to 0.8742 // pool usage from 0.001166 g⋅gDW⁻¹ (0.5312 %) to 0.001160 g⋅gDW⁻¹ (0.5281 %)
+>[S] 3OAR140_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7155 to 0.7193 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1256 %) to 0.000274 g⋅gDW⁻¹ (0.1246 %)
+>[S] EAR160y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9147 to 0.9142 // pool usage from 0.000337 g⋅gDW⁻¹ (0.1533 %) to 0.000335 g⋅gDW⁻¹ (0.1526 %)
+>[S] 3OAR160_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.7528 to 0.7562 // pool usage from 0.000223 g⋅gDW⁻¹ (0.1015 %) to 0.000221 g⋅gDW⁻¹ (0.1008 %)
+>[S] EAR100y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.9786 to 0.9794 // pool usage from 0.000468 g⋅gDW⁻¹ (0.2133 %) to 0.000466 g⋅gDW⁻¹ (0.2121 %)
+>[S] 3OAR141_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.8289 to 0.8313 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0967 %) to 0.000211 g⋅gDW⁻¹ (0.0961 %)
+>[S] 3OAR161_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.8301 to 0.8324 // pool usage from 0.000212 g⋅gDW⁻¹ (0.0966 %) to 0.000211 g⋅gDW⁻¹ (0.0960 %)
+>[S] EAR121y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.7390 to 0.7413 // pool usage from 0.000063 g⋅gDW⁻¹ (0.0286 %) to 0.000062 g⋅gDW⁻¹ (0.0284 %)
+>[S] 3OAS60_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.3016 to 0.3018 // pool usage from 0.001985 g⋅gDW⁻¹ (0.9039 %) to 0.001974 g⋅gDW⁻¹ (0.8992 %)
+>[S] 3OAS160_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.7960 to 0.7982 // pool usage from 0.000437 g⋅gDW⁻¹ (0.1992 %) to 0.000435 g⋅gDW⁻¹ (0.1980 %)
+>[S] 3OAR60_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.2821 to 0.2853 // pool usage from 0.000398 g⋅gDW⁻¹ (0.1811 %) to 0.000393 g⋅gDW⁻¹ (0.1791 %)
+>[S] 3OAR80_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.6274 to 0.6336 // pool usage from 0.000264 g⋅gDW⁻¹ (0.1204 %) to 0.000262 g⋅gDW⁻¹ (0.1192 %)
+>[S] EAR140y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8543 to 0.8565 // pool usage from 0.000311 g⋅gDW⁻¹ (0.1418 %) to 0.000309 g⋅gDW⁻¹ (0.1409 %)
+>[S] 3OAS121_fw (ΔG'°=12.13 kJ⋅mol⁻¹) | κ⋅γ from 0.8413 to 0.8424 // pool usage from 0.000710 g⋅gDW⁻¹ (0.3233 %) to 0.000706 g⋅gDW⁻¹ (0.3215 %)
+>[S] 3OAS80_fw (ΔG'°=12.12 kJ⋅mol⁻¹) | κ⋅γ from 0.8502 to 0.8526 // pool usage from 0.001180 g⋅gDW⁻¹ (0.5373 %) to 0.001172 g⋅gDW⁻¹ (0.5339 %)
+>[S] 3OAS100_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8443 to 0.8466 // pool usage from 0.001184 g⋅gDW⁻¹ (0.5393 %) to 0.001177 g⋅gDW⁻¹ (0.5359 %)
+>[S] 3OAS120_fw (ΔG'°=12.11 kJ⋅mol⁻¹) | κ⋅γ from 0.8463 to 0.8477 // pool usage from 0.000683 g⋅gDW⁻¹ (0.3109 %) to 0.000679 g⋅gDW⁻¹ (0.3091 %)
+>[S] 3OAR40_fw (ΔG'°=-13.03 kJ⋅mol⁻¹) | κ⋅γ from 0.7688 to 0.7740 // pool usage from 0.000238 g⋅gDW⁻¹ (0.1086 %) to 0.000236 g⋅gDW⁻¹ (0.1077 %)
+>[S] 3OAR100_fw (ΔG'°=-13.02 kJ⋅mol⁻¹) | κ⋅γ from 0.5770 to 0.5834 // pool usage from 0.000276 g⋅gDW⁻¹ (0.1257 %) to 0.000273 g⋅gDW⁻¹ (0.1243 %)
+>[S] EAR40x_fw (ΔG'°=-53.31 kJ⋅mol⁻¹) | κ⋅γ from 0.1220 to 0.1227 // pool usage from 0.001642 g⋅gDW⁻¹ (0.7477 %) to 0.001629 g⋅gDW⁻¹ (0.7418 %)
+>[S] EAR60y_fw (ΔG'°=-53.62 kJ⋅mol⁻¹) | κ⋅γ from 0.8567 to 0.8595 // pool usage from 0.000867 g⋅gDW⁻¹ (0.3949 %) to 0.000861 g⋅gDW⁻¹ (0.3923 %)
+>[S] NADH16pp_fw (ΔG'°=-88.44 kJ⋅mol⁻¹) | κ⋅γ from 0.0705 to 0.0702 // pool usage from 0.012970 g⋅gDW⁻¹ (5.9070 %) to 0.012851 g⋅gDW⁻¹ (5.8532 %)
+>[S] DHORTS_bw (ΔG'°=10.16 kJ⋅mol⁻¹) | κ⋅γ from 0.2017 to 0.2009 // pool usage from 0.000430 g⋅gDW⁻¹ (0.1960 %) to 0.000467 g⋅gDW⁻¹ (0.2129 %)
+>[S] KARA1_bw (ΔG'°=-13.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9970 to 0.9970 // pool usage from 0.002366 g⋅gDW⁻¹ (1.0778 %) to 0.002355 g⋅gDW⁻¹ (1.0724 %)
+>[S] AGPR_bw (ΔG'°=-2.71 kJ⋅mol⁻¹) | κ⋅γ from 0.2340 to 0.2361 // pool usage from 0.000336 g⋅gDW⁻¹ (0.1528 %) to 0.000332 g⋅gDW⁻¹ (0.1513 %)
+>[S] G3PD2_bw (ΔG'°=-20.04 kJ⋅mol⁻¹) | κ⋅γ from 0.9994 to 0.9994 // pool usage from 0.000022 g⋅gDW⁻¹ (0.0101 %) to 0.000022 g⋅gDW⁻¹ (0.0101 %)
+>[S] ASAD_bw (ΔG'°=28.08 kJ⋅mol⁻¹) | κ⋅γ from 0.8964 to 0.8949 // pool usage from 0.001743 g⋅gDW⁻¹ (0.7939 %) to 0.001735 g⋅gDW⁻¹ (0.7900 %)
+>[S] ACt2rpp_bw (ΔG'°=5.28 kJ⋅mol⁻¹) | κ⋅γ from 0.5309 to 0.5778 // pool usage from 0.000742 g⋅gDW⁻¹ (0.3380 %) to 0.000728 g⋅gDW⁻¹ (0.3316 %)
+>[S] GLUDy_bw (ΔG'°=-31.30 kJ⋅mol⁻¹) | κ⋅γ from 0.1971 to 0.1958 // pool usage from 0.002932 g⋅gDW⁻¹ (1.3353 %) to 0.002930 g⋅gDW⁻¹ (1.3347 %)
+
+
+==h_p==
+ln(Concentration change): 0.00, from 1 M to 1 M
+Affected reactions with kinetic constraints:
+>[S] ATPS4rpp_fw (ΔG'°=-21.64 kJ⋅mol⁻¹) | κ⋅γ from 0.0281 to 0.0264 // pool usage from 0.009275 g⋅gDW⁻¹ (4.2241 %) to 0.009447 g⋅gDW⁻¹ (4.3028 %)
+>[P] CYTBO3_4pp_fw (ΔG'°=-79.21 kJ⋅mol⁻¹) | κ⋅γ from 0.0180 to 0.0179 // pool usage from 0.005210 g⋅gDW⁻¹ (2.3730 %) to 0.005160 g⋅gDW⁻¹ (2.3502 %)
+>[S] SO4t2pp_fw (ΔG'°=2.92 kJ⋅mol⁻¹) | κ⋅γ from 0.9903 to 0.9919 // pool usage from 0.000022 g⋅gDW⁻¹ (0.0100 %) to 0.000022 g⋅gDW⁻¹ (0.0099 %)
+>[P] NADH16pp_fw (ΔG'°=-88.44 kJ⋅mol⁻¹) | κ⋅γ from 0.0705 to 0.0702 // pool usage from 0.012970 g⋅gDW⁻¹ (5.9070 %) to 0.012851 g⋅gDW⁻¹ (5.8532 %)
+>[P] ACt2rpp_bw (ΔG'°=5.28 kJ⋅mol⁻¹) | κ⋅γ from 0.5309 to 0.5778 // pool usage from 0.000742 g⋅gDW⁻¹ (0.3380 %) to 0.000728 g⋅gDW⁻¹ (0.3316 %)
+
+

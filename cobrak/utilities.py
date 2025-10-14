@@ -66,6 +66,7 @@ from .pyomo_functionality import get_model_var_names
 
 # GENERICS DEFINITIONS #
 T = TypeVar("T")  # Not neccessary anymore as soon as Python >= 3.12 can be used
+U = TypeVar("U")  # Not neccessary anymore as soon as Python >= 3.12 can be used
 
 
 # "PRIVATE" FUNCTIONS SECTION #
@@ -1849,6 +1850,7 @@ def get_model_with_filled_missing_parameters(
     use_median_for_kcats: bool = True,
     ignored_enzyme_ids: list[str] = ["s0001"],
     exclude_bw_reac_ids_for_dG0s: bool = False,
+    verbose: bool = False,
 ) -> Model:
     """Fills missing parameters in a COBRA-k model, including dG0, k_cat, and k_ms values.
 
@@ -1883,6 +1885,11 @@ def get_model_with_filled_missing_parameters(
             cobrak_model, exclude_bw_reacs=exclude_bw_reac_ids_for_dG0s
         )
     ]
+    if verbose:
+        filled_kcats = 0
+        filled_dG0s = 0
+        filled_substrate_kms = 0
+        filled_product_kms = 0
     dG0_reverse_couples: set[tuple[str]] = set()
     for reac_id in cobrak_model.reactions:
         if sum(reac_id.startswith(ignore_prefix) for ignore_prefix in ignore_prefixes):
@@ -1902,6 +1909,8 @@ def get_model_with_filled_missing_parameters(
                 cobrak_model.reactions[reac_id].dG0 = -percentile(
                     all_abs_dG0s, param_percentile
                 )
+            if verbose:
+                filled_dG0s += 1
         if cobrak_model.reactions[reac_id].enzyme_reaction_data is not None:
             stop = False
             for ignored_enzyme_id in ignored_enzyme_ids:
@@ -1935,6 +1944,7 @@ def get_model_with_filled_missing_parameters(
             cobrak_model.enzymes[enzyme_substitue_id] = Enzyme(
                 molecular_weight=percentile(all_mws, 100 - param_percentile),
             )
+            filled_kcats += 1
         if not have_all_unignored_km(
             cobrak_model.reactions[reac_id], cobrak_model.kinetic_ignored_metabolites
         ):
@@ -1967,6 +1977,11 @@ def get_model_with_filled_missing_parameters(
                         if stoichiometry < 0.0
                         else median(product_kms)
                     )
+                if verbose:
+                    if stoichiometry > 0.0:
+                        filled_product_kms += 1
+                    else:
+                        filled_substrate_kms += 1
 
     for dG0_reverse_couple in dG0_reverse_couples:
         reac_id_1, reac_id_2 = dG0_reverse_couple
@@ -1980,6 +1995,13 @@ def get_model_with_filled_missing_parameters(
                 upper_value=0.0,
             )
         )
+
+    if verbose:
+        print("# filled kcats:", filled_kcats)
+        print("# filled substrate kms:", filled_substrate_kms)
+        print("# filled product kms:", filled_product_kms)
+        print("# filled kms in total:", filled_product_kms + filled_substrate_kms)
+        print("# filled ΔG'° values:", filled_dG0s)
 
     return cobrak_model
 
@@ -2094,6 +2116,7 @@ def get_model_with_varied_parameters(
     change_unknown_values: bool = True,
     change_known_values: bool = True,
     use_shuffling_instead_of_uniform_random: bool = False,
+    use_shuffling_with_putting_back: bool = False,
     shuffle_using_distribution_of_values_with_reference: bool = True,
 ) -> Model:
     """Generates a modified copy of the input Model with varied reaction parameters.
@@ -2164,9 +2187,12 @@ def get_model_with_varied_parameters(
             and reac_id not in tested_rev_reacs
         ):
             if use_shuffling_instead_of_uniform_random:
-                chosen_index = choice(all_dG0_indices)
-                reaction.dG0 = all_dG0s[chosen_index]
-                del all_dG0_indices[all_dG0_indices.index(chosen_index)]
+                if not use_shuffling_with_putting_back:
+                    chosen_index = choice(all_dG0_indices)
+                    reaction.dG0 = all_dG0s[chosen_index]
+                    del all_dG0_indices[all_dG0_indices.index(chosen_index)]
+                else:
+                    reaction.dG0 = choice(all_dG0s)
             else:
                 reaction.dG0 += uniform(-max_dG0_variation, +max_dG0_variation)  # noqa: NPY002
             rev_id = get_reverse_reac_id_if_existing(
@@ -2188,9 +2214,14 @@ def get_model_with_varied_parameters(
                     change_unknown_values and kcat_tax_distance < 0
                 ):
                     if use_shuffling_instead_of_uniform_random:
-                        chosen_index = choice(all_kcat_indices)
-                        reaction.enzyme_reaction_data.k_cat = all_kcats[chosen_index]
-                        del all_kcat_indices[all_kcat_indices.index(chosen_index)]
+                        if not use_shuffling_with_putting_back:
+                            chosen_index = choice(all_kcat_indices)
+                            reaction.enzyme_reaction_data.k_cat = all_kcats[
+                                chosen_index
+                            ]
+                            del all_kcat_indices[all_kcat_indices.index(chosen_index)]
+                        else:
+                            reaction.enzyme_reaction_data.k_cat = choice(all_kcats)
                     else:
                         reaction.enzyme_reaction_data.k_cat *= max_kcat_variation ** (
                             uniform(-1, 1)  # noqa: NPY002
@@ -2214,25 +2245,35 @@ def get_model_with_varied_parameters(
                     ):  # Substrate k_ms
                         if use_shuffling_instead_of_uniform_random:
                             chosen_index = choice(all_substrate_km_indices)
-                            reaction.enzyme_reaction_data.k_ms[met_id] = substrate_kms[
-                                chosen_index
-                            ]
-                            del all_substrate_km_indices[
-                                all_substrate_km_indices.index(chosen_index)
-                            ]
+                            if not use_shuffling_with_putting_back:
+                                reaction.enzyme_reaction_data.k_ms[met_id] = (
+                                    substrate_kms[chosen_index]
+                                )
+                                del all_substrate_km_indices[
+                                    all_substrate_km_indices.index(chosen_index)
+                                ]
+                            else:
+                                reaction.enzyme_reaction_data.k_ms[met_id] = choice(
+                                    substrate_kms
+                                )
                         else:
                             reaction.enzyme_reaction_data.k_ms[met_id] *= (
                                 max_km_variation ** (uniform(-1, 1))  # noqa: NPY002
                             )  # noqa: NPY002
                     else:  # Product k_ms
                         if use_shuffling_instead_of_uniform_random:
-                            chosen_index = choice(all_product_km_indices)
-                            reaction.enzyme_reaction_data.k_ms[met_id] = product_kms[
-                                chosen_index
-                            ]
-                            del all_product_km_indices[
-                                all_product_km_indices.index(chosen_index)
-                            ]
+                            if not use_shuffling_with_putting_back:
+                                chosen_index = choice(all_product_km_indices)
+                                reaction.enzyme_reaction_data.k_ms[met_id] = (
+                                    product_kms[chosen_index]
+                                )
+                                del all_product_km_indices[
+                                    all_product_km_indices.index(chosen_index)
+                                ]
+                            else:
+                                reaction.enzyme_reaction_data.k_ms[met_id] = choice(
+                                    product_kms
+                                )
                         else:
                             reaction.enzyme_reaction_data.k_ms[met_id] *= (
                                 max_km_variation ** (uniform(-1, 1))  # noqa: NPY002
@@ -2251,11 +2292,14 @@ def get_model_with_varied_parameters(
                     continue
                 for met_id in reaction.enzyme_reaction_data.k_is:
                     if use_shuffling_instead_of_uniform_random:
-                        chosen_index = choice(all_substrate_km_indices)
-                        reaction.enzyme_reaction_data.k_is[met_id] = all_kis[
-                            chosen_index
-                        ]
-                        del all_ki_indices[all_ki_indices.index(chosen_index)]
+                        if not use_shuffling_with_putting_back:
+                            chosen_index = choice(all_substrate_km_indices)
+                            reaction.enzyme_reaction_data.k_is[met_id] = all_kis[
+                                chosen_index
+                            ]
+                            del all_ki_indices[all_ki_indices.index(chosen_index)]
+                        else:
+                            reaction.enzyme_reaction_data.k_is[met_id] = choice(all_kis)
                     else:
                         reaction.enzyme_reaction_data.k_is[met_id] *= (
                             max_ki_variation
@@ -2277,11 +2321,14 @@ def get_model_with_varied_parameters(
                     continue
                 for met_id in reaction.enzyme_reaction_data.k_as:
                     if use_shuffling_instead_of_uniform_random:
-                        chosen_index = choice(all_ka_indices)
-                        reaction.enzyme_reaction_data.k_as[met_id] = all_kas[
-                            chosen_index
-                        ]
-                        del all_ka_indices[all_ka_indices.index(chosen_index)]
+                        if not use_shuffling_with_putting_back:
+                            chosen_index = choice(all_ka_indices)
+                            reaction.enzyme_reaction_data.k_as[met_id] = all_kas[
+                                chosen_index
+                            ]
+                            del all_ka_indices[all_ka_indices.index(chosen_index)]
+                        else:
+                            reaction.enzyme_reaction_data.k_as[met_id] = choice(all_kas)
                     else:
                         reaction.enzyme_reaction_data.k_as[met_id] *= (
                             max_ka_variation
@@ -3045,7 +3092,7 @@ def print_model_parameter_statistics(cobrak_model: Model) -> None:
 
 
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True), validate_return=True)
-def sort_dict_keys(dictionary: dict[str, T]) -> dict[str, T]:
+def sort_dict_keys(dictionary: dict[T, U], reverse: bool = False) -> dict[T, U]:
     """Sorts all keys in a dictionary alphabetically.
 
     Args:
@@ -3054,7 +3101,7 @@ def sort_dict_keys(dictionary: dict[str, T]) -> dict[str, T]:
     Returns:
         dict: A new dictionary with the keys sorted alphabetically.
     """
-    return dict(sorted(dictionary.items()))
+    return dict(sorted(dictionary.items(), reverse=reverse))
 
 
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True), validate_return=True)

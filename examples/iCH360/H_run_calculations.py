@@ -22,7 +22,6 @@ from cobrak.io import (
     ensure_folder_existence,
     json_load,
     json_write,
-    json_zip_write,
     standardize_folder,
 )
 from cobrak.lps import perform_lp_variability_analysis
@@ -46,7 +45,7 @@ class RunConfig:  # noqa: D101
     # Model changes
     manually_changed_kms: dict[str, dict[str, float]]
     manually_changed_kcats: dict[str, float]
-    manually_changed_dG0s: dict[str, dict[str, float]]
+    manually_changed_dG0s: dict[str, float]
     # Folder settings
     results_folder: str
     # ecTFVA settings
@@ -58,6 +57,7 @@ class RunConfig:  # noqa: D101
     deactivated_reacs: list[str]
     set_bounds: dict[str, tuple[float, float]]
     working_results: list[dict[str, float]]
+    changed_flux_bounds: dict[str, tuple[float, float]] = Field(default_factory=list)
     sampling_rounds_per_metaround: int = 2
     sampling_wished_num_feasible_starts: int = 5
     sampling_max_metarounds: int = 3
@@ -80,6 +80,10 @@ class RunConfig:  # noqa: D101
     change_known_values: bool = True
     change_unknown_values: bool = True
     use_shuffling_instead_of_uniform_random: bool = False
+    use_shuffling_with_putting_back: bool = False
+    free_upper_unfixed_concentrations: bool = False
+    json_path_model_to_merge: str = ""
+    shuffle_using_distribution_of_values_with_reference: bool = True
 
 
 # LOAD RUN CONFIGURATION #
@@ -106,18 +110,41 @@ if not exists(used_cobrak_model_path):
         "examples/iCH360/prepared_external_resources/iCH360_cobrak.json",
         Model,
     )
+    if run_config.free_upper_unfixed_concentrations:
+        max_conc = (
+            run_config.max_conc_sum if run_config.max_conc_sum is not None else 100.0
+        )
+        for metabolite in cobrak_model.metabolites.values():
+            if metabolite.log_max_conc != metabolite.log_min_conc:
+                metabolite.log_max_conc = 1000
+    if run_config.json_path_model_to_merge:
+        other_model: Model = json_load(
+            run_config.json_path_model_to_merge,
+            Model,
+        )
+        for reac_id, reaction in other_model.reactions.items():
+            if reac_id not in cobrak_model.reactions:
+                cobrak_model.reactions[reac_id] = other_model.reactions[reac_id]
+        for met_id, metabolite in other_model.metabolites.items():
+            if reac_id not in cobrak_model.metabolites:
+                cobrak_model.metabolites[met_id] = other_model.metabolites[met_id]
+        for enzyme_id, enzyme in other_model.enzymes.items():
+            if reac_id not in cobrak_model.enzymes:
+                cobrak_model.enzymes[enzyme_id] = other_model.enzymes[enzyme_id]
     if run_config.do_parameter_variation:
         cobrak_model = get_model_with_varied_parameters(
-            cobrak_model,
-            run_config.max_km_variation,
-            run_config.max_kcat_variation,
-            run_config.max_ki_variation,
-            run_config.max_ka_variation,
-            run_config.max_dG0_variation,
-            run_config.varied_reacs,
-            run_config.change_unknown_values,
-            run_config.change_known_values,
-            run_config.use_shuffling_instead_of_uniform_random,
+            model=cobrak_model,
+            max_km_variation=run_config.max_km_variation,
+            max_kcat_variation=run_config.max_kcat_variation,
+            max_ki_variation=run_config.max_ki_variation,
+            max_ka_variation=run_config.max_ka_variation,
+            max_dG0_variation=run_config.max_dG0_variation,
+            varied_reacs=run_config.varied_reacs,
+            change_unknown_values=run_config.change_unknown_values,
+            change_known_values=run_config.change_known_values,
+            use_shuffling_instead_of_uniform_random=run_config.use_shuffling_instead_of_uniform_random,
+            use_shuffling_with_putting_back=run_config.use_shuffling_with_putting_back,
+            shuffle_using_distribution_of_values_with_reference=run_config.shuffle_using_distribution_of_values_with_reference,
         )
 
     for kicked_reac in run_config.kicked_reacs:
@@ -165,9 +192,15 @@ if not exists(used_cobrak_model_path):
             )
         )
 
+    for reac_id, bound_tuple in run_config.changed_flux_bounds.items():
+        cobrak_model.reactions[reac_id].min_flux = bound_tuple[0]
+        cobrak_model.reactions[reac_id].max_flux = bound_tuple[1]
+
     if run_config.max_conc_sum is not None:
         assert run_config.max_conc_sum > 0
         cobrak_model.max_conc_sum = run_config.max_conc_sum
+    else:
+        cobrak_model.max_conc_sum = None
 
     json_write(used_cobrak_model_path, cobrak_model)
 
@@ -191,6 +224,11 @@ if run_config.uses_bennett_concs:
             )
 
 
+if (
+    "RESULTS_GLCUPTAKE_DIFFERENT_MAXCONCSUMS_FREE_UPPER_CONC"
+    in run_config.results_folder
+):
+    cobrak_model.max_conc_sum = float("inf")
 var_dict_filepath = f"{run_config.results_folder}variability_dict_{file_suffix}.json"
 if not exists(var_dict_filepath):
     cobrak_model_with_slightly_more_protein = deepcopy(cobrak_model)
@@ -272,10 +310,10 @@ else:
         )
         evolution_best_result = results[list(results.keys())[0]][0]
         json_write(evolution_best_result_json_path, evolution_best_result)
-        json_zip_write(
-            f"{run_config.results_folder}full_evolution_results{file_suffix}.json",
-            results,
-        )
+        # json_zip_write(
+        #    f"{run_config.results_folder}full_evolution_results{file_suffix}.json",
+        #    results,
+        # )
         t1 = time()
         json_write(evolution_best_result_time_json_path, [t1 - t0])
 

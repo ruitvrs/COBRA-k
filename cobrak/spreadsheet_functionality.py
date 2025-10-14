@@ -160,6 +160,25 @@ class VariabilityDataset:
 
 
 # "PRIVATE" FUNCTIONS SECTION #
+@validate_call()
+def sum_concs(
+    result: dict[str, float],
+    conc_sum_include_suffixes: list[str],
+    conc_sum_ignore_prefixes: list[str],
+) -> float:
+    """Returns the exponentiated concentration of all metabolites in  the result."""
+    concsum = 0.0
+    for key, value in result.items():
+        if key.startswith(LNCONC_VAR_PREFIX):
+            met_id = key[len(LNCONC_VAR_PREFIX) :]
+            if any(met_id.startswith(prefix) for prefix in conc_sum_ignore_prefixes):
+                continue
+            if not any(met_id.endswith(suffix) for suffix in conc_sum_include_suffixes):
+                continue
+            concsum += exp(value)
+    return concsum
+
+
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True))
 def _create_xlsx_from_datadicts(
     path: str,
@@ -390,6 +409,7 @@ def create_cobrak_spreadsheet(
     kinetic_difference_precision: int = 6,
     objective_overwrite: None | str = None,
     extra_optstatistics_data: dict[str, list[str | float | int | bool | None]] = {},
+    show_regulation_coefficients: bool = True,
 ) -> None:
     """Generates a comprehensive Excel spreadsheet summarizing variability and optimization results for a COBRAk model.
 
@@ -442,7 +462,7 @@ def create_cobrak_spreadsheet(
     has_any_vplus = any(
         opt_data.with_vplus for opt_data in optimization_datasets.values()
     )
-    has_any_df = any(opt_data.with_vplus for opt_data in optimization_datasets.values())
+    has_any_df = any(opt_data.with_df for opt_data in optimization_datasets.values())
     has_any_kappa = any(
         opt_data.with_kappa for opt_data in optimization_datasets.values()
     )
@@ -557,6 +577,24 @@ def create_cobrak_spreadsheet(
             SpreadsheetCell("Maximal concentration sum [M]:", font=FONT_BOLD),
             SpreadsheetCell(str(cobrak_model.max_conc_sum)),
         ],
+        "H": [
+            SpreadsheetCell("Metabolite pool [M]", font=FONT_BOLD),
+            SpreadsheetCell(cobrak_model.max_conc_sum),
+        ],
+        "I": [
+            SpreadsheetCell(
+                "Metabolite pool ignore prefixes (i.e. metabolites with this prefix are not counted)",
+                font=FONT_BOLD,
+            ),
+            SpreadsheetCell("; ".join(cobrak_model.conc_sum_ignore_prefixes)),
+        ],
+        "J": [
+            SpreadsheetCell(
+                "Metabolite pool include prefixes (i.e. only metabolites with this prefix are counted)",
+                font=FONT_BOLD,
+            ),
+            SpreadsheetCell("; ".join(cobrak_model.conc_sum_include_suffixes)),
+        ],
     }
 
     # Statistics sheet
@@ -592,6 +630,16 @@ def create_cobrak_spreadsheet(
         stats_cells |= {
             f"{statline}": [
                 SpreadsheetCell("Used protein pool [g⋅gDW⁻¹]", font=FONT_BOLD),
+            ],
+        }
+        statline += 1
+
+    if has_any_df or has_any_gamma:
+        stats_cells |= {
+            f"{statline}": [
+                SpreadsheetCell(
+                    "Used metabolite concentration pool [M]", font=FONT_BOLD
+                ),
             ],
         }
         statline += 1
@@ -759,15 +807,30 @@ def create_cobrak_spreadsheet(
         )
         statline += 3
 
-        if PROT_POOL_REAC_NAME in opt_dataset.data:
-            stats_cells[f"{statline}"].append(opt_dataset.data[PROT_POOL_REAC_NAME])
-            statline += 1
-        elif has_any_vplus:
-            stats_cells[f"{statline}"].append(_get_empty_cell())
-            statline += 1
+        if has_any_vplus:
+            if PROT_POOL_REAC_NAME in opt_dataset.data:
+                stats_cells[f"{statline}"].append(opt_dataset.data[PROT_POOL_REAC_NAME])
+                statline += 1
+            else:
+                stats_cells[f"{statline}"].append(_get_empty_cell())
+                statline += 1
+
+        if has_any_df or has_any_gamma:
+            if any(x.startswith(LNCONC_VAR_PREFIX) for x in opt_dataset.data):
+                stats_cells[f"{statline}"].append(
+                    sum_concs(
+                        opt_dataset.data,
+                        cobrak_model.conc_sum_include_suffixes,
+                        cobrak_model.conc_sum_ignore_prefixes,
+                    )
+                )
+                statline += 1
+            else:
+                stats_cells[f"{statline}"].append(_get_empty_cell())
+                statline += 1
 
         if opt_dataset.with_df:
-            df_stats, _, _, _ = get_df_and_efficiency_factors_sorted_lists(
+            df_stats, _, _, _, _, _ = get_df_and_efficiency_factors_sorted_lists(
                 cobrak_model,
                 opt_dataset.data,
                 min_var_value,
@@ -950,11 +1013,14 @@ def create_cobrak_spreadsheet(
         Title("ΔG'° [kJ⋅mol⁻¹]", WIDTH_DEFAULT),
         Title("Enzyme(s)", WIDTH_DEFAULT),
         Title("kcat [h⁻¹]", WIDTH_DEFAULT),
-        Title("kms [M]", WIDTH_DEFAULT),
-        Title("kis [M]", WIDTH_DEFAULT),
-        Title("kas [M]", WIDTH_DEFAULT),
-        Title("Hill coefficients [-]", WIDTH_DEFAULT),
     ]
+    if show_regulation_coefficients:
+        reac_titles += [
+            Title("kms [M]", WIDTH_DEFAULT),
+            Title("kis [M]", WIDTH_DEFAULT),
+            Title("kas [M]", WIDTH_DEFAULT),
+            Title("Hill coefficients [-]", WIDTH_DEFAULT),
+        ]
     reac_cells: dict[str, list[str | float | int | bool | None | SpreadsheetCell]] = {
         reac_id: [] for reac_id in all_reac_ids
     }
@@ -989,12 +1055,13 @@ def create_cobrak_spreadsheet(
         reac_cells[reac_id].append(k_cat)
         # kms
         reac_cells[reac_id].append(k_ms)
-        # kis
-        reac_cells[reac_id].append(k_is)
-        # kas
-        reac_cells[reac_id].append(k_as)
-        # Hill coefficients
-        reac_cells[reac_id].append(hills)
+        if show_regulation_coefficients:
+            # kis
+            reac_cells[reac_id].append(k_is)
+            # kas
+            reac_cells[reac_id].append(k_as)
+            # Hill coefficients
+            reac_cells[reac_id].append(hills)
 
     # Variability data
     for var_dataset_name, var_dataset in variability_datasets.items():
