@@ -429,7 +429,7 @@ def run_all_analyses_and_plotting(  # noqa: D103
                 axes_labelsize=8,
                 ticks_labelsize=6.1,
                 legend_labelsize=7.5,
-                legend_bbox_to_anchor=(0., 0.995),
+                legend_bbox_to_anchor=(0.0, 0.995),
                 ylim=(0.9e-6, 1e-0),
             )
 
@@ -615,14 +615,16 @@ def run_all_analyses_and_plotting(  # noqa: D103
         for counter, ax in enumerate(axes.flatten()):
             ax.set_box_aspect(1)
             match counter:
-                case 0: 
+                case 0:
                     plot_flux_result(best_result, ax, "A")
                 case 2:
                     plot_enzyme_result(best_result, ax, "B")
                 case 1:
                     plot_metabolite_result(best_result, ax, "C", extracoords=True)
                 case 3:
-                    plot_metabolite_result(metcorrection_result, ax, "D", extracoords=True)
+                    plot_metabolite_result(
+                        metcorrection_result, ax, "D", extracoords=True
+                    )
                 case 5:
                     plot_metabolite_result(bennett_result, ax, "E", extracoords=True)
                 case _:
@@ -638,7 +640,7 @@ def run_all_analyses_and_plotting(  # noqa: D103
             constrained_layout=True,
         )
         for key in ("A", "B"):
-            ax[key].set_box_aspect(1)          # 1:1 width‑to‑height ratio
+            ax[key].set_box_aspect(1)  # 1:1 width‑to‑height ratio
         plot_flux_result(best_result, ax["A"], "A")
         plot_enzyme_result(best_result, ax["B"], "B")
         plot_metabolite_result(best_result, ax["C"], "C", fva_result)

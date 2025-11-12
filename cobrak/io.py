@@ -500,6 +500,8 @@ def convert_cobrak_model_to_annotated_cobrapy_model(
             gene.annotation["cobrak_min_conc"] = enzyme_data.min_conc
         if enzyme_data.max_conc is not None:
             gene.annotation["cobrak_max_conc"] = enzyme_data.max_conc
+        for key, text in enzyme_data.annotation.items():
+            gene.annotation[key] = text
 
     return cobra_model
 

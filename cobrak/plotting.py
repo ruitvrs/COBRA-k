@@ -185,7 +185,7 @@ def dual_axis_plot(
         fig.set_size_inches(figure_size_inches[0], figure_size_inches[1])
 
     # Left Axis Plotting
-    for (y, color, linestyle, label) in extrahlines:
+    for y, color, linestyle, label in extrahlines:
         ax1.axhline(
             y=y,
             color=color,
@@ -701,7 +701,7 @@ def plot_range_bars(
         handles=legend_handles,
         loc="best" if legend_pos is None else legend_pos,
         fontsize=legend_labelsize,
-        bbox_to_anchor=legend_bbox_to_anchor
+        bbox_to_anchor=legend_bbox_to_anchor,
     )
     ax.margins(x=0.01)
 

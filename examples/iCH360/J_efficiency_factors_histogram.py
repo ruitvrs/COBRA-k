@@ -60,6 +60,4 @@ ensure_folder_existence("examples/iCH360/efficiency_factors_data")
 plt.savefig(
     "examples/iCH360/efficiency_factors_data/efficiency_factors_histogram.png", dpi=500
 )
-plt.savefig(
-    "examples/iCH360/efficiency_factors_data/Figure_5.pdf", dpi=500
-)
+plt.savefig("examples/iCH360/efficiency_factors_data/Figure_5.pdf", dpi=500)

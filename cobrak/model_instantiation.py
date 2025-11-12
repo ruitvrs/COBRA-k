@@ -98,18 +98,19 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
                 enzyme_id in enzyme_molecular_weights for enzyme_id in enzyme_ids
             ):
                 ignored_reac_ids.append(reac_id)
-            else:
-                enzyme_reaction_data[reac_id] = EnzymeReactionData(
-                    identifiers=enzyme_ids
-                )
+                continue
+            enzyme_reaction_data[reac_id] = EnzymeReactionData(identifiers=enzyme_ids)
 
         try:
             current_enzyme_reaction_data = enzyme_reaction_data[reac_id]
-            if current_enzyme_reaction_data is None:
-                ignored_reac_ids.append(reac_id)
-                continue
         except KeyError:
             logging.warning(f"The dict enzyme_reaction_data does not have {reac_id}")  # noqa: G004, LOG015
+            continue
+        if current_enzyme_reaction_data is None:
+            ignored_reac_ids.append(reac_id)
+            continue
+        if current_enzyme_reaction_data.k_cat > 1e19:
+            ignored_reac_ids.append(reac_id)
             continue
 
         mw = 0.0
@@ -144,7 +145,33 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
     enz_reacs_to_keep = [entry[0] for entry in base_reacs_to_min_mw_by_k_cat.values()]
 
     # Remove superfluous reactions
-    ignored_base_id_suffix_to_reac_ids = {}
+    extra_reacs_to_delete = _extra_reacs_to_delete(
+        ignored_reac_ids=ignored_reac_ids,
+        enz_reacs_to_keep=enz_reacs_to_keep,
+        rev_suffix=rev_suffix,
+        fwd_suffix=fwd_suffix,
+        reac_enz_separator=reac_enz_separator,
+    )
+
+    reacs_to_delete = [
+        reac_id
+        for reac_id in reac_ids
+        if (reac_enz_separator in reac_id)
+        and (reac_id not in enz_reacs_to_keep)
+        and (reac_id not in ignored_reac_ids)
+    ] + extra_reacs_to_delete
+    cobra_model.remove_reactions(reacs_to_delete)
+    return cobra_model
+
+
+def _extra_reacs_to_delete(
+    ignored_reac_ids: list[str],
+    enz_reacs_to_keep: list[str],
+    rev_suffix: str,
+    fwd_suffix: str,
+    reac_enz_separator: str,
+) -> list[str]:
+    ignored_base_id_suffix_to_reac_ids: dict[tuple[str, bool], list[str]] = {}
     for reac_id in ignored_reac_ids:
         base_id = reac_id.split(reac_enz_separator)[0]
         is_rev = reac_id.endswith(rev_suffix)
@@ -152,7 +179,7 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
         if tuple_ not in ignored_base_id_suffix_to_reac_ids:
             ignored_base_id_suffix_to_reac_ids[tuple_] = []
         ignored_base_id_suffix_to_reac_ids[tuple_].append(reac_id)
-    extra_reacs_to_delete = []
+    extra_reacs_to_delete: list[str] = []
     for reacidlist in ignored_base_id_suffix_to_reac_ids.values():
         if len(reacidlist) <= 1:
             continue
@@ -167,21 +194,13 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
         for i, singleid in enumerate(reacidlist):
             if i not in allowed_indices:
                 extra_reacs_to_delete.append(singleid)
-
-    reacs_to_delete = [
-        reac_id
-        for reac_id in reac_ids
-        if (reac_enz_separator in reac_id)
-        and (reac_id not in enz_reacs_to_keep)
-        and (reac_id not in ignored_reac_ids)
-    ] + extra_reacs_to_delete
-    cobra_model.remove_reactions(reacs_to_delete)
-    return cobra_model
+    return extra_reacs_to_delete
 
 
 def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
     cobrak_model: Model,
     ignored_ids: list[str] = ["s0001"],
+    enz_reacs_to_keep: list[str] = [],
 ) -> Model:
     """Delete enzymatically suboptimal reactions in a COBRA-k model, similar to the idea in sMOMENT/AutoPACMEN [1].
 
@@ -207,15 +226,22 @@ def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
     reac_id_to_mw_by_kcat: dict[str, float] = {}
     reac_id_to_base_id: dict[str, str] = {}
     base_id_to_min_mw_by_kcat: dict[str, float] = {}
+    ignored_reac_ids: list[str] = []
     for reac_id, reac_data in cobrak_model.reactions.items():
         if reac_data.enzyme_reaction_data is None:
+            ignored_reac_ids.append(reac_id)
             continue
-        if reac_data.enzyme_reaction_data.identifiers in ([], [""]):
+        if (
+            reac_data.enzyme_reaction_data.identifiers in ([], [""])
+            or reac_data.enzyme_reaction_data.k_cat >= 1e19
+        ):
+            ignored_reac_ids.append(reac_id)
             continue
         if any(
             ignored_id in reac_data.enzyme_reaction_data.identifiers
             for ignored_id in ignored_ids
         ):
+            ignored_reac_ids.append(reac_id)
             continue
 
         mw_by_kcat = (
@@ -246,7 +272,14 @@ def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
         for reac_id, base_id in reac_id_to_base_id.items()
         if reac_id_to_mw_by_kcat[reac_id] != base_id_to_min_mw_by_kcat[base_id]
     ]
-    for reac_to_delete in reacs_to_delete:
+    extra_reacs_to_delete = _extra_reacs_to_delete(
+        ignored_reac_ids=ignored_reac_ids,
+        enz_reacs_to_keep=enz_reacs_to_keep,
+        rev_suffix=cobrak_model.rev_suffix,
+        fwd_suffix=cobrak_model.fwd_suffix,
+        reac_enz_separator=cobrak_model.reac_enz_separator,
+    )
+    for reac_to_delete in reacs_to_delete + extra_reacs_to_delete:
         del cobrak_model.reactions[reac_to_delete]
 
     return delete_orphaned_metabolites_and_enzymes(cobrak_model)
@@ -708,27 +741,20 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
             dict[str, EnzymeReactionData | None],
         )
 
-    if (not database_data_folder) or (
-        "_cache_uniprot_mws.json" not in data_cache_files
-    ):
-        with tempfile.TemporaryDirectory() as tmpdict:
-            sbml_path = tmpdict + "temp.xml"
-            cobra.io.write_sbml_model(fullsplit_model, sbml_path)
-            enzyme_molecular_weights = uniprot_get_enzyme_molecular_weights_for_sbml(
-                sbml_path=sbml_path,
-                cache_basepath=database_data_folder,
-                base_species=base_species,
-            )
-
-            if database_data_folder:
-                json_write(
-                    f"{database_data_folder}_cache_uniprot_mws.json",
-                    enzyme_molecular_weights,
-                )
-    else:
-        enzyme_molecular_weights = json_load(
-            f"{database_data_folder}_cache_uniprot_mws.json", dict[str, float]
+    with tempfile.TemporaryDirectory() as tmpdict:
+        sbml_path = tmpdict + "temp.xml"
+        cobra.io.write_sbml_model(fullsplit_model, sbml_path)
+        enzyme_molecular_weights = uniprot_get_enzyme_molecular_weights_for_sbml(
+            sbml_path=sbml_path,
+            cache_basepath=database_data_folder,
+            base_species=base_species,
         )
+
+        if database_data_folder:
+            json_write(
+                f"{database_data_folder}_cache_uniprot_molecular_weights.json",
+                enzyme_molecular_weights,
+            )
 
     if do_delete_enzymatically_suboptimal_reactions:
         fullsplit_model = (

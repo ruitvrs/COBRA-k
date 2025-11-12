@@ -1,13 +1,5 @@
 # COBRA-k TODOs
 
-## Short-term (0.0.6)
-
-* X Compartmentalize kinetic value collection, making them work with COBRA-k models alone or also annotated SBMLs
-* X Add references to annotated SBMLs
-* X Add "old" bottleneck function
-* X Add in/out function in utilities
-* X Add IPOPT executable option
-
 ## Mid-term
 
 * Create COBRA-k template repository and reference in documentation/README; Rewrite data collection chapter
@@ -35,5 +27,5 @@
 * REPL integration (in Spyder?)
 * Formation energies as thermodynamic constraint alternative in Metabolite
 * Cofactor swapping routines
-* No-GIL support for Python ≥ 3.13
+* No-GIL support for Python ≥ 3.14 (maybe through subinterpreters as alterative for joblib?)
 * Parallelize equilibrator handling and k_cat/k_m collection
