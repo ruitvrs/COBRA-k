@@ -104,7 +104,10 @@ extrapoints = [
     (9.65, 0.65, True, "black", "x", r"Measured growth rate", 0.01),
 ]
 
-for savepath in (f"{datafolder}zcomplete_figure_with_protpool.png", f"{datafolder}Figure_2.pdf"):
+for savepath in (
+    f"{datafolder}zcomplete_figure_with_protpool.png",
+    f"{datafolder}Figure_2.pdf",
+):
     dual_axis_plot(
         xpoints=x_values,
         leftaxis_ypoints_list=left_values,

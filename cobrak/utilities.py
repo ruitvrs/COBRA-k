@@ -1446,7 +1446,10 @@ def get_sorted_model_kcats(cobrak_model: Model) -> list[tuple[str, float]]:
     """
     kcats = []
     for reac_id, reaction in cobrak_model.reactions.items():
-        if reaction.enzyme_reaction_data is not None:
+        if (
+            reaction.enzyme_reaction_data is not None
+            and reaction.enzyme_reaction_data.k_cat < 1e19
+        ):
             kcats.append((reac_id, reaction.enzyme_reaction_data.k_cat))
     return sorted(kcats, key=operator.itemgetter(1))
 
@@ -1830,7 +1833,10 @@ def get_model_max_kcat_times_e_values(cobrak_model: Model) -> list[NonNegativeFl
     """
     max_kcat_times_e_values: list[float] = []
     for reaction in cobrak_model.reactions.values():
-        if reaction.enzyme_reaction_data is None:
+        if (
+            reaction.enzyme_reaction_data is None
+            or reaction.enzyme_reaction_data.k_cat >= 1e19
+        ):
             continue
         max_kcat_times_e_values.append(
             reaction.enzyme_reaction_data.k_cat
@@ -1851,6 +1857,7 @@ def get_model_with_filled_missing_parameters(
     ignored_enzyme_ids: list[str] = ["s0001"],
     exclude_bw_reac_ids_for_dG0s: bool = False,
     verbose: bool = False,
+    ignore_nameparts: list[str] = ["diffusion"],
 ) -> Model:
     """Fills missing parameters in a COBRA-k model, including dG0, k_cat, and k_ms values.
 
@@ -1891,8 +1898,12 @@ def get_model_with_filled_missing_parameters(
         filled_substrate_kms = 0
         filled_product_kms = 0
     dG0_reverse_couples: set[tuple[str]] = set()
-    for reac_id in cobrak_model.reactions:
+    for reac_id, reaction in cobrak_model.reactions.items():
         if sum(reac_id.startswith(ignore_prefix) for ignore_prefix in ignore_prefixes):
+            continue
+        if sum(
+            ignore_namepart in reaction.name for ignore_namepart in ignore_nameparts
+        ):
             continue
         if cobrak_model.reactions[reac_id].dG0 is None:
             reverse_id = get_reverse_reac_id_if_existing(
@@ -1927,23 +1938,38 @@ def get_model_with_filled_missing_parameters(
             "" in cobrak_model.reactions[reac_id].enzyme_reaction_data.identifiers
         ):
             enzyme_substitue_id = f"{reac_id}_enzyme_substitute"
+            cobrak_model.enzymes[enzyme_substitue_id] = Enzyme(
+                molecular_weight=percentile(all_mws, 100 - param_percentile),
+            )
+            identifiers = [enzyme_substitue_id]
+            cobrak_model.enzymes[enzyme_substitue_id] = Enzyme(
+                molecular_weight=percentile(all_mws, 100 - param_percentile),
+            )
+        else:
+            identifiers = cobrak_model.reactions[
+                reac_id
+            ].enzyme_reaction_data.identifiers
+
+        if (
+            (cobrak_model.reactions[reac_id].enzyme_reaction_data is None)
+            or ("" in cobrak_model.reactions[reac_id].enzyme_reaction_data.identifiers)
+            or (cobrak_model.reactions[reac_id].enzyme_reaction_data.k_cat > 1e19)
+        ):
+            enzyme_substitue_id = f"{reac_id}_enzyme_substitute"
             if not use_median_for_kcats:
                 cobrak_model.reactions[
                     reac_id
                 ].enzyme_reaction_data = EnzymeReactionData(
-                    identifiers=[enzyme_substitue_id],
+                    identifiers=identifiers,
                     k_cat=percentile(all_kcats, param_percentile),
                 )
             else:
                 cobrak_model.reactions[
                     reac_id
                 ].enzyme_reaction_data = EnzymeReactionData(
-                    identifiers=[enzyme_substitue_id],
+                    identifiers=identifiers,
                     k_cat=median(all_kcats),
                 )
-            cobrak_model.enzymes[enzyme_substitue_id] = Enzyme(
-                molecular_weight=percentile(all_mws, 100 - param_percentile),
-            )
             filled_kcats += 1
         if not have_all_unignored_km(
             cobrak_model.reactions[reac_id], cobrak_model.kinetic_ignored_metabolites

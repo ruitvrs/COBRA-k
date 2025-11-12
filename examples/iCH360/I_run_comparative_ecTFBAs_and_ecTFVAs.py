@@ -2,6 +2,7 @@ from os.path import exists  # noqa: D100
 
 import z_add_path  # noqa: F401
 
+from cobrak.constants import PROT_POOL_REAC_NAME
 from cobrak.dataclasses import Model
 from cobrak.io import ensure_folder_existence, json_load, json_write
 from cobrak.lps import perform_lp_optimization, perform_lp_variability_analysis
@@ -11,7 +12,6 @@ from cobrak.spreadsheet_functionality import (
     create_cobrak_spreadsheet,
 )
 from cobrak.standard_solvers import CPLEX, CPLEX_FOR_VARIABILITY_ANALYSIS
-from cobrak.constants import OBJECTIVE_VAR_NAME, PROT_POOL_REAC_NAME
 
 biomass_reac_id = "Biomass_fw"
 glcuptake_reac_id = "EX_glc__D_e_bw"
@@ -20,7 +20,9 @@ cobrak_model: Model = json_load(
     Model,
 )
 
-cobrak_model.max_prot_pool = 0.75  # just a high value for our following protein pool optimization
+cobrak_model.max_prot_pool = (
+    0.75  # just a high value for our following protein pool optimization
+)
 with cobrak_model as growth_0_7_cobrak_model:
     growth_0_7_cobrak_model.reactions["Biomass_fw"].min_flux = 0.7
     opt_result_protpool = perform_lp_optimization(
@@ -33,7 +35,11 @@ with cobrak_model as growth_0_7_cobrak_model:
         variability_dict={},
         solver=CPLEX,
     )
-    print("Protein pool to reach growth 0.7 h⁻¹:", round(opt_result_protpool[PROT_POOL_REAC_NAME], 6), "g⋅gDW⁻¹")
+    print(
+        "Protein pool to reach growth 0.7 h⁻¹:",
+        round(opt_result_protpool[PROT_POOL_REAC_NAME], 6),
+        "g⋅gDW⁻¹",
+    )
 cobrak_model.max_prot_pool = opt_result_protpool[PROT_POOL_REAC_NAME]
 
 results_folder = "examples/iCH360/ecTFBA_and_ecTFVA_results/"

@@ -244,17 +244,15 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
         enzyme_reaction_data=enzyme_reaction_data,
     )
 
-    if not exists(f"{database_data_path}_cache_uniprot_mws.json"):
-        mws = get_database_mws_for_cobrak_model(
-            cobrak_model=cobrak_model,
-            base_species=base_species,
-            database_data_path=database_data_path,
-        )
-        json_write(f"{database_data_path}_cache_uniprot_mws.json", mws)
-    else:
-        mws = json_load(
-            f"{database_data_path}_cache_uniprot_mws.json", dict[str, float]
-        )
+    # Molecular weights: No check for existing cache file needed
+    # as the Uniprot MW-getting function sees which protein IDs
+    # are missing and just searches for them in Uniprot
+    mws = get_database_mws_for_cobrak_model(
+        cobrak_model=cobrak_model,
+        base_species=base_species,
+        database_data_path=database_data_path,
+    )
+    json_write(f"{database_data_path}_cache_uniprot_molecular_weights.json", mws)
 
     if not exists(f"{database_data_path}_cache_dG0.json") or not exists(
         f"{database_data_path}_cache_dG0_uncertainties.json"
