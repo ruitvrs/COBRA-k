@@ -1294,6 +1294,11 @@ def create_cobrak_spreadsheet(
     # Enzyme complex data
     for enzcomplex_id in all_enzcomplex_ids:
         reac_id, reaction = _get_enzcomplex_reaction(cobrak_model, enzcomplex_id)
+        if not all(
+            identifier in cobrak_model.enzymes
+            for identifier in reaction.enzyme_reaction_data.identifiers
+        ):  # e.g., s0001 (spontaneous reactions)
+            continue
         # Enzyme complex ID
         enzcomplex_cells[enzcomplex_id].append(
             enzcomplex_id.replace(ENZYME_VAR_PREFIX, "").split(ENZYME_VAR_INFIX)[0]

@@ -27,7 +27,7 @@ from .constants import (
 # DATACLASSES SECTION #
 @dataclass
 class Enzyme:
-    """Represents an enzyme in a metabolic model.
+    """Represents an enzyme in a metabolic model (note: 'enzyme' stands for a single polypeptide).
 
     Members:
         molecular_weight (float):
@@ -48,18 +48,22 @@ class Enzyme:
             Defaults to '{}'.
         name: str:
             [Optional] Colloquial name of enzyme
+        sequence: str:
+            [Optional] Protein sequence of enzyme (note: 'enzyme' stands for a single polypeptide)
     """
 
     molecular_weight: float = 1e20
     """The enzyme's molecular weight in kDa. Defaults to 1e20 (a very high value that shall be replaced with a real molecular weight)."""
     min_conc: PositiveFloat | None = None
-    """[Optional] The enzyme's minimal concentration in mmol⋅gDW⁻¹"""
+    """The enzyme's minimal concentration in mmol⋅gDW⁻¹"""
     max_conc: PositiveFloat | None = None
-    """[Optional] The enzyme's minimal concentration in mmol⋅gDW⁻¹"""
+    """The enzyme's minimal concentration in mmol⋅gDW⁻¹"""
     annotation: dict[str, str | list[str]] = Field(default_factory=dict)
-    """[Optional] Any annotation data for the enzyme (e.g., references). Has no effect on calculations"""
+    """Any annotation data for the enzyme (e.g., references). Has no effect on calculations"""
     name: str = ""
     """Colloquial name of enzyme"""
+    sequence: str = ""
+    """Protein sequence of enzyme (note: 'enzyme' stands for a single polypeptide)"""
 
 
 @dataclass
@@ -261,13 +265,15 @@ class Metabolite:
     log_max_conc: FiniteFloat = log(0.02)
     """Maximal logarithmic concentration (only relevant for thermodynamic constraints); Default is log(0.02 M)"""
     annotation: dict[str, str | list[str]] = Field(default_factory=dict)
-    """Optional annotation (e.g., CHEBI numbers, ...); Default is {}"""
+    """Annotation (e.g., CHEBI numbers, ...); Default is {}"""
     name: str = ""
     """Colloquial name of metabolite"""
     formula: str = ""
     """Chemical formula of metabolite"""
     charge: int = 0
     """Electron charge of metabolite"""
+    smiles: str = ""
+    """SMILES string of metabolite"""
 
 
 @dataclass

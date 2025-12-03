@@ -14,6 +14,23 @@ from pydantic import ConfigDict, validate_call
 from .io import ensure_folder_existence, json_load, standardize_folder
 
 
+@validate_call(config=ConfigDict(arbitrary_types_allowed=True), validate_return=True)
+def _get_uniprot_id_protein_id_mapping(model: cobra.Model) -> dict[str, list[str]]:
+    # GET UNIPROT ID - PROTEIN MAPPING
+    uniprot_id_protein_id_mapping: dict[str, list[str]] = {}
+    for gene in model.genes:
+        # Without a UniProt ID, no mass mapping can be found
+        if "uniprot" not in gene.annotation:
+            uniprot_id_protein_id_mapping[gene.id] = [gene.id]
+            continue
+        uniprot_id = gene.annotation["uniprot"]
+        if uniprot_id in uniprot_id_protein_id_mapping:
+            uniprot_id_protein_id_mapping[uniprot_id].extend([gene.id, uniprot_id])
+        else:
+            uniprot_id_protein_id_mapping[uniprot_id] = [gene.id, uniprot_id]
+    return uniprot_id_protein_id_mapping
+
+
 # FUNCTIONS SECTION #
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True), validate_return=True)
 def uniprot_get_enzyme_molecular_weights_for_sbml(
@@ -43,18 +60,7 @@ def uniprot_get_enzyme_molecular_weights_for_sbml(
     </pre>
     """
     model = cobra.io.read_sbml_model(sbml_path)
-    # GET UNIPROT ID - PROTEIN MAPPING
-    uniprot_id_protein_id_mapping: dict[str, list[str]] = {}
-    for gene in model.genes:
-        # Without a UniProt ID, no mass mapping can be found
-        if "uniprot" not in gene.annotation:
-            uniprot_id_protein_id_mapping[gene.id] = [gene.id]
-            continue
-        uniprot_id = gene.annotation["uniprot"]
-        if uniprot_id in uniprot_id_protein_id_mapping:
-            uniprot_id_protein_id_mapping[uniprot_id].extend([gene.id, uniprot_id])
-        else:
-            uniprot_id_protein_id_mapping[uniprot_id] = [gene.id, uniprot_id]
+    uniprot_id_protein_id_mapping = _get_uniprot_id_protein_id_mapping(model)
 
     # GET UNIPROT ID<->PROTEIN MASS MAPPING
     uniprot_id_protein_mass_mapping: dict[str, float] = {}
@@ -72,8 +78,7 @@ def uniprot_get_enzyme_molecular_weights_for_sbml(
     original_cache_json_keys = deepcopy(list(cache_json.keys()))
     # Go through each batch of UniProt IDs (multiple UniProt IDs
     # are searched at once in order to save an amount of UniProt API calls)
-    # and retrieve the amino acid sequences and using these sequences, their
-    # masses.
+    # and retrieve their masses.
     print("Starting UniProt ID<->Protein mass search using UniProt API...")
     uniprot_ids = list(uniprot_id_protein_id_mapping.keys())
 
@@ -172,3 +177,139 @@ def uniprot_get_enzyme_molecular_weights_for_sbml(
 
     # Return protein mass list JSON :D
     return protein_id_mass_mapping | cache_json
+
+
+@validate_call(config=ConfigDict(arbitrary_types_allowed=True), validate_return=True)
+def uniprot_get_enzyme_sequences_for_sbml(
+    sbml_path: str,
+    cache_basepath: str,
+    base_species: str,
+) -> dict[str, str]:
+    """Returns a JSON with a mapping of protein IDs as keys, and as values the protein sequences.
+
+    The sequences are taken from UniProt (retrieved using UniProt's REST API).
+
+    Arguments
+    ----------
+    * sbml_path: str ~ The SBML's file path
+
+    Output
+    ----------
+    A JSON file with the path project_folder+project_name+'_protein_id_sequence_mapping.json'
+    and the following structure:
+    <pre>
+    {
+        "$PROTEIN_ID": $PROTEIN_SEQUENCE_AS_STRING,
+        (...),
+    }
+    </pre>
+    """
+    model = cobra.io.read_sbml_model(sbml_path)
+    uniprot_id_protein_id_mapping = _get_uniprot_id_protein_id_mapping(model)
+
+    # GET UNIPROT ID<->SEQUENCE MAPPING
+    uniprot_id_sequence_mapping: dict[str, float] = {}
+    # The cache stored UniProt sequences for already searched
+    # UniProt IDs (each file in the cache folder has the name
+    # of the corresponding UniProt ID). This prevents searching
+    # UniProt for already found protein masses. :-)
+    cache_basepath = standardize_folder(cache_basepath)
+    ensure_folder_existence(cache_basepath)
+    cache_filepath = f"{cache_basepath}_cache_uniprot_sequences.json"
+    try:
+        cache_json: dict[str, float] = json_load(cache_filepath, dict[str, str])
+    except Exception:
+        cache_json: dict[str, float] = {}
+    original_cache_json_keys = deepcopy(list(cache_json.keys()))
+    # Go through each batch of UniProt IDs (multiple UniProt IDs
+    # are searched at once in order to save an amount of UniProt API calls)
+    # and retrieve the amino acid sequences.
+    print("Starting UniProt ID<->Protein mass search using UniProt API...")
+    uniprot_ids = list(uniprot_id_protein_id_mapping.keys())
+
+    batch_size = 12
+    batch_start = 0
+    while batch_start < len(uniprot_ids):
+        # Create the batch with all UniProt IDs
+        prebatch = uniprot_ids[batch_start : batch_start + batch_size]
+        batch = []
+        # Remove all IDs which are present in the cache (i.e.,
+        # which were searched for already).
+        # The cache consists of pickled protein mass floats, each
+        # onein a file with the name of the associated protein.
+        for uniprot_id in prebatch:
+            if uniprot_id not in cache_json:
+                batch.append(uniprot_id)
+            else:
+                uniprot_id_sequence_mapping[uniprot_id] = cache_json[uniprot_id]
+
+        # If all IDs could be found in the cache, continue with the next batch.
+        if len(batch) == 0:
+            batch_start += batch_size
+            continue
+
+        # Create the UniProt query for the batch
+        # With 'OR', all given IDs are searched, and subsequently in this script,
+        # the right associated masses are being picked.
+        query = " OR ".join(batch)
+        uniprot_query_url = f"https://rest.uniprot.org/uniprotkb/search?query={query}&format=tsv&fields=accession,id,sequence,gene_names,gene_orf,gene_oln,organism_name"
+        print(f"UniProt batch search for: {query}")
+
+        # Call UniProt's API :-)
+        uniprot_data: list[str] = requests.get(
+            uniprot_query_url, timeout=1e6
+        ).text.split("\n")
+        # Wait in order to cool down their server :-)
+        time.sleep(1.0)
+
+        # Read out the API-returned lines
+        found_ids = []
+        for line in uniprot_data[1:]:
+            if not line:
+                continue
+            accession_id = line.split("\t")[0].strip().rstrip()
+            entry_id = line.split("\t")[1].strip().rstrip()
+            sequence_string = line.split("\t")[2].strip()
+            gene_names = line.split("\t")[3].strip().split(" ")
+            gene_names_orf = line.split("\t")[4].strip().split(" ")
+            gene_names_ordered_locus = line.split("\t")[5].strip().split(" ")
+            organism_name = line.split("\t")[6].strip()
+            if base_species.lower() not in organism_name.lower():
+                continue
+            uniprot_id_sequence_mapping[accession_id] = sequence_string
+            uniprot_id_sequence_mapping[entry_id] = sequence_string
+            for extraname in [
+                extraname
+                for extraname in gene_names + gene_names_orf + gene_names_ordered_locus
+                if len(extraname) > 0
+            ]:
+                uniprot_id_sequence_mapping[extraname] = sequence_string
+                found_ids.append(extraname)
+            found_ids.extend((accession_id, entry_id))
+
+        # Continue with the next batch :D
+        batch_start += batch_size
+
+    # Create the final protein ID <-> mass mapping
+    protein_id_sequence_mapping: dict[str, float] = {}
+    not_found_ids = set(uniprot_ids) - set(cache_json.keys())
+    if len(not_found_ids):
+        print(
+            f"INFO: Protein sequences not found for the following IDs: {'; '.join(not_found_ids)}"
+        )
+        print(
+            "You may try to re-run the Uniprot sequence search, this helps sometimes to find missing sequences."
+        )
+    for uniprot_id in list(uniprot_id_sequence_mapping.keys()):
+        try:
+            protein_ids = uniprot_id_protein_id_mapping[uniprot_id]
+        except KeyError:
+            continue
+        for protein_id in protein_ids:
+            if protein_id not in original_cache_json_keys:
+                protein_id_sequence_mapping[protein_id] = uniprot_id_sequence_mapping[
+                    uniprot_id
+                ]
+
+    # Return protein mass list JSON :D
+    return protein_id_sequence_mapping | cache_json

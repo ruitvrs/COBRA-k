@@ -790,9 +790,9 @@ def create_cnapy_scenario_out_of_variability_dict(
             else reac_id
         )
 
-        multiplier = 1 if reac_id.endswith(cobrak_model.fwd_suffix) else -1
+        multiplier = -1 if reac_id.endswith(cobrak_model.rev_suffix) else 1
         min_flux = variability_dict[reac_id][0]
-        max_flux = variability_dict[reac_id][0]
+        max_flux = variability_dict[reac_id][1]
 
         if base_id not in cnapy_scenario:
             cnapy_scenario[base_id] = [0.0, 0.0]
@@ -1273,7 +1273,7 @@ def get_df_and_efficiency_factors_sorted_lists(
     dict[str, float],
     dict[str, tuple[float, int]],
 ]:
-    """Extracts and sorts lists of flux values (df) and κ, γ, ι, α values from a result dictionary.
+    """Extracts and sorts lists of flux values (df) and κ, γ, ι, α, κ⋅γ⋅ι⋅α values from a result.
 
     This function processes a dictionary of results of a COBRA-k optimization
     to extract and sort lists of flux values (df) and κ, γ, ι, α values values. It filters
@@ -1289,7 +1289,7 @@ def get_df_and_efficiency_factors_sorted_lists(
             threshold are excluded.  Defaults to 0.0.
 
     Returns:
-        A tuple containing four dictionaries:
+        A tuple containing six dictionaries:
         1. A dictionary of sorted flux values (df) above the minimum flux.
         2. A dictionary of sorted κ values above the minimum flux.
         3. A dictionary of sorted γ values above the minimum flux.

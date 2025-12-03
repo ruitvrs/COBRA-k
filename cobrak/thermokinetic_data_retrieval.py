@@ -28,7 +28,10 @@ from .model_instantiation import (
     delete_enzymatically_suboptimal_reactions_in_cobrak_model,
 )
 from .sabio_rk_functionality import sabio_select_enzyme_kinetic_data_for_sbml
-from .uniprot_functionality import uniprot_get_enzyme_molecular_weights_for_sbml
+from .uniprot_functionality import (
+    uniprot_get_enzyme_molecular_weights_for_sbml,
+    uniprot_get_enzyme_sequences_for_sbml,
+)
 from .utilities import combine_enzyme_reaction_datasets, parse_external_resources
 
 
@@ -36,6 +39,7 @@ from .utilities import combine_enzyme_reaction_datasets, parse_external_resource
 def add_thermokinetic_data_to_cobrak_model(
     cobrak_model: Model,
     mws: dict[str, float] = {},
+    sequences: dict[str, str] = {},
     kcats: dict[str, float] = {},
     kms: dict[str, dict[str, float]] = {},
     kis: dict[str, dict[str, float]] = {},
@@ -55,6 +59,8 @@ def add_thermokinetic_data_to_cobrak_model(
         The model to be updated.
     mws : dict[str, float], optional
         Molecular weights for enzymes keyed by enzyme ID.
+    sequences: dict[str, str], optional
+        Protein sequences
     kcats : dict[str, float], optional
         kcat values keyed by reaction ID.
     kms : dict[str, dict[str, float]], optional
@@ -83,6 +89,8 @@ def add_thermokinetic_data_to_cobrak_model(
     for enzyme_id, enzyme in cobrak_model.enzymes.items():
         if enzyme_id in mws:
             enzyme.molecular_weight = mws[enzyme_id]
+        if enzyme_id in sequences:
+            enzyme.sequence = sequences[enzyme_id]
 
     # dG0s, kcats, kms, kis and kas
     for reac_id, reaction in cobrak_model.reactions.items():
@@ -187,6 +195,7 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
     max_dG0_uncertainty: float = 1_000.0,
     add_dG0_uncertainties: bool = True,
     add_hill_coefficients: bool = True,
+    add_protein_sequences: bool = False,
 ) -> Model:
     """Retrieve kinetic and thermodynamic data from external databases and add them to a model.
 
@@ -208,6 +217,8 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
         Maximum taxonomic distance allowed for data transfer.
     kinetic_ignored_enzyme_ids : list[str], default ["s0001"]
         Enzyme IDs to be ignored during kinetic data retrieval.
+    add_protein_sequences: bool, default False
+        Whether or not protein sequences shall be read out
 
     Returns
     -------
@@ -244,15 +255,22 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
         enzyme_reaction_data=enzyme_reaction_data,
     )
 
-    # Molecular weights: No check for existing cache file needed
-    # as the Uniprot MW-getting function sees which protein IDs
-    # are missing and just searches for them in Uniprot
     mws = get_database_mws_for_cobrak_model(
         cobrak_model=cobrak_model,
         base_species=base_species,
         database_data_path=database_data_path,
     )
     json_write(f"{database_data_path}_cache_uniprot_molecular_weights.json", mws)
+
+    if add_protein_sequences:
+        sequences = get_database_protein_sequences_for_cobrak_model(
+            cobrak_model=cobrak_model,
+            base_species=base_species,
+            database_data_path=database_data_path,
+        )
+        json_write(f"{database_data_path}_cache_uniprot_sequences.json", sequences)
+    else:
+        sequences = {}
 
     if not exists(f"{database_data_path}_cache_dG0.json") or not exists(
         f"{database_data_path}_cache_dG0_uncertainties.json"
@@ -282,6 +300,7 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
     cobrak_model = add_thermokinetic_data_to_cobrak_model(
         cobrak_model=cobrak_model,
         mws=mws,
+        sequences=sequences,
         dG0s=dG0s,
         dG0_uncertainties=dG0_uncertainties if add_dG0_uncertainties else {},
     )
@@ -504,4 +523,38 @@ def get_database_dG0s_for_cobrak_model(
             ignore_uncertainty=ignore_uncertainty,
             max_uncertainty=max_uncertainty,
             calculate_multicompartmental=calculate_multicompartmental,
+        )
+
+
+@validate_call(validate_return=True)
+def get_database_protein_sequences_for_cobrak_model(
+    cobrak_model: Model,
+    base_species: str,
+    database_data_path: str = "",
+) -> dict[str, str]:
+    """Retrieve enzyme sequences from UniProt for a given model.
+
+    Parameters
+    ----------
+    cobrak_model : Model
+        The model whose enzymes require molecular weights.
+    database_data_path : str, optional
+        Base path for caching UniProt queries (default empty string).
+
+    Returns
+    -------
+    dict[str, str]
+        Mapping from enzyme IDs to sequences.
+    """
+    with TemporaryDirectory() as tmpdict:
+        sbml_path = tmpdict + "temp.xml"
+        save_cobrak_model_as_annotated_sbml_model(
+            cobrak_model=cobrak_model,
+            filepath=sbml_path,
+        )
+        database_data_path = standardize_folder(database_data_path)
+        return uniprot_get_enzyme_sequences_for_sbml(
+            sbml_path=sbml_path,
+            cache_basepath=database_data_path,
+            base_species=base_species,
         )

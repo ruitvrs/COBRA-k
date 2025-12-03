@@ -2,6 +2,7 @@
 
 # IMPORTS SECTION #
 import contextlib
+import gzip
 import json
 import os
 import pickle
@@ -562,6 +563,53 @@ def get_folders(path: str) -> list[str]:
         for folder in os.listdir(path)
         if os.path.isdir(os.path.join(path, folder))
     ]
+
+
+@validate_call
+def gzip_load_file(filepath: str, remove_newlines: bool = True) -> list[str]:
+    """
+    Loads a gzipped file and returns its content as a list of strings,
+    where each string is a line from the file.
+
+    This function uses gzip.open in text mode ('rt') and readlines() to efficiently
+    load the file content.
+
+    Args:
+        filepath: The path to the compressed (.tsv.gz) file.
+        remove_newlines: Whether or not newlines (\n) shall be removed or not. Defaults to True.
+
+    Returns:
+        A list of strings, where each string is a line from the file.
+        Returns an empty list if the file is not found or an error occurs.
+    """
+    lines: list[str] = []
+    try:
+        # Open the gzipped file in read text mode ('rt')
+        # This allows reading line by line directly without manual decompression.
+        with gzip.open(filepath, "rt", encoding="utf-8") as f:
+            # Read all lines into a list
+            lines = f.readlines()
+        print(f"Successfully loaded {len(lines)} lines from '{filepath}'.")
+    except FileNotFoundError:
+        print(f"Error: Gzipped file '{filepath}' not found.")
+    except Exception as e:
+        print(f"An error occurred while loading '{filepath}': {e}")
+
+    if remove_newlines:
+        return [x.replace("\n", "") for x in lines]
+    return lines
+
+
+@validate_call
+def gzip_write_file(filepath: str, lines: list[str]) -> None:
+    """Write a gzipped (.gz) file out from the given content.
+
+    Args:
+        filepath: The path of the gzipped file (.gz ending has to be added)
+        lines: A list of stringswith the file content. Newlines have to be added.
+    """
+    with gzip.open(filepath, "wt", encoding="utf-8") as f_out:
+        f_out.writelines(lines)
 
 
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True))
