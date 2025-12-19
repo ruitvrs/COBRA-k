@@ -196,6 +196,7 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
     add_dG0_uncertainties: bool = True,
     add_hill_coefficients: bool = True,
     add_protein_sequences: bool = False,
+    kis_and_kas_only_for_same_compartments: bool = False
 ) -> Model:
     """Retrieve kinetic and thermodynamic data from external databases and add them to a model.
 
@@ -219,6 +220,9 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
         Enzyme IDs to be ignored during kinetic data retrieval.
     add_protein_sequences: bool, default False
         Whether or not protein sequences shall be read out
+    kis_and_kas_only_for_same_compartments: bool, default False
+        If True, kis and kas can only be attributed to a reaction if the affected metabolite has
+        shares one of the reaction metabolite's compartments
 
     Returns
     -------
@@ -240,6 +244,7 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
             max_taxonomy_level=max_taxonomy_level,
             kinetic_ignored_enzyme_ids=kinetic_ignored_enzyme_ids,
             add_hill_coefficients=add_hill_coefficients,
+            kis_and_kas_only_for_same_compartments=kis_and_kas_only_for_same_compartments,
         )
         json_write(
             f"{database_data_path}_cache_enzyme_reaction_data.json",
@@ -322,6 +327,7 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
     max_taxonomy_level: NonNegativeInt = 1_000,
     kinetic_ignored_enzyme_ids: list[str] = ["s0001"],
     add_hill_coefficients: bool = True,
+    kis_and_kas_only_for_same_compartments: bool=False,
 ) -> dict[str, EnzymeReactionData]:
     """Query BRENDA and/or SABIO‑RK for kinetic parameters and return (if given) a unified dataset.
 
@@ -343,6 +349,9 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
         Maximum allowed taxonomic distance for data transfer.
     kinetic_ignored_enzyme_ids : list[str], default ["s0001"]
         Enzyme IDs to be excluded from kinetic data retrieval.
+    kis_and_kas_only_for_same_compartments: bool, default False
+        If True, kis and kas can only be attributed to a reaction if the affected metabolite has
+        shares one of the reaction metabolite's compartments
 
     Returns
     -------
@@ -398,6 +407,7 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
             kinetic_ignored_enzyme_ids=kinetic_ignored_enzyme_ids,
             transfered_ec_number_json=transfer_json_path,
             max_taxonomy_level=max_taxonomy_level,
+            kis_and_kas_only_for_same_compartments=kis_and_kas_only_for_same_compartments,
         )
 
         sabio_enzyme_reaction_data = sabio_select_enzyme_kinetic_data_for_sbml(
@@ -411,6 +421,7 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
             transfered_ec_number_json=transfer_json_path,
             max_taxonomy_level=max_taxonomy_level,
             add_hill_coefficients=add_hill_coefficients,
+            kis_and_kas_only_for_same_compartments=kis_and_kas_only_for_same_compartments,
         )
 
     if use_brenda and use_sabio_rk:

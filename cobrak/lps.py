@@ -1814,7 +1814,7 @@ def perform_lp_thermodynamic_bottleneck_analysis(
     verbose: bool = False,
     solver: Solver = SCIP,
     ignore_nonlinear_terms: bool = False,
-) -> list[str]:
+) -> tuple[list[str], dict[str, float]]:
     """Perform thermodynamic bottleneck analysis on a COBRAk model using mixed-integer linear programming.
 
     This function identifies a minimal set of thermodynamic bottlenecks in a COBRAk model by minimizing the sum of
@@ -1838,6 +1838,7 @@ def perform_lp_thermodynamic_bottleneck_analysis(
 
     Returns:
         list[str]: A list of reaction IDs identified as thermodynamic bottlenecks.
+        tuple[str, float]: The MILP solution of this bottleneck search process.
     """
     cobrak_model = deepcopy(cobrak_model)
     thermo_constraint_lp = get_lp_from_cobrak_model(
@@ -1856,7 +1857,7 @@ def perform_lp_thermodynamic_bottleneck_analysis(
         objective_sense=-1,
     )
     pyomo_solver = get_solver(solver)
-    pyomo_solver.solve(thermo_constraint_lp, tee=verbose, **solver.solve_extra_options)
+    results = pyomo_solver.solve(thermo_constraint_lp, tee=verbose, **solver.solve_extra_options)
     solution_dict = get_pyomo_solution_as_dict(thermo_constraint_lp)
 
     bottleneck_counter = 1
@@ -1878,7 +1879,7 @@ def perform_lp_thermodynamic_bottleneck_analysis(
             )
         bottleneck_counter += 1
 
-    return bottleneck_reactions
+    return bottleneck_reactions, add_statuses_to_optimziation_dict(solution_dict, results)
 
 
 @validate_call(validate_return=True)
@@ -2134,7 +2135,7 @@ def perform_lp_variability_analysis(
         objective_target=FLUX_SUM_VAR_ID,
         objective_sense=+1,
         with_enzyme_constraints=with_enzyme_constraints,
-        with_thermodynamic_constraints=True,
+        with_thermodynamic_constraints=with_thermodynamic_constraints,
         with_loop_constraints=True,
         with_flux_sum_var=True,
         solver=solver,
@@ -2145,7 +2146,7 @@ def perform_lp_variability_analysis(
         objective_target=FLUX_SUM_VAR_ID,
         objective_sense=-1,
         with_enzyme_constraints=with_enzyme_constraints,
-        with_thermodynamic_constraints=True,
+        with_thermodynamic_constraints=with_thermodynamic_constraints,
         with_loop_constraints=True,
         with_flux_sum_var=True,
         solver=solver,
@@ -2158,7 +2159,7 @@ def perform_lp_variability_analysis(
             objective_target=MDF_VAR_ID,
             objective_sense=-1,
             with_enzyme_constraints=with_enzyme_constraints,
-            with_thermodynamic_constraints=True,
+            with_thermodynamic_constraints=with_thermodynamic_constraints,
             with_loop_constraints=True,
             solver=solver,
             ignore_nonlinear_terms=ignore_nonlinear_terms,
@@ -2168,7 +2169,7 @@ def perform_lp_variability_analysis(
             objective_target=MDF_VAR_ID,
             objective_sense=+1,
             with_enzyme_constraints=with_enzyme_constraints,
-            with_thermodynamic_constraints=True,
+            with_thermodynamic_constraints=with_thermodynamic_constraints,
             with_loop_constraints=True,
             solver=solver,
             ignore_nonlinear_terms=ignore_nonlinear_terms,

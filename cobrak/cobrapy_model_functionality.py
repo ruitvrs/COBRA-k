@@ -30,6 +30,7 @@ def get_fullsplit_cobra_model(
     cobrak_kinetic_ignored_metabolites: list[str] = [],
     cobrak_no_extra_versions: bool = False,
     reac_lb_ub_cap: float = float("inf"),
+    delete_old_cobrak_id_annotations: bool = False,
 ) -> cobra.Model:
     """Return a COBRApy model where reactions are split according to reversibility and enzymes.
 
@@ -85,6 +86,11 @@ def get_fullsplit_cobra_model(
     for gene in cobra_model.genes:
         fullsplit_cobra_model.genes.add(deepcopy(gene))
 
+    if delete_old_cobrak_id_annotations:
+        for reaction in cobra_model.reactions:
+            annotkeys = list(reaction.annotation.keys())
+            for annotkey in annotkeys:
+                del reaction.annotation[annotkey]
     for reaction_x in cobra_model.reactions:
         reaction: cobra.Reaction = reaction_x
 

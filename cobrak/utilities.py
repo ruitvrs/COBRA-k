@@ -774,7 +774,7 @@ def create_cnapy_scenario_out_of_variability_dict(
     Returns:
         None: The function saves the CNApy scenario to the specified path.
     """
-    cnapy_scenario: dict[str, list[float]] = {}
+    cnapy_scenario: dict[str, list[tuple[float, float]]] = {}
 
     for reac_id in cobrak_model.reactions:
         if reac_id not in variability_dict:

@@ -274,6 +274,8 @@ class Metabolite:
     """Electron charge of metabolite"""
     smiles: str = ""
     """SMILES string of metabolite"""
+    compartment: str = ""
+    """Identifier for a metabolite's compartment"""
 
 
 @dataclass

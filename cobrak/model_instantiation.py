@@ -397,6 +397,7 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
             name=metabolite.name,
             formula="" if not metabolite.formula else metabolite.formula,
             charge=metabolite.charge,
+            compartment=metabolite.compartment,
         )
 
     for reaction in cobra_model.reactions:
@@ -506,6 +507,7 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
     max_taxonomy_level: float = 1_000.0,
     add_hill_coefficients: bool = True,
     add_protein_sequences: bool = False,
+    kis_and_kas_only_for_same_compartments: bool=False,
 ) -> Model:
     """Build a fully-featured :class:`~cobrak.Model` from an SBML file **and** automatically
     retrieve all required kinetic and thermodynamic data from the local
@@ -621,6 +623,9 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
         Default: ``True``.
     add_protein_sequences: bool, optional
         Whether to add protein sequences or not to Enzyme instances. Default: ``False``
+    kis_and_kas_only_for_same_compartments: bool, default False
+        If True, kis and kas can only be attributed to a reaction if the affected metabolite has
+        shares one of the reaction metabolite's compartments
 
     Returns
     -------
@@ -716,6 +721,7 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
                 custom_enzyme_kinetic_data=custom_kms_and_kcats,
                 max_taxonomy_level=max_taxonomy_level,
                 transfered_ec_number_json=transfer_json_path,
+                kis_and_kas_only_for_same_compartments=kis_and_kas_only_for_same_compartments,
             )
             sabio_enzyme_reaction_data = sabio_select_enzyme_kinetic_data_for_sbml(
                 sbml_path=temp_sbml_path,
@@ -729,6 +735,7 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
                 max_taxonomy_level=max_taxonomy_level,
                 add_hill_coefficients=add_hill_coefficients,
                 transfered_ec_number_json=transfer_json_path,
+                kis_and_kas_only_for_same_compartments=kis_and_kas_only_for_same_compartments,
             )
 
         enzyme_reaction_data = combine_enzyme_reaction_datasets(

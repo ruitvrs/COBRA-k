@@ -483,6 +483,7 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
     kcat_overwrite: dict[str, float] = {},
     transfered_ec_number_json: str = "",
     max_taxonomy_level: NonNegativeInt = 1e9,
+    kis_and_kas_only_for_same_compartments: bool = True,
 ) -> dict[str, EnzymeReactionData | None]:
     """Select and assign enzyme kinetic data for each reaction in an SBML model based on BRENDA
     database entries and taxonomic similarity.
@@ -533,6 +534,9 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
             are accepted. Defaults to True.
         kcat_overwrite (dict[str, float], optional): Dictionary mapping reaction IDs to k_cat values
             that should override computed values. Defaults to an empty dictionary.
+        kis_and_kas_only_for_same_compartments: bool, default False
+            If True, kis and kas can only be attributed to a reaction if the affected metabolite has
+            shares one of the reaction metabolite's compartments
 
     Returns:
         dict[str, EnzymeReactionData | None]:
@@ -647,6 +651,7 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
         k_cat_references: list[ParameterReference] = []
         k_m_references: dict[str, list[ParameterReference]] = {}
         k_i_references: dict[str, list[ParameterReference]] = {}
+        reaction_compartments = [met.compartment for met in reaction.metabolites]
         for metabolite in cobra_model.metabolites:
             idx_last_underscore = metabolite.id.rfind("_")
             met_id = metabolite.id[:idx_last_underscore]
@@ -771,6 +776,8 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
                             )
                             if taxonomy_level <= best_ki_taxonomy_levels[metabolite.id]:
                                 for ki_entry in ki_entries:
+                                    if metabolite.compartment not in reaction_compartments and kis_and_kas_only_for_same_compartments:
+                                        continue
                                     taxonomically_best_kis[metabolite.id].append(
                                         ki_entry[1] / 1_000
                                     )  # convert from mM to M
@@ -804,6 +811,8 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
         reaction_kis = {}
         for met_id, values in taxonomically_best_kis.items():
             if met_id not in taxonomically_best_kis:
+                continue
+            if len(taxonomically_best_kis[met_id]) == 0:
                 continue
             reaction_kis[met_id] = median(taxonomically_best_kis[met_id])
 
