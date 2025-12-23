@@ -1165,7 +1165,14 @@ def create_cobrak_spreadsheet(
                     df_value = " "
                 reac_cells[reac_id].append(SpreadsheetCell(df_value, bg_color=bg_color))
             if opt_dataset.with_vplus:
-                if enzyme_reaction_data is not None:
+                if (
+                    enzyme_reaction_data is not None
+                    and enzyme_reaction_data.k_cat < 1e20
+                    and any(
+                        identifier in cobrak_model.enzymes
+                        for identifier in enzyme_reaction_data.identifiers
+                    )
+                ):
                     vplus = str(
                         enzyme_reaction_data.k_cat
                         * opt_dataset.data[
@@ -1294,6 +1301,11 @@ def create_cobrak_spreadsheet(
     # Enzyme complex data
     for enzcomplex_id in all_enzcomplex_ids:
         reac_id, reaction = _get_enzcomplex_reaction(cobrak_model, enzcomplex_id)
+        if not all(
+            identifier in cobrak_model.enzymes
+            for identifier in reaction.enzyme_reaction_data.identifiers
+        ):  # e.g., s0001 (spontaneous reactions)
+            continue
         # Enzyme complex ID
         enzcomplex_cells[enzcomplex_id].append(
             enzcomplex_id.replace(ENZYME_VAR_PREFIX, "").split(ENZYME_VAR_INFIX)[0]

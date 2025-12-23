@@ -30,6 +30,7 @@ def get_fullsplit_cobra_model(
     cobrak_kinetic_ignored_metabolites: list[str] = [],
     cobrak_no_extra_versions: bool = False,
     reac_lb_ub_cap: float = float("inf"),
+    delete_old_cobrak_id_annotations: bool = False,
 ) -> cobra.Model:
     """Return a COBRApy model where reactions are split according to reversibility and enzymes.
 
@@ -85,6 +86,11 @@ def get_fullsplit_cobra_model(
     for gene in cobra_model.genes:
         fullsplit_cobra_model.genes.add(deepcopy(gene))
 
+    if delete_old_cobrak_id_annotations:
+        for reaction in cobra_model.reactions:
+            annotkeys = list(reaction.annotation.keys())
+            for annotkey in annotkeys:
+                del reaction.annotation[annotkey]
     for reaction_x in cobra_model.reactions:
         reaction: cobra.Reaction = reaction_x
 
@@ -252,59 +258,3 @@ def get_fullsplit_cobra_model_from_sbml(
         cobrak_no_extra_versions=cobrak_no_extra_versions,
         reac_lb_ub_cap=reac_lb_ub_cap,
     )
-
-
-@validate_call(config=ConfigDict(arbitrary_types_allowed=True))
-def create_irreversible_cobrapy_model_from_stoichiometries(
-    stoichiometries: dict[str, dict[str, float]],
-) -> cobra.Model:
-    """Create an irreversible COBRApy model out of the given dictionary.
-
-    E.g., if the following dict is the argument:
-    {
-        "EX_A": { "A": +1 },
-        "R1": { "A": -1, "B": +1 },
-        "EX_B": { "B": -1 },
-    }
-    ...then, the following three irreversible (i.e, flux from 0 to 1_000) reactions
-    are created and returned as a single COBRApy model:
-    EX_A: -> A
-    R1: A -> B
-    EX_B: B ->
-
-    Args:
-        stoichiometries (dict[str, dict[str, float]]): The model-describing dictionary
-
-    Returns:
-        cobra.Model: The resulting COBRApy model with the given reactions and metabolites
-    """
-    cobra_model: cobra.Model = cobra.Model()
-    reac_ids = stoichiometries.keys()
-    metabolite_ids_list = []
-    for stoichiometry_entry in stoichiometries.values():
-        metabolite_ids_list.extend(list(stoichiometry_entry.keys()))
-    metabolite_ids = set(metabolite_ids_list)
-    cobra_model.add_metabolites(
-        [cobra.Metabolite(id=met_id, compartment="c") for met_id in metabolite_ids]
-    )
-    cobra_model.add_reactions(
-        [
-            cobra.Reaction(
-                id=reac_id,
-                name=reac_id,
-                lower_bound=0.0,
-                upper_bound=1000.0,
-            )
-            for reac_id in reac_ids
-        ]
-    )
-    for reac_id in reac_ids:
-        reaction: cobra.Reaction = cobra_model.reactions.get_by_id(reac_id)
-        reaction.add_metabolites(
-            {
-                cobra_model.metabolites.get_by_id(met_id): stoichiometry
-                for met_id, stoichiometry in stoichiometries[reac_id].items()
-            }
-        )
-
-    return cobra_model

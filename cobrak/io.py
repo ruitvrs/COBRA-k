@@ -2,6 +2,7 @@
 
 # IMPORTS SECTION #
 import contextlib
+import gzip
 import json
 import os
 import pickle
@@ -30,8 +31,14 @@ from .dataclasses import (
     Enzyme,
     EnzymeReactionData,
     ExtraLinearConstraint,
+    ExtraLinearWatch,
+    ExtraNonlinearConstraint,
+    ExtraNonlinearWatch,
+    HillCoefficients,
+    HillParameterReferences,
     Metabolite,
     Model,
+    ParameterReference,
     Reaction,
 )
 
@@ -82,31 +89,76 @@ def _add_annotation_to_cobra_reaction(
             reac_data.enzyme_reaction_data.k_cat
         )
         cobra_reaction.annotation[f"cobrak_k_cat_references_{version}"] = str(
-            reac_data.enzyme_reaction_data.k_cat_references
+            [
+                asdict(reference)
+                for reference in reac_data.enzyme_reaction_data.k_cat_references
+            ]
         )
         cobra_reaction.gene_reaction_rule = " and ".join(
             reac_data.enzyme_reaction_data.identifiers
         )
-        if reac_data.enzyme_reaction_data.k_ms is not None:
+        if reac_data.enzyme_reaction_data.k_ms:
             cobra_reaction.annotation[f"cobrak_k_ms_{version}"] = str(
                 reac_data.enzyme_reaction_data.k_ms
             )
             cobra_reaction.annotation[f"cobrak_k_m_references_{version}"] = str(
-                reac_data.enzyme_reaction_data.k_m_references
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.k_m_references.items()
+                }
             )
-        if reac_data.enzyme_reaction_data.k_is is not None:
+        if reac_data.enzyme_reaction_data.k_is:
             cobra_reaction.annotation[f"cobrak_k_is_{version}"] = str(
                 reac_data.enzyme_reaction_data.k_is
             )
             cobra_reaction.annotation[f"cobrak_k_i_references_{version}"] = str(
-                reac_data.enzyme_reaction_data.k_i_references
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.k_i_references.items()
+                }
             )
-        if reac_data.enzyme_reaction_data.k_as is not None:
+        if reac_data.enzyme_reaction_data.k_as:
             cobra_reaction.annotation[f"cobrak_k_as_{version}"] = str(
                 reac_data.enzyme_reaction_data.k_as
             )
             cobra_reaction.annotation[f"cobrak_k_a_references_{version}"] = str(
-                reac_data.enzyme_reaction_data.k_a_references
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.k_a_references.items()
+                }
+            )
+        if reac_data.enzyme_reaction_data.hill_coefficients.kappa:
+            cobra_reaction.annotation[f"cobrak_hills_kappa_{version}"] = str(
+                reac_data.enzyme_reaction_data.hill_coefficients.kappa
+            )
+        if reac_data.enzyme_reaction_data.hill_coefficient_references.kappa:
+            cobra_reaction.annotation[f"cobrak_hills_kappa_references_{version}"] = str(
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.hill_coefficient_references.kappa.items()
+                }
+            )
+        if reac_data.enzyme_reaction_data.hill_coefficients.alpha:
+            cobra_reaction.annotation[f"cobrak_hills_alpha_{version}"] = str(
+                reac_data.enzyme_reaction_data.hill_coefficients.alpha
+            )
+        if reac_data.enzyme_reaction_data.hill_coefficient_references.alpha:
+            cobra_reaction.annotation[f"cobrak_hills_alpha_references_{version}"] = str(
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.hill_coefficient_references.alpha.items()
+                }
+            )
+        if reac_data.enzyme_reaction_data.hill_coefficients.iota:
+            cobra_reaction.annotation[f"cobrak_hills_iota_{version}"] = str(
+                reac_data.enzyme_reaction_data.hill_coefficients.iota
+            )
+        if reac_data.enzyme_reaction_data.hill_coefficient_references.iota:
+            cobra_reaction.annotation[f"cobrak_hills_iota_references_{version}"] = str(
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.hill_coefficient_references.iota.items()
+                }
             )
         cobra_reaction.annotation[f"cobrak_special_stoichiometries_{version}"] = str(
             reac_data.enzyme_reaction_data.special_stoichiometries
@@ -274,6 +326,12 @@ def convert_cobrak_model_to_annotated_cobrapy_model(
         # Add full annotation
         cobra_metabolite.annotation["cobrak_Cmin"] = exp(met_data.log_min_conc)
         cobra_metabolite.annotation["cobrak_Cmax"] = exp(met_data.log_max_conc)
+        if met_data.smiles:
+            cobra_metabolite.annotation["cobrak_smiles"] = met_data.smiles
+        if met_data.compartment:
+            cobra_metabolite.compartment = met_data.compartment
+        if met_data.molar_mass:
+            cobra_metabolite.annotation["cobrak_molar_mass"] = met_data.molar_mass
 
         added_metabolites.append(cobra_metabolite)
     cobra_model.add_metabolites(added_metabolites)
@@ -487,6 +545,18 @@ def convert_cobrak_model_to_annotated_cobrapy_model(
     added_reactions[-1].annotation["cobrak_extra_linear_constraints"] = str(
         [asdict(x) for x in cobrak_model.extra_linear_constraints]
     )
+    added_reactions[-1].annotation["cobrak_extra_linear_watches"] = str(
+        {key: asdict(value) for key, value in cobrak_model.extra_linear_watches.items()}
+    )
+    added_reactions[-1].annotation["cobrak_extra_nonlinear_constraints"] = str(
+        [asdict(x) for x in cobrak_model.extra_nonlinear_constraints]
+    )
+    added_reactions[-1].annotation["cobrak_extra_nonlinear_watches"] = str(
+        {
+            key: asdict(value)
+            for key, value in cobrak_model.extra_nonlinear_watches.items()
+        }
+    )
 
     cobra_model.add_reactions(added_reactions)
 
@@ -502,6 +572,7 @@ def convert_cobrak_model_to_annotated_cobrapy_model(
             gene.annotation["cobrak_max_conc"] = enzyme_data.max_conc
         for key, text in enzyme_data.annotation.items():
             gene.annotation[key] = text
+        gene.annotation["cobrak_sequence"] = enzyme_data.sequence
 
     return cobra_model
 
@@ -562,6 +633,53 @@ def get_folders(path: str) -> list[str]:
         for folder in os.listdir(path)
         if os.path.isdir(os.path.join(path, folder))
     ]
+
+
+@validate_call
+def gzip_load_file(filepath: str, remove_newlines: bool = True) -> list[str]:
+    """
+    Loads a gzipped file and returns its content as a list of strings,
+    where each string is a line from the file.
+
+    This function uses gzip.open in text mode ('rt') and readlines() to efficiently
+    load the file content.
+
+    Args:
+        filepath: The path to the compressed (.tsv.gz) file.
+        remove_newlines: Whether or not newlines (\n) shall be removed or not. Defaults to True.
+
+    Returns:
+        A list of strings, where each string is a line from the file.
+        Returns an empty list if the file is not found or an error occurs.
+    """
+    lines: list[str] = []
+    try:
+        # Open the gzipped file in read text mode ('rt')
+        # This allows reading line by line directly without manual decompression.
+        with gzip.open(filepath, "rt", encoding="utf-8") as f:
+            # Read all lines into a list
+            lines = f.readlines()
+        print(f"Successfully loaded {len(lines)} lines from '{filepath}'.")
+    except FileNotFoundError:
+        print(f"Error: Gzipped file '{filepath}' not found.")
+    except Exception as e:
+        print(f"An error occurred while loading '{filepath}': {e}")
+
+    if remove_newlines:
+        return [x.replace("\n", "") for x in lines]
+    return lines
+
+
+@validate_call
+def gzip_write_file(filepath: str, lines: list[str]) -> None:
+    """Write a gzipped (.gz) file out from the given content.
+
+    Args:
+        filepath: The path of the gzipped file (.gz ending has to be added)
+        lines: A list of stringswith the file content. Newlines have to be added.
+    """
+    with gzip.open(filepath, "wt", encoding="utf-8") as f_out:
+        f_out.writelines(lines)
 
 
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True))
@@ -740,12 +858,46 @@ def load_annotated_cobrapy_model_as_cobrak_model(
         kinetic_ignored_metabolites = literal_eval(
             global_settings_reac.annotation["cobrak_kinetic_ignored_metabolites"]
         )
-        extra_linear_constraints = [
-            ExtraLinearConstraint(**x)
-            for x in literal_eval(
-                global_settings_reac.annotation["cobrak_extra_linear_constraints"]
+        if "cobrak_extra_linear_constraints" in global_settings_reac.annotation:
+            extra_linear_constraints = [
+                ExtraLinearConstraint(**x)
+                for x in literal_eval(
+                    global_settings_reac.annotation["cobrak_extra_linear_constraints"]
+                )
+            ]
+        else:
+            extra_linear_constraints = []
+        if "cobrak_extra_linear_watches" in global_settings_reac.annotation:
+            extra_linear_watches_raw = literal_eval(
+                global_settings_reac.annotation["cobrak_extra_linear_watches"]
             )
-        ]
+            extra_linear_watches = {
+                key: ExtraLinearWatch(**watch)
+                for key, watch in extra_linear_watches_raw.items()
+            }
+        else:
+            extra_linear_watches = {}
+        if "cobrak_extra_nonlinear_constraints" in global_settings_reac.annotation:
+            extra_nonlinear_constraints = [
+                ExtraNonlinearConstraint(**x)
+                for x in literal_eval(
+                    global_settings_reac.annotation[
+                        "cobrak_extra_nonlinear_constraints"
+                    ]
+                )
+            ]
+        else:
+            extra_nonlinear_constraints = []
+        if "cobrak_extra_nonlinear_watches" in global_settings_reac.annotation:
+            extra_nonlinear_watches_raw = literal_eval(
+                global_settings_reac.annotation["cobrak_extra_nonlinear_watches"]
+            )
+            extra_nonlinear_watches = {
+                key: ExtraNonlinearWatch(**watch)
+                for key, watch in extra_nonlinear_watches_raw.items()
+            }
+        else:
+            extra_nonlinear_watches = {}
         R = float(global_settings_reac.annotation["cobrak_R"])
         T = float(global_settings_reac.annotation["cobrak_T"])
         reac_fwd_suffix = global_settings_reac.annotation["cobrak_reac_fwd_suffix"]
@@ -756,28 +908,43 @@ def load_annotated_cobrapy_model_as_cobrak_model(
     else:
         max_prot_pool = STANDARD_MAX_PROT_POOL
         extra_linear_constraints = []
+        extra_nonlinear_constraints = []
         kinetic_ignored_metabolites = []
         R = STANDARD_R
         T = STANDARD_T
         reac_fwd_suffix = REAC_FWD_SUFFIX
         reac_rev_suffix = REAC_REV_SUFFIX
         reac_enz_separator = REAC_ENZ_SEPARATOR
+        extra_linear_constraints = []
+        extra_linear_watches = {}
+        extra_nonlinear_constraints = []
+        extra_nonlinear_watches = {}
 
     cobrak_metabolites: dict[str, Metabolite] = {}
-    for metabolite in cobra_model.metabolites:
+    for metabolite_x in cobra_model.metabolites:
+        metabolite: cobra.Metabolite = metabolite_x
         if exclude_enzyme_constraints and sum(
             met_split in gene_ids for met_split in metabolite.id.split("_")
         ):
             continue
 
-        if "cobrak_Cmin" in metabolite.annotation:
-            log_min_conc = log(float(metabolite.annotation["cobrak_Cmin"]))
-        else:
-            log_min_conc = log(1e-6)
-        if "cobrak_Cmax" in metabolite.annotation:
-            log_max_conc = log(float(metabolite.annotation["cobrak_Cmax"]))
-        else:
-            log_max_conc = log(0.02)
+        log_min_conc = (
+            log(float(metabolite.annotation["cobrak_Cmin"]))
+            if "cobrak_Cmax" in metabolite.annotation
+            else log(1e-6)
+        )
+        log_max_conc = (
+            log(float(metabolite.annotation["cobrak_Cmax"]))
+            if "cobrak_Cmax" in metabolite.annotation
+            else log(0.01)
+        )
+        smiles = metabolite.annotation.get("cobrak_smiles", "")
+        molar_mass = (
+            float(metabolite.annotation["cobrak_molar_mass"])
+            if "cobrak_molar_mass" in metabolite.annotation
+            else None
+        )
+        compartment = metabolite.compartment
 
         cobrak_metabolites[metabolite.id] = Metabolite(
             log_min_conc=log_min_conc,
@@ -790,6 +957,9 @@ def load_annotated_cobrapy_model_as_cobrak_model(
             formula="" if not metabolite.formula else metabolite.formula,
             charge=metabolite.charge,
             name=metabolite.name,
+            smiles=smiles,
+            compartment=compartment,
+            molar_mass=molar_mass,
         )
 
     cobrak_reactions: dict[str, Reaction] = {}
@@ -832,6 +1002,8 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                         )
                         .replace(f"{reac_fwd_suffix}\b", "")
                         .replace(f"{reac_rev_suffix}\b", "")
+                        .replace(f"{REAC_FWD_SUFFIX}\b", "")
+                        .replace(f"{REAC_REV_SUFFIX}\b", "")
                         .replace("\b", "")
                         .split("_")
                     )
@@ -840,47 +1012,113 @@ def load_annotated_cobrapy_model_as_cobrak_model(
 
                 k_cat = float(reaction.annotation[f"cobrak_k_cat_{version}"])
                 if f"cobrak_k_cat_references_{version}" in reaction.annotation:
-                    k_cat_references = literal_eval(
+                    k_cat_references_raw = literal_eval(
                         reaction.annotation[f"cobrak_k_cat_references_{version}"]
                     )
+                    k_cat_references = [
+                        ParameterReference(**reference)
+                        for reference in k_cat_references_raw
+                    ]
                 else:
-                    k_cat_references = None
+                    k_cat_references = []
                 if f"cobrak_k_ms_{version}" in reaction.annotation:
                     k_ms = literal_eval(reaction.annotation[f"cobrak_k_ms_{version}"])
                 else:
-                    k_ms = None
+                    k_ms = {}
                 if f"cobrak_k_m_references_{version}" in reaction.annotation:
-                    k_m_references = literal_eval(
+                    k_m_references_raw = literal_eval(
                         reaction.annotation[f"cobrak_k_m_references_{version}"]
                     )
+                    k_m_references = {
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
+                        for met_id, references in k_m_references_raw.items()
+                    }
                 else:
-                    k_m_references = None
+                    k_m_references = {}
                 if f"cobrak_k_is_{version}" in reaction.annotation:
                     k_is = literal_eval(reaction.annotation[f"cobrak_k_is_{version}"])
                 else:
-                    k_is = None
+                    k_is = {}
                 if f"cobrak_k_i_references_{version}" in reaction.annotation:
-                    k_i_references = literal_eval(
+                    k_i_references_raw = literal_eval(
                         reaction.annotation[f"cobrak_k_i_references_{version}"]
                     )
+                    k_i_references = {
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
+                        for met_id, references in k_i_references_raw.items()
+                    }
                 else:
-                    k_i_references = None
+                    k_i_references = {}
                 if f"cobrak_k_as_{version}" in reaction.annotation:
                     k_as = literal_eval(reaction.annotation[f"cobrak_k_as_{version}"])
                 else:
-                    k_as = None
+                    k_as = {}
                 if f"cobrak_k_a_references_{version}" in reaction.annotation:
-                    k_a_references = literal_eval(
+                    k_a_references_raw = literal_eval(
                         reaction.annotation[f"cobrak_k_a_references_{version}"]
                     )
+                    k_a_references = {
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
+                        for met_id, references in k_a_references_raw.items()
+                    }
                 else:
-                    k_a_references = None
+                    k_a_references = {}
                 if f"cobrak_special_stoichiometries_{version}" in reaction.annotation:
                     special_stoichiometries = literal_eval(
                         reaction.annotation[f"cobrak_special_stoichiometries_{version}"]
                     )
                 else:
                     special_stoichiometries = {}
+                hill_coefficients = HillCoefficients()
+                hill_coefficient_references = HillParameterReferences()
+                if f"cobrak_hills_kappa_{version}" in reaction.annotation:
+                    hill_coefficients.kappa = literal_eval(
+                        reaction.annotation[f"cobrak_hills_kappa_{version}"]
+                    )
+                if f"cobrak_hills_kappa_references_{version}" in reaction.annotation:
+                    hill_kappa_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_hills_kappa_references_{version}"]
+                    )
+                    hill_coefficient_references.kappa = {
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
+                        for met_id, references in hill_kappa_references_raw.items()
+                    }
+                if f"cobrak_hills_iota_{version}" in reaction.annotation:
+                    hill_coefficients.iota = literal_eval(
+                        reaction.annotation[f"cobrak_hills_iota_{version}"]
+                    )
+                if f"cobrak_hills_iota_references_{version}" in reaction.annotation:
+                    hill_iota_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_hills_iota_references_{version}"]
+                    )
+                    hill_coefficient_references.iota = {
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
+                        for met_id, references in hill_iota_references_raw.items()
+                    }
+                if f"cobrak_hills_alpha_{version}" in reaction.annotation:
+                    hill_coefficients.alpha = literal_eval(
+                        reaction.annotation[f"cobrak_hills_alpha_{version}"]
+                    )
+                if f"cobrak_hills_alpha_references_{version}" in reaction.annotation:
+                    hill_alpha_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_hills_alpha_references_{version}"]
+                    )
+                    hill_coefficient_references.alpha = {
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
+                        for met_id, references in hill_alpha_references_raw.items()
+                    }
                 enzyme_reaction_data = EnzymeReactionData(
                     identifiers=identifiers,
                     k_cat=k_cat,
@@ -892,6 +1130,7 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                     k_as=k_as,
                     k_a_references=k_a_references,
                     special_stoichiometries=special_stoichiometries,
+                    hill_coefficients=hill_coefficients,
                 )
             else:
                 if reaction.gene_reaction_rule:
@@ -966,6 +1205,10 @@ def load_annotated_cobrapy_model_as_cobrak_model(
             max_conc = float(gene.annotation["cobrak_max_conc"])
         else:
             max_conc = None
+        if "cobrak_sequence" in gene.annotation:
+            sequence = gene.annotation["cobrak_sequence"]
+        else:
+            sequence = ""
         cobrak_enzymes[gene.id] = Enzyme(
             molecular_weight=mw,
             min_conc=min_conc,
@@ -978,7 +1221,19 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                 for key, value in gene.annotation.items()
                 if not key.startswith("cobrak_")
             },
+            sequence=sequence,
         )
+
+    # Clean reaction identifiers
+    for reaction in cobrak_reactions.values():
+        if reaction.enzyme_reaction_data:
+            reaction.enzyme_reaction_data.identifiers = [
+                identifier
+                for identifier in reaction.enzyme_reaction_data.identifiers
+                if identifier in cobrak_enzymes
+            ]
+            if reaction.enzyme_reaction_data.identifiers == []:
+                reaction.enzyme_reaction_data = None
 
     return Model(
         reactions=cobrak_reactions,
@@ -986,6 +1241,9 @@ def load_annotated_cobrapy_model_as_cobrak_model(
         enzymes=cobrak_enzymes,
         max_prot_pool=max_prot_pool,
         extra_linear_constraints=extra_linear_constraints,
+        extra_linear_watches=extra_linear_watches,
+        extra_nonlinear_constraints=extra_nonlinear_constraints,
+        extra_nonlinear_watches=extra_nonlinear_watches,
         kinetic_ignored_metabolites=kinetic_ignored_metabolites,
         R=R,
         T=T,

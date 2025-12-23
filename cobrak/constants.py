@@ -205,3 +205,6 @@ Z_VAR_PREFIX = "z_var_"
 
 ZB_VAR_PREFIX = "zb_var_"
 """Extra zb variable prefix for thermodynamic bottleneck analyses"""
+
+GENERALIZED_SUM_CONSTRAINT_NAME: str = "generalized_sum_constraint"
+"""Name of constraint for generalized sum (protein pool + metabolite concentrations)"""

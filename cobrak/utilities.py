@@ -774,7 +774,7 @@ def create_cnapy_scenario_out_of_variability_dict(
     Returns:
         None: The function saves the CNApy scenario to the specified path.
     """
-    cnapy_scenario: dict[str, list[float]] = {}
+    cnapy_scenario: dict[str, list[tuple[float, float]]] = {}
 
     for reac_id in cobrak_model.reactions:
         if reac_id not in variability_dict:
@@ -790,9 +790,9 @@ def create_cnapy_scenario_out_of_variability_dict(
             else reac_id
         )
 
-        multiplier = 1 if reac_id.endswith(cobrak_model.fwd_suffix) else -1
+        multiplier = -1 if reac_id.endswith(cobrak_model.rev_suffix) else 1
         min_flux = variability_dict[reac_id][0]
-        max_flux = variability_dict[reac_id][0]
+        max_flux = variability_dict[reac_id][1]
 
         if base_id not in cnapy_scenario:
             cnapy_scenario[base_id] = [0.0, 0.0]
@@ -1273,7 +1273,7 @@ def get_df_and_efficiency_factors_sorted_lists(
     dict[str, float],
     dict[str, tuple[float, int]],
 ]:
-    """Extracts and sorts lists of flux values (df) and κ, γ, ι, α values from a result dictionary.
+    """Extracts and sorts lists of flux values (df) and κ, γ, ι, α, κ⋅γ⋅ι⋅α values from a result.
 
     This function processes a dictionary of results of a COBRA-k optimization
     to extract and sort lists of flux values (df) and κ, γ, ι, α values values. It filters
@@ -1289,7 +1289,7 @@ def get_df_and_efficiency_factors_sorted_lists(
             threshold are excluded.  Defaults to 0.0.
 
     Returns:
-        A tuple containing four dictionaries:
+        A tuple containing six dictionaries:
         1. A dictionary of sorted flux values (df) above the minimum flux.
         2. A dictionary of sorted κ values above the minimum flux.
         3. A dictionary of sorted γ values above the minimum flux.
@@ -1858,6 +1858,7 @@ def get_model_with_filled_missing_parameters(
     exclude_bw_reac_ids_for_dG0s: bool = False,
     verbose: bool = False,
     ignore_nameparts: list[str] = ["diffusion"],
+    ignore_infixes: list[str] = [],
 ) -> Model:
     """Fills missing parameters in a COBRA-k model, including dG0, k_cat, and k_ms values.
 
@@ -1904,6 +1905,8 @@ def get_model_with_filled_missing_parameters(
         if sum(
             ignore_namepart in reaction.name for ignore_namepart in ignore_nameparts
         ):
+            continue
+        if any(ignore_infix in reac_id for ignore_infix in ignore_infixes):
             continue
         if cobrak_model.reactions[reac_id].dG0 is None:
             reverse_id = get_reverse_reac_id_if_existing(
@@ -1970,7 +1973,8 @@ def get_model_with_filled_missing_parameters(
                     identifiers=identifiers,
                     k_cat=median(all_kcats),
                 )
-            filled_kcats += 1
+            if verbose:
+                filled_kcats += 1
         if not have_all_unignored_km(
             cobrak_model.reactions[reac_id], cobrak_model.kinetic_ignored_metabolites
         ):

@@ -453,6 +453,7 @@ def sabio_select_enzyme_kinetic_data_for_sbml(
     transfered_ec_number_json: str = "",
     max_taxonomy_level: int | float = float("inf"),
     add_hill_coefficients: bool = True,
+    kis_and_kas_only_for_same_compartments: bool = True,
 ) -> dict[str, EnzymeReactionData | None]:
     """Selects enzyme kinetic data for a given SBML model using SABIO-RK data.
 
@@ -481,7 +482,7 @@ def sabio_select_enzyme_kinetic_data_for_sbml(
         accept_nan_temperature (bool, optional): Whether to accept entries with NaN temperature values. Defaults to True.
         kcat_overwrite (dict[str, float], optional): Dictionary to overwrite kcat values. Defaults to {}.
         add_hill_coefficients (bool, optional): Whether Hill coefficeints shall be collected (True) or not (False). Defaults to True.
-
+        kis_and_kas_only_for_same_compartments (bool, default False). If True, kis and kas can only be attributed to a reaction if the affected metabolite has shares one of the reaction metabolite's compartments.
     Returns:
         dict[str, EnzymeReactionData | None]: A dictionary mapping reaction IDs to enzyme kinetic data.
     """
@@ -632,6 +633,7 @@ def sabio_select_enzyme_kinetic_data_for_sbml(
         k_a_refs_per_tax_score: dict[str, dict[int, list[ParameterReference]]] = {}
         hills_per_tax_score: dict[str, dict[int, list[float]]] = {}
         hill_refs_per_tax_score: dict[str, dict[int, list[ParameterReference]]] = {}
+        reaction_compartments = [met.compartment for met in reaction.metabolites]
         for entries_type, entries in all_entries:
             if entries_type == "kcat":  # Reaction-wide search
                 for entry in entries:
@@ -687,6 +689,12 @@ def sabio_select_enzyme_kinetic_data_for_sbml(
                     if met.id in kinetic_ignored_metabolites:
                         continue
                     if (entries_type == "km") and met not in reaction.metabolites:
+                        continue
+                    if (
+                        met.compartment not in reaction_compartments
+                        and (entries_type != "km")
+                        and kis_and_kas_only_for_same_compartments
+                    ):
                         continue
                     bigg_id = met.id[: met.id.rfind("_")]
                     for entry in entries:

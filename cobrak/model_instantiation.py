@@ -11,6 +11,8 @@ import cobra
 from cobra.manipulation import remove_genes
 from numpy import log
 
+from cobrak.molmass_functionality import add_molar_masses_to_model_metabolites
+
 from .brenda_functionality import brenda_select_enzyme_kinetic_data_for_sbml
 from .cobrapy_model_functionality import get_fullsplit_cobra_model
 from .constants import (
@@ -47,7 +49,10 @@ from .io import (
     standardize_folder,
 )
 from .sabio_rk_functionality import sabio_select_enzyme_kinetic_data_for_sbml
-from .uniprot_functionality import uniprot_get_enzyme_molecular_weights_for_sbml
+from .uniprot_functionality import (
+    uniprot_get_enzyme_molecular_weights_for_sbml,
+    uniprot_get_enzyme_sequences_for_sbml,
+)
 from .utilities import (
     combine_enzyme_reaction_datasets,
     delete_orphaned_metabolites_and_enzymes,
@@ -84,7 +89,7 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
         cobra.Model: The modified COBRA-k model with suboptimal reactions removed.
     """
     reac_ids: list[str] = [reaction.id for reaction in cobra_model.reactions]
-    ignored_reac_ids: list[str] = []
+    ignored_reac_ids_with_mws: list[str] = []
     base_reacs_to_min_mw_by_k_cat: dict[str, tuple[str, float]] = {}
     for reac_id in reac_ids:
         if reac_enz_separator not in reac_id:
@@ -97,7 +102,7 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
             if not all(
                 enzyme_id in enzyme_molecular_weights for enzyme_id in enzyme_ids
             ):
-                ignored_reac_ids.append(reac_id)
+                ignored_reac_ids_with_mws.append((reac_id, 0.0))
                 continue
             enzyme_reaction_data[reac_id] = EnzymeReactionData(identifiers=enzyme_ids)
 
@@ -107,10 +112,7 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
             logging.warning(f"The dict enzyme_reaction_data does not have {reac_id}")  # noqa: G004, LOG015
             continue
         if current_enzyme_reaction_data is None:
-            ignored_reac_ids.append(reac_id)
-            continue
-        if current_enzyme_reaction_data.k_cat > 1e19:
-            ignored_reac_ids.append(reac_id)
+            ignored_reac_ids_with_mws.append((reac_id, 0.0))
             continue
 
         mw = 0.0
@@ -126,8 +128,11 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
                 mw += stoichiometry * enzyme_molecular_weights[identifier]
             except KeyError:
                 logging.warning(f"Cannot find {identifier} in enzyme_molecular_weights")  # noqa: G004, LOG015
+
         k_cat = current_enzyme_reaction_data.k_cat
-        mw_by_k_cat = mw / k_cat
+        if k_cat > 1e19:
+            ignored_reac_ids_with_mws.append((reac_id, mw))
+            continue
 
         if reac_id.endswith(fwd_suffix):
             direction_addition = fwd_suffix
@@ -137,6 +142,7 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
             direction_addition = ""
         base_id = reac_id.split(reac_enz_separator)[0] + direction_addition
 
+        mw_by_k_cat = mw / k_cat
         if (
             base_id not in base_reacs_to_min_mw_by_k_cat
             or mw_by_k_cat < base_reacs_to_min_mw_by_k_cat[base_id][1]
@@ -146,7 +152,7 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
 
     # Remove superfluous reactions
     extra_reacs_to_delete = _extra_reacs_to_delete(
-        ignored_reac_ids=ignored_reac_ids,
+        ignored_reac_ids=ignored_reac_ids_with_mws,
         enz_reacs_to_keep=enz_reacs_to_keep,
         rev_suffix=rev_suffix,
         fwd_suffix=fwd_suffix,
@@ -158,40 +164,43 @@ def delete_enzymatically_suboptimal_reactions_in_fullsplit_cobrapy_model(
         for reac_id in reac_ids
         if (reac_enz_separator in reac_id)
         and (reac_id not in enz_reacs_to_keep)
-        and (reac_id not in ignored_reac_ids)
+        and (reac_id not in [item[0] for item in ignored_reac_ids_with_mws])
     ] + extra_reacs_to_delete
     cobra_model.remove_reactions(reacs_to_delete)
     return cobra_model
 
 
 def _extra_reacs_to_delete(
-    ignored_reac_ids: list[str],
+    ignored_reac_ids: list[tuple[str, float]],
     enz_reacs_to_keep: list[str],
     rev_suffix: str,
     fwd_suffix: str,
     reac_enz_separator: str,
 ) -> list[str]:
-    ignored_base_id_suffix_to_reac_ids: dict[tuple[str, bool], list[str]] = {}
-    for reac_id in ignored_reac_ids:
+    ignored_base_id_suffix_to_reac_ids_and_mws: dict[
+        tuple[str, bool], list[tuple[str, float]]
+    ] = {}
+    for reac_id, mw in ignored_reac_ids:
         base_id = reac_id.split(reac_enz_separator)[0]
         is_rev = reac_id.endswith(rev_suffix)
         tuple_ = (base_id, is_rev)
-        if tuple_ not in ignored_base_id_suffix_to_reac_ids:
-            ignored_base_id_suffix_to_reac_ids[tuple_] = []
-        ignored_base_id_suffix_to_reac_ids[tuple_].append(reac_id)
+        if tuple_ not in ignored_base_id_suffix_to_reac_ids_and_mws:
+            ignored_base_id_suffix_to_reac_ids_and_mws[tuple_] = []
+        ignored_base_id_suffix_to_reac_ids_and_mws[tuple_].append((reac_id, mw))
     extra_reacs_to_delete: list[str] = []
-    for reacidlist in ignored_base_id_suffix_to_reac_ids.values():
+    for reacidlist in ignored_base_id_suffix_to_reac_ids_and_mws.values():
         if len(reacidlist) <= 1:
             continue
         allowed_indices = []
-        for i, singleid in enumerate(reacidlist):
+        for i, (singleid, _) in enumerate(reacidlist):
             if (singleid.replace(rev_suffix, fwd_suffix) in enz_reacs_to_keep) or (
                 reac_id.replace(fwd_suffix, rev_suffix) in enz_reacs_to_keep
             ):
                 allowed_indices.append(i)
         if allowed_indices == []:
-            allowed_indices = [reacidlist.index(sorted(reacidlist)[0])]
-        for i, singleid in enumerate(reacidlist):
+            mwlist = [item[1] for item in reacidlist]
+            allowed_indices = [mwlist.index(min(mwlist))]
+        for i, (singleid, _) in enumerate(reacidlist):
             if i not in allowed_indices:
                 extra_reacs_to_delete.append(singleid)
     return extra_reacs_to_delete
@@ -226,22 +235,24 @@ def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
     reac_id_to_mw_by_kcat: dict[str, float] = {}
     reac_id_to_base_id: dict[str, str] = {}
     base_id_to_min_mw_by_kcat: dict[str, float] = {}
-    ignored_reac_ids: list[str] = []
+    ignored_reac_ids_with_mws: list[str] = []
     for reac_id, reac_data in cobrak_model.reactions.items():
-        if reac_data.enzyme_reaction_data is None:
-            ignored_reac_ids.append(reac_id)
-            continue
         if (
-            reac_data.enzyme_reaction_data.identifiers in ([], [""])
-            or reac_data.enzyme_reaction_data.k_cat >= 1e19
+            reac_data.enzyme_reaction_data is None
+            or reac_data.enzyme_reaction_data.identifiers in ([], [""])
         ):
-            ignored_reac_ids.append(reac_id)
+            ignored_reac_ids_with_mws.append((reac_id, 0.0))
+            continue
+        if reac_data.enzyme_reaction_data.k_cat >= 1e19:
+            ignored_reac_ids_with_mws.append(
+                (reac_id, get_full_enzyme_mw(cobrak_model, reac_data))
+            )
             continue
         if any(
             ignored_id in reac_data.enzyme_reaction_data.identifiers
             for ignored_id in ignored_ids
         ):
-            ignored_reac_ids.append(reac_id)
+            ignored_reac_ids_with_mws.append((reac_id, 0.0))
             continue
 
         mw_by_kcat = (
@@ -273,7 +284,7 @@ def delete_enzymatically_suboptimal_reactions_in_cobrak_model(
         if reac_id_to_mw_by_kcat[reac_id] != base_id_to_min_mw_by_kcat[base_id]
     ]
     extra_reacs_to_delete = _extra_reacs_to_delete(
-        ignored_reac_ids=ignored_reac_ids,
+        ignored_reac_ids=ignored_reac_ids_with_mws,
         enz_reacs_to_keep=enz_reacs_to_keep,
         rev_suffix=cobrak_model.rev_suffix,
         fwd_suffix=cobrak_model.fwd_suffix,
@@ -306,6 +317,8 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
     omitted_metabolites: list[str] = [],
     ignored_enzyme_ids: str = ["s0001"],
     remove_enzyme_reaction_data_if_no_kcat_set: bool = False,
+    sequences: dict[str, str] = {},
+    add_molar_masses: bool = True,
 ) -> Model:
     """Creates a COBRAk model from an SBML and given further thermokinetic (thermodynamic and enzymatic) data.
 
@@ -333,8 +346,10 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
         ignored_enzyme_ids (list[str], optional): Enzymes that shall not be included if their ID occurs in any identifiers part. Defaults to ["s0001"],
          i.e. spontaneously occurring reactions.
         remove_enzyme_reaction_data_if_no_kcat_set (bool, optional): If no $k_{cat}$ is set for a reaction, shall its EnzymeReactionData
-        be set to None? If False, the default EnzymeReactionData with a very high (effectively non-existing) $k_{cat}$ is used. Defaults to False.
-
+         be set to None? If False, the default EnzymeReactionData with a very high (effectively non-existing) $k_{cat}$ is used. Defaults to False.
+         sequences (dict[str, str], optional): Data for protein sequences
+        add_molar_masses: bool, default True
+            Whether or not to calculate molar masses for all metabolites through their formula member variable
     Raises:
         ValueError: If a concentration range for a metabolite is not provided and no default is set.
 
@@ -386,6 +401,7 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
             name=metabolite.name,
             formula="" if not metabolite.formula else metabolite.formula,
             charge=metabolite.charge,
+            compartment=metabolite.compartment,
         )
 
     for reaction in cobra_model.reactions:
@@ -438,12 +454,14 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
         else:
             name = ""
             annotation = {}
+        sequence = sequences.get(enzyme_id, "")
         cobrak_model.enzymes[enzyme_id] = Enzyme(
             molecular_weight=molecular_weight,
             min_conc=min_enzyme_conc,
             max_conc=max_enzyme_conc,
             name=name,
             annotation=annotation,
+            sequence=sequence,
         )
 
     if do_delete_enzymatically_suboptimal_reactions:
@@ -458,6 +476,9 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
                 continue
             if reaction.enzyme_reaction_data.k_cat > 1e19:
                 reaction.enzyme_reaction_data = None
+
+    if add_molar_masses:
+        cobrak_model = add_molar_masses_to_model_metabolites(cobrak_model)
 
     return cobrak_model
 
@@ -492,6 +513,9 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
     enzymes_to_delete: list[str] = [],
     max_taxonomy_level: float = 1_000.0,
     add_hill_coefficients: bool = True,
+    add_protein_sequences: bool = False,
+    kis_and_kas_only_for_same_compartments: bool = False,
+    add_molar_masses: bool = True,
 ) -> Model:
     """Build a fully-featured :class:`~cobrak.Model` from an SBML file **and** automatically
     retrieve all required kinetic and thermodynamic data from the local
@@ -605,11 +629,18 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
     add_hill_coefficients : bool, optional
         If ``True`` include Hill coefficients from SABIO-RK where available.
         Default: ``True``.
+    add_protein_sequences: bool, optional
+        Whether to add protein sequences or not to Enzyme instances. Default: ``False``
+    kis_and_kas_only_for_same_compartments: bool, default False
+        If True, kis and kas can only be attributed to a reaction if the affected metabolite has
+        shares one of the reaction metabolite's compartments
+    add_molar_masses: bool, default True
+        Whether or not to calculate molar masses for all metabolites through their formula member variable
 
     Returns
     -------
     Model
-        A fully populated :class:`~cobrak.Model` instance containing:
+        A fully populated :class:`~cobrak.Model` instance containing e.g.:
         * Metabolite objects with concentration bounds,
         * Reaction objects with flux bounds, ΔG⁰ values, and enzyme reaction data,
         * Enzyme objects with molecular weights and concentration bounds,
@@ -700,6 +731,7 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
                 custom_enzyme_kinetic_data=custom_kms_and_kcats,
                 max_taxonomy_level=max_taxonomy_level,
                 transfered_ec_number_json=transfer_json_path,
+                kis_and_kas_only_for_same_compartments=kis_and_kas_only_for_same_compartments,
             )
             sabio_enzyme_reaction_data = sabio_select_enzyme_kinetic_data_for_sbml(
                 sbml_path=temp_sbml_path,
@@ -713,6 +745,7 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
                 max_taxonomy_level=max_taxonomy_level,
                 add_hill_coefficients=add_hill_coefficients,
                 transfered_ec_number_json=transfer_json_path,
+                kis_and_kas_only_for_same_compartments=kis_and_kas_only_for_same_compartments,
             )
 
         enzyme_reaction_data = combine_enzyme_reaction_datasets(
@@ -749,12 +782,25 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
             cache_basepath=database_data_folder,
             base_species=base_species,
         )
-
         if database_data_folder:
             json_write(
                 f"{database_data_folder}_cache_uniprot_molecular_weights.json",
                 enzyme_molecular_weights,
             )
+
+        if add_protein_sequences:
+            sequences = uniprot_get_enzyme_sequences_for_sbml(
+                sbml_path=sbml_path,
+                cache_basepath=database_data_folder,
+                base_species=base_species,
+            )
+            if database_data_folder:
+                json_write(
+                    f"{database_data_folder}_cache_uniprot_sequences.json",
+                    sequences,
+                )
+        else:
+            sequences = {}
 
     if do_delete_enzymatically_suboptimal_reactions:
         fullsplit_model = (
@@ -835,5 +881,7 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
                 R=R,
                 T=T,
                 do_delete_enzymatically_suboptimal_reactions=False,
+                sequences=sequences,
+                add_molar_masses=add_molar_masses,
             )
         )
