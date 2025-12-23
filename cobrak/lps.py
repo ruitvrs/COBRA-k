@@ -48,6 +48,7 @@ from .constants import (
     ERROR_SUM_VAR_ID,
     ERROR_VAR_PREFIX,
     FLUX_SUM_VAR_ID,
+    GENERALIZED_SUM_CONSTRAINT_NAME,
     KAPPA_PRODUCTS_VAR_PREFIX,
     KAPPA_SUBSTRATES_VAR_PREFIX,
     LNCONC_VAR_PREFIX,
@@ -219,18 +220,38 @@ def _add_conc_sum_constraints(
             max_rel_difference=cobrak_model.conc_sum_max_rel_error,
             min_abs_error=cobrak_model.conc_sum_min_abs_error,
         )
-        conc_sum_expr += getattr(model, f"exp_{met_sum_id}")
+        met_id = met_sum_id[len(LNCONC_VAR_PREFIX) :]
+        if (
+            cobrak_model.include_mets_in_prot_pool
+            and cobrak_model.metabolites[met_id].molar_mass
+        ):
+            conc_sum_expr += cobrak_model.metabolites[met_id].molar_mass * getattr(
+                model, f"exp_{met_sum_id}"
+            )
+        else:
+            conc_sum_expr += getattr(model, f"exp_{met_sum_id}")
 
     setattr(
         model,
         "met_sum_var",
         Var(within=Reals, bounds=(1e-12, cobrak_model.max_conc_sum)),
     )
-    setattr(
-        model,
-        "met_sum_constraint",
-        Constraint(rule=conc_sum_expr <= getattr(model, "met_sum_var")),
-    )
+
+    if cobrak_model.include_mets_in_prot_pool:
+        setattr(
+            model,
+            GENERALIZED_SUM_CONSTRAINT_NAME,
+            Constraint(
+                rule=getattr(model, PROT_POOL_REAC_NAME) + getattr(model, "met_sum_var")
+                <= cobrak_model.max_prot_pool
+            ),
+        )
+    else:
+        setattr(
+            model,
+            "met_sum_constraint",
+            Constraint(rule=conc_sum_expr <= getattr(model, "met_sum_var")),
+        )
 
     return model
 
@@ -1549,7 +1570,10 @@ def get_lp_from_cobrak_model(
             ignored_reacs=ignored_reacs,
         )
 
-        if cobrak_model.max_conc_sum < float("inf"):
+        if (
+            cobrak_model.max_conc_sum < float("inf")
+            or cobrak_model.include_mets_in_prot_pool
+        ):
             model = _add_conc_sum_constraints(cobrak_model, model)
 
     # Add loop constraints if enabled
@@ -1857,7 +1881,9 @@ def perform_lp_thermodynamic_bottleneck_analysis(
         objective_sense=-1,
     )
     pyomo_solver = get_solver(solver)
-    results = pyomo_solver.solve(thermo_constraint_lp, tee=verbose, **solver.solve_extra_options)
+    results = pyomo_solver.solve(
+        thermo_constraint_lp, tee=verbose, **solver.solve_extra_options
+    )
     solution_dict = get_pyomo_solution_as_dict(thermo_constraint_lp)
 
     bottleneck_counter = 1
@@ -1879,7 +1905,9 @@ def perform_lp_thermodynamic_bottleneck_analysis(
             )
         bottleneck_counter += 1
 
-    return bottleneck_reactions, add_statuses_to_optimziation_dict(solution_dict, results)
+    return bottleneck_reactions, add_statuses_to_optimziation_dict(
+        solution_dict, results
+    )
 
 
 @validate_call(validate_return=True)

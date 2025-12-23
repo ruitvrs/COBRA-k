@@ -11,6 +11,8 @@ import cobra
 from cobra.manipulation import remove_genes
 from numpy import log
 
+from cobrak.molmass_functionality import add_molar_masses_to_model_metabolites
+
 from .brenda_functionality import brenda_select_enzyme_kinetic_data_for_sbml
 from .cobrapy_model_functionality import get_fullsplit_cobra_model
 from .constants import (
@@ -316,6 +318,7 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
     ignored_enzyme_ids: str = ["s0001"],
     remove_enzyme_reaction_data_if_no_kcat_set: bool = False,
     sequences: dict[str, str] = {},
+    add_molar_masses: bool = True,
 ) -> Model:
     """Creates a COBRAk model from an SBML and given further thermokinetic (thermodynamic and enzymatic) data.
 
@@ -343,9 +346,10 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
         ignored_enzyme_ids (list[str], optional): Enzymes that shall not be included if their ID occurs in any identifiers part. Defaults to ["s0001"],
          i.e. spontaneously occurring reactions.
         remove_enzyme_reaction_data_if_no_kcat_set (bool, optional): If no $k_{cat}$ is set for a reaction, shall its EnzymeReactionData
-        be set to None? If False, the default EnzymeReactionData with a very high (effectively non-existing) $k_{cat}$ is used. Defaults to False.
-        sequences (dict[str, str], optional): Data for protein sequences
-
+         be set to None? If False, the default EnzymeReactionData with a very high (effectively non-existing) $k_{cat}$ is used. Defaults to False.
+         sequences (dict[str, str], optional): Data for protein sequences
+        add_molar_masses: bool, default True
+            Whether or not to calculate molar masses for all metabolites through their formula member variable
     Raises:
         ValueError: If a concentration range for a metabolite is not provided and no default is set.
 
@@ -473,6 +477,9 @@ def get_cobrak_model_from_sbml_and_thermokinetic_data(
             if reaction.enzyme_reaction_data.k_cat > 1e19:
                 reaction.enzyme_reaction_data = None
 
+    if add_molar_masses:
+        cobrak_model = add_molar_masses_to_model_metabolites(cobrak_model)
+
     return cobrak_model
 
 
@@ -507,7 +514,8 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
     max_taxonomy_level: float = 1_000.0,
     add_hill_coefficients: bool = True,
     add_protein_sequences: bool = False,
-    kis_and_kas_only_for_same_compartments: bool=False,
+    kis_and_kas_only_for_same_compartments: bool = False,
+    add_molar_masses: bool = True,
 ) -> Model:
     """Build a fully-featured :class:`~cobrak.Model` from an SBML file **and** automatically
     retrieve all required kinetic and thermodynamic data from the local
@@ -626,6 +634,8 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
     kis_and_kas_only_for_same_compartments: bool, default False
         If True, kis and kas can only be attributed to a reaction if the affected metabolite has
         shares one of the reaction metabolite's compartments
+    add_molar_masses: bool, default True
+        Whether or not to calculate molar masses for all metabolites through their formula member variable
 
     Returns
     -------
@@ -872,5 +882,6 @@ def get_cobrak_model_with_kinetic_data_from_sbml_model_alone(
                 T=T,
                 do_delete_enzymatically_suboptimal_reactions=False,
                 sequences=sequences,
+                add_molar_masses=add_molar_masses,
             )
         )

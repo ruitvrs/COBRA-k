@@ -276,6 +276,8 @@ class Metabolite:
     """SMILES string of metabolite"""
     compartment: str = ""
     """Identifier for a metabolite's compartment"""
+    molar_mass: None | float = None
+    """Molar mass of metaobolite (g⋅mol⁻¹)"""
 
 
 @dataclass
@@ -368,7 +370,7 @@ class Model:
     rev_suffix: str = REAC_REV_SUFFIX
     """[Optional] Reaction ID suffix of reverse reaction variants (e.g. in a reversible reaction A→B, for the direction B→A). Default is '_REV'"""
     max_conc_sum: float = float("inf")
-    """[Optional and only works with thermodynamic constraints] Maximal allowed sum of concentrations (for MILPs: linear approximation; for NLPs: Exact value). Inactive if set to default value of float('inf')"""
+    """[Optional and only works with thermodynamic constraints, and overridden with float("inf") when include_met_concs_sum_in_prot_pool==True] Maximal allowed sum of concentrations (for MILPs: linear approximation; for NLPs: Exact value). Inactive if set to default value of float('inf')"""
     conc_sum_ignore_prefixes: list[str] = Field(default_factory=list)
     """[Optional and only works with thermodynamic constraints] """
     conc_sum_include_suffixes: list[str] = Field(default_factory=list)
@@ -377,6 +379,8 @@ class Model:
     """[Optional and only works with MILPs with thermodynamic constraints] Maximal relative concentration sum approximation error"""
     conc_sum_min_abs_error: float = 1e-6
     """[Optional and only works with MILPs with thermodynamic constraints] Maximal absolute concentration sum approximation error"""
+    include_mets_in_prot_pool: bool = False
+    """[Experimental! Optional and only works with MILPs with enzyme and thermodynamic constraints] Whether or not metabolite masses are included in the protein (now generalized mass) pool (makes the problem non-linear!)"""
 
     def __enter__(self):  # noqa: ANN204
         """Method called when entering 'with' blocks"""

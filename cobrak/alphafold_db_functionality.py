@@ -3,13 +3,18 @@
 Link to database (as of December 2, 2025): https://alphafold.ebi.ac.uk/
 """
 
-import requests
 import os
 from time import sleep
-from .io import get_files, gzip_write_file, ensure_folder_existence, standardize_folder
-from .dataclasses import Model
 
-def download_alphafold_pdb(uniprot_id: str, output_dir: str=".", as_gzip: bool = False) -> None:
+import requests
+
+from .dataclasses import Model
+from .io import ensure_folder_existence, get_files, gzip_write_file, standardize_folder
+
+
+def download_alphafold_pdb(
+    uniprot_id: str, output_dir: str = ".", as_gzip: bool = False
+) -> None:
     """Downloads the predicted Protein Data Bank (PDB) file for a given UniProt ID
     from the AlphaFold Protein Structure Database (AlphaFold DB).
 
@@ -71,7 +76,10 @@ def download_alphafold_pdb(uniprot_id: str, output_dir: str=".", as_gzip: bool =
                 int_url_split_possible = True
             except ValueError:
                 int_url_split_possible = False
-            if pdb_url and ((not int_url_split_possible) or (int_url_split_possible and int(url_split) > last_pdb_number)):
+            if pdb_url and (
+                (not int_url_split_possible)
+                or (int_url_split_possible and int(url_split) > last_pdb_number)
+            ):
                 last_pdb_url = pdb_url
                 if int_url_split_possible:
                     last_pdb_number = int(url_split)
@@ -128,5 +136,7 @@ def download_alphafold_pdb_for_all_enzymes(
         if uniprot_annotation_id not in enzyme_data.annotation:
             continue
         uniprot_id = enzyme_data.annotation[uniprot_annotation_id]
-        download_alphafold_pdb(uniprot_id=uniprot_id, output_dir=output_dir, as_gzip=as_gzip)
+        download_alphafold_pdb(
+            uniprot_id=uniprot_id, output_dir=output_dir, as_gzip=as_gzip
+        )
         sleep(sleep_time)

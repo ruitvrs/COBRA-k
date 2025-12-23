@@ -776,7 +776,11 @@ def brenda_select_enzyme_kinetic_data_for_sbml(
                             )
                             if taxonomy_level <= best_ki_taxonomy_levels[metabolite.id]:
                                 for ki_entry in ki_entries:
-                                    if metabolite.compartment not in reaction_compartments and kis_and_kas_only_for_same_compartments:
+                                    if (
+                                        metabolite.compartment
+                                        not in reaction_compartments
+                                        and kis_and_kas_only_for_same_compartments
+                                    ):
                                         continue
                                     taxonomically_best_kis[metabolite.id].append(
                                         ki_entry[1] / 1_000

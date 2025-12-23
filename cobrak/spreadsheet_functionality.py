@@ -1165,7 +1165,14 @@ def create_cobrak_spreadsheet(
                     df_value = " "
                 reac_cells[reac_id].append(SpreadsheetCell(df_value, bg_color=bg_color))
             if opt_dataset.with_vplus:
-                if enzyme_reaction_data is not None and enzyme_reaction_data.k_cat < 1e20 and any(identifier in cobrak_model.enzymes for identifier in enzyme_reaction_data.identifiers):
+                if (
+                    enzyme_reaction_data is not None
+                    and enzyme_reaction_data.k_cat < 1e20
+                    and any(
+                        identifier in cobrak_model.enzymes
+                        for identifier in enzyme_reaction_data.identifiers
+                    )
+                ):
                     vplus = str(
                         enzyme_reaction_data.k_cat
                         * opt_dataset.data[

@@ -89,7 +89,10 @@ def _add_annotation_to_cobra_reaction(
             reac_data.enzyme_reaction_data.k_cat
         )
         cobra_reaction.annotation[f"cobrak_k_cat_references_{version}"] = str(
-            [asdict(reference) for reference in reac_data.enzyme_reaction_data.k_cat_references]
+            [
+                asdict(reference)
+                for reference in reac_data.enzyme_reaction_data.k_cat_references
+            ]
         )
         cobra_reaction.gene_reaction_rule = " and ".join(
             reac_data.enzyme_reaction_data.identifiers
@@ -98,53 +101,65 @@ def _add_annotation_to_cobra_reaction(
             cobra_reaction.annotation[f"cobrak_k_ms_{version}"] = str(
                 reac_data.enzyme_reaction_data.k_ms
             )
-            cobra_reaction.annotation[f"cobrak_k_m_references_{version}"] = str({
-                met_id: [asdict(reference) for reference in references]
-                for met_id, references in reac_data.enzyme_reaction_data.k_m_references.items()
-            })
+            cobra_reaction.annotation[f"cobrak_k_m_references_{version}"] = str(
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.k_m_references.items()
+                }
+            )
         if reac_data.enzyme_reaction_data.k_is:
             cobra_reaction.annotation[f"cobrak_k_is_{version}"] = str(
                 reac_data.enzyme_reaction_data.k_is
             )
-            cobra_reaction.annotation[f"cobrak_k_i_references_{version}"] = str({
-                met_id: [asdict(reference) for reference in references]
-                for met_id, references in reac_data.enzyme_reaction_data.k_i_references.items()
-            })
+            cobra_reaction.annotation[f"cobrak_k_i_references_{version}"] = str(
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.k_i_references.items()
+                }
+            )
         if reac_data.enzyme_reaction_data.k_as:
             cobra_reaction.annotation[f"cobrak_k_as_{version}"] = str(
                 reac_data.enzyme_reaction_data.k_as
             )
-            cobra_reaction.annotation[f"cobrak_k_a_references_{version}"] = str({
-                met_id: [asdict(reference) for reference in references]
-                for met_id, references in reac_data.enzyme_reaction_data.k_a_references.items()
-            })
+            cobra_reaction.annotation[f"cobrak_k_a_references_{version}"] = str(
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.k_a_references.items()
+                }
+            )
         if reac_data.enzyme_reaction_data.hill_coefficients.kappa:
             cobra_reaction.annotation[f"cobrak_hills_kappa_{version}"] = str(
                 reac_data.enzyme_reaction_data.hill_coefficients.kappa
             )
         if reac_data.enzyme_reaction_data.hill_coefficient_references.kappa:
-            cobra_reaction.annotation[f"cobrak_hills_kappa_references_{version}"] = str({
-                met_id: [asdict(reference) for reference in references]
-                for met_id, references in reac_data.enzyme_reaction_data.hill_coefficient_references.kappa.items()
-            })
+            cobra_reaction.annotation[f"cobrak_hills_kappa_references_{version}"] = str(
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.hill_coefficient_references.kappa.items()
+                }
+            )
         if reac_data.enzyme_reaction_data.hill_coefficients.alpha:
             cobra_reaction.annotation[f"cobrak_hills_alpha_{version}"] = str(
                 reac_data.enzyme_reaction_data.hill_coefficients.alpha
             )
         if reac_data.enzyme_reaction_data.hill_coefficient_references.alpha:
-            cobra_reaction.annotation[f"cobrak_hills_alpha_references_{version}"] = str({
-                met_id: [asdict(reference) for reference in references]
-                for met_id, references in reac_data.enzyme_reaction_data.hill_coefficient_references.alpha.items()
-            })
+            cobra_reaction.annotation[f"cobrak_hills_alpha_references_{version}"] = str(
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.hill_coefficient_references.alpha.items()
+                }
+            )
         if reac_data.enzyme_reaction_data.hill_coefficients.iota:
             cobra_reaction.annotation[f"cobrak_hills_iota_{version}"] = str(
                 reac_data.enzyme_reaction_data.hill_coefficients.iota
             )
         if reac_data.enzyme_reaction_data.hill_coefficient_references.iota:
-            cobra_reaction.annotation[f"cobrak_hills_iota_references_{version}"] = str({
-                met_id: [asdict(reference) for reference in references]
-                for met_id, references in reac_data.enzyme_reaction_data.hill_coefficient_references.iota.items()
-            })
+            cobra_reaction.annotation[f"cobrak_hills_iota_references_{version}"] = str(
+                {
+                    met_id: [asdict(reference) for reference in references]
+                    for met_id, references in reac_data.enzyme_reaction_data.hill_coefficient_references.iota.items()
+                }
+            )
         cobra_reaction.annotation[f"cobrak_special_stoichiometries_{version}"] = str(
             reac_data.enzyme_reaction_data.special_stoichiometries
         )
@@ -315,6 +330,8 @@ def convert_cobrak_model_to_annotated_cobrapy_model(
             cobra_metabolite.annotation["cobrak_smiles"] = met_data.smiles
         if met_data.compartment:
             cobra_metabolite.compartment = met_data.compartment
+        if met_data.molar_mass:
+            cobra_metabolite.annotation["cobrak_molar_mass"] = met_data.molar_mass
 
         added_metabolites.append(cobra_metabolite)
     cobra_model.add_metabolites(added_metabolites)
@@ -535,7 +552,10 @@ def convert_cobrak_model_to_annotated_cobrapy_model(
         [asdict(x) for x in cobrak_model.extra_nonlinear_constraints]
     )
     added_reactions[-1].annotation["cobrak_extra_nonlinear_watches"] = str(
-        {key: asdict(value) for key, value in cobrak_model.extra_nonlinear_watches.items()}
+        {
+            key: asdict(value)
+            for key, value in cobrak_model.extra_nonlinear_watches.items()
+        }
     )
 
     cobra_model.add_reactions(added_reactions)
@@ -848,8 +868,10 @@ def load_annotated_cobrapy_model_as_cobrak_model(
         else:
             extra_linear_constraints = []
         if "cobrak_extra_linear_watches" in global_settings_reac.annotation:
-            extra_linear_watches_raw = literal_eval(global_settings_reac.annotation["cobrak_extra_linear_watches"])
-            extra_linear_watches ={
+            extra_linear_watches_raw = literal_eval(
+                global_settings_reac.annotation["cobrak_extra_linear_watches"]
+            )
+            extra_linear_watches = {
                 key: ExtraLinearWatch(**watch)
                 for key, watch in extra_linear_watches_raw.items()
             }
@@ -859,14 +881,18 @@ def load_annotated_cobrapy_model_as_cobrak_model(
             extra_nonlinear_constraints = [
                 ExtraNonlinearConstraint(**x)
                 for x in literal_eval(
-                    global_settings_reac.annotation["cobrak_extra_nonlinear_constraints"]
+                    global_settings_reac.annotation[
+                        "cobrak_extra_nonlinear_constraints"
+                    ]
                 )
             ]
         else:
             extra_nonlinear_constraints = []
         if "cobrak_extra_nonlinear_watches" in global_settings_reac.annotation:
-            extra_nonlinear_watches_raw = literal_eval(global_settings_reac.annotation["cobrak_extra_nonlinear_watches"])
-            extra_nonlinear_watches ={
+            extra_nonlinear_watches_raw = literal_eval(
+                global_settings_reac.annotation["cobrak_extra_nonlinear_watches"]
+            )
+            extra_nonlinear_watches = {
                 key: ExtraNonlinearWatch(**watch)
                 for key, watch in extra_nonlinear_watches_raw.items()
             }
@@ -889,6 +915,10 @@ def load_annotated_cobrapy_model_as_cobrak_model(
         reac_fwd_suffix = REAC_FWD_SUFFIX
         reac_rev_suffix = REAC_REV_SUFFIX
         reac_enz_separator = REAC_ENZ_SEPARATOR
+        extra_linear_constraints = []
+        extra_linear_watches = {}
+        extra_nonlinear_constraints = []
+        extra_nonlinear_watches = {}
 
     cobrak_metabolites: dict[str, Metabolite] = {}
     for metabolite_x in cobra_model.metabolites:
@@ -898,9 +928,22 @@ def load_annotated_cobrapy_model_as_cobrak_model(
         ):
             continue
 
-        log_min_conc = log(float(metabolite.annotation["cobrak_Cmin"])) if "cobrak_Cmax" in metabolite.annotation else log(1e-6)
-        log_max_conc = log(float(metabolite.annotation["cobrak_Cmax"])) if "cobrak_Cmax" in metabolite.annotation else log(0.01)
+        log_min_conc = (
+            log(float(metabolite.annotation["cobrak_Cmin"]))
+            if "cobrak_Cmax" in metabolite.annotation
+            else log(1e-6)
+        )
+        log_max_conc = (
+            log(float(metabolite.annotation["cobrak_Cmax"]))
+            if "cobrak_Cmax" in metabolite.annotation
+            else log(0.01)
+        )
         smiles = metabolite.annotation.get("cobrak_smiles", "")
+        molar_mass = (
+            float(metabolite.annotation["cobrak_molar_mass"])
+            if "cobrak_molar_mass" in metabolite.annotation
+            else None
+        )
         compartment = metabolite.compartment
 
         cobrak_metabolites[metabolite.id] = Metabolite(
@@ -916,6 +959,7 @@ def load_annotated_cobrapy_model_as_cobrak_model(
             name=metabolite.name,
             smiles=smiles,
             compartment=compartment,
+            molar_mass=molar_mass,
         )
 
     cobrak_reactions: dict[str, Reaction] = {}
@@ -968,8 +1012,13 @@ def load_annotated_cobrapy_model_as_cobrak_model(
 
                 k_cat = float(reaction.annotation[f"cobrak_k_cat_{version}"])
                 if f"cobrak_k_cat_references_{version}" in reaction.annotation:
-                    k_cat_references_raw = literal_eval(reaction.annotation[f"cobrak_k_cat_references_{version}"])
-                    k_cat_references = [ParameterReference(**reference) for reference in k_cat_references_raw]
+                    k_cat_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_k_cat_references_{version}"]
+                    )
+                    k_cat_references = [
+                        ParameterReference(**reference)
+                        for reference in k_cat_references_raw
+                    ]
                 else:
                     k_cat_references = []
                 if f"cobrak_k_ms_{version}" in reaction.annotation:
@@ -977,9 +1026,13 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                 else:
                     k_ms = {}
                 if f"cobrak_k_m_references_{version}" in reaction.annotation:
-                    k_m_references_raw = literal_eval(reaction.annotation[f"cobrak_k_m_references_{version}"])
+                    k_m_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_k_m_references_{version}"]
+                    )
                     k_m_references = {
-                        met_id: [ParameterReference(**reference) for reference in references]
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
                         for met_id, references in k_m_references_raw.items()
                     }
                 else:
@@ -989,9 +1042,13 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                 else:
                     k_is = {}
                 if f"cobrak_k_i_references_{version}" in reaction.annotation:
-                    k_i_references_raw = literal_eval(reaction.annotation[f"cobrak_k_i_references_{version}"])
+                    k_i_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_k_i_references_{version}"]
+                    )
                     k_i_references = {
-                        met_id: [ParameterReference(**reference) for reference in references]
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
                         for met_id, references in k_i_references_raw.items()
                     }
                 else:
@@ -1001,9 +1058,13 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                 else:
                     k_as = {}
                 if f"cobrak_k_a_references_{version}" in reaction.annotation:
-                    k_a_references_raw = literal_eval(reaction.annotation[f"cobrak_k_a_references_{version}"])
+                    k_a_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_k_a_references_{version}"]
+                    )
                     k_a_references = {
-                        met_id: [ParameterReference(**reference) for reference in references]
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
                         for met_id, references in k_a_references_raw.items()
                     }
                 else:
@@ -1021,9 +1082,13 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                         reaction.annotation[f"cobrak_hills_kappa_{version}"]
                     )
                 if f"cobrak_hills_kappa_references_{version}" in reaction.annotation:
-                    hill_kappa_references_raw = literal_eval(reaction.annotation[f"cobrak_hills_kappa_references_{version}"])
+                    hill_kappa_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_hills_kappa_references_{version}"]
+                    )
                     hill_coefficient_references.kappa = {
-                        met_id: [ParameterReference(**reference) for reference in references]
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
                         for met_id, references in hill_kappa_references_raw.items()
                     }
                 if f"cobrak_hills_iota_{version}" in reaction.annotation:
@@ -1031,9 +1096,13 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                         reaction.annotation[f"cobrak_hills_iota_{version}"]
                     )
                 if f"cobrak_hills_iota_references_{version}" in reaction.annotation:
-                    hill_iota_references_raw = literal_eval(reaction.annotation[f"cobrak_hills_iota_references_{version}"])
+                    hill_iota_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_hills_iota_references_{version}"]
+                    )
                     hill_coefficient_references.iota = {
-                        met_id: [ParameterReference(**reference) for reference in references]
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
                         for met_id, references in hill_iota_references_raw.items()
                     }
                 if f"cobrak_hills_alpha_{version}" in reaction.annotation:
@@ -1041,9 +1110,13 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                         reaction.annotation[f"cobrak_hills_alpha_{version}"]
                     )
                 if f"cobrak_hills_alpha_references_{version}" in reaction.annotation:
-                    hill_alpha_references_raw = literal_eval(reaction.annotation[f"cobrak_hills_alpha_references_{version}"])
+                    hill_alpha_references_raw = literal_eval(
+                        reaction.annotation[f"cobrak_hills_alpha_references_{version}"]
+                    )
                     hill_coefficient_references.alpha = {
-                        met_id: [ParameterReference(**reference) for reference in references]
+                        met_id: [
+                            ParameterReference(**reference) for reference in references
+                        ]
                         for met_id, references in hill_alpha_references_raw.items()
                     }
                 enzyme_reaction_data = EnzymeReactionData(
@@ -1155,7 +1228,8 @@ def load_annotated_cobrapy_model_as_cobrak_model(
     for reaction in cobrak_reactions.values():
         if reaction.enzyme_reaction_data:
             reaction.enzyme_reaction_data.identifiers = [
-                identifier for identifier in reaction.enzyme_reaction_data.identifiers
+                identifier
+                for identifier in reaction.enzyme_reaction_data.identifiers
                 if identifier in cobrak_enzymes
             ]
             if reaction.enzyme_reaction_data.identifiers == []:

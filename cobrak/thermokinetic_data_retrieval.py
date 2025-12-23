@@ -5,6 +5,8 @@ from tempfile import TemporaryDirectory
 
 from pydantic import NonNegativeInt, validate_call
 
+from cobrak.molmass_functionality import add_molar_masses_to_model_metabolites
+
 from .brenda_functionality import brenda_select_enzyme_kinetic_data_for_sbml
 from .constants import (
     EC_INNER_TO_OUTER_COMPARTMENTS,
@@ -196,7 +198,8 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
     add_dG0_uncertainties: bool = True,
     add_hill_coefficients: bool = True,
     add_protein_sequences: bool = False,
-    kis_and_kas_only_for_same_compartments: bool = False
+    kis_and_kas_only_for_same_compartments: bool = False,
+    add_molar_masses: bool = True,
 ) -> Model:
     """Retrieve kinetic and thermodynamic data from external databases and add them to a model.
 
@@ -223,6 +226,8 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
     kis_and_kas_only_for_same_compartments: bool, default False
         If True, kis and kas can only be attributed to a reaction if the affected metabolite has
         shares one of the reaction metabolite's compartments
+    add_molar_masses: bool, default True
+        Whether or not to calculate molar masses for all metabolites through their formula member variable
 
     Returns
     -------
@@ -309,8 +314,11 @@ def automatically_add_database_thermokinetic_data_to_cobrak_model(
         dG0s=dG0s,
         dG0_uncertainties=dG0_uncertainties if add_dG0_uncertainties else {},
     )
+    if add_molar_masses:
+        cobrak_model = add_molar_masses_to_model_metabolites(cobrak_model)
     if do_delete_enzymatically_suboptimal_reactions:
         return delete_enzymatically_suboptimal_reactions_in_cobrak_model(cobrak_model)
+
     return cobrak_model
 
 
@@ -327,7 +335,7 @@ def get_database_kcats_kms_kis_and_kas_for_cobrak_model(
     max_taxonomy_level: NonNegativeInt = 1_000,
     kinetic_ignored_enzyme_ids: list[str] = ["s0001"],
     add_hill_coefficients: bool = True,
-    kis_and_kas_only_for_same_compartments: bool=False,
+    kis_and_kas_only_for_same_compartments: bool = False,
 ) -> dict[str, EnzymeReactionData]:
     """Query BRENDA and/or SABIO‑RK for kinetic parameters and return (if given) a unified dataset.
 

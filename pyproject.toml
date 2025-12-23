@@ -27,6 +27,7 @@ dependencies = [
     "rich",
     "pydantic",
     "highspy",
+    "molmass",
     # "copasi-basico",
     # "ruff",
     # "mkdocs",

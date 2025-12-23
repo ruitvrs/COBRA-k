@@ -690,7 +690,11 @@ def sabio_select_enzyme_kinetic_data_for_sbml(
                         continue
                     if (entries_type == "km") and met not in reaction.metabolites:
                         continue
-                    if met.compartment not in reaction_compartments and (entries_type != "km") and kis_and_kas_only_for_same_compartments:
+                    if (
+                        met.compartment not in reaction_compartments
+                        and (entries_type != "km")
+                        and kis_and_kas_only_for_same_compartments
+                    ):
                         continue
                     bigg_id = met.id[: met.id.rfind("_")]
                     for entry in entries:

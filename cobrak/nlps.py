@@ -33,11 +33,13 @@ from .constants import (
     ENZYME_VAR_PREFIX,
     ERROR_VAR_PREFIX,
     GAMMA_VAR_PREFIX,
+    GENERALIZED_SUM_CONSTRAINT_NAME,
     IOTA_VAR_PREFIX,
     KAPPA_VAR_PREFIX,
     LNCONC_VAR_PREFIX,
     MDF_VAR_ID,
     OBJECTIVE_VAR_NAME,
+    PROT_POOL_REAC_NAME,
     STANDARD_MIN_MDF,
     Z_VAR_PREFIX,
 )
@@ -595,7 +597,10 @@ def get_nlp_from_cobrak_model(
             )
 
     ########################
-    if cobrak_model.max_conc_sum < float("inf"):
+    if (
+        cobrak_model.max_conc_sum < float("inf")
+        or cobrak_model.include_mets_in_prot_pool
+    ):
         met_sum_ids: list[str] = []
         for var_id in get_model_var_names(model):
             if not var_id.startswith(LNCONC_VAR_PREFIX):
@@ -615,24 +620,38 @@ def get_nlp_from_cobrak_model(
         conc_sum_expr = 0.0
         for met_sum_id in met_sum_ids:
             met_id = met_sum_id[len(LNCONC_VAR_PREFIX) :]
-            # exp_var_id = f"expvar_{met_sum_id}"
-            # setattr(model, exp_var_id, Var(within=Reals, bounds=(1e-5, 1e6)),)
-            # setattr(
-            #     model,
-            #     f"expvarconstraint_{met_sum_id}",
-            #     Constraint(rule=getattr(model, exp_var_id) >= getattr(model, met_sum_id)),
-            # )
-            conc_sum_expr += exp(getattr(model, met_sum_id))
+            if (
+                cobrak_model.include_mets_in_prot_pool
+                and cobrak_model.metabolites[met_id].molar_mass
+            ):
+                conc_sum_expr += cobrak_model.metabolites[met_id].molar_mass * exp(
+                    getattr(model, met_sum_id)
+                )
+            else:
+                conc_sum_expr += exp(getattr(model, met_sum_id))
+
         setattr(
             model,
             "met_sum_var",
             Var(within=Reals, bounds=(1e-5, cobrak_model.max_conc_sum)),
         )
-        setattr(
-            model,
-            "met_sum_constraint",
-            Constraint(rule=conc_sum_expr <= getattr(model, "met_sum_var")),
-        )
+
+        if cobrak_model.include_mets_in_prot_pool:
+            setattr(
+                model,
+                GENERALIZED_SUM_CONSTRAINT_NAME,
+                Constraint(
+                    rule=getattr(model, PROT_POOL_REAC_NAME)
+                    + getattr(model, "met_sum_var")
+                    <= cobrak_model.max_prot_pool
+                ),
+            )
+        else:
+            setattr(
+                model,
+                "met_sum_constraint",
+                Constraint(rule=conc_sum_expr <= getattr(model, "met_sum_var")),
+            )
     ################
 
     return model

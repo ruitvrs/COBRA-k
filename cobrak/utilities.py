@@ -1858,6 +1858,7 @@ def get_model_with_filled_missing_parameters(
     exclude_bw_reac_ids_for_dG0s: bool = False,
     verbose: bool = False,
     ignore_nameparts: list[str] = ["diffusion"],
+    ignore_infixes: list[str] = [],
 ) -> Model:
     """Fills missing parameters in a COBRA-k model, including dG0, k_cat, and k_ms values.
 
@@ -1904,6 +1905,8 @@ def get_model_with_filled_missing_parameters(
         if sum(
             ignore_namepart in reaction.name for ignore_namepart in ignore_nameparts
         ):
+            continue
+        if any(ignore_infix in reac_id for ignore_infix in ignore_infixes):
             continue
         if cobrak_model.reactions[reac_id].dG0 is None:
             reverse_id = get_reverse_reac_id_if_existing(
@@ -1970,7 +1973,8 @@ def get_model_with_filled_missing_parameters(
                     identifiers=identifiers,
                     k_cat=median(all_kcats),
                 )
-            filled_kcats += 1
+            if verbose:
+                filled_kcats += 1
         if not have_all_unignored_km(
             cobrak_model.reactions[reac_id], cobrak_model.kinetic_ignored_metabolites
         ):
