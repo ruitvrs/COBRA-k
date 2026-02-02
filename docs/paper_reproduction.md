@@ -14,7 +14,11 @@
 
     *Note:* For the $k_{cat}$ and $K_M$ variation analysis, you have to un-zip the three zip files there ("used_cobrak_models.zip", "variability_dicts.zip" and "best_evolution_results.zip") into the variation results folder beforehand if you want to get exactly the same random variation calculations as the ones shown in COBRA-k's publication.
 
-To reproduce COBRA-k's initial publication (Bekiaris & Klamt, *in submission*) results, head over to the ```examples``` subfolder in COBRA-k's main folder. There, you can already find the first important Python scripts that pre-processed some data:
+To reproduce the results of COBRA-k's initial publication:
+
+* Bekiaris & Klamt, COBRA-k: A powerful framework bridging constraint-based and kinetic metabolic modeling. <i>Sci. Adv.</i> 12, eaeb3022 (2026). [DOI:10.1126/sciadv.aeb3022](https://doi.org/10.1126/sciadv.aeb3022)
+
+...head over to the ```examples``` subfolder in COBRA-k's main folder. There, you can already find the first important Python scripts that pre-processed some data:
 
 * FIRST_A_read_out_sabio_rk.py: Reads out SABIO-RK and creates a cache into the ```common_needed_external_resources```folder
 * FIRST_B_get_ec_number_transfers.py: Reads out EXPASy obsoleted EC number data and creates a cache into the ```common_needed_external_resources```folder

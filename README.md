@@ -297,4 +297,4 @@ Some of COBRA-k's code is also adapted and modified from AutoPACMEN [[GitHub]](h
 
 If you use COBRA-k in your academic work, please cite its publication:
 
-* Bekiaris PS & Klamt S (2025). COBRA-k: a powerful framework bridging constraint-based and kinetic metabolic modeling. *Submitted*.
+* Bekiaris & Klamt, COBRA-k: A powerful framework bridging constraint-based and kinetic metabolic modeling. <i>Sci. Adv.</i> 12, eaeb3022 (2026). [DOI:10.1126/sciadv.aeb3022](https://doi.org/10.1126/sciadv.aeb3022)
