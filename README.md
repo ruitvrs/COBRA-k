@@ -5,7 +5,7 @@
         <td>
             <div style="background-color: #2E4053; padding: 4px 8px; border-radius: 4px; cursor: pointer; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
             <a style="color: #FFFFFF; text-decoration: none; font-weight: bold;" href="https://pypi.org/project/cobrak/">
-            pip &#124; version 0.0.8
+            pip &#124; version 0.0.9
             </a>
             </div>
         </td>
@@ -58,7 +58,7 @@
 
 ## Introduction
 
-COBRA-k stands for "Constraint-Based Reconstruction and Analysis (COBRA) **with kinetics**" [[Paper]](#publication), a generalized variant of the metabolic modeling framework known as COBRA. Both frameworks allow one to analyze constraint-based metabolic models with the help of optimization approaches. While COBRA uses exclusively linear constraints to describe steady state flux distributions in a given metabolic network, COBRA-k expands COBRA by allowing also the integration of non-linear kinetic rate laws (herein we use reversible Michaelis-Menten kinetics). In particular, this enables also a consistent integration of (steady state) fluxes, metabolite concentration and enzyme abundances in COBRA models. While classical COBRA model are usually formulated as linear or mixed-integer linear program (LP / MILP), COBRA-k requires solving mixed-integer **non-linear** programs (MINLP).
+COBRA-k stands for "Constraint-Based Reconstruction and Analysis (COBRA) **with kinetics**" [[Paper]](#publication), a generalized variant of the metabolic modeling framework known as COBRA. Both frameworks allow one to analyze constraint-based metabolic models with the help of optimization approaches. While COBRA uses exclusively linear constraints to describe steady state flux distributions in a given metabolic network, COBRA-k expands COBRA by allowing also the integration of non-linear kinetic rate laws (herein we use reversible Michaelis-Menten kinetics). In particular, this enables also a consistent integration of (steady state) fluxes, metabolite concentrations and enzyme abundances in COBRA models. While classical COBRA models are usually formulated as linear or mixed-integer linear program (LP / MILP), COBRA-k requires solving mixed-integer **non-linear** programs (MINLP).
 
 The COBRA-k package is a general COBRA/COBRA-k suite written as a Python module, while also being the reference implementation of COBRA-k. Some of COBRA-k's major features are:
 
@@ -149,7 +149,7 @@ COBRA-k is provided as a PyPI package and can be installed through the following
 pip install cobrak
 ```
 
-*Note:* If you encounter any trouble due to a missing SCIP installation (which may happen on some systems), you have to install the free and open-source mixed-integer linear solver [SCIP](https://scipopt.org/) on your system. To do so, follow the SCIP download instructions [here](https://scipopt.org/index.php#download) or or, if no matching download is provided for your system, the compilation instructions [here](https://scipopt.org/doc/html/INSTALL.php).
+*Note:* If you encounter any trouble due to a missing SCIP installation (which may happen on some systems), you have to install the free and open-source mixed-integer linear solver [SCIP](https://scipopt.org/) on your system. To do so, follow the SCIP download instructions [here](https://scipopt.org/index.php#download) or, if no matching download is provided for your system, the compilation instructions [here](https://scipopt.org/doc/html/INSTALL.php).
 
 After the installation, which should just take a few minutes, the package can be imported as ```cobrak```.
 
@@ -208,7 +208,7 @@ uv pip install ruff
 2. Checkout the latest COBRA-k development version using git
 
 ```
-git clone https://github.com/klamt-lan/COBRA-k.git
+git clone https://github.com/klamt-lab/COBRA-k.git
 ```
 
 3. (optional) Run the toy model example
@@ -222,13 +222,13 @@ uv will automatically install a correct Python version ≥ 3.10 and COBRA-k depe
 
 4. After code changes: Apply ruff
 
-To maintain a consistent style, please apply ruff on you code before you create a pull request as follows (you may run these commands in COBRA-k's main folder):
+To maintain a consistent style, please apply ruff on your code before you create a pull request as follows (you may run these commands in COBRA-k's main folder):
 
 ```
 ruff check --select I --fix
 ruff format
 ruff check
-# All three commands can also be found in this reposiroty's format_code.sh
+# All three commands can also be found in this repository's format_code.sh
 ```
 
 The first command sorts imports, the second one fixes code formatting. The third command tells you remaining issues that you have to change manually. If you want to deviate from ruff's rules, you can e.g. use a ```# noqa: $RULE_NAME``` command at the end of each affected line. This will make ruff ignore the found issue.
@@ -247,7 +247,7 @@ You can then run the tests in the "test" subfolder as follows:
 pytest tests
 ```
 
-Please make sure that your code changes do not unintendently break any tests. Also, you're invited to create tests for uncovered (untested) parts in COBRA-k's code of which there's still too much. To get a coverage report in a nice HTML, e.g. install [coverage](https://coverage.readthedocs.io/en/latest/) and [pytest-cov](https://pytest-cov.readthedocs.io/en/latest/) as follows:
+Please make sure that your code changes do not unintendently break any tests. Also, you're invited to create tests for uncovered (untested) parts in COBRA-k's code of which too many still exist. To get a coverage report in a nice HTML, e.g. install [coverage](https://coverage.readthedocs.io/en/latest/) and [pytest-cov](https://pytest-cov.readthedocs.io/en/latest/) as follows:
 
 ```
 uv pip install coverage
@@ -279,7 +279,7 @@ To now self-run the documentation on a local server, you can use mkdocs itself w
 mkdocs serve
 ```
 
-The documentation's text can be found in the ```*.md```Markdown files in the ```docs```subfolder. Note that the Markdown format uses the [Material for mkdocs](https://squidfunk.github.io/mkdocs-material/getting-started/) syntax expansions to the plain Markdown format.
+The documentation's text can be found in the ```*.md``` Markdown files in the ```docs``` subfolder. Note that the Markdown format uses the [Material for mkdocs](https://squidfunk.github.io/mkdocs-material/getting-started/) syntax expansions to the plain Markdown format.
 
 <br>
 

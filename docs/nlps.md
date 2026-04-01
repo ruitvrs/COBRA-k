@@ -98,10 +98,6 @@ As explained in the previous chapter, R is the Gas constant, T the temperature a
 
 In conclusion, $V^{+}_i$ determines the maximally possible reaction flux. Both $κ_i$ and $γ_i$ can only restrict this maximally possible flux. This is because $κ_i$ and $γ_i$ can only lie in $[0,1]$ and $(-∞,1]$, respectively. Thereby, if we only allow positive driving forces ($f_i>0$), $γ_i$ is even restricted to $(0,1]$. Also, both $κ_i$ and $γ_i$ follow the general idea of reaction kinetics: The higher the product concentrations, the lower the reaction's flux. Conversely, the higher the substrate concentrations, the higher the flux.
 
-### (Mixed-integer) Nonlinear Programming
-
-!!! MINLP and NLP
-
 ## Nonlinear kinetic constraints
 
 Now that we know the formulas of the Michaelis-Menten kinetics, we want to efficiently integrate them in our framework of constriant-based modeling. From CBM, we are at least still using:

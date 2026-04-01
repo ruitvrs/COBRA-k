@@ -340,7 +340,7 @@ print_dict(correction_result_1)
 ### A $k_{cat}⋅[E]$, $ΔG'°$ and $k_M$ correction in an NLP, and application of correction on model
 
 Here, we try to find the minimal changes needed to the model's $k_{cat}⋅[E]$, $ΔG'°$ and $k_M$
-such that the given scenario (a gigh Glycolysis flux) can be reached. We then apply (i.e. set the corrected parameters)
+such that the given scenario (a high Glycolysis flux) can be reached. We then apply (i.e. set the corrected parameters)
 using ```apply_error_correction_on_model```from COBRA-k's ```utilities``` submodule.
 
 

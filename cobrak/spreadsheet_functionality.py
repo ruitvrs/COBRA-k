@@ -1,6 +1,7 @@
 """Functions for generating spreadsheet overviews of variability/optimization results"""
 
 # IMPORT SECTION #
+from openpyxl.styles.alignment import Alignment
 from dataclasses import dataclass, field
 from math import exp, log
 from statistics import mean, median
@@ -113,6 +114,8 @@ class OptimizationDataset:
     """Shall differences between NLP fluxes and 'real' fluxes from kinetics be shown in the spreadsheet?"""
     with_error_corrections: bool = False
     """Shall error corrections be shown as their own sheet?"""
+    with_efficiency_coefficient: bool = False
+    """Shall the efficiency coefficient be shown?"""
 
 
 @dataclass
@@ -139,14 +142,12 @@ EMPTY_CELL = SpreadsheetCell(None)
 
 @dataclass
 class Title:
-    """Represents a title or metatitle used in visualizations."""
+    """Represents a title used in visualizations."""
 
     text: str
     """Title text content"""
     width: float
     """With of column"""
-    is_metatitle: bool = field(default=False)
-    """If True, the title is shown *under* a the major title line in a second line. Defaults to False."""
 
 
 @dataclass
@@ -179,6 +180,31 @@ def sum_concs(
     return concsum
 
 
+@validate_call()
+def sum_masses(
+    result: dict[str, float],
+    metabolites: dict[str, Metabolite],
+    conc_sum_include_suffixes: list[str],
+    conc_sum_ignore_prefixes: list[str],
+    cell_density: float,
+) -> float:
+    """Returns the mass of all metabolites in the result."""
+    masssum = 0.0
+    for key, value in result.items():
+        if key.startswith(LNCONC_VAR_PREFIX):
+            met_id = key[len(LNCONC_VAR_PREFIX) :]
+            if any(met_id.startswith(prefix) for prefix in conc_sum_ignore_prefixes):
+                continue
+            if not any(met_id.endswith(suffix) for suffix in conc_sum_include_suffixes):
+                continue
+            if met_id not in metabolites:
+                continue
+            if not metabolites[met_id].molar_mass:
+                continue
+            masssum += (1 / cell_density) * exp(value) * metabolites[met_id].molar_mass
+    return masssum
+
+
 @validate_call(config=ConfigDict(arbitrary_types_allowed=True))
 def _create_xlsx_from_datadicts(
     path: str,
@@ -208,31 +234,22 @@ def _create_xlsx_from_datadicts(
         wb.create_sheet(sheet_name)
         sheet = wb[sheet_name]
         titles = titles_and_data[0]
-        has_metatitles = bool(sum(title.is_metatitle for title in titles))
         current_column = 1
 
         # Set sheet titles
         for title in titles:
             cell = SpreadsheetCell(title.text)
-            if title.is_metatitle:
-                cell.font = FONT_ITALIC
-                _set_cell(sheet, 1, current_column, cell)
-                continue
             cell.font = FONT_BOLD
-            line = 2 if has_metatitles else 1
-            _set_cell(sheet, line, current_column, cell)
+            _set_cell(sheet, 1, current_column, cell)
             current_column += 1
 
         # Freeze spreadsheet rows according to title height
         datadict = titles_and_data[1]
         if titles == []:
             start_line = 1
-        elif not has_metatitles:
+        else:
             start_line = 2
             sheet.freeze_panes = "B2"
-        else:
-            start_line = 3
-            sheet.freeze_panes = "B3"
 
         current_line = start_line
 
@@ -393,7 +410,6 @@ def _set_cell(
         openpyxl_cell.font = cell.font
     if cell.border is not None:
         openpyxl_cell.border = cell.border
-
 
 # "PUBLIC" FUNCTIONS SECTION #
 @validate_call
@@ -642,7 +658,15 @@ def create_cobrak_spreadsheet(
                 ),
             ],
         }
-        statline += 1
+        stats_cells |= {
+            f"{statline + 1}": [
+                SpreadsheetCell(
+                    "Used metabolite mass pool (for metabolites with given mass) [g⋅gDW⁻¹]",
+                    font=FONT_BOLD,
+                ),
+            ],
+        }
+        statline += 2
 
     if has_any_df:
         stats_cells |= {
@@ -792,6 +816,7 @@ def create_cobrak_spreadsheet(
         ]
 
     # Optimization data
+    mass_sums = {}
     for current_dataset_i, (opt_dataset_name, opt_dataset) in enumerate(
         optimization_datasets.items()
     ):
@@ -824,10 +849,22 @@ def create_cobrak_spreadsheet(
                         cobrak_model.conc_sum_ignore_prefixes,
                     )
                 )
-                statline += 1
+                mass_sums[opt_dataset_name] = sum_masses(
+                    opt_dataset.data,
+                    cobrak_model.metabolites,
+                    cobrak_model.conc_sum_include_suffixes,
+                    cobrak_model.conc_sum_ignore_prefixes,
+                    cobrak_model.cell_density,
+                )
+                stats_cells[f"{statline + 1}"].append(
+                    mass_sums[opt_dataset_name],
+                )
+                statline += 2
             else:
+                mass_sums[opt_dataset_name] = None
                 stats_cells[f"{statline}"].append(_get_empty_cell())
-                statline += 1
+                stats_cells[f"{statline + 1}"].append(_get_empty_cell())
+                statline += 2
 
         if opt_dataset.with_df:
             df_stats, _, _, _, _, _ = get_df_and_efficiency_factors_sorted_lists(
@@ -1009,6 +1046,7 @@ def create_cobrak_spreadsheet(
     # Reaction sheet
     reac_titles: list[Title] = [
         Title("ID", WIDTH_DEFAULT),
+        Title("Name", WIDTH_DEFAULT),
         Title("String", WIDTH_DEFAULT),
         Title("ΔG'° [kJ⋅mol⁻¹]", WIDTH_DEFAULT),
         Title("Enzyme(s)", WIDTH_DEFAULT),
@@ -1029,6 +1067,8 @@ def create_cobrak_spreadsheet(
         reaction = cobrak_model.reactions[reac_id]
         # Reac ID
         reac_cells[reac_id].append(reac_id)
+        # Reac name
+        reac_cells[reac_id].append(cobrak_model.reactions[reac_id].name)
         # Reac string
         reac_cells[reac_id].append(get_reaction_string(cobrak_model, reac_id))
         # Reac ΔG'°
@@ -1067,8 +1107,7 @@ def create_cobrak_spreadsheet(
     for var_dataset_name, var_dataset in variability_datasets.items():
         reac_titles.extend(
             (
-                Title(var_dataset_name, WIDTH_DEFAULT, is_metatitle=True),
-                Title("Min flux [mmol⋅gDW⁻¹⋅h⁻¹]", WIDTH_DEFAULT),
+                Title(f"→{var_dataset_name}: Min flux [mmol⋅gDW⁻¹⋅h⁻¹]", WIDTH_DEFAULT),
                 Title("Max flux [mmol⋅gDW⁻¹⋅h⁻¹]", WIDTH_DEFAULT),
             )
         )
@@ -1114,8 +1153,7 @@ def create_cobrak_spreadsheet(
     for opt_dataset_name, opt_dataset in optimization_datasets.items():
         reac_titles.extend(
             (
-                Title(opt_dataset_name, WIDTH_DEFAULT, is_metatitle=True),
-                Title("Flux", WIDTH_DEFAULT),
+                Title(f"→{opt_dataset_name}: Flux", WIDTH_DEFAULT),
             )
         )
         if opt_dataset.with_df:
@@ -1130,6 +1168,8 @@ def create_cobrak_spreadsheet(
             reac_titles.append(Title("ι [0,1]", WIDTH_DEFAULT))
         if opt_dataset.with_alpha:
             reac_titles.append(Title("α [0,1]", WIDTH_DEFAULT))
+        if opt_dataset.with_efficiency_coefficient:
+            reac_titles.append(Title(f"Protein pool saving (in %) @ 10% better {'κ' if opt_dataset.with_kappa else ''}{'γ' if opt_dataset.with_gamma else ''}{'ι' if opt_dataset.with_iota else ''}{'α' if opt_dataset.with_kappa else ''}", WIDTH_DEFAULT))
         if opt_dataset.with_kinetic_differences:
             reac_titles.append(Title('"Real" flux', WIDTH_DEFAULT))
             unoptimized_reactions = get_unoptimized_reactions_in_nlp_solution(
@@ -1218,6 +1258,29 @@ def create_cobrak_spreadsheet(
                 reac_cells[reac_id].append(
                     SpreadsheetCell(alpha_value, bg_color=bg_color)
                 )
+            if opt_dataset.with_efficiency_coefficient:
+                enzyme_var_id = get_reaction_enzyme_var_id(reac_id, cobrak_model.reactions[reac_id])
+                if enzyme_var_id in opt_dataset.data:
+                    enzyme_mw = get_full_enzyme_mw(cobrak_model, reaction)
+                    enzyme_conc = opt_dataset.data[enzyme_var_id]
+                    coefficients_product = 1.0
+                    if opt_dataset.with_kappa and kappa_var_id in opt_dataset.data:
+                        coefficients_product *= opt_dataset.data[kappa_var_id]
+                    if opt_dataset.with_gamma and gamma_var_id in opt_dataset.data:
+                        coefficients_product *= opt_dataset.data[gamma_var_id]
+                    if opt_dataset.with_iota and iota_var_id in opt_dataset.data:
+                        coefficients_product *= opt_dataset.data[iota_var_id]
+                    if opt_dataset.with_alpha and alpha_var_id in opt_dataset.data:
+                        coefficients_product *= opt_dataset.data[alpha_var_id]
+                    efficiency_coefficient = 100 * (enzyme_mw * enzyme_conc * ( 1 - (coefficients_product) / (min(1.0, 0.1 + coefficients_product)))) / opt_dataset.data[PROT_POOL_REAC_NAME]
+                    reac_cells[reac_id].append(
+                        SpreadsheetCell(efficiency_coefficient, bg_color=bg_color)
+                    )
+                else:
+                    reac_cells[reac_id].append(
+                        SpreadsheetCell(" ", bg_color=bg_color)
+                    )
+
             if opt_dataset.with_kinetic_differences:
                 if reac_id in unoptimized_reactions and (
                     round(
@@ -1248,6 +1311,7 @@ def create_cobrak_spreadsheet(
                     opt_dataset.with_gamma,
                     opt_dataset.with_iota,
                     opt_dataset.with_alpha,
+                    opt_dataset.with_efficiency_coefficient,
                     opt_dataset.with_kinetic_differences,
                 ]
             )
@@ -1257,6 +1321,7 @@ def create_cobrak_spreadsheet(
     # Single enzyme sheet
     enzyme_titles: list[Title] = [
         Title("ID", WIDTH_DEFAULT),
+        Title("Name", WIDTH_DEFAULT),
         Title("MW", WIDTH_DEFAULT),
         Title("Conc. range [mmol⋅gDW⁻¹]", WIDTH_DEFAULT),
     ]
@@ -1268,6 +1333,8 @@ def create_cobrak_spreadsheet(
         enzyme: Enzyme = cobrak_model.enzymes[enzyme_id]
         # Enzyme ID
         enzyme_cells[enzyme_id].append(enzyme_id)
+        # Enzyme name
+        enzyme_cells[enzyme_id].append(enzyme.name)
         # Enzyme MW
         enzyme_cells[enzyme_id].append(enzyme.molecular_weight)
         # Enzyme concentration range
@@ -1324,8 +1391,7 @@ def create_cobrak_spreadsheet(
     for var_dataset_name, var_dataset in variability_datasets.items():
         enzcomplex_titles.extend(
             (
-                Title(var_dataset_name, WIDTH_DEFAULT, is_metatitle=True),
-                Title("Min conc. [mmol⋅gDW⁻¹]", WIDTH_DEFAULT),
+                Title(f"→{var_dataset_name}: Min conc. [mmol⋅gDW⁻¹]", WIDTH_DEFAULT),
                 Title("Max conc. [mmolgDW⁻¹]", WIDTH_DEFAULT),
             )
         )
@@ -1351,8 +1417,7 @@ def create_cobrak_spreadsheet(
     for opt_dataset_name, opt_dataset in optimization_datasets.items():
         enzcomplex_titles.extend(
             (
-                Title(opt_dataset_name, WIDTH_DEFAULT, is_metatitle=True),
-                Title("Concentration [mmol⋅gDW⁻¹]", WIDTH_DEFAULT),
+                Title(f"→{opt_dataset_name} Concentration [mmol⋅gDW⁻¹]", WIDTH_DEFAULT),
                 Title("% of pool", WIDTH_DEFAULT),
             )
         )
@@ -1383,8 +1448,10 @@ def create_cobrak_spreadsheet(
     # Metabolite sheet
     met_titles: list[Title] = [
         Title("ID", WIDTH_DEFAULT),
+        Title("Name", WIDTH_DEFAULT),
         Title("Min set concentration [mmol⋅gDW⁻¹⋅h⁻¹)]", WIDTH_DEFAULT),
-        Title("Max set concentration [mmolgDW⁻¹⋅h⁻¹)]", WIDTH_DEFAULT),
+        Title("Max set concentration [mmol⋅gDW⁻¹⋅h⁻¹)]", WIDTH_DEFAULT),
+        Title("Molar mass [g⋅M⁻¹]", WIDTH_DEFAULT),
         Title("Annotation", WIDTH_DEFAULT),
     ]
     met_cells: dict[str, list[str | float | int | bool | None | SpreadsheetCell]] = {
@@ -1395,10 +1462,14 @@ def create_cobrak_spreadsheet(
         met: Metabolite = cobrak_model.metabolites[met_id]
         # Met ID
         met_cells[met_id].append(met_id)
+        # Met name
+        met_cells[met_id].append(met.name)
         # Min conc
         met_cells[met_id].append(exp(met.log_min_conc))
         # Max conc
         met_cells[met_id].append(exp(met.log_max_conc))
+        # Molar mass
+        met_cells[met_id].append(met.molar_mass)
         # Annotation
         met_cells[met_id].append(str(met.annotation))
 
@@ -1406,8 +1477,7 @@ def create_cobrak_spreadsheet(
     for var_dataset_name, var_dataset in variability_datasets.items():
         met_titles.extend(
             (
-                Title(var_dataset_name, WIDTH_DEFAULT, is_metatitle=True),
-                Title("Min concentration [mmol⋅gDW⁻¹⋅h⁻¹)]", WIDTH_DEFAULT),
+                Title(f"→{var_dataset_name} Min concentration [mmol⋅gDW⁻¹⋅h⁻¹)]", WIDTH_DEFAULT),
                 Title("Max concentration [mmol⋅gDW⁻¹⋅h⁻¹)]", WIDTH_DEFAULT),
             )
         )
@@ -1426,56 +1496,97 @@ def create_cobrak_spreadsheet(
             )
         missing_met_var_ids = set(all_met_var_ids) - set(var_dataset.data.keys())
         for missing_met_var_id in missing_met_var_ids:
-            met_cells[_get_met_id_from_met_var_id(missing_met_var_id)].append(
-                _get_empty_cell()
-            )
-            met_cells[_get_met_id_from_met_var_id(missing_met_var_id)].append(
-                _get_empty_cell()
+            met_cells[_get_met_id_from_met_var_id(missing_met_var_id)].extend(
+                (
+                    _get_empty_cell(),
+                    _get_empty_cell(),
+                )
             )
 
     # Optimization data
     for opt_dataset_name, opt_dataset in optimization_datasets.items():
         met_titles.extend(
             (
-                Title(opt_dataset_name, WIDTH_DEFAULT, is_metatitle=True),
-                Title("Concentration [M]", WIDTH_DEFAULT),
+                Title(f"→{opt_dataset_name} Concentration [M]", WIDTH_DEFAULT),
                 Title("Consumption [mmol⋅gDW⁻¹⋅h⁻¹]", WIDTH_DEFAULT),
                 Title("Production [mmol⋅gDW⁻¹⋅h⁻¹]", WIDTH_DEFAULT),
             )
         )
+        if cobrak_model.include_mets_in_prot_pool and mass_sums[opt_dataset_name]:
+            met_titles.extend(
+                (
+                    Title("Mass usage [g⋅gDW⁻¹]", WIDTH_DEFAULT),
+                    Title("Mass pool %", WIDTH_DEFAULT),
+                )
+            )
         opt_met_ids = set(all_met_var_ids) & set(opt_dataset.data.keys())
         for met_var_id in opt_met_ids:
             conc = exp(opt_dataset.data[met_var_id])
-            consumption, production = get_metabolite_consumption_and_production(
+            consumption, production, consumption_dict, production_dict = get_metabolite_consumption_and_production(
                 cobrak_model, _get_met_id_from_met_var_id(met_var_id), opt_dataset.data
             )
             bg_color = _get_optimization_bg_color(consumption)
-            met_cells[_get_met_id_from_met_var_id(met_var_id)].append(
-                SpreadsheetCell(conc, bg_color=bg_color, border=BORDER_BLACK_LEFT)
+            met_cells[_get_met_id_from_met_var_id(met_var_id)].extend(
+                (
+                    SpreadsheetCell(conc, bg_color=bg_color, border=BORDER_BLACK_LEFT),
+                    SpreadsheetCell(f"{consumption} → {consumption_dict}", bg_color=bg_color),
+                    SpreadsheetCell(f"{production} → {production_dict}", bg_color=bg_color),
+                )
             )
-            met_cells[_get_met_id_from_met_var_id(met_var_id)].append(
-                SpreadsheetCell(consumption, bg_color=bg_color)
-            )
-            met_cells[_get_met_id_from_met_var_id(met_var_id)].append(
-                SpreadsheetCell(production, bg_color=bg_color)
-            )
+            if cobrak_model.include_mets_in_prot_pool and mass_sums[opt_dataset_name]:
+                met_id = _get_met_id_from_met_var_id(met_var_id)
+                eligible_metabolite = (
+                    bool(cobrak_model.metabolites[met_id].molar_mass)
+                )
+                if any(
+                    met_id.startswith(prefix)
+                    for prefix in cobrak_model.conc_sum_ignore_prefixes
+                ):
+                    eligible_metabolite = False
+                if not any(
+                    met_id.endswith(suffix)
+                    for suffix in cobrak_model.conc_sum_include_suffixes
+                ):
+                    eligible_metabolite = False
+                if eligible_metabolite:
+                    mass = (
+                        (1 / cobrak_model.cell_density)
+                        * cobrak_model.metabolites[met_id].molar_mass
+                        * exp(opt_dataset.data[met_var_id])
+                    )
+                    met_cells[met_id].append(SpreadsheetCell(mass, bg_color=bg_color))
+                    met_cells[met_id].append(
+                        SpreadsheetCell(
+                            100 * mass / mass_sums[opt_dataset_name], bg_color=bg_color
+                        )
+                    )
+                else:
+                    met_cells[met_id].extend(
+                        (
+                            _get_empty_cell(),
+                            _get_empty_cell(),
+                        )
+                    )
         missing_met_ids = set(all_met_var_ids) - set(opt_dataset.data.keys())
         for missing_met_id in missing_met_ids:
             for _ in range(3):
                 met_cells[_get_met_id_from_met_var_id(missing_met_id)].append(
                     _get_empty_cell()
                 )
+    for met_cell in met_cells.values():
+        met_cell.append(
+            " "
+        )
 
     # κ and γ statistics
-    kgstats_titles: list[Title] = [Title("Rank", WIDTH_DEFAULT, is_metatitle=False)]
+    kgstats_titles: list[Title] = [Title("Rank", WIDTH_DEFAULT)]
     kgstats_cells: dict[
         str, list[str | float | int | bool | None | SpreadsheetCell]
     ] = {str(i): [i + 1] for i in range(len(cobrak_model.reactions))}
     for opt_dataset_name, opt_dataset in optimization_datasets.items():
         kgstats_titles.extend(
             (
-                Title(opt_dataset_name, WIDTH_DEFAULT, is_metatitle=True),
-                Title("Reaction ID", WIDTH_DEFAULT),
+                Title(f"→{opt_dataset_name}: Reaction ID", WIDTH_DEFAULT),
                 Title("κ", WIDTH_DEFAULT),
                 Title("Reaction ID", WIDTH_DEFAULT),
                 Title("γ", WIDTH_DEFAULT),

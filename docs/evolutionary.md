@@ -159,7 +159,7 @@ print_optimization_result(toy_model, best_result)
 COBRA-k's ```perform_nlp_evolutionary_optimization```function has many more possible parameters (see also the following info box), which you can look up in this documentation's API overview for the ```evolution```module.
 
 !!! info "Working with larger models"
-    The evolutionary algorithm can also work efficiently with much larger models. E.g. in COBRA-k's initial publication [[Paper]](), the mid-scale model iCH360 [[Paper]]() was succesfully used. iCH360 consists of hundreds of reactions and metabolites.
+    The evolutionary algorithm can also work efficiently with much larger models. E.g. in COBRA-k's initial publication [[Paper]](https://doi.org/10.1126/sciadv.aeb3022), the mid-scale model iCH360 [[Paper]](https://doi.org/10.1371/journal.pcbi.1013564) was succesfully used. iCH360 consists of hundreds of reactions and metabolites.
 
     If you have trouble finding a good objective value from the evolutionary algorithm for your model, consider trying out different population sizes (through the ```perform_nlp_evolutionary_optimization``` parameter ```pop_size```, which defaults to your computer's number of CPU cores) and the ```evolution_num_gens```total evolutionary rounds parameter. Usually, the more population members and the more rounds, the better the optimization should become, at the expense of more needed computational time.
 

@@ -854,6 +854,7 @@ def delete_unused_reactions_in_optimization_dict(
     delete_missing_reactions: bool = True,
     min_abs_flux: NonNegativeFloat = 1e-15,
     do_not_delete_with_z_var_one: bool = True,
+    delete_nonthermodynamic_reacs: bool = True,
 ) -> Model:
     """Delete unused reactions in a COBRAk model based on an optimization dictionary.
 
@@ -888,9 +889,12 @@ def delete_unused_reactions_in_optimization_dict(
                 ):
                     to_delete = True
                 else:
-                    to_delete = True
+                    to_delete = False
             else:
-                to_delete = True
+                if not delete_nonthermodynamic_reacs and cobrak_model.reactions[reac_id].dG0 is None:
+                    to_delete = False
+                else:
+                    to_delete = True
         if to_delete:
             reacs_to_delete.append(reac_id)
     for reac_to_delete in reacs_to_delete:
@@ -1364,7 +1368,7 @@ def get_df_and_efficiency_factors_sorted_lists(
 @validate_call(validate_return=True)
 def get_metabolite_consumption_and_production(
     cobrak_model: Model, met_id: str, optimization_dict: dict[str, float]
-) -> tuple[float, float]:
+) -> tuple[float, float, dict[str, float], dict[str, float]]:
     """Calculate the consumption and production rates of a metabolite in a COBRAk model.
 
     This function computes the total consumption and production of a specified metabolite
@@ -1378,10 +1382,13 @@ def get_metabolite_consumption_and_production(
         optimization_dict (dict[str, float]): A dictionary mapping reaction IDs to their optimized flux values.
 
     Returns:
-        tuple[float, float]: A tuple containing the total consumption and production rates of the specified metabolite.
+        tuple[float, float, dict[str, float], dict[str, float]]: A tuple containing 0) the total consumption and 1) production rates of the specified metabolite
+            as well as dicts with reac IDs as keys and metabolite consumption as values, for 2) consumption and 3) production.
     """
     consumption = 0.0
+    consumption_dict: dict[str, float] = {}
     production = 0.0
+    production_dict: dict[str, float] = {}
     for reac_id, reaction in cobrak_model.reactions.items():
         if reac_id not in optimization_dict:
             continue
@@ -1390,9 +1397,11 @@ def get_metabolite_consumption_and_production(
         stoichiometry = reaction.stoichiometries[met_id]
         if stoichiometry < 0.0:
             consumption += optimization_dict[reac_id] * stoichiometry
+            consumption_dict[reac_id] = optimization_dict[reac_id] * stoichiometry
         else:
             production += optimization_dict[reac_id] * stoichiometry
-    return consumption, production
+            production_dict[reac_id] = optimization_dict[reac_id] * stoichiometry
+    return consumption, production, consumption_dict, production_dict
 
 
 @validate_call(validate_return=True)

@@ -75,7 +75,7 @@
     # We then retrieve the solution as a dictionary in the form of dict[str, float]
     lp_result_dict = get_pyomo_solution_as_dict(lp)
 
-    # Finally, print the (unspecatular) result
+    # Finally, print the (unspectacular) result
     print_dict(lp_result_dict)
 
 
@@ -149,9 +149,9 @@
 Up to now, we looked at the range of predefined (mixed-integer) linear programs (e.g. ecTFVA, bottleneck analyses, ...; see LP and MILP chapters) and non-linear programs (see NLP chapter) provided by COBRA-k, whereby...
 
 - ...the general optimization functions (such as ```perform_lp_optimization```and ```perform_nlp_optimization```) allow one to optimize any objective function in the model
-- ...and the special optimziation functions (such as ```perform_lp_thermodynamic_bottleneck_analysis```) provide expanded programs with additional constraints and variables.
+- ...and the special optimization functions (such as ```perform_lp_thermodynamic_bottleneck_analysis```) provide expanded programs with additional constraints and variables.
 
-But sometimes, for advanced optimizations, you need to add your own extra constraints and/or variables. Luckily, this is possible in COBRA-k thanks to its internal usage of pyomo [Website]()[GitHub](), as explained in the following subchapters :-)
+But sometimes, for advanced optimizations, you need to add your own extra constraints and/or variables. Luckily, this is possible in COBRA-k thanks to its internal usage of pyomo [Website](https://www.pyomo.org/), as explained in the following subchapters :-)
 
 !!! note "Alternative for simple cases: Extra (non-)linear watches and constraints"
     If you just want to restrict a (non-)linear weighted sum of any kind of model variables, you can always use the ```extra_linear_watches```, ```extra_nonlinear_watches```, ```extra_linear_constraints``` and ```extra_nonlinear_constraints``` member variable as explained in the LP and NLP chapters and the API documentation.

@@ -107,7 +107,7 @@ MILPs are much more difficult to solve than LPs. While the latter may contain hu
 
     where j stands for all indices (out of all variables indices indicated by i) whose variable is restricted to the value 0 and 1.
 
-    Major algorithms for the solution of the selection of binary variables in MILPs are branch-and-bound [[Paper]](https://doi.org/10.2307/1910129)[[Wikipedia]](https://en.wikipedia.org/wiki/Branch_and_bound) and the cutting-plane method [[Paper]](https://doi.org/10.1287/opre.9.6.849)[[Wikipadia]](https://en.wikipedia.org/wiki/Cutting-plane_method) as well as their combination branch-and-cut [[Paper]](https://doi.org/10.1137%2F1033004)[[Wikipedia]](https://en.wikipedia.org/wiki/Branch_and_cut).
+    Major algorithms for the solution of the selection of binary variables in MILPs are branch-and-bound [[Paper]](https://doi.org/10.2307/1910129)[[Wikipedia]](https://en.wikipedia.org/wiki/Branch_and_bound) and the cutting-plane method [[Paper]](https://doi.org/10.1287/opre.9.6.849)[[Wikipedia]](https://en.wikipedia.org/wiki/Cutting-plane_method) as well as their combination branch-and-cut [[Paper]](https://doi.org/10.1137%2F1033004)[[Wikipedia]](https://en.wikipedia.org/wiki/Branch_and_cut).
 
 ### Thermodynamic measures
 
@@ -160,7 +160,7 @@ $ln$ is the natural logarithm, $c_j$ the concentration of metabolite $j$ and $N_
 
     $ = -1 + -1 ⋅ ln(0.2) + -(-2) ⋅ ln(0.1) ≈ -3.996 kJ⋅mol⁻¹ $
 
-    $f_X<0$, this, the reaction is thermodynamically feasible, it can run!
+    $f_X<0$, thus, the reaction is thermodynamically feasible, it can run!
 
 ## Thermodynamic constraints
 
@@ -206,9 +206,9 @@ And that's it! Through the two constraints utilizing $z_i$, we ensure that any t
 
 COBRA-k also provides the possibility to introduce *concentration sum constraints*. They are only activated if a Model's ```max_conc_sum``` member variable is smaller than the default value ```float("inf")```. In exact form, the concentration constraint would be
 
-$$ Μ_{tot} ≤ \sum{e^(x̃_j)} $$
+$$ Μ_{tot} ≤ \sum{e^{x̃_j}} $$
 
-whereby $Μ_{tot}$ stands for the maximal concentration sum we set, and $e^(x̃_j)$ for a exponentiated logarithmic concentration. As $e^(x̃_j)$ is *non*-linear, we cannot use them directly in our MILP. Hence, we need a linearized approximation (whereby we use most of the formulation from [[this preprint](https://doi.org/10.1101/2024.03.19.585265)]).
+whereby $Μ_{tot}$ stands for the maximal concentration sum we set, and $e^{x̃_j}$ for a exponentiated logarithmic concentration. As $e^{x̃_j}$ is *non*-linear, we cannot use them directly in our MILP. Hence, we need a linearized approximation (whereby we use most of the formulation from [[this preprint](https://doi.org/10.1101/2024.03.19.585265)]).
 
 This works as, luckily, the exponential function is monotonically rising :D This means that we can always draw a "minimum" linear constraint underneath the exponential function's curve without cutting this curve. Even more lucky, we have to set $x̃_j$ concentration bounds anyway for thermodynamic constraints (see above), so that we know for which range of logarithmic concentrations we apply the exponential function. I.e. we know the possible minimal and maximal logarithmic concentration and only have to approximate the exponential function for these values.
 
@@ -216,13 +216,13 @@ Now, mathematically, the exponential function's linear approximation is built as
 
 * For each metabolite $j$, we first look at its possible minimal and maximal logarithmic concentration. Then, we segment this interval into $ξ$ many values creating the value vector $\mathbf{S}$ (we will clarify how large $X$ should be, i.e. how many segments are needed). I.e., we get X many equally distant values $\mathbf{S}$ from (and including) the minimal and maximal logarithmic concentration of $j$.
 
-* For each segment value, we approximate its delogarithmic concentration $C_j$, i.e. $e^(x̃_j)$ a linear constraint of the following form (for a visualization see [[Fig. 5 in this preprint]](https://doi.org/10.1101/2024.03.19.585265)):
+* For each segment value, we approximate its delogarithmic concentration $C_j$, i.e. $e^{x̃_j}$ a linear constraint of the following form (for a visualization see [[Fig. 5 in this preprint]](https://doi.org/10.1101/2024.03.19.585265)):
 
 $$C_j ≥ a_{s,j} ⋅ x̃_j + b_{s,j}$$
 
-$s$ is the linear approximation segment index in $[1,S]$. $a_{s,j}$ is the slope of the exponential function at the segment's value. $b_{s,j}$ is the necessary correction such that $a_{s,j} ⋅ x̃_j + b_{s,j} = e^(x̃_j)$. It is defined as:
+$s$ is the linear approximation segment index in $[1,S]$. $a_{s,j}$ is the slope of the exponential function at the segment's value. $b_{s,j}$ is the necessary correction such that $a_{s,j} ⋅ x̃_j + b_{s,j} = e^{x̃_j}$. It is defined as:
 
-$e^(x̃_j) - e^(x̃_j) * S_s$
+$e^{x̃_j} - e^{x̃_j} * S_s$
 
 where $S_s$ is the segment $s$'s value.
 
@@ -230,15 +230,15 @@ where $S_s$ is the segment $s$'s value.
 
 1. We start with just $ξ=2$, i.e. two segments
 2. For the current number of $ξ$, and define its two linear approximations as described above.
-3. Then, for each segment value $S_s \space ∀ \space s<ξ$, we calculate the *Y intersect* of the linear approximation function at $S_s$ and $S_{s+1}$. I.e., this is the X value where this linear approximation and the linear approximation of the *following* segment have the same Y value. We do this because, due to the monotonically rising nature of the exponential function, this intersect is the point with the *largest possible* approximation error (again, for a visualization see [[Fig. 5 in this preprint]](https://doi.org/10.1101/2024.03.19.585265)).
-4. We now calculate the relative difference between the exponential function and the linear approximation at this Y intersect. If this relative difference is larger than the set ```conc_sum_max_rel_error``` (default: ```0.05```), we increase $ξ$ by 1 and start again with step 2 of this algorithm. Otherwise, we have a linear approximation within our set maximal relative error and can stop the algorithm :D
+3. Then, for each segment value $S_s \space ∀ \space s<ξ$, we calculate the *Y-intercept* of the linear approximation function at $S_s$ and $S_{s+1}$. I.e., this is the X value where this linear approximation and the linear approximation of the *following* segment have the same Y value. We do this because, due to the monotonically rising nature of the exponential function, this intersect is the point with the *largest possible* approximation error (again, for a visualization see [[Fig. 5 in this preprint]](https://doi.org/10.1101/2024.03.19.585265)).
+4. We now calculate the relative difference between the exponential function and the linear approximation at this Y-intercept. If this relative difference is larger than the set ```conc_sum_max_rel_error``` (default: ```0.05```), we increase $ξ$ by 1 and start again with step 2 of this algorithm. Otherwise, we have a linear approximation within our set maximal relative error and can stop the algorithm :D
 
 * Finally, we can constrain our sum of the approximation of delogarithmic concentrations as follows:
 
 $$ Μ_{tot} ≤ \sum{C_j} $$
 
 !!! warning
-    For numeric reasons, linear approximations at very low concentrations may cause numeric problems :-( To mitigate this, we can set ```conc_sum_min_abs_error``` (default: ```1e-6```) in our Model instance, which sets a minimal value for $Μ_{tot}$ and removing all linear constraints for any logarithmic concentration where $e^(x̃_j)$ is smaller than ```conc_sum_min_abs_error```.
+    For numeric reasons, linear approximations at very low concentrations may cause numeric problems :-( To mitigate this, we can set ```conc_sum_min_abs_error``` (default: ```1e-6```) in our Model instance, which sets a minimal value for $Μ_{tot}$ and removing all linear constraints for any logarithmic concentration where $e^{x̃_j}$ is smaller than ```conc_sum_min_abs_error```.
 
 ## Thermodynamic Flux Balance Analysis (TFBA)
 

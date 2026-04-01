@@ -186,7 +186,7 @@ To encode a metabolic network in COBRA-k, you can:
 
 Here, we recreate the toymodel from COBRA-k's publication [](). It looks as follows:
 
-<img src="img/toymodel.001.png" alt="Toymodel visualization" class="img-border img-half">
+<img src="img/toymodel.png" alt="Toymodel visualization" class="img-border img-half">
 
 Arrows stand for toy *reactions* with the name given in italic letters. Bold letters for toy *metabolites*. The numbers at the begin and end of arrows stand for the stoichiometry of each metabolite. E.g. the toy reaction "Respiration" looks as follows:
 ```
@@ -244,7 +244,6 @@ The Model member variables have the following meaning (variables in italic are *
 * *extra_linear_constraints: list[ExtraLinearConstraint]* ~ Stands for linear set relationships between model variables. Further explained below.
 * *kinetic_ignored_metabolites*: list[str] ~ Only relevant if enzyme kinetic constraints are used (see "Non-linear Programs" chapter). Contains the metabolite identifiers (see next paragraph) of metabolites which do not need a $K_M$ value (see chapter about NLPs for more).
 * *R: float* ~ Only relevant if thermodynamic constraints are used (see the "Mixed-Integer Linear Programs" chapter). Stands for the gas constant in kJ/(K⋅mol).
-* *T: float* ~ Only relevant if thermodynamic constraints are used (see the "Mixed-Integer Linear Programs" chapter). Stands for the temperature in K.
 * *T: float* ~ Only relevant if thermodynamic constraints are used (see the "Mixed-Integer Linear Programs" chapter). Stands for the temperature in K.
 * *max_conc_sum: float* ~ Only relevant if thermodynamic constraints are used (see "Mixed-Integer Linear Programs" chapter). Stands for the maximally allowed sum of concentrations in a solutions. If it is set to ```float("inf")``` (which is also the default value), no such constraint is introduced. Note that in mixed-integer linear programs, an approximation is used (as explained in the "Mixed-Integer Linear Programs" chapter) which can be further controlled by the ```conc_sum_...``` member variables explained below. Also note the member variable ```conc_sum_include_suffixes``` as only metabolites with the given suffixes in their IDs are included in the concentration sum.
 
@@ -502,14 +501,14 @@ toy_model.enzymes={
 },
 ```
 
-The full molecular weight of a reaction's enzyme is the sum of all its subunit molecular weights. In this example, A_to_B's enzyme E has the weight 100.0 kDa + 110.0 kDa=210.0 kDa.
+The full molecular weight of a reaction's enzyme is the sum of all its subunit molecular weights.
 
 Only the molecular weight is mandatory to be set, all other member variables are optional. If ```min_conc``` and/or ```max_conc``` are ```None```, their respective concentration bounds are ignored. I.e., if ```min_conc``` is its default value ```None```, the enzyme's minimal concentration is just 0; if ```max_conc``` is ```None```, the enzyme's maximal concentration is as high as possible (```max_prot_pool / molecular_weight```).
 
-```max_prot_pool``` ($E_{tot}$ in our formulas) stands for the biomass fraction of all modeled metabolic enzymes. Its unit is g⋅gDW⁻¹ and it is an essential upper limit for the usage of enzymes in our analyses with enzyme constraints (see next chapters). In our toy model, we set it to 0.5 g⋅gDW⁻¹:
+```max_prot_pool``` ($E_{tot}$ in our formulas) stands for the biomass fraction of all modeled metabolic enzymes. Its unit is g⋅gDW⁻¹ and it is an essential upper limit for the usage of enzymes in our analyses with enzyme constraints (see next chapters). In our toy model, we set it to 0.4 g⋅gDW⁻¹:
 
 ```py
-toy_model.max_prot_pool = 0.5
+toy_model.max_prot_pool = 0.4
 ```
 
 ## ExtraLinearConstraint
