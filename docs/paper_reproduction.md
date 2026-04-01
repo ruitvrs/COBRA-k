@@ -1,7 +1,7 @@
 # Reproduce publication results
 
 !!! warning "Solver usage"
-    The iCH360 scripts mentioned herein usually use CPLEX as LP solver. Please refer to this documentation's installation chapter for instructions on how to install it for COBRA-k. Alternatively, simply switch all instances where "CPLEX" is called to another server (e.g. the pre-installed SCIP) or add a ```solver=YOUR_SOLVER```option to any case where an optimization is called.
+    The iCH360 scripts mentioned herein usually use CPLEX as LP solver. Please refer to this documentation's installation chapter for instructions on how to install it for COBRA-k. Alternatively, simply switch all instances where "CPLEX" is called to another solver (e.g. the pre-installed SCIP) or add a ```solver=YOUR_SOLVER```option to any case where an optimization is called.
 
     Also, for the iCH360 calculations, the IPOPT sub-solver MA57 is used, such that the ```IPOPT_MA57```solver with personal HSLLIB path settings from the publication's authors is loaded from ```cobrak.standard_solvers```. To use MA57, obtain it through HSLLIB from here (free for academics):
 
@@ -10,7 +10,7 @@
     ...and change the ```"hsllib"``` ```solver_option```in ```IPOPT_MA57``` to your HSLLIB path.
 
 !!! warning "Re-run of existing calculation"
-    Many iCH360 calculations will not run because existing calculation results are found (this prevents unneccessary double calculations). To mitigate this problem, simply detele all folders in the ``ìCH360```subfolder except of the ```external_resources``` folder.
+    Many iCH360 calculations will not run because existing calculation results are found (this prevents unneccessary double calculations). To mitigate this problem, simply delete all folders in the ```iCH360```subfolder except of the ```external_resources``` folder.
 
     *Note:* For the $k_{cat}$ and $K_M$ variation analysis, you have to un-zip the three zip files there ("used_cobrak_models.zip", "variability_dicts.zip" and "best_evolution_results.zip") into the variation results folder beforehand if you want to get exactly the same random variation calculations as the ones shown in COBRA-k's publication.
 
@@ -31,4 +31,4 @@ For the toy model calculations, simply run ```examples/toymodel/run_toymodel_cal
 
 Let's continue with ```ìCH360``` (regarding the iCH360 COBRA-k variant described in COBRA-k's publication) in the appropriate subfolder. There, simply follow the alphabetically sorted scripts and run them with ```uv run```. The only more complex script for usage is ```H_run_calculations.py```. As input, it takes JSON with a reproducible run configuration (with model settings and so on). To generate the run setting JSONs of COBRA-k's publication on you local machine, run ```main_paper_calculations.py local``` in COBRA-k's main folder. Note the ```local``` option, which creates the JSONs in a ```main_paper_calculations_jsons``` subfolder. Without the ```local``` option, you can use to run all the main paper calculations on a SLURM computer cluster as it creates a SLURM file and ```sbatch```es it for each JSON run config.
 
-If you just want to play around with iCH360_cobrak, you can simply import it through ```from cobrak.toy_models import iCH360_cobrak```. iCH360_cobrak is now a ```Model```variable with the full model.
+If you just want to play around with iCH360_cobrak, you can simply import it through ```from cobrak.example_models import iCH360_cobrak```. iCH360_cobrak is now a ```Model```variable with the full model.

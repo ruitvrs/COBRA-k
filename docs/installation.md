@@ -5,13 +5,7 @@ COBRA-k is a Python package [hosted on PyPI](https://pypi.org/project/cobrak/), 
 ```sh
 pip install cobrak
 ```
-*Note:* If you encounter any trouble due to a missing SCIP installation (which may happen on some systems), you have to install the free and open-source mixed-integer linear solver [SCIP](https://scipopt.org/) on your system. To do so, follow the SCIP download instructions here:
-
-https://scipopt.org/index.php#download
-
-or, if no matching download is provided for your system, the compilation instructions here:
-
-https://scipopt.org/doc/html/INSTALL.php
+*Note:* If you encounter any trouble due to a missing SCIP installation (which may happen on some systems), you have to install the free and open-source mixed-integer linear solver on your system. To do so, follow the SCIP download or compilation instructions on [its website](https://scipopt.org/).
 
 ??? info "Optional alternative installation for conda or mamba users"
     If you're using conda or mamba and want to have a clean COBRA-k environment, create an empty environment with Python and pip, activate it and install COBRA-k afterwards. E.g., on a plain bash console, the steps are as follows (again, any Python≥3.10 should work):
@@ -25,11 +19,11 @@ https://scipopt.org/doc/html/INSTALL.php
 
 
 ??? info "Alternative installation for COBRA-k developers"
-    If you want to directly play with COBRA-k's code base, follow the [developer instructions in COBRA-k's README]()
+    If you want to directly play with COBRA-k's code base, follow the [developer instructions in COBRA-k's README](https://github.com/klamt-lab/COBRA-k?tab=readme-ov-file#contributing-as-developer)
 
 ## Installation of third-party solvers
 
-COBRA-k always comes pre-packaged with the quite capable open source linear (mixed-integer) solver [HiGHS](https://github.com/ERGO-Code/HiGHS) and the linear and non-linear program solver [IPOPT](https://github.com/coin-or/Ipopt) (and on some systems, also automatically the solver SCIP). With this solver, all optimizations without integer variables provided by COBRA-k can be run.
+COBRA-k always comes pre-packaged with the quite capable open source linear (mixed-integer) solver [HiGHS](https://github.com/ERGO-Code/HiGHS) and the linear and non-linear program solver [IPOPT](https://github.com/coin-or/Ipopt) (and on some systems, also automatically the solver SCIP). With IPOPT, all optimizations without integer variables (e.g., the NLP optimizations) provided by COBRA-k can be run.
 
 !!! note
     IPOPT comes pre-packages with the free linear subsolver MA27. However, for larger models, the much faster linear subsolver MA57 or one of its alternatives are highly recommended. See here on how to obtain them (e.g. a free academic license is provided):

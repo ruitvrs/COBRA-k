@@ -950,7 +950,7 @@ def load_annotated_cobrapy_model_as_cobrak_model(
             log_min_conc=log_min_conc,
             log_max_conc=log_max_conc,
             annotation={
-                key: literal_eval(value) if "[" in value else value
+                key: literal_eval(value) if (isinstance(value, str) and "[" in value) else value
                 for key, value in metabolite.annotation.items()
                 if not key.startswith("cobrak_")
             },
@@ -1177,7 +1177,7 @@ def load_annotated_cobrapy_model_as_cobrak_model(
                 dG0_uncertainty=dG0_uncertainty,
                 enzyme_reaction_data=enzyme_reaction_data,
                 annotation={
-                    key: literal_eval(value) if "[" in value else value
+                    key: literal_eval(value) if (isinstance(value, str) and "[" in value) else value
                     for key, value in reaction.annotation.items()
                     if not key.startswith("cobrak_")
                 },

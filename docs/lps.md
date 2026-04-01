@@ -266,7 +266,7 @@
 
 ## Introduction
 
-COBRA-k's analyses are all based on the framework of "**C**onstraint-**B**ased **R**econstruction and **A**nalysis" [[Review]](https://doi.org/10.1038/nrg3643), enriched with **k**inetics []() - in short COBRA-k. We performed the Constraint-Based *Reconstruction* by creating our small toy model. Some constraints that we set were minimal and maximal fluxes and concentrations. And now, we perform some Constraint-Based *Analysis* :D
+COBRA-k's analyses are all based on the framework of "**C**onstraint-**B**ased **R**econstruction and **A**nalysis" [[Review]](https://doi.org/10.1038/nrg3643), enriched with **k**inetics - in short COBRA-k. We performed the Constraint-Based *Reconstruction* by creating our small toy model. Some constraints that we set were minimal and maximal fluxes and concentrations. And now, we perform some Constraint-Based *Analysis* :D
 
 In this chapter, we concentrate on Constraint-Based Analyses based on Linear Programming or LP [[Paper]](https://doi.org/10.1515/9781400884179)[[Wikipedia]](https://en.wikipedia.org/wiki/Linear_programming), also called Linear Optimization.
 
@@ -296,20 +296,20 @@ To use COBRA-k's optimization methods with our metabolic model, we have to conve
 
 Let's visualize this for our toy model!
 
-<img src="img/toymodel.jpg" alt="Toymodel visualization" class="img-border img-half">
+<img src="img/toymodel.png" alt="Toymodel visualization" class="img-border img-half">
 
 As a table, its stoichiometries would look as follows:
 $$
 $$
 
 $$
- \begin{array}{c|ccc} & A & B & C & D & ATP \\ \hline EX_A & +1 & 0 & 0 & 0 & 0  \\ EX_C & 0 & 0 & -1 & 0 & 0 \\ EX_D & 0 & 0 & 0 & -1 & 0 \\ EX_{ATP} & 0 & 0 & 0 & 0 & -1 \\ Glycolysis & -1 & +1 & 0 & 0 & 0 \\ Respiration & 0 & -1 & +1 & 0 & 0 \\ Overflow & 0 & 0 & -1 & +1 & 0 \end{array}
+ \begin{array}{c|ccc} & S & M & C & P & ATP & ADP \\ \hline EX_S & +1 & 0 & 0 & 0 & 0 & 0  \\ EX_C & 0 & 0 & -1 & 0 & 0 & 0 \\ EX_P & 0 & 0 & 0 & -1 & 0 & 0 \\ ATP\_Consumption & 0 & 0 & 0 & 0 & -1 & +1 \\ Glycolysis & -1 & +1 & 0 & 0 & +2 & -2 \\ Respiration & 0 & -1 & +1 & 0 & +4 & -4 \\ Fermentation & 0 & 0 & -1 & +1 & 0 & 0 \end{array}
 $$
 
 The stoichiometric matrix $\mathbf{N}$ of our toy model is therefore (just remove the column and row headings in your mind):
 
 $$
-\mathbf{N} = \left[ \begin{array}{ccc} +1 & 0 & 0 & 0 & 0 \\ 0 & 0 & -1 & 0 & 0 \\ 0 & 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & 0 & -1 \\ -1 & +1 & 0 & 0 & 0 \\ 0 & -1 & +1 & 0 & 0 \\ 0 & 0 & -1 & +1 & 0 \\ \end{array} \right]
+\mathbf{N} = \left[ \begin{array}{ccc} +1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & -1 & 0 & 0 & 0 \\ 0 & 0 & 0 & -1 & 0 & 0 \\ 0 & 0 & 0 & 0 & -1 & +1 \\ -1 & +1 & 0 & 0 & +2 & -2 \\ 0 & -1 & +1 & 0 & +4 & -4 \\ 0 & 0 & -1 & +1 & 0 & 0 \end{array} \right]
 $$
 
 You can also show a model's stoichiometric matrix using COBRA-k:
@@ -471,13 +471,13 @@ $$ \operatorname*{\mathbf{min}}_{\mathbf{v}} \space ∑_i v_i \\ s.t. \space CBM
 
 i.e. a minimization of the *flux sum*. This subsequent minimization may stand for a crude proxy e.g. of enzyme costs, where we assume that the lower the flux sum of a solution is, the lower the amount of needed enzymes are (for a more realistic approximation of enzyme costs, see this chapter's last subchapter).
 
-In COBRA-k, we can do this using the toggle ```with_flux_sum_var``` in ```perform_lp_optimization```, which adds a variable called ```autocobra.constants.FLUX_SUM_VAR_ID``` (by default, "FLUX_SUM_VAR") to our optimization problem. This variable represents $∑_i v_i$ and can be used as follows following our FBA:
+In COBRA-k, we can do this using the toggle ```with_flux_sum_var``` in ```perform_lp_optimization```, which adds a variable called ```cobrak.constants.FLUX_SUM_VAR_ID``` (by default, "FLUX_SUM_VAR") to our optimization problem. This variable represents $∑_i v_i$ and can be used as follows following our FBA:
 
 ```py
 from cobrak.example_models import toy_model
 from cobrak.lps import perform_lp_optimization
 from cobrak.printing import print_optimization_result
-from autocobra.constants import FLUX_SUM_VAR_ID
+from cobrak.constants import FLUX_SUM_VAR_ID
 
 # We perform a pFBA on our Glycolysis optimization example
 # 1) We set the objective value as minimum
@@ -607,7 +607,8 @@ as follows:
 ```py
 # Perform general ecFVA
 var_result = perform_lp_variability_analysis(
-    toy_model
+    toy_model,
+    with_enzyme_constraints=True,
 )
 
 # Pretty print result as tables - again, now with enzyme usages :-)
@@ -617,7 +618,7 @@ print_variability_result(toy_model, var_result)
 !!! info "Enzyme constraint variables"
     In any COBRA-k results, you can identify enzyme concentration variables as follows:
 
-    They start with ```autocobra.constants.ENZYME_VAR_PREFIX``` (default is ```"enzyme_"```), followed by the enzyme's ID, followed by ```autocobra.constants.ENZYME_VAR_INFIX``` (default is ```"_of__"```), followed by the reaction's ID (remember that we give each reaction its own enzyme in COBRA-k). E.g., if a reaction "R1" has the enzyme "E1", its concentration variable would be called by default ```"enzyme_E1_of_R1"```.
+    They start with ```cobrak.constants.ENZYME_VAR_PREFIX``` (default is ```"enzyme_"```), followed by the enzyme's ID, followed by ```cobrak.constants.ENZYME_VAR_INFIX``` (default is ```"_of__"```), followed by the reaction's ID (remember that we give each reaction its own enzyme in COBRA-k). E.g., if a reaction "R1" has the enzyme "E1", its concentration variable would be called by default ```"enzyme_E1_of_R1"```.
 
     To find out a reaction's enzyme concentration name, you can also use the following utility function, e.g.:
 
@@ -707,7 +708,7 @@ with tempfile.NamedTemporaryFile(suffix='.xlsx', delete=False) as temp:
 
 ## Export/Import optimization or variability result as JSON file
 
-Instead of the shown pretty-printing options, you can also save and load COBRA-k optimization and variability results in the form of a human- and machine-readable JSON [[Wikipedia]]() file. The respective functionality can be found in COBRA-k's ```io``` submodule, whereby all associated functions start with ```json```. Let's run an ecFBA and store its result as JSON (here, in a temporary file) and then load it again:
+Instead of the shown pretty-printing options, you can also save and load COBRA-k optimization and variability results in the form of a human- and machine-readable JSON [[Wikipedia]](https://en.wikipedia.org/wiki/JSON) file. The respective functionality can be found in COBRA-k's ```io``` submodule, whereby all associated functions start with ```json```. Let's run an ecFBA and store its result as JSON (here, in a temporary file) and then load it again:
 
 ```py
 from cobrak.example_models import toy_model
@@ -736,7 +737,7 @@ with tempfile.NamedTemporaryFile(suffix='.json') as temp:
 ```
 
 !!! info "Pydantic dataclass validation"
-    COBRA-k also offers pydantic [[Site]]()[[GitHub]]() dataclass validations that
+    COBRA-k also offers pydantic [[Website]](https://docs.pydantic.dev/latest/) dataclass validations that
     throw a ```ValidationError``` whenever a dataclass member variable is missing
     or of the wrong type (e.g. a ```str``` instead of a ```float```) or of the wrong range (e.g. a negative number instead of a non-negative number).
 
@@ -754,7 +755,7 @@ with tempfile.NamedTemporaryFile(suffix='.json') as temp:
 
 ## Export optimization or variability result as CNApy scenario
 
-In addition to storing an optimization optimization (e.g. FBA) or variability (e.g. FVA) result as an XLSX spreadsheet or JSON file, you can also export a result as a CNApy [[GitHub]]()[[Paper]]() scenario file. Such files can be loaded by CNApy and directly displayed in an interactive CNApy map. To export an optimization or variability result, we can use the respective functions in the ```utilities``` package:
+In addition to storing an optimization optimization (e.g. FBA) or variability (e.g. FVA) result as an XLSX spreadsheet or JSON file, you can also export a result as a CNApy [[GitHub]](https://github.com/cnapy-org/CNApy) scenario file. Such files can be loaded by CNApy and directly displayed in an interactive CNApy map. To export an optimization or variability result, we can use the respective functions in the ```utilities``` package:
 
 ```py
 from cobrak.example_models import toy_model
@@ -794,7 +795,7 @@ For variability results, we can use the function ```create_cnapy_scenario_out_of
 ## Changing and setting solvers with the dataclass Solver
 
 Up to now, we just used COBRA-k's default solver SCIP [[Website](https://scipopt.org/)]. However, you can set your own solver using the dataclass Solver. E.g., if we wanted to use the local (and also open-source) solver IPOPT and make it possible to run for a large amount of internal optimization steps, we would define a Solver instance as follows:
-olver. E.g., if we wanted to use the local (and also open-source) solver IPOPT an
+
 ```py
 from cobrak.example_models import toy_model
 from cobrak.lps import perform_lp_optimization
